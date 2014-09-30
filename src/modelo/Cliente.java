@@ -8,6 +8,8 @@ package modelo;
  *
  * @author sena
  */
+
+//Esto es un cambio realizado hoy
 public class Cliente {
     private String identificacion;
     private String nombre;
