@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author sena
- */
+/* @author Grupo - MECAUT */
 public class Auto {
     private String placa;
     private String ciudad;
@@ -53,38 +46,5 @@ public class Auto {
 
     public String getApellidosCliente() {
         return apellidosCliente;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public void setApellidosCliente(String apellidosCliente) {
-        this.apellidosCliente = apellidosCliente;
-    }
-    
-    @Override
-    public String toString() {
-        return ""+ placa;
     }
 }

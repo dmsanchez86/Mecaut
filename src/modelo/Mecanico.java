@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author Sergio Alejandro
- */
+/* @author Grupo - MECAUT */
 public class Mecanico {
     private String identificacion;
     private String nombre;
@@ -47,34 +40,5 @@ public class Mecanico {
 
     public String getSalario() {
         return salario;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public void setSalario(String salario) {
-        this.salario = salario;
-    }
-    
-    @Override
-    public String toString() {
-        return ""+ identificacion;
     }
 }

@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author Sergio Alejandro
- */
+/* @author Grupo - Mecaut */
 public class Repuesto {
     private String codigo;
     private String tipo;
@@ -53,38 +46,5 @@ public class Repuesto {
 
     public String getNomProv() {
         return nomProv;
-    }
-          
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }    
-    
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public void setPrecio(String precio) {
-        this.precio = precio;
-    }
-
-    public void setNitProv(String nitProv) {
-        this.nitProv = nitProv;
-    }
-
-    public void setNomProv(String nomProv) {
-        this.nomProv = nomProv;
-    }
-    
-    @Override
-    public String toString() {
-        return ""+ codigo;
     }
 }

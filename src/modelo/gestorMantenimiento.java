@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Sergio Alejandro
- */
+/* @author Grupo - MECAUT */
 public class gestorMantenimiento {
     public boolean agregarMantenimiento(Mantenimiento man){
         Conexion conexion = new Conexion();

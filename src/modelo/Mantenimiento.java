@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Date;
 
-/**
- *
- * @author Sergio Alejandro
- */
+/* @author Grupo - MECAUT */
 public class Mantenimiento {
     private int codigo;
     private String tipo;
@@ -66,7 +59,6 @@ public class Mantenimiento {
         return costo;
     }
     
-    
     public String getPlacaAuto() {
         return placaAuto;
     }    
@@ -74,37 +66,4 @@ public class Mantenimiento {
     public String getIdMecanico() {
         return idMecanico;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public void setCosto(String costo) {
-        this.costo = costo;
-    }
-
-    public void setPlacaAuto(String placaAuto) {
-        this.placaAuto = placaAuto;
-    }
-
-    public void setIdMecanico(String idMecanico) {
-        this.idMecanico = idMecanico;
-    }
-    
-    @Override
-    public String toString() {
-        return ""+ codigo;
-    } 
 }

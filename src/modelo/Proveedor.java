@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-/**
- *
- * @author sena
- */
+/* @author Grupo - MECAUT */
 public class Proveedor {
     private String nit;
     private String nombre;
@@ -41,30 +34,5 @@ public class Proveedor {
 
     public String getDescripcion() {
         return descripcion;
-    }
-    
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-    
-     public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-    
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
-    @Override
-    public String toString() {
-        return ""+nit;
     }
 }

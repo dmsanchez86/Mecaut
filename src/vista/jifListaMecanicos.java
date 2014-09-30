@@ -50,6 +50,8 @@ public class jifListaMecanicos extends javax.swing.JInternalFrame {
         jtListaMecanicos.setEnabled(false);
         jScrollPane2.setViewportView(jtListaMecanicos);
 
+        jtfDato.setToolTipText("Buscar por Identificación, Nombre o Apellidos");
+
         jbtBuscar.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jbtBuscar.setText("Buscar");
 
@@ -62,7 +64,7 @@ public class jifListaMecanicos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbtBuscar)
+                        .addComponent(jbtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfDato, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))

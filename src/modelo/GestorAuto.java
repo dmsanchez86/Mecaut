@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author sena
- */
+/* @author Grupo - MECAUT */
 public class GestorAuto {
     public boolean agregarAuto(Auto aut){
         Conexion conexion = new Conexion();
@@ -18,7 +11,6 @@ public class GestorAuto {
         conexion.cerrarConexion();
         return respuesta;
     }
-    
     public ArrayList<Cliente> consultarClientes(){
         Conexion conexion = new Conexion();
         conexion.crearConexion();
@@ -26,7 +18,6 @@ public class GestorAuto {
         conexion.cerrarConexion();
         return clientes;
     }
-    
     public ArrayList<Auto> verAutos(){
         Conexion conexion = new Conexion();
         conexion.crearConexion();

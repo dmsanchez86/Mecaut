@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author sena
- */
+/* @author Grupo - MECAUT */
 public class GestorProveedor {
     public boolean agregarProveedor(Proveedor prov){
         Conexion conexion = new Conexion();
@@ -17,8 +10,7 @@ public class GestorProveedor {
         boolean respuesta = conexion.agregarProveedor(prov);
         conexion.cerrarConexion();
         return respuesta;
-    }
-    
+    }  
     public ArrayList<Proveedor> verProveedor(){
         Conexion conexion = new Conexion();
         conexion.crearConexion();
@@ -26,7 +18,6 @@ public class GestorProveedor {
         conexion.cerrarConexion();
         return proveedores;
     }
-    
     public ArrayList<Proveedor> consultarProveedores(){
         Conexion conexion = new Conexion();
         conexion.crearConexion();
@@ -34,7 +25,6 @@ public class GestorProveedor {
         conexion.cerrarConexion();
         return proveedores;
     }
-    
     public boolean modificarProveedor(Proveedor prov){
         Conexion conexion = new Conexion();
         conexion.crearConexion();
@@ -42,7 +32,6 @@ public class GestorProveedor {
         conexion.crearConexion();
         return respuesta;
     }
-    
     public boolean eliminarProveedor(int nit){
         Conexion conexion = new Conexion();
         conexion.crearConexion();
