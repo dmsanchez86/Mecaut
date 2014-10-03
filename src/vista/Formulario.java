@@ -54,6 +54,7 @@ public class Formulario extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jmiRepuestos = new javax.swing.JMenuItem();
+        jmiActualizarMecanico1 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
@@ -167,7 +168,7 @@ public class Formulario extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mecuat.JPG"))); // NOI18N
         jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(320, 110, 510, 350);
+        jLabel4.setBounds(400, 170, 510, 350);
 
         jMenuBar1.setToolTipText("Menu");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -293,8 +294,13 @@ public class Formulario extends javax.swing.JFrame {
 
         jmiRepuestos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
-        jmiRepuestos.setText("Agregar Repuesto");
+        jmiRepuestos.setText("Repuesto");
         jMenu6.add(jmiRepuestos);
+
+        jmiActualizarMecanico1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiActualizarMecanico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
+        jmiActualizarMecanico1.setText("Repuesto");
+        jMenu6.add(jmiActualizarMecanico1);
 
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jMenuItem10.setText("Buscar Repuesto");
@@ -308,7 +314,9 @@ public class Formulario extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu7.setText("Ventas");
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ventas.PNG"))); // NOI18N
+        jMenu7.setText("Ventas  ");
+        jMenu7.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
 
         jMenuItem13.setText("Odenes se Servicio");
         jMenu7.add(jMenuItem13);
@@ -373,11 +381,15 @@ public class Formulario extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu8.setText("Ayuda");
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ayuda.png"))); // NOI18N
+        jMenu8.setText("Ayuda   ");
+        jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu8.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jMenuBar1.add(jMenu8);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
-        jMenu5.setText("Salir");
+        jMenu5.setText("Salir   ");
+        jMenu5.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
 
         jmiSalir.setText("Cerrar sesión");
         jMenu5.add(jmiSalir);
@@ -392,18 +404,17 @@ public class Formulario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     private void jtfUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfUsuarioFocusGained
         if (jtfUsuario.getText().equals("Usuario")) {
@@ -507,6 +518,7 @@ public class Formulario extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiActualizarCliente;
     public javax.swing.JMenuItem jmiActualizarMantenimiento;
     public javax.swing.JMenuItem jmiActualizarMecanico;
+    public javax.swing.JMenuItem jmiActualizarMecanico1;
     public javax.swing.JMenuItem jmiActualizarProveedor;
     public javax.swing.JMenuItem jmiAuto;
     public javax.swing.JMenuItem jmiCliente;
