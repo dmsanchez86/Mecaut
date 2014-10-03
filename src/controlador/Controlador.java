@@ -43,35 +43,35 @@ import vista.jifMantenimiento;
 
 /* @author Grupo - MECAUT */
 public class Controlador {
-    private GestorCliente GestorCliente;
-    private GestorAuto GestorAuto;
-    private GestorProveedor GestorProveedor;
-    private GestorMecanico GestorMecanico;
-    private GestorRepuesto GestorRepuesto;
-    private gestorMantenimiento gestorMantenimiento;
-    private Formulario form;
-    private jifCliente jifCliente;
-    private jifActualizarCliente jifActualizarCliente;
-    private jifMantenimiento jifMantenimiento;
-    private jifListaClientes jifListaClientes;
-    private jifListaAutos jifListaAutos;
-    private jifListaRepuestos jifListaRepuestos;
-    private jifListaMecanicos jifListaMecanicos;
-    private jifListaProveedores jifListaProveedores;
-    private jifActualizarProveedor jifActualizarProveedor;
-    private jifAuto jifAuto;
-    private jifProveedor jifProveedor;
-    private jifMecanico jifMecanico;
-    private jifActualizarMecanico jifActualizarMecanico;
-    private jifRepuesto jifRepuesto;
-    private jifListaMantenimientos jifListaMantenimientos;
-    private jifActualizarMantenimiento jifActualizarMantenimiento;
-    private FRM_Registro fRegistro;
+    private final GestorCliente GestorCliente;
+    private final GestorAuto GestorAuto;
+    private final GestorProveedor GestorProveedor;
+    private final GestorMecanico GestorMecanico;
+    private final GestorRepuesto GestorRepuesto;
+    private final gestorMantenimiento gestorMantenimiento;
+    private final Formulario form;
+    private final jifCliente jifCliente;
+    private final jifActualizarCliente jifActualizarCliente;
+    private final jifMantenimiento jifMantenimiento;
+    private final jifListaClientes jifListaClientes;
+    private final jifListaAutos jifListaAutos;
+    private final jifListaRepuestos jifListaRepuestos;
+    private final jifListaMecanicos jifListaMecanicos;
+    private final jifListaProveedores jifListaProveedores;
+    private final jifActualizarProveedor jifActualizarProveedor;
+    private final jifAuto jifAuto;
+    private final jifProveedor jifProveedor;
+    private final jifMecanico jifMecanico;
+    private final jifActualizarMecanico jifActualizarMecanico;
+    private final jifRepuesto jifRepuesto;
+    private final jifListaMantenimientos jifListaMantenimientos;
+    private final jifActualizarMantenimiento jifActualizarMantenimiento;
+    //private final FRM_Registro fRegistro;
 
     /* CONSTRUCTOR */
     public Controlador() {
         // Inicializamos todos los objetos de los jInternalFrame
-        fRegistro = new FRM_Registro();
+        //fRegistro = new FRM_Registro();
         GestorCliente = new GestorCliente();
         GestorAuto = new GestorAuto();
         GestorProveedor = new GestorProveedor();
