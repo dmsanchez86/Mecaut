@@ -8,12 +8,12 @@ package vista;
  *
  * @author Sergio Alejandro
  */
-public class jifListaMecanicos extends javax.swing.JInternalFrame {
+public class jifListaEmpleados extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form jifListaMecanicos
      */
-    public jifListaMecanicos() {
+    public jifListaEmpleados() {
         initComponents();
     }
 

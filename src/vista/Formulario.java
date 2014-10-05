@@ -28,54 +28,54 @@ public class Formulario extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmClientes = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenuItem();
         jmiAuto = new javax.swing.JMenuItem();
         jmiActualizarCliente = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jmiBuscarCliente = new javax.swing.JMenuItem();
+        jmiGrupoClientes = new javax.swing.JMenuItem();
+        jmServicios = new javax.swing.JMenu();
         jmiMantenimiento = new javax.swing.JMenuItem();
         jmiActualizarMantenimiento = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem22 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jmiReservas = new javax.swing.JMenuItem();
+        jmiHistMantenimiento = new javax.swing.JMenuItem();
+        jmiPromociones = new javax.swing.JMenuItem();
+        jmiManuales = new javax.swing.JMenuItem();
+        jmiCotizacion = new javax.swing.JMenuItem();
+        jmiFichaRecepcion = new javax.swing.JMenuItem();
+        jmProveedores = new javax.swing.JMenu();
         jmiProveedor = new javax.swing.JMenuItem();
         jmiActualizarProveedor = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
+        jmiBuscarProveedor = new javax.swing.JMenuItem();
+        jmPersonal = new javax.swing.JMenu();
         jmiMecanico = new javax.swing.JMenuItem();
         jmiActualizarMecanico = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jmiBuscarEmpleado = new javax.swing.JMenuItem();
+        jmInventario = new javax.swing.JMenu();
+        jmiOrdenPedido = new javax.swing.JMenuItem();
         jmiRepuestos = new javax.swing.JMenuItem();
-        jmiActualizarMecanico1 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem19 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmiActualizarRepuesto = new javax.swing.JMenuItem();
+        jmiBuscarRepuesto = new javax.swing.JMenuItem();
+        jmiCuentasPagar = new javax.swing.JMenuItem();
+        jmiInventarioDisponible = new javax.swing.JMenuItem();
+        jmVentas = new javax.swing.JMenu();
+        jmiOrdenesServicio = new javax.swing.JMenuItem();
+        jmiObtenerCotizacion = new javax.swing.JMenuItem();
+        jmiFactura = new javax.swing.JMenuItem();
+        jmiActualizarFactura = new javax.swing.JMenuItem();
+        jmiBuscarFactura = new javax.swing.JMenuItem();
+        jmiCreditos = new javax.swing.JMenuItem();
+        jmReportes = new javax.swing.JMenu();
         jmiListaCliente = new javax.swing.JMenuItem();
         jmiListaAutos = new javax.swing.JMenuItem();
         jmiListaRepuestos = new javax.swing.JMenuItem();
         jmiListaMecanicos = new javax.swing.JMenuItem();
         jmiListaProveedores = new javax.swing.JMenuItem();
         jmiListaMantenimientos = new javax.swing.JMenuItem();
-        jMenuItem20 = new javax.swing.JMenuItem();
-        jMenuItem21 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        jmiListaCreditos = new javax.swing.JMenuItem();
+        jmiListaFacturas = new javax.swing.JMenuItem();
+        jmAyuda = new javax.swing.JMenu();
+        jmSalir = new javax.swing.JMenu();
         jmiSalir = new javax.swing.JMenuItem();
 
         Login.setTitle("MECAUT - Loggin");
@@ -175,226 +175,268 @@ public class Formulario extends javax.swing.JFrame {
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         jMenuBar1.setMargin(new java.awt.Insets(0, 100, 0, 100));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
-        jMenu1.setText("Clientes");
-        jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jMenu1.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        jMenu1.setName(""); // NOI18N
+        jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
+        jmClientes.setText("Clientes");
+        jmClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jmClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jmClientes.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmClientes.setName(""); // NOI18N
 
         jmiCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiCliente.setText("Cliente");
-        jMenu1.add(jmiCliente);
+        jmClientes.add(jmiCliente);
 
         jmiAuto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiAuto.setText("Auto");
-        jMenu1.add(jmiAuto);
+        jmClientes.add(jmiAuto);
 
         jmiActualizarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiActualizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
+        jmiActualizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarCliente.setText("Cliente");
-        jMenu1.add(jmiActualizarCliente);
+        jmClientes.add(jmiActualizarCliente);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jMenuItem1.setText("Buscar Cliente");
-        jMenu1.add(jMenuItem1);
+        jmiBuscarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiBuscarCliente.setText("Buscar Cliente");
+        jmClientes.add(jmiBuscarCliente);
 
-        jMenuItem2.setText("Grupo de Clientes");
-        jMenu1.add(jMenuItem2);
+        jmiGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiGrupoClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553320_testimonials.png"))); // NOI18N
+        jmiGrupoClientes.setText("Grupo de Clientes");
+        jmClientes.add(jmiGrupoClientes);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmClientes);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gerente-de-servicio-icono-4188-64.png"))); // NOI18N
-        jMenu3.setText("Servicios");
-        jMenu3.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu3.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gerente-de-servicio-icono-4188-64.png"))); // NOI18N
+        jmServicios.setText("Servicios");
+        jmServicios.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmServicios.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
         jmiMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiMantenimiento.setText("Mantenimiento");
-        jMenu3.add(jmiMantenimiento);
+        jmServicios.add(jmiMantenimiento);
 
         jmiActualizarMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiActualizarMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
+        jmiActualizarMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarMantenimiento.setText("Mantenimiento");
-        jMenu3.add(jmiActualizarMantenimiento);
+        jmServicios.add(jmiActualizarMantenimiento);
 
-        jMenuItem3.setText("Reservas");
-        jMenu3.add(jMenuItem3);
+        jmiReservas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
+        jmiReservas.setText("Reservas");
+        jmServicios.add(jmiReservas);
 
-        jMenuItem4.setText("Historial Mantenimiento/Auto");
-        jMenu3.add(jMenuItem4);
+        jmiHistMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiHistMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/historial.png"))); // NOI18N
+        jmiHistMantenimiento.setText("Historial Mantenimiento/Auto");
+        jmServicios.add(jmiHistMantenimiento);
 
-        jMenuItem5.setText("Promociones y Combos");
-        jMenu3.add(jMenuItem5);
+        jmiPromociones.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553504_internt_web_technology-09-16.png"))); // NOI18N
+        jmiPromociones.setText("Promociones y Combos");
+        jmServicios.add(jmiPromociones);
 
-        jMenuItem6.setText("Manuales de Asistencia Técnica");
-        jMenu3.add(jMenuItem6);
+        jmiManuales.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiManuales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553656_folder-close-16.png"))); // NOI18N
+        jmiManuales.setText("Manuales de Asistencia Técnica");
+        jmServicios.add(jmiManuales);
 
-        jMenuItem14.setText("Cotización");
-        jMenu3.add(jMenuItem14);
+        jmiCotizacion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553787_Money.png"))); // NOI18N
+        jmiCotizacion.setText("Cotización");
+        jmServicios.add(jmiCotizacion);
 
-        jMenuItem22.setText("Ficha Recepción Auto");
-        jMenu3.add(jMenuItem22);
+        jmiFichaRecepcion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiFichaRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
+        jmiFichaRecepcion.setText("Ficha Recepción Auto");
+        jmServicios.add(jmiFichaRecepcion);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jmServicios);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion-lorrygreen-icono-9499-64.png"))); // NOI18N
-        jMenu4.setText("Proveedores");
-        jMenu4.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion-lorrygreen-icono-9499-64.png"))); // NOI18N
+        jmProveedores.setText("Proveedores");
+        jmProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmProveedores.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
         jmiProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiProveedor.setText("Proveedor");
-        jMenu4.add(jmiProveedor);
+        jmProveedores.add(jmiProveedor);
 
         jmiActualizarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiActualizarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
+        jmiActualizarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarProveedor.setText("Proveedor");
-        jMenu4.add(jmiActualizarProveedor);
+        jmProveedores.add(jmiActualizarProveedor);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jMenuItem7.setText("Buscar Proveedor");
-        jMenu4.add(jMenuItem7);
+        jmiBuscarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiBuscarProveedor.setText("Buscar Proveedor");
+        jmProveedores.add(jmiBuscarProveedor);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jmProveedores);
 
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuario-administrador-personal-icono-9746-64.png"))); // NOI18N
-        jMenu9.setText("Personal");
-        jMenu9.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu9.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuario-administrador-personal-icono-9746-64.png"))); // NOI18N
+        jmPersonal.setText("Personal");
+        jmPersonal.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmPersonal.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
         jmiMecanico.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiMecanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiMecanico.setText("Empleado");
-        jMenu9.add(jmiMecanico);
+        jmPersonal.add(jmiMecanico);
 
         jmiActualizarMecanico.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiActualizarMecanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
+        jmiActualizarMecanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarMecanico.setText("Empleado");
-        jMenu9.add(jmiActualizarMecanico);
+        jmPersonal.add(jmiActualizarMecanico);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jMenuItem9.setText("Buscar Empleado");
-        jMenu9.add(jMenuItem9);
+        jmiBuscarEmpleado.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiBuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiBuscarEmpleado.setText("Buscar Empleado");
+        jmPersonal.add(jmiBuscarEmpleado);
 
-        jMenuBar1.add(jMenu9);
+        jMenuBar1.add(jmPersonal);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-los-archivos-a-los-archivos-icono-9712-64.png"))); // NOI18N
-        jMenu6.setText("Inventario");
-        jMenu6.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu6.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-los-archivos-a-los-archivos-icono-9712-64.png"))); // NOI18N
+        jmInventario.setText("Inventario");
+        jmInventario.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmInventario.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
-        jMenuItem8.setText("Orden de Pedido");
-        jMenu6.add(jMenuItem8);
+        jmiOrdenPedido.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiOrdenPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554134_Delivery.png"))); // NOI18N
+        jmiOrdenPedido.setText("Orden de Pedido");
+        jmInventario.add(jmiOrdenPedido);
 
         jmiRepuestos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiRepuestos.setText("Repuesto");
-        jMenu6.add(jmiRepuestos);
+        jmInventario.add(jmiRepuestos);
 
-        jmiActualizarMecanico1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiActualizarMecanico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/actualizar-restaure-agt-icono-7628-16.png"))); // NOI18N
-        jmiActualizarMecanico1.setText("Repuesto");
-        jMenu6.add(jmiActualizarMecanico1);
+        jmiActualizarRepuesto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiActualizarRepuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
+        jmiActualizarRepuesto.setText("Repuesto");
+        jmInventario.add(jmiActualizarRepuesto);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jMenuItem10.setText("Buscar Repuesto");
-        jMenu6.add(jMenuItem10);
+        jmiBuscarRepuesto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiBuscarRepuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiBuscarRepuesto.setText("Buscar Repuesto");
+        jmInventario.add(jmiBuscarRepuesto);
 
-        jMenuItem11.setText("Cuentas por Pagar");
-        jMenu6.add(jMenuItem11);
+        jmiCuentasPagar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiCuentasPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554244_Bank_account.png"))); // NOI18N
+        jmiCuentasPagar.setText("Cuentas por Pagar");
+        jmInventario.add(jmiCuentasPagar);
 
-        jMenuItem12.setText("Inventario Disponible");
-        jMenu6.add(jMenuItem12);
+        jmiInventarioDisponible.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiInventarioDisponible.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554429_Warehouse_icon_3D_rev-16.png"))); // NOI18N
+        jmiInventarioDisponible.setText("Inventario Disponible");
+        jmInventario.add(jmiInventarioDisponible);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(jmInventario);
 
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ventas.PNG"))); // NOI18N
-        jMenu7.setText("Ventas  ");
-        jMenu7.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ventas.PNG"))); // NOI18N
+        jmVentas.setText("Ventas  ");
+        jmVentas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
 
-        jMenuItem13.setText("Odenes se Servicio");
-        jMenu7.add(jMenuItem13);
+        jmiOrdenesServicio.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiOrdenesServicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554312_shopping_cart.png"))); // NOI18N
+        jmiOrdenesServicio.setText("Odenes de Servicio");
+        jmVentas.add(jmiOrdenesServicio);
 
-        jMenuItem15.setText("Obtener Cotización");
-        jMenu7.add(jMenuItem15);
+        jmiObtenerCotizacion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiObtenerCotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554304_credit_cards.png"))); // NOI18N
+        jmiObtenerCotizacion.setText("Obtener Cotización");
+        jmVentas.add(jmiObtenerCotizacion);
 
-        jMenuItem16.setText("Factura");
-        jMenu7.add(jMenuItem16);
+        jmiFactura.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554496_invoice.png"))); // NOI18N
+        jmiFactura.setText("Factura");
+        jmVentas.add(jmiFactura);
 
-        jMenuItem17.setText("Actualizar Factura");
-        jMenu7.add(jMenuItem17);
+        jmiActualizarFactura.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiActualizarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
+        jmiActualizarFactura.setText("Actualizar Factura");
+        jmVentas.add(jmiActualizarFactura);
 
-        jMenuItem19.setText("Buscar Factura");
-        jMenu7.add(jMenuItem19);
+        jmiBuscarFactura.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiBuscarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554636_file-manager.png"))); // NOI18N
+        jmiBuscarFactura.setText("Buscar Factura");
+        jmVentas.add(jmiBuscarFactura);
 
-        jMenuItem18.setText("Creditos");
-        jMenu7.add(jMenuItem18);
+        jmiCreditos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554292_deposit.png"))); // NOI18N
+        jmiCreditos.setText("Creditos");
+        jmVentas.add(jmiCreditos);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(jmVentas);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/centrejust-icono-5615-64.png"))); // NOI18N
-        jMenu2.setText("Reportes");
-        jMenu2.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenu2.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/centrejust-icono-5615-64.png"))); // NOI18N
+        jmReportes.setText("Reportes");
+        jmReportes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmReportes.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
         jmiListaCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaCliente.setText("Lista de clientes");
-        jMenu2.add(jmiListaCliente);
+        jmReportes.add(jmiListaCliente);
 
         jmiListaAutos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaAutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaAutos.setText("Lista de autos");
-        jMenu2.add(jmiListaAutos);
+        jmReportes.add(jmiListaAutos);
 
         jmiListaRepuestos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaRepuestos.setText("Lista de repuestos");
-        jMenu2.add(jmiListaRepuestos);
+        jmReportes.add(jmiListaRepuestos);
 
         jmiListaMecanicos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaMecanicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaMecanicos.setText("Lista de personal");
-        jMenu2.add(jmiListaMecanicos);
+        jmReportes.add(jmiListaMecanicos);
 
         jmiListaProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaProveedores.setText("Lista de proveedores");
-        jMenu2.add(jmiListaProveedores);
+        jmReportes.add(jmiListaProveedores);
 
         jmiListaMantenimientos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaMantenimientos.setText("Lista de mantenimientos");
-        jMenu2.add(jmiListaMantenimientos);
+        jmReportes.add(jmiListaMantenimientos);
 
-        jMenuItem20.setText("Lista de creditos");
-        jMenu2.add(jMenuItem20);
+        jmiListaCreditos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaCreditos.setText("Lista de creditos");
+        jmReportes.add(jmiListaCreditos);
 
-        jMenuItem21.setText("Lista de facturas");
-        jMenu2.add(jMenuItem21);
+        jmiListaFacturas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaFacturas.setText("Lista de facturas");
+        jmReportes.add(jmiListaFacturas);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jmReportes);
 
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ayuda.png"))); // NOI18N
-        jMenu8.setText("Ayuda   ");
-        jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu8.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenuBar1.add(jMenu8);
+        jmAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ayuda.png"))); // NOI18N
+        jmAyuda.setText("Ayuda   ");
+        jmAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmAyuda.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jMenuBar1.add(jmAyuda);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
-        jMenu5.setText("Salir   ");
-        jMenu5.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
+        jmSalir.setText("Salir   ");
+        jmSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
 
+        jmiSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552697_exit.png"))); // NOI18N
         jmiSalir.setText("Cerrar sesión");
-        jMenu5.add(jmiSalir);
+        jmSalir.add(jmiSalir);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -404,7 +446,7 @@ public class Formulario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1188, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -470,6 +512,7 @@ public class Formulario extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Controlador().lanzarLogin();
             }
@@ -481,57 +524,57 @@ public class Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    public javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    public javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem20;
-    private javax.swing.JMenuItem jMenuItem21;
-    private javax.swing.JMenuItem jMenuItem22;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     public javax.swing.JButton jbtAceptar;
     public javax.swing.JButton jbtSalir;
+    private javax.swing.JMenu jmAyuda;
+    public javax.swing.JMenu jmClientes;
+    private javax.swing.JMenu jmInventario;
+    private javax.swing.JMenu jmPersonal;
+    private javax.swing.JMenu jmProveedores;
+    private javax.swing.JMenu jmReportes;
+    public javax.swing.JMenu jmSalir;
+    private javax.swing.JMenu jmServicios;
+    private javax.swing.JMenu jmVentas;
     public javax.swing.JMenuItem jmiActualizarCliente;
+    public javax.swing.JMenuItem jmiActualizarFactura;
     public javax.swing.JMenuItem jmiActualizarMantenimiento;
     public javax.swing.JMenuItem jmiActualizarMecanico;
-    public javax.swing.JMenuItem jmiActualizarMecanico1;
     public javax.swing.JMenuItem jmiActualizarProveedor;
+    public javax.swing.JMenuItem jmiActualizarRepuesto;
     public javax.swing.JMenuItem jmiAuto;
+    public javax.swing.JMenuItem jmiBuscarCliente;
+    public javax.swing.JMenuItem jmiBuscarEmpleado;
+    public javax.swing.JMenuItem jmiBuscarFactura;
+    public javax.swing.JMenuItem jmiBuscarProveedor;
+    public javax.swing.JMenuItem jmiBuscarRepuesto;
     public javax.swing.JMenuItem jmiCliente;
+    public javax.swing.JMenuItem jmiCotizacion;
+    public javax.swing.JMenuItem jmiCreditos;
+    public javax.swing.JMenuItem jmiCuentasPagar;
+    public javax.swing.JMenuItem jmiFactura;
+    public javax.swing.JMenuItem jmiFichaRecepcion;
+    public javax.swing.JMenuItem jmiGrupoClientes;
+    public javax.swing.JMenuItem jmiHistMantenimiento;
+    public javax.swing.JMenuItem jmiInventarioDisponible;
     public javax.swing.JMenuItem jmiListaAutos;
     public javax.swing.JMenuItem jmiListaCliente;
+    public javax.swing.JMenuItem jmiListaCreditos;
+    public javax.swing.JMenuItem jmiListaFacturas;
     public javax.swing.JMenuItem jmiListaMantenimientos;
     public javax.swing.JMenuItem jmiListaMecanicos;
     public javax.swing.JMenuItem jmiListaProveedores;
     public javax.swing.JMenuItem jmiListaRepuestos;
     public javax.swing.JMenuItem jmiMantenimiento;
+    public javax.swing.JMenuItem jmiManuales;
     public javax.swing.JMenuItem jmiMecanico;
+    public javax.swing.JMenuItem jmiObtenerCotizacion;
+    public javax.swing.JMenuItem jmiOrdenPedido;
+    public javax.swing.JMenuItem jmiOrdenesServicio;
+    public javax.swing.JMenuItem jmiPromociones;
     public javax.swing.JMenuItem jmiProveedor;
     public javax.swing.JMenuItem jmiRepuestos;
+    public javax.swing.JMenuItem jmiReservas;
     public javax.swing.JMenuItem jmiSalir;
     public javax.swing.JPasswordField jtfContraseña;
     public javax.swing.JTextField jtfUsuario;

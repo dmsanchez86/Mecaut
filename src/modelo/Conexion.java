@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
     //--------------------------CONEXION CON MYSQL------------------------------
-    private String driver = "com.mysql.jdbc.Driver"; //Clase del driver de jConnector 
-    private String url = "jdbc:mysql://localhost:3306/db_mecaut"; //Cadena de conexion
-    private String usuario = "root"; //Usuario con permisos a la base de datos
-    private String contraseña = "";
+    private final String driver = "com.mysql.jdbc.Driver"; //Clase del driver de jConnector 
+    private final String url = "jdbc:mysql://localhost:3306/db_mecaut"; //Cadena de conexion
+    private final String usuario = "root"; //Usuario con permisos a la base de datos
+    private final String contraseña = "";
     private Connection conexion;
     private PreparedStatement consulta;
 
@@ -38,12 +38,14 @@ public class Conexion {
     //Metodo para agregar un cliente
     public boolean agregarCliente(Cliente cli) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO clientes (cli_id, cli_nombre, cli_apellidos, cli_telefono, cli_direccion) VALUES (?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO clientes VALUES (?,?,?,?,?,?,?)");
             consulta.setString(1, cli.getIdentificacion());
             consulta.setString(2, cli.getNombre());
             consulta.setString(3, cli.getApellidos());
-            consulta.setString(4, cli.getTelefono());
-            consulta.setString(5, cli.getDireccion());
+            consulta.setString(4, cli.getSexo());
+            consulta.setString(5, cli.getTelefono());
+            consulta.setString(6, cli.getDireccion());
+            consulta.setString(7, cli.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -66,12 +68,14 @@ public class Conexion {
     //Metodo para modificar los datos de un cliente
     public boolean modificarCliente(Cliente cli) {
         try {
-            consulta = conexion.prepareStatement("UPDATE clientes SET cli_nombre = ?, cli_apellidos = ?, cli_telefono = ?, cli_direccion = ? WHERE cli_id = ?");
+            consulta = conexion.prepareStatement("UPDATE clientes SET cli_nombre = ?, cli_apellidos = ?, cli_sexo = ?, cli_telefono = ?, cli_direccion = ?, cli_correo = ? WHERE cli_id = ?");
             consulta.setString(1, cli.getNombre());
             consulta.setString(2, cli.getApellidos());
-            consulta.setString(3, cli.getTelefono());
-            consulta.setString(4, cli.getDireccion());
-            consulta.setString(5, cli.getIdentificacion());
+            consulta.setString(3, cli.getSexo());
+            consulta.setString(4, cli.getTelefono());
+            consulta.setString(5, cli.getDireccion());
+            consulta.setString(6, cli.getIdentificacion());
+            consulta.setString(7, cli.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -82,7 +86,7 @@ public class Conexion {
     //Metodo para agregar un auto
     public boolean agregarAuto(Auto aut) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO autos (aut_placa, aut_ciudad, aut_modelo, aut_marca, cli_id, cli_nombre, cli_apellidos) VALUES (?,?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO autos VALUES (?,?,?,?,?,?,?)");
             consulta.setString(1, aut.getPlaca());
             consulta.setString(2, aut.getCiudad());
             consulta.setString(3, aut.getModelo());
@@ -105,7 +109,7 @@ public class Conexion {
             consulta = conexion.prepareStatement("Select * FROM clientes");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             return null;
@@ -114,15 +118,17 @@ public class Conexion {
     }
     //---------------------------METODOS MODULO PERSONAL------------------------
     //metodo para agregar un mecanico
-    public boolean agregarMecanico(Mecanico mec) {
+    public boolean agregarMecanico(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO mecanicos (mec_id, mec_nombre, mec_apellidos, mec_telefono, mec_direccion, mec_salario) VALUES (?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)");
             consulta.setString(1, mec.getIdentificacion());
             consulta.setString(2, mec.getNombre());
             consulta.setString(3, mec.getApellidos());
-            consulta.setString(4, mec.getTelefono());
-            consulta.setString(5, mec.getDireccion());
-            consulta.setString(6, mec.getSalario());
+            consulta.setString(4, mec.getTipo());
+            consulta.setString(5, mec.getTelefono());
+            consulta.setString(6, mec.getDireccion());
+            consulta.setString(7, mec.getSalario());
+            consulta.setString(3, mec.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -133,7 +139,7 @@ public class Conexion {
     //Metodo para eliminar un mecanico 
     public boolean eliminarMecanico(int id) {
         try {
-            consulta = conexion.prepareStatement("DELETE FROM mecanicos WHERE mec_id = ?");
+            consulta = conexion.prepareStatement("DELETE FROM empleados WHERE mec_id = ?");
             consulta.setInt(1, id);
             consulta.executeUpdate();
             consulta.close();
@@ -143,15 +149,17 @@ public class Conexion {
         return true;
     }
     //metodo para modificar un mecanico
-    public boolean modificarMecanico(Mecanico mec) {
+    public boolean modificarMecanico(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("UPDATE mecanicos SET mec_nombre = ?, mec_apellidos = ?, mec_telefono = ?, mec_direccion = ?, mec_salario = ? WHERE mec_id = ?");
+            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_tipo = ?,emp_telefono = ?, emp_direccion = ?, emp_salario = ?,emp_correo = ? WHERE mec_id = ?");
             consulta.setString(1, mec.getNombre());
             consulta.setString(2, mec.getApellidos());
-            consulta.setString(3, mec.getTelefono());
-            consulta.setString(4, mec.getDireccion());
-            consulta.setString(5, mec.getSalario());
-            consulta.setString(6, mec.getIdentificacion());
+            consulta.setString(3, mec.getTipo());
+            consulta.setString(4, mec.getTelefono());
+            consulta.setString(5, mec.getDireccion());
+            consulta.setString(6, mec.getSalario());
+            consulta.setString(7, mec.getCorreo());
+            consulta.setString(8, mec.getIdentificacion());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -282,19 +290,19 @@ public class Conexion {
         return autos;
     }
     //metodo para consultar la identificacion del mecanico que realizo el mantenimiento
-    public ArrayList<Mecanico> consultarMecanicos() {
-        ArrayList<Mecanico> mecanicos = new ArrayList<>();
+    public ArrayList<Empleados> consultarEmpleados() {
+        ArrayList<Empleados> empleados = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM mecanicos");
+            consulta = conexion.prepareStatement("Select * FROM empleados");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                mecanicos.add(new Mecanico(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
         } catch (SQLException e) {
             return null;
         }
-        return mecanicos;
+        return empleados;
     }
     //-----------------------METODOS MODULO REPORTES----------------------------
     //metodo para consultar un clientes ingresanto un dato
@@ -305,27 +313,27 @@ public class Conexion {
             consulta = conexion.prepareStatement("Select * FROM clientes WHERE cli_id LIKE '" + dato + "%' OR cli_nombre LIKE '" + dato + "%' OR cli_apellidos LIKE '" + dato + "%' OR  cli_direccion LIKE '" + dato + "%'");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
+                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
         } catch (SQLException e) {
             return null;
         }
         return clientes;
     }
-    //metodo para consultar un mecanico ingresando un dato
-    public ArrayList<Mecanico> verMecanicosPorDato(String dato) {
-        ArrayList<Mecanico> mecanicos = new ArrayList<>();
+    //metodo para consultar un empleado ingresando un dato
+    public ArrayList<Empleados> verEmpleadosPorDato(String dato) {
+        ArrayList<Empleados> empleados = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM mecanicos WHERE mec_id LIKE '" + dato + "%' OR mec_nombre LIKE '" + dato + "%' OR mec_apellidos LIKE '" + dato + "%' OR  mec_direccion LIKE '" + dato + "%'");
+            consulta = conexion.prepareStatement("Select * FROM empleados WHERE mec_id LIKE '" + dato + "%' OR mec_nombre LIKE '" + dato + "%' OR mec_apellidos LIKE '" + dato + "%' OR  mec_direccion LIKE '" + dato + "%'");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                mecanicos.add(new Mecanico(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)));
+                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
         } catch (SQLException e) {
             return null;
         }
-        return mecanicos;
+        return empleados;
     }
     //metodo para ver la la lista de los proveedores
     public ArrayList<Proveedor> verProveedores() {
