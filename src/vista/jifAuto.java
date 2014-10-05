@@ -67,15 +67,15 @@ public class jifAuto extends javax.swing.JInternalFrame {
         jLabel5.setText("Marca");
 
         jcbCiudad.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione Ciudad--", "Manizales", "Pereira", "Medellin", "Armenia", "Bogota", "Cali", "Barranquilla", "Cartagena", "Tunja ", "Popayan", "Yopal", "Santa Marta", "Villavicencio", "Bucaramanga", "Ibagué" }));
+        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Arauca", "Armenia", "Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Cartagena ", "Cúcuta", "Ibagué ", "Manizales", "Medellín", "Neiva", "Pasto", "Pereira", "Popayán", "Quibdó", "Riohacha", "San Andrés", "Santa Marta", "Sincelejo", "Valledupar", "Villavicencio", "Yopal" }));
         jcbCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jcbModelo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione Modelo--", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", " " }));
+        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--------", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980" }));
         jcbModelo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jcbMarca.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Seleccione Marca--", "Mazda", "Toyota", "Chevrolet", "Hyundai", "Kia", "Nissan", "Ford", "Volkswagen ", "Audi", "Yamaha", "Hummer ", "Ferrari ", "Cadillac ", "Aston Martin", "Alfa Romeo ", "Acura ", "Lamborghini ", "BMW", "Porsche", " " }));
+        jcbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Mazda", "Toyota", "Chevrolet", "Hyundai", "Kia", "Nissan", "Ford", "Volkswagen ", "Audi", "Yamaha", "Hummer ", "Ferrari ", "Cadillac ", "Aston Martin", "Alfa Romeo ", "Acura ", "Lamborghini ", "BMW", "Porsche" }));
         jcbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -90,11 +90,11 @@ public class jifAuto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(jLabel1))
                 .addGap(40, 40, 40)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jcbCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfPlaca))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -116,7 +116,7 @@ public class jifAuto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jcbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos propietario"));
@@ -138,7 +138,8 @@ public class jifAuto extends javax.swing.JInternalFrame {
         jcbIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jbtConsultar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jbtConsultar.setText("Consultar");
+        jbtConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jbtConsultar.setToolTipText("Buscar Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,20 +147,20 @@ public class jifAuto extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
                         .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtfNombreCliente)
+                            .addComponent(jtfApellidosCliente)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jcbIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtConsultar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -198,18 +199,18 @@ public class jifAuto extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(246, 246, 246)
+                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

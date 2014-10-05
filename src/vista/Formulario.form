@@ -147,7 +147,10 @@
     </Container>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Menu"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="cc" type="rgb"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor de Mano"/>
         </Property>
@@ -155,8 +158,9 @@
           <Font name="Segoe UI Light" size="14" style="1"/>
         </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-          <Insets value="[0, 100, 0, 100]"/>
+          <Insets value="[0, 30, 0, 30]"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jmClientes">
@@ -165,6 +169,7 @@
               <Image iconType="3" name="/iconos/cliente-icono-8749-48.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Clientes"/>
+            <Property name="toolTipText" type="java.lang.String" value="Modulo Clientes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="3"/>
             </Property>
@@ -188,6 +193,7 @@
                   <Image iconType="3" name="/iconos/anadir-mas-icono-5518-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar un Nuevo Cliente"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -202,6 +208,7 @@
                   <Image iconType="3" name="/iconos/anadir-mas-icono-5518-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Auto"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar un Auto a un Cliente"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -216,6 +223,7 @@
                   <Image iconType="3" name="/iconos/1412552741_gtk-refresh.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modificar o Eliminar un Cliente"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -230,6 +238,7 @@
                   <Image iconType="3" name="/iconos/lupa-lector-icono-7654-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+                <Property name="toolTipText" type="java.lang.String" value="Busqueda de Clientes"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -244,6 +253,7 @@
                   <Image iconType="3" name="/iconos/1412553320_testimonials.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Grupo de Clientes"/>
+                <Property name="toolTipText" type="java.lang.String" value="Grupos de Clientes"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -257,6 +267,7 @@
               <Image iconType="3" name="/iconos/gerente-de-servicio-icono-4188-64.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Servicios"/>
+            <Property name="toolTipText" type="java.lang.String" value="Modulo Servicios"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI Semibold" size="14" style="3"/>
             </Property>
@@ -274,6 +285,7 @@
                   <Image iconType="3" name="/iconos/anadir-mas-icono-5518-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mantenimiento"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar un Mantenimiento"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -288,6 +300,7 @@
                   <Image iconType="3" name="/iconos/1412552741_gtk-refresh.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Mantenimiento"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modificar o Eliminar un Mantenimiento"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -302,6 +315,7 @@
                   <Image iconType="3" name="/iconos/1412553092_note_edit.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reservas"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar una Reserva"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -402,6 +416,7 @@
                   <Image iconType="3" name="/iconos/anadir-mas-icono-5518-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar un Proveedor"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -416,6 +431,7 @@
                   <Image iconType="3" name="/iconos/1412552741_gtk-refresh.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedor"/>
+                <Property name="toolTipText" type="java.lang.String" value="Modificar o Eliminar un Proveedor"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -430,6 +446,7 @@
                   <Image iconType="3" name="/iconos/lupa-lector-icono-7654-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Proveedor"/>
+                <Property name="toolTipText" type="java.lang.String" value="Buscar Proveedores"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -460,6 +477,7 @@
                   <Image iconType="3" name="/iconos/anadir-mas-icono-5518-16.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Empleado"/>
+                <Property name="toolTipText" type="java.lang.String" value="Registrar un Nuevo Empleado"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -891,24 +909,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" pref="1251" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jDesktopPane1" alignment="0" pref="1271" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jDesktopPane1" pref="638" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jDesktopPane1" alignment="0" pref="649" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

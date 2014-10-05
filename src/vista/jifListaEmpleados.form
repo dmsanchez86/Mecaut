@@ -27,7 +27,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" pref="759" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="847" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jbtBuscar" min="-2" pref="46" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -47,8 +47,8 @@
                   <Component id="jtfDato" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="268" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="329" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

@@ -166,17 +166,22 @@ public class Formulario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú");
 
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mecuat.JPG"))); // NOI18N
         jDesktopPane1.add(jLabel4);
         jLabel4.setBounds(400, 170, 510, 350);
 
-        jMenuBar1.setToolTipText("Menu");
+        jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
+        jMenuBar1.setToolTipText("");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jMenuBar1.setMargin(new java.awt.Insets(0, 100, 0, 100));
+        jMenuBar1.setMargin(new java.awt.Insets(0, 30, 0, 30));
+        jMenuBar1.setName(""); // NOI18N
 
         jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
         jmClientes.setText("Clientes");
+        jmClientes.setToolTipText("Modulo Clientes");
         jmClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jmClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -186,48 +191,57 @@ public class Formulario extends javax.swing.JFrame {
         jmiCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiCliente.setText("Cliente");
+        jmiCliente.setToolTipText("Registrar un Nuevo Cliente");
         jmClientes.add(jmiCliente);
 
         jmiAuto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiAuto.setText("Auto");
+        jmiAuto.setToolTipText("Registrar un Auto a un Cliente");
         jmClientes.add(jmiAuto);
 
         jmiActualizarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiActualizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarCliente.setText("Cliente");
+        jmiActualizarCliente.setToolTipText("Modificar o Eliminar un Cliente");
         jmClientes.add(jmiActualizarCliente);
 
         jmiBuscarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiBuscarCliente.setText("Buscar Cliente");
+        jmiBuscarCliente.setToolTipText("Busqueda de Clientes");
         jmClientes.add(jmiBuscarCliente);
 
         jmiGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiGrupoClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553320_testimonials.png"))); // NOI18N
         jmiGrupoClientes.setText("Grupo de Clientes");
+        jmiGrupoClientes.setToolTipText("Grupos de Clientes");
         jmClientes.add(jmiGrupoClientes);
 
         jMenuBar1.add(jmClientes);
 
         jmServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gerente-de-servicio-icono-4188-64.png"))); // NOI18N
         jmServicios.setText("Servicios");
+        jmServicios.setToolTipText("Modulo Servicios");
         jmServicios.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmServicios.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
         jmiMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiMantenimiento.setText("Mantenimiento");
+        jmiMantenimiento.setToolTipText("Registrar un Mantenimiento");
         jmServicios.add(jmiMantenimiento);
 
         jmiActualizarMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiActualizarMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarMantenimiento.setText("Mantenimiento");
+        jmiActualizarMantenimiento.setToolTipText("Modificar o Eliminar un Mantenimiento");
         jmServicios.add(jmiActualizarMantenimiento);
 
         jmiReservas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
         jmiReservas.setText("Reservas");
+        jmiReservas.setToolTipText("Registrar una Reserva");
         jmServicios.add(jmiReservas);
 
         jmiHistMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
@@ -265,16 +279,19 @@ public class Formulario extends javax.swing.JFrame {
         jmiProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiProveedor.setText("Proveedor");
+        jmiProveedor.setToolTipText("Registrar un Proveedor");
         jmProveedores.add(jmiProveedor);
 
         jmiActualizarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiActualizarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jmiActualizarProveedor.setText("Proveedor");
+        jmiActualizarProveedor.setToolTipText("Modificar o Eliminar un Proveedor");
         jmProveedores.add(jmiActualizarProveedor);
 
         jmiBuscarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiBuscarProveedor.setText("Buscar Proveedor");
+        jmiBuscarProveedor.setToolTipText("Buscar Proveedores");
         jmProveedores.add(jmiBuscarProveedor);
 
         jMenuBar1.add(jmProveedores);
@@ -287,6 +304,7 @@ public class Formulario extends javax.swing.JFrame {
         jmiMecanico.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiMecanico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-mas-icono-5518-16.png"))); // NOI18N
         jmiMecanico.setText("Empleado");
+        jmiMecanico.setToolTipText("Registrar un Nuevo Empleado");
         jmPersonal.add(jmiMecanico);
 
         jmiActualizarMecanico.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
@@ -444,16 +462,11 @@ public class Formulario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
         );
 
         pack();
