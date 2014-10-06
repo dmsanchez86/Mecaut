@@ -118,17 +118,17 @@ public class Conexion {
     }
     //---------------------------METODOS MODULO PERSONAL------------------------
     //metodo para agregar un mecanico
-    public boolean agregarMecanico(Empleados mec) {
+    public boolean agregarMecanico(Empleados emp) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)");
-            consulta.setString(1, mec.getIdentificacion());
-            consulta.setString(2, mec.getNombre());
-            consulta.setString(3, mec.getApellidos());
-            consulta.setString(4, mec.getTipo());
-            consulta.setString(5, mec.getTelefono());
-            consulta.setString(6, mec.getDireccion());
-            consulta.setString(7, mec.getSalario());
-            consulta.setString(3, mec.getCorreo());
+            consulta.setString(1, emp.getIdentificacion());
+            consulta.setString(2, emp.getNombre());
+            consulta.setString(3, emp.getApellidos());
+            consulta.setString(4, emp.getTipo());
+            consulta.setString(5, emp.getTelefono());
+            consulta.setString(6, emp.getDireccion());
+            consulta.setString(7, emp.getSalario());
+            consulta.setString(3, emp.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -139,7 +139,7 @@ public class Conexion {
     //Metodo para eliminar un mecanico 
     public boolean eliminarMecanico(int id) {
         try {
-            consulta = conexion.prepareStatement("DELETE FROM empleados WHERE mec_id = ?");
+            consulta = conexion.prepareStatement("DELETE FROM empleados WHERE emp_id = ?");
             consulta.setInt(1, id);
             consulta.executeUpdate();
             consulta.close();
@@ -151,7 +151,7 @@ public class Conexion {
     //metodo para modificar un mecanico
     public boolean modificarMecanico(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_tipo = ?,emp_telefono = ?, emp_direccion = ?, emp_salario = ?,emp_correo = ? WHERE mec_id = ?");
+            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_tipo = ?,emp_telefono = ?, emp_direccion = ?, emp_salario = ?,emp_correo = ? WHERE emp_id = ?");
             consulta.setString(1, mec.getNombre());
             consulta.setString(2, mec.getApellidos());
             consulta.setString(3, mec.getTipo());
@@ -171,7 +171,7 @@ public class Conexion {
     //metodo para agregar un proveedor
     public boolean agregarProveedor(Proveedor prov) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO proveedores (prov_nit, prov_nombre, prov_direccion, prov_telefono, prov_descripcion) VALUES (?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO proveedores VALUES (?,?,?,?,?)");
             consulta.setString(1, prov.getNit());
             consulta.setString(2, prov.getNombre());
             consulta.setString(3, prov.getDireccion());
@@ -216,7 +216,7 @@ public class Conexion {
     //metodo para agregar un mantenimiento
     public boolean agregarMantenimiento(Mantenimiento man) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO mantenimientos (man_tipo, man_fecha, man_descripcion, man_costo, aut_placa, mec_id) VALUES (?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO mantenimientos VALUES (?,?,?,?,?,?)");
             consulta.setString(1, man.getTipo());
             consulta.setDate(2, man.getFecha());
             consulta.setString(3, man.getDescripcion());
@@ -401,7 +401,7 @@ public class Conexion {
     //metodo para agregar un repuesto
     public boolean agregarRepuesto(Repuesto rep) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO repuestos (rep_codigo, rep_tipo, rep_marca, rep_cantidad, rep_precio, prov_nit, prov_nombre) VALUES (?,?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO repuestos VALUES (?,?,?,?,?,?,?)");
             consulta.setString(1, rep.getCodigo());
             consulta.setString(2, rep.getTipo());
             consulta.setString(3, rep.getMarca());

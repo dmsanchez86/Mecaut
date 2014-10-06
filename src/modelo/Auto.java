@@ -2,13 +2,13 @@ package modelo;
 
 /* @author Grupo - MECAUT */
 public class Auto {
-    private String placa;
-    private String ciudad;
-    private String modelo;
-    private String marca;
-    private String idCliente;
-    private String nombreCliente;
-    private String apellidosCliente;
+    private final String placa;
+    private final String ciudad;
+    private final String modelo;
+    private final String marca;
+    private final String idCliente;
+    private final String nombreCliente;
+    private final String apellidosCliente;
 
     public Auto(String placa, String ciudad, String modelo, String marca, String idCliente, String nombreCliente, String apellidosCliente) {
         this.placa = placa;

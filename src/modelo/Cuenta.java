@@ -1,8 +1,8 @@
 package modelo;
 
 public class Cuenta {
-    private String usuario;
-    private String contrasena;
+    private final String usuario;
+    private final String contrasena;
     
     public Cuenta(String USUARIO,String CONTRASENA){
         this.usuario = USUARIO;

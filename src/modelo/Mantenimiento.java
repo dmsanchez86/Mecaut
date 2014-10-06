@@ -5,10 +5,10 @@ import java.sql.Date;
 /* @author Grupo - MECAUT */
 public class Mantenimiento {
     private int codigo;
-    private String tipo;
-    private Date fecha;
-    private String descripcion;
-    private String costo;
+    private final String tipo;
+    private final Date fecha;
+    private final String descripcion;
+    private final String costo;
     private String placaAuto;
     private String idMecanico;
 

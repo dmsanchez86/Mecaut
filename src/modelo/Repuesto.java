@@ -2,13 +2,13 @@ package modelo;
 
 /* @author Grupo - Mecaut */
 public class Repuesto {
-    private String codigo;
-    private String tipo;
-    private String marca;
-    private String cantidad;
-    private String precio;
-    private String nitProv;
-    private String nomProv;
+    private final String codigo;
+    private final String tipo;
+    private final String marca;
+    private final String cantidad;
+    private final String precio;
+    private final String nitProv;
+    private final String nomProv;
 
     public Repuesto(String codigo, String tipo, String marca, String cantidad, String precio, String nitProv, String nomProv) {
         this.codigo = codigo;

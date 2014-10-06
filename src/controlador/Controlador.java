@@ -17,7 +17,8 @@ import modelo.Mantenimiento;
 import modelo.Empleados;
 import modelo.Proveedor;
 import modelo.Repuesto;
-import vista.Formulario;
+import vista.frmAdmin;
+import vista.frmLoggin;
 import vista.jifActualizarCliente;
 import vista.jifAuto;
 import vista.jifCliente;
@@ -38,7 +39,7 @@ import vista.jifMantenimiento;
 /* @author Grupo - MECAUT */
 public class Controlador {
     private final Gestor Gestor;
-    private final Formulario form;
+    private final frmAdmin form;
     private final jifCliente jifCliente;
     private final jifActualizarCliente jifActualizarCliente;
     private final jifMantenimiento jifMantenimiento;
@@ -55,11 +56,13 @@ public class Controlador {
     private final jifRepuesto jifRepuesto;
     private final jifListaMantenimientos jifListaMantenimientos;
     private final jifActualizarMantenimiento jifActualizarMantenimiento;
+    private final frmLoggin Login;
     /* CONSTRUCTOR */
     public Controlador() {
         // Inicializamos todos los objetos de los jInternalFrame
         Gestor = new Gestor();
-        form = new Formulario();
+        Login = new frmLoggin();
+        form = new frmAdmin();
         jifCliente = new jifCliente();
         jifActualizarCliente = new jifActualizarCliente();
         jifMantenimiento = new jifMantenimiento();
@@ -97,20 +100,20 @@ public class Controlador {
     /* INICIO LOGGIN */
     public void lanzarLogin() {
         /* Boton para iniciar sesión */
-        form.jbtAceptar.addActionListener(new ActionListener() {
+        Login.jbtAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    String usuario = form.jtfUsuario.getText();
-                    String contrasena = form.jtfContraseña.getText();
+                    String usuario = Login.jtfUsuario.getText();
+                    String contrasena = Login.jtfContraseña.getText();
                     Cuenta cuenta = new Cuenta(usuario, contrasena);
                     boolean r = Gestor.validarUsuario(cuenta);
                     if (r) {
-                        form.Login.setVisible(false);
+                        Login.setVisible(false);
                         lanzarFormularioAdministrador();
                     } else {
                         JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctas...\nVerifique los Datos.", "Loggin - MECAUT", JOptionPane.ERROR_MESSAGE);
-                        form.jtfContraseña.setText("");
+                        Login.jtfContraseña.setText("");
                     }
                 } catch (HeadlessException e) {
                     JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Error -- MECAUT", JOptionPane.ERROR_MESSAGE);
@@ -118,20 +121,19 @@ public class Controlador {
             }
         });
         /* Boton para cerrar el programa */
-        form.jbtSalir.addActionListener(new ActionListener() {
+        Login.jbtSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.exit(0);
             }
         });
-        form.Login.setVisible(true); // se hace visible el jDialog
-        form.Login.setBounds(500, 150, 400, 500); // se ubica en la pantalla (x,y,ancho,alto)
+        Login.setVisible(true);
     }
-    /* Formulario Administrador */
+    /* frmAdmin Administrador */
     private void lanzarFormularioAdministrador() {
         /* MenuBar acciones de los eventos */
         /* MENU - CLIENTES */
-        form.jmiCliente.addActionListener(new ActionListener() {
+        form.jmiRegistrarCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarCliente();
@@ -185,13 +187,13 @@ public class Controlador {
                 frmListaMantenimientos();
             }
         });
-        form.jmiAuto.addActionListener(new ActionListener() {
+        form.jmiRegistrarAuto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarAuto();
             }
         });
-        form.jmiProveedor.addActionListener(new ActionListener() {
+        form.jmiRegitrarProveedor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarProveedor();
@@ -203,19 +205,19 @@ public class Controlador {
                 frmActualizarProveedor();
             }
         });
-        form.jmiMecanico.addActionListener(new ActionListener() {
+        form.jmiRegistrarMecanico.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarEmpleado();
             }
         });
-        form.jmiRepuestos.addActionListener(new ActionListener() {
+        form.jmiRegistrarRepuestos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarRepuestos();
             }
         });
-        form.jmiMantenimiento.addActionListener(new ActionListener() {
+        form.jmiRegistrarMantenimiento.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarMantenimientos();
@@ -231,9 +233,9 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 form.setVisible(false);
-                form.jtfUsuario.setText("");
-                form.jtfContraseña.setText("");
-                form.Login.setVisible(true);
+                Login.jtfUsuario.setText("");
+                Login.jtfContraseña.setText("");
+                Login.setVisible(true);
             }
         });
         form.setVisible(true);

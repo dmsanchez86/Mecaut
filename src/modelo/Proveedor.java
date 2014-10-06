@@ -2,11 +2,11 @@ package modelo;
 
 /* @author Grupo - MECAUT */
 public class Proveedor {
-    private String nit;
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    private String descripcion;
+    private final String nit;
+    private final String nombre;
+    private final String direccion;
+    private final String telefono;
+    private final String descripcion;
 
     public Proveedor(String nit, String nombre, String direccion, String telefono, String descripcion) {
         this.nit = nit;
