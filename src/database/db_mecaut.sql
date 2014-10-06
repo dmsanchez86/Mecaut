@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.9
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2014 a las 06:27:02
--- Versión del servidor: 5.5.34
--- Versión de PHP: 5.4.22
+-- Servidor: localhost
+-- Tiempo de generación: 06-10-2014 a las 18:02:11
+-- Versión del servidor: 5.5.16
+-- Versión de PHP: 5.3.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -55,6 +55,14 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   PRIMARY KEY (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cli_telefono`, `cli_direccion`, `cli_correo`) VALUES
+('1053844273', 'Daniel Mauricio', 'Sánchez Ávila', 'Masculino', '8769164', 'Solferino', 'dmsanchez86@misena.edu.co'),
+('950630', 'Angie Camila', 'Giraldo Gomez', 'Femenino', '3104258312', 'Villahermosa', 'angie@misena.edu.co');
+
 -- --------------------------------------------------------
 
 --
@@ -67,14 +75,15 @@ CREATE TABLE IF NOT EXISTS `cuentas` (
   `cue_contrasena` varchar(20) NOT NULL,
   `cue_tipoUsuario` varchar(20) NOT NULL,
   PRIMARY KEY (`cue_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `cuentas`
 --
 
 INSERT INTO `cuentas` (`cue_id`, `cue_usuario`, `cue_contrasena`, `cue_tipoUsuario`) VALUES
-(1, 'admin', 'admin', 'administrador');
+(1, 'admin', 'admin', 'administrador'),
+(2, 'dany123', 'dany', 'cliente');
 
 -- --------------------------------------------------------
 
@@ -90,6 +99,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `emp_telefono` varchar(10) NOT NULL,
   `emp_direccion` varchar(25) NOT NULL,
   `emp_salario` varchar(10) NOT NULL,
+  `emp_correo` varchar(50) NOT NULL,
   PRIMARY KEY (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -6,66 +6,76 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import modelo.Auto;
-import modelo.Cliente;
-import modelo.Cuenta;
+import modelo.Logica.Auto;
+import modelo.Logica.Cliente;
+import modelo.Logica.Cuenta;
 import modelo.Gestor;
-import modelo.Mantenimiento;
-import modelo.Empleados;
-import modelo.Proveedor;
-import modelo.Repuesto;
-import vista.frmAdmin;
-import vista.frmLoggin;
-import vista.jifActualizarCliente;
-import vista.jifAuto;
-import vista.jifCliente;
-import vista.jifActualizarMantenimiento;
-import vista.jifActualizarEmpleado;
-import vista.jifActualizarProveedor;
+import modelo.Logica.Mantenimiento;
+import modelo.Logica.Empleados;
+import modelo.Logica.Proveedor;
+import modelo.Logica.Repuesto;
+import vista.FormulariosPrincipales.frmAdmin;
+import vista.FormulariosPrincipales.frmCliente;
+import vista.FormulariosPrincipales.frmEmpleado;
+import vista.FormulariosPrincipales.frmLoggin;
+import vista.Clientes.jifActualizarCliente;
+import vista.jifRegistrarAuto;
+import vista.Clientes.jifRegistrarCliente;
+import vista.Mantenimientos.jifActualizarMantenimiento;
+import vista.Empleados.jifActualizarEmpleado;
+import vista.Proveedores.jifActualizarProveedor;
 import vista.jifListaAutos;
-import vista.jifListaClientes;
-import vista.jifListaMantenimientos;
-import vista.jifListaEmpleados;
-import vista.jifListaProveedores;
-import vista.jifListaRepuestos;
-import vista.jifEmpleado;
-import vista.jifProveedor;
-import vista.jifRepuesto;
-import vista.jifMantenimiento;
+import vista.Clientes.jifListaClientes;
+import vista.Mantenimientos.jifListaMantenimientos;
+import vista.Empleados.jifListaEmpleados;
+import vista.Proveedores.jifListaProveedores;
+import vista.Repuestos.jifListaRepuestos;
+import vista.Empleados.jifRegistrarEmpleado;
+import vista.Proveedores.jifRegistrarProveedor;
+import vista.Repuestos.jifRegistrarRepuesto;
+import vista.Mantenimientos.jifRegistrarMantenimiento;
 
 /* @author Grupo - MECAUT */
 public class Controlador {
+
     private final Gestor Gestor;
     private final frmAdmin form;
-    private final jifCliente jifCliente;
+    private final jifRegistrarCliente jifCliente;
     private final jifActualizarCliente jifActualizarCliente;
-    private final jifMantenimiento jifMantenimiento;
+    private final jifRegistrarMantenimiento jifMantenimiento;
     private final jifListaClientes jifListaClientes;
     private final jifListaAutos jifListaAutos;
     private final jifListaRepuestos jifListaRepuestos;
     private final jifListaEmpleados jifListaEmpleados;
     private final jifListaProveedores jifListaProveedores;
     private final jifActualizarProveedor jifActualizarProveedor;
-    private final jifAuto jifAuto;
-    private final jifProveedor jifProveedor;
-    private final jifEmpleado jifEmpleado;
+    private final jifRegistrarAuto jifAuto;
+    private final jifRegistrarProveedor jifProveedor;
+    private final jifRegistrarEmpleado jifEmpleado;
     private final jifActualizarEmpleado jifActualizarEmpleado;
-    private final jifRepuesto jifRepuesto;
+    private final jifRegistrarRepuesto jifRepuesto;
     private final jifListaMantenimientos jifListaMantenimientos;
     private final jifActualizarMantenimiento jifActualizarMantenimiento;
     private final frmLoggin Login;
+    private final frmCliente frmCliente;
+    private final frmEmpleado frmEmpleado;
     /* CONSTRUCTOR */
+
     public Controlador() {
         // Inicializamos todos los objetos de los jInternalFrame
         Gestor = new Gestor();
         Login = new frmLoggin();
         form = new frmAdmin();
-        jifCliente = new jifCliente();
+        frmCliente = new frmCliente();
+        frmEmpleado = new frmEmpleado();
+        jifCliente = new jifRegistrarCliente();
         jifActualizarCliente = new jifActualizarCliente();
-        jifMantenimiento = new jifMantenimiento();
+        jifMantenimiento = new jifRegistrarMantenimiento();
         jifListaClientes = new jifListaClientes();
         jifListaAutos = new jifListaAutos();
         jifListaRepuestos = new jifListaRepuestos();
@@ -75,10 +85,10 @@ public class Controlador {
         jifActualizarProveedor = new jifActualizarProveedor();
         jifListaMantenimientos = new jifListaMantenimientos();
         jifActualizarMantenimiento = new jifActualizarMantenimiento();
-        jifAuto = new jifAuto();
-        jifProveedor = new jifProveedor();
-        jifEmpleado = new jifEmpleado();
-        jifRepuesto = new jifRepuesto();
+        jifAuto = new jifRegistrarAuto();
+        jifProveedor = new jifRegistrarProveedor();
+        jifEmpleado = new jifRegistrarEmpleado();
+        jifRepuesto = new jifRegistrarRepuesto();
         // Se añaden los jInternalFrame al jDesktopPanel
         form.jDesktopPane1.add(jifMantenimiento);
         form.jDesktopPane1.add(jifCliente);
@@ -98,6 +108,7 @@ public class Controlador {
         form.jDesktopPane1.add(jifActualizarProveedor);
     }
     /* INICIO LOGGIN */
+
     public void lanzarLogin() {
         /* Boton para iniciar sesión */
         Login.jbtAceptar.addActionListener(new ActionListener() {
@@ -107,13 +118,23 @@ public class Controlador {
                     String usuario = Login.jtfUsuario.getText();
                     String contrasena = Login.jtfContraseña.getText();
                     Cuenta cuenta = new Cuenta(usuario, contrasena);
-                    boolean r = Gestor.validarUsuario(cuenta);
-                    if (r) {
-                        Login.setVisible(false);
-                        lanzarFormularioAdministrador();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctas...\nVerifique los Datos.", "Loggin - MECAUT", JOptionPane.ERROR_MESSAGE);
-                        Login.jtfContraseña.setText("");
+                    String r = Gestor.validarUsuario(cuenta);
+                    switch (r) {
+                        case "administrador":
+                            Login.setVisible(false);
+                            lanzarFormularioAdministrador();
+                            break;
+                        case "cliente":
+                            Login.setVisible(false);
+                            lanzarFormularioCliente();
+                            break;
+                        case "empleado":
+                            Login.setVisible(false);
+                            lanzarFormularioEmpleado();
+                        default:
+                            JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctas...\nVerifique los Datos.", "Loggin - MECAUT", JOptionPane.ERROR_MESSAGE);
+                            Login.jtfContraseña.setText("");
+                            break;
                     }
                 } catch (HeadlessException e) {
                     JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Error -- MECAUT", JOptionPane.ERROR_MESSAGE);
@@ -145,7 +166,7 @@ public class Controlador {
                 frmActualizarCliente();
             }
         });
-        form.jmiListaCliente.addActionListener(new ActionListener() {
+        form.jmiBuscarCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmListaClientes();
@@ -240,6 +261,14 @@ public class Controlador {
         });
         form.setVisible(true);
     }
+    /* Formulario Cliente */
+    private void lanzarFormularioCliente() {
+        frmCliente.setVisible(true);
+    }
+    /* Formulario Empleado */
+    private void lanzarFormularioEmpleado() {
+        frmEmpleado.setVisible(true);
+    }
     /* --------------------------- FIN ACCIONES FORMULARIOS ------------------------------------ */
     /* ----------------------------------------------------------------------------------------- */
     /* --------------------------- EVENTOS FORMULARIOS ------------------------------------ */
@@ -262,9 +291,10 @@ public class Controlador {
                          * salga error cuando se abre el formulario por 2da vez
                          */
                     } else {
-                        Cliente cli = new Cliente(identificacion, nombre, apellidos,sexo, telefono, direccion,correo);
+                        Cliente cli = new Cliente(identificacion, nombre, apellidos, sexo, telefono, direccion, correo);
                         if (Gestor.agregarCliente(cli)) {
-                            JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre + " almacenados!","MECAUT - Registro Cliente",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre.toUpperCase() + " almacenados!", "MECAUT - Registro Cliente", JOptionPane.INFORMATION_MESSAGE);
+                            jifCliente.jcbSexo.setSelectedIndex(0);
                             limpiar();
                         } else {
                             JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos del cliente " + nombre + "", "MECAUT - Registro Cliente", JOptionPane.ERROR_MESSAGE);
@@ -277,23 +307,37 @@ public class Controlador {
         });
         jifCliente.setVisible(true);
     }
+
     private void frmActualizarCliente() {
         limpiar();
+        jifActualizarCliente.jbtEliminar.setEnabled(false);
+        jifActualizarCliente.jbtModificar.setEnabled(false);
         jifActualizarCliente.jbtConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    Cliente cliente;
-//                    if (jifActualizarCliente.jtfIdentificacion.getText()!= null) {
-//                        cliente = (Cliente) jifActualizarCliente.jtfIdentificacion.getText().;
-//                        jifActualizarCliente.jtfNombre.setText(cliente.getNombre());
-//                        jifActualizarCliente.jtfApellidos.setText(cliente.getApellidos());
-//                        jifActualizarCliente.jtfTelefono.setText(cliente.getTelefono());
-//                        jifActualizarCliente.jtfDireccion.setText(cliente.getDireccion());
-//                        jifActualizarCliente.jbtEliminar.setEnabled(true);
-//                        jifActualizarCliente.jbtModificar.setEnabled(true);
-//                    }
-                } catch (Exception e) {
+                    ResultSet r;
+                    String id = jifActualizarCliente.jtfIdentificacion.getText();
+                    if (id.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese una Identificación","MECAUT",JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        r = Gestor.TraerDatosCliente(id);
+//                        if (!r.next()) {
+//                            JOptionPane.showMessageDialog(null, "No se encontraron resultados...","MECAUT - Búsqueda",JOptionPane.ERROR_MESSAGE);
+//                        }
+                        while(r.next()){
+                            int op = ("Masculino".equals(r.getString(4))?2:1);
+                            jifActualizarCliente.jtfNombre.setText(r.getString(2));
+                            jifActualizarCliente.jtfApellidos.setText(r.getString(3));
+                            jifActualizarCliente.jcbSexo.setSelectedIndex(op);
+                            jifActualizarCliente.jtfTelefono.setText(r.getString(5));
+                            jifActualizarCliente.jtfDireccion.setText(r.getString(6));
+                            jifActualizarCliente.jtfCorreo.setText(r.getString(7));
+                        }
+                        jifActualizarCliente.jbtEliminar.setEnabled(true);
+                        jifActualizarCliente.jbtModificar.setEnabled(true);
+                    }
+                } catch (HeadlessException | SQLException e) {
                     JOptionPane.showMessageDialog(null, "" + e.getMessage(), "MECAUT", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -305,21 +349,22 @@ public class Controlador {
                     String identificacion = jifActualizarCliente.jtfIdentificacion.getText();
                     String nombre = jifActualizarCliente.jtfNombre.getText();
                     String apellidos = jifActualizarCliente.jtfApellidos.getText();
-                    String sexo = jifActualizarCliente.jtfSexo.getText();
+                    String sexo = jifActualizarCliente.jcbSexo.getSelectedItem().toString();
                     String telefono = jifActualizarCliente.jtfTelefono.getText();
                     String direccion = jifActualizarCliente.jtfDireccion.getText();
                     String correo = jifActualizarCliente.jtfCorreo.getText();
-                    Cliente cli = new Cliente(identificacion, nombre, apellidos,sexo, telefono, direccion,correo);
+                    Cliente cli = new Cliente(identificacion, nombre, apellidos, sexo, telefono, direccion, correo);
                     if (Gestor.modificarCliente(cli)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre + " modificados!","Mecaut - Cliente",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre + " modificados!", "Mecaut - Cliente", JOptionPane.INFORMATION_MESSAGE);
+                        
                         limpiar();
-                        jifActualizarCliente.jbtEliminar.setEnabled(false);
-                        jifActualizarCliente.jbtModificar.setEnabled(false);
+                        jifActualizarCliente.jbtEliminar.setEnabled(true);
+                        jifActualizarCliente.jbtModificar.setEnabled(true);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los del cliente " + nombre + "!","Mecaut - Cliente",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los del cliente " + nombre + "!", "Mecaut - Cliente", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException re) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + re.getMessage(), "Mecaut - Cliente",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + re.getMessage(), "Mecaut - Cliente", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -327,17 +372,17 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String nombre = jifActualizarCliente.jtfNombre.getText();
-                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el cliente " + nombre + "?", "Eliminar CLIENTE", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+                    //String nombre = jifActualizarCliente.jtfNombre.getText();
+                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar el cliente ?", "Eliminar CLIENTE",JOptionPane.YES_NO_OPTION);
                     if (rs == JOptionPane.YES_OPTION) {
                         String identificacion = jifActualizarCliente.jtfIdentificacion.getText();
                         if (Gestor.eliminarCliente(identificacion)) {
-                            JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre + " eliminados!", "Mecaut - Cliente",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡Datos del cliente eliminados!", "Mecaut - Cliente", JOptionPane.INFORMATION_MESSAGE);
                             limpiar();
-                            jifActualizarCliente.jbtEliminar.setEnabled(false);
-                            jifActualizarCliente.jbtModificar.setEnabled(false);
+                            jifActualizarCliente.jbtEliminar.setEnabled(true);
+                            jifActualizarCliente.jbtModificar.setEnabled(true);
                         } else {
-                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos del cliente " + nombre + "","Mecaut - Cliente",JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos del cliente ", "Mecaut - Cliente", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 } catch (HeadlessException se) {
@@ -347,6 +392,7 @@ public class Controlador {
         });
         jifActualizarCliente.setVisible(true);
     }
+
     private void frmRegistrarAuto() {
         limpiar();
         jifAuto.jtfNombreCliente.setEnabled(false);
@@ -385,7 +431,7 @@ public class Controlador {
 
                     Auto aut = new Auto(placa, ciudad, modelo, marca, idCliente, nombreCliente, apellidosCliente);
                     if (Gestor.agregarAuto(aut)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del auto almacenados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del auto almacenados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         jifAuto.jcbCiudad.setSelectedIndex(0);
                         jifAuto.jcbIdCliente.setSelectedIndex(0);
                         jifAuto.jcbMarca.setSelectedIndex(0);
@@ -393,15 +439,16 @@ public class Controlador {
                         limpiar();
                         jifAuto.jbtRegistrar.setEnabled(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException | HeadlessException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifAuto.setVisible(true);
     }
+
     private void frmRegistrarMantenimientos() {
         limpiar();
         ArrayList<Auto> autos = Gestor.consultarAutos();
@@ -429,28 +476,29 @@ public class Controlador {
                     String idMecanico = (jifMantenimiento.jcbIdentificacion.getSelectedItem().toString());
                     Mantenimiento man = new Mantenimiento(tipo, fechaa, descripcion, costo, placa, idMecanico);
                     if (Gestor.agregarMantenimiento(man)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del mantenimiento almacenados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del mantenimiento almacenados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
                         jifMantenimiento.jcbTipo.setSelectedIndex(0);
                         jifMantenimiento.jcbPlaca.setSelectedIndex(0);
                         jifMantenimiento.jcbIdentificacion.setSelectedIndex(0);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifMantenimiento.setVisible(true);
     }
+
     private void frmActualizarEmpleado() {
         jifActualizarEmpleado.jbtEliminar.setEnabled(false);
         jifActualizarEmpleado.jbtModificar.setEnabled(false);
         jifActualizarEmpleado.jbtConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                Empleados mecanico;
+//                Empleados mecanico;
 //                if (jifActualizarEmpleado.jcbId.getSelectedIndex() != 0) {
 //                    mecanico = (Empleados) jifActualizarEmpleado.jcbId.getSelectedItem();
 //                    jifActualizarEmpleado.jtfNombre.setText(mecanico.getNombre());
@@ -467,21 +515,21 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este proveedor?", "Eliminar PROVEEDOR",JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este proveedor?", "Eliminar PROVEEDOR", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
                     if (rs == JOptionPane.YES_OPTION) {
                         int id = Integer.parseInt(jifActualizarEmpleado.jtfId.getText());
-                        if (Gestor.eliminarMecanico(id)) {
-                            JOptionPane.showMessageDialog(null, "¡Datos del mecanico eliminados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        if (Gestor.eliminarEmpleado(id)) {
+                            JOptionPane.showMessageDialog(null, "¡Datos del mecanico eliminados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                             limpiar();
                             jifActualizarEmpleado.jtfId.setText(null);
                             jifActualizarEmpleado.jbtEliminar.setEnabled(false);
                             jifActualizarEmpleado.jbtModificar.setEnabled(false);
                         } else {
-                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -497,23 +545,24 @@ public class Controlador {
                     String direccion = jifActualizarEmpleado.jtfDireccion.getText();
                     String salario = jifActualizarEmpleado.jtfSalario.getText();
                     String correo = jifActualizarEmpleado.jtfCorreo.getText();
-                    Empleados emp = new Empleados(identificacion, nombre, apellidos,tipo, telefono, direccion, salario,correo);
-                    if (Gestor.modificarMecanico(emp)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del mecánico modificados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                    Empleados emp = new Empleados(identificacion, nombre, apellidos, tipo, telefono, direccion, salario, correo);
+                    if (Gestor.modificarEmpleado(emp)) {
+                        JOptionPane.showMessageDialog(null, "¡Datos del mecánico modificados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
                         jifActualizarEmpleado.jtfId.setText(null);
                         jifActualizarEmpleado.jbtEliminar.setEnabled(false);
                         jifActualizarEmpleado.jbtModificar.setEnabled(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifActualizarEmpleado.setVisible(true);
     }
+
     private void frmActualizarMantenimiento() {
         try {
             limpiar();
@@ -550,7 +599,7 @@ public class Controlador {
                     Mantenimiento man = (Mantenimiento) jifActualizarMantenimiento.jcbCodigoMantenimiento.getSelectedItem();
                     if (Integer.parseInt(jifActualizarMantenimiento.jcbCodigoMantenimiento.getSelectedItem().toString()) != 0) {
                         if (Gestor.eliminarMantenimiento(man)) {
-                            JOptionPane.showMessageDialog(null, "Se elimino correctamente","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "Se elimino correctamente", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                             jifActualizarMantenimiento.jcbCodigoMantenimiento.setSelectedIndex(0);
                             jifActualizarMantenimiento.jcbCodigoMantenimiento.setSelectedIndex(0);
                             limpiar();
@@ -573,24 +622,25 @@ public class Controlador {
                     Mantenimiento m = new Mantenimiento(codigo, tipo, fecha, descripcion, costo);
 
                     if (Gestor.actualizarMantenimiento(m)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del mantenimiento actualizados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del mantenimiento actualizados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         jifActualizarMantenimiento.jcbCodigoMantenimiento.setSelectedIndex(0);
                         jifActualizarMantenimiento.jcbCodigoMantenimiento.setSelectedIndex(0);
                         limpiar();
                         jifActualizarMantenimiento.jbtEliminar.setEnabled(false);
                         jifActualizarMantenimiento.jbtModificar.setEnabled(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron actualizar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron actualizar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                     jifActualizarMantenimiento.jcbCodigoMantenimiento.setSelectedIndex(0);
 
                 }
             });
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
         }
         jifActualizarMantenimiento.setVisible(true);
     }
+
     private void frmRegistrarProveedor() {
         limpiar();
         jifProveedor.jbtRegistrar.addActionListener(new ActionListener() {
@@ -604,19 +654,20 @@ public class Controlador {
                     String descripcion = jifProveedor.jtaDescripcion.getText();
                     Proveedor prov = new Proveedor(nit, nombre, direccion, telefono, descripcion);
                     if (Gestor.agregarProveedor(prov)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del proveedor almacenados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del proveedor almacenados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
                     } else {
                         JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!");
                     }
                 } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
         });
         jifProveedor.setVisible(true);
     }
+
     private void frmActualizarProveedor() {
         limpiar();
         jifActualizarProveedor.jbtEliminar.setEnabled(false);
@@ -653,16 +704,16 @@ public class Controlador {
                     String descripcion = jifActualizarProveedor.jtaDescripcion.getText();
                     Proveedor pro = new Proveedor(nit, nombre, direccion, telefono, descripcion);
                     if (Gestor.modificarProveedor(pro)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del proveedor modificados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del proveedor modificados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         jifActualizarProveedor.jcbNit.setSelectedIndex(0);
                         limpiar();
                         jifActualizarProveedor.jbtEliminar.setEnabled(false);
                         jifActualizarProveedor.jbtModificar.setEnabled(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron modificar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException | NumberFormatException errr) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + errr.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + errr.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -670,26 +721,27 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este proveedor?", "Eliminar PROVEEDOR",JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+                    int rs = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar este proveedor?", "Eliminar PROVEEDOR", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
                     if (rs == JOptionPane.YES_OPTION) {
                         int nit = Integer.parseInt(jifActualizarProveedor.jcbNit.getSelectedItem().toString());
                         if (Gestor.eliminarProveedor(nit)) {
-                            JOptionPane.showMessageDialog(null, "¡Datos del proveedor eliminados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡Datos del proveedor eliminados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                             jifActualizarProveedor.jcbNit.setSelectedIndex(0);
                             limpiar();
                             jifActualizarProveedor.jbtEliminar.setEnabled(false);
                             jifActualizarProveedor.jbtModificar.setEnabled(false);
                         } else {
-                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "¡No se pudieron eliminar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 } catch (HeadlessException | NumberFormatException err) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + err.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + err.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifActualizarProveedor.setVisible(true);
     }
+
     private void frmRegistrarEmpleado() {
         jifEmpleado.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
@@ -703,20 +755,21 @@ public class Controlador {
                     String direccion = jifEmpleado.jtfDireccion.getText();
                     String salario = jifEmpleado.jtfSalario.getText();
                     String correo = jifEmpleado.jtfCorreo.getText();
-                    Empleados emp = new Empleados(identificacion, nombre, apellidos,tipo, telefono, direccion, salario,correo);
-                    if (Gestor.agregarMecanico(emp)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del mecánico almacenados!","Mecaut",JOptionPane.INFORMATION_MESSAGE);
+                    Empleados emp = new Empleados(identificacion, nombre, apellidos, tipo, telefono, direccion, salario, correo);
+                    if (Gestor.agregarEmpleado(emp)) {
+                        JOptionPane.showMessageDialog(null, "¡Datos del mecánico almacenados!", "Mecaut", JOptionPane.INFORMATION_MESSAGE);
                         limpiar();
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (NumberFormatException | HeadlessException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifEmpleado.setVisible(true);
     }
+
     private void frmRegistrarRepuestos() {
         jifRepuesto.jbtRegistrar.setEnabled(false);
         jifRepuesto.jtfNomProveedor.setEnabled(false);
@@ -750,37 +803,41 @@ public class Controlador {
                     String nomProv = jifRepuesto.jtfNomProveedor.getText();
                     Repuesto rep = new Repuesto(codigo, tipo, marca, cantidad, precio, nit, nomProv);
                     if (Gestor.agregarRepuesto(rep)) {
-                        JOptionPane.showMessageDialog(null, "¡Datos del repuesto almacenados!","Mecaut",JOptionPane.QUESTION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡Datos del repuesto almacenados!", "Mecaut", JOptionPane.QUESTION_MESSAGE);
                         limpiar();
                         jifRepuesto.jcbTipo.setSelectedIndex(0);
                         jifRepuesto.jcbNitProveedor.setSelectedIndex(0);
                         jifRepuesto.jbtRegistrar.setEnabled(false);
                     } else {
-                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!","Mecaut",JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos!", "Mecaut", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException | NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(),"Mecaut",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Mecaut", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         jifRepuesto.setVisible(true);
     }
+
     private void frmListaClientes() {
         evtMostrarClientes();
         jifListaClientes.jtfDato.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
             }
+
             @Override
             public void keyPressed(KeyEvent ke) {
                 evtMostrarClientes();
             }
+
             @Override
             public void keyReleased(KeyEvent ke) {
             }
         });
         jifListaClientes.setVisible(true);
     }
+
     private void frmListaAutos() {
         ArrayList<Auto> autos = Gestor.verAutos();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -805,6 +862,7 @@ public class Controlador {
         jifListaAutos.jtListaAutos.setModel(modelo);
         jifListaAutos.setVisible(true);
     }
+
     private void frmListaRepuestos() {
         ArrayList<Repuesto> repuestos = Gestor.verRepuestos();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -829,22 +887,26 @@ public class Controlador {
         jifListaRepuestos.jtListaRepuestos.setModel(modelo);
         jifListaRepuestos.setVisible(true);
     }
+
     private void frmListaMecanicos() {
         evtMostrarMecanicos();
         jifListaEmpleados.jtfDato.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
+
             @Override
             public void keyPressed(KeyEvent e) {
                 evtMostrarMecanicos();
             }
+
             @Override
             public void keyReleased(KeyEvent e) {
             }
         });
         jifListaEmpleados.setVisible(true);
     }
+
     private void frmListaProveedores() {
         ArrayList<Proveedor> proveedores = Gestor.verProveedor();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -865,6 +927,7 @@ public class Controlador {
         jifListaProveedores.jtListaMecanicos.setModel(modelo);
         jifListaProveedores.setVisible(true);
     }
+
     private void frmListaMantenimientos() {
         ArrayList<Mantenimiento> mantenimientos = Gestor.verMantenimientos();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -889,16 +952,19 @@ public class Controlador {
         jifListaMantenimientos.jtListaMantenimientos.setModel(modelo);
         jifListaMantenimientos.setVisible(true);
     }
+
     //Limpia todos los jtextField de los formulario
     private void limpiar() {
         jifCliente.jtfNombre.setText(null);
         jifCliente.jtfApellidos.setText(null);
         jifCliente.jtfDireccion.setText(null);
+        jifCliente.jtfCorreo.setText(null);
         jifCliente.jtfTelefono.setText(null);
         jifCliente.jtfIdentificacion.setText(null);
         jifActualizarCliente.jtfIdentificacion.setText(null);
         jifActualizarCliente.jtfNombre.setText(null);
         jifActualizarCliente.jtfApellidos.setText(null);
+        jifActualizarCliente.jtfCorreo.setText(null);
         jifActualizarCliente.jtfTelefono.setText(null);
         jifActualizarCliente.jtfDireccion.setText(null);
         jifAuto.jtfPlaca.setText(null);
@@ -945,6 +1011,7 @@ public class Controlador {
         jifActualizarCliente.jtfTelefono.setText("");
         jifActualizarCliente.jtfDireccion.setText("");
     }
+
     private void evtMostrarClientes() {
         String dato = jifListaClientes.jtfDato.getText();
         ArrayList<Cliente> clientes = Gestor.verClientePorDato(dato);
@@ -952,19 +1019,24 @@ public class Controlador {
         modelo.addColumn("Identificación");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellidos");
+        modelo.addColumn("Sexo");
         modelo.addColumn("Telefono");
         modelo.addColumn("Direccion");
+        modelo.addColumn("Correo Eléctronico");
         for (Cliente cliente : clientes) {
-            Object[] fila = new Object[5];
+            Object[] fila = new Object[7];
             fila[0] = cliente.getIdentificacion();
             fila[1] = cliente.getNombre();
             fila[2] = cliente.getApellidos();
-            fila[3] = cliente.getTelefono();
-            fila[4] = cliente.getDireccion();
+            fila[3] = cliente.getSexo();
+            fila[4] = cliente.getTelefono();
+            fila[5] = cliente.getDireccion();
+            fila[6] = cliente.getCorreo();
             modelo.addRow(fila);
         }
         jifListaClientes.jtListaClientes.setModel(modelo);
     }
+
     private void evtMostrarMecanicos() {
         String dato = jifListaEmpleados.jtfDato.getText();
         ArrayList<Empleados> empleados = Gestor.verEmpleadosPorDato(dato);

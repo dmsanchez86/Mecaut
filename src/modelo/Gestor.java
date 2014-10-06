@@ -1,201 +1,229 @@
 package modelo;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import modelo.Datos.AutoOp;
+import modelo.Datos.ClienteOp;
+import modelo.Datos.CuentaOp;
+import modelo.Datos.EmpleadosOp;
+import modelo.Datos.MantenimientosOp;
+import modelo.Datos.ProveedorOp;
+import modelo.Datos.RepuestosOp;
+import modelo.Logica.Auto;
+import modelo.Logica.Cliente;
+import modelo.Logica.Cuenta;
+import modelo.Logica.Empleados;
+import modelo.Logica.Mantenimiento;
+import modelo.Logica.Proveedor;
+import modelo.Logica.Repuesto;
 
 /* @author grupo - MECAUT */
 public class Gestor {
-    Conexion conexion = new Conexion();
-    boolean respuesta;
+    private final Conexion conexion = new Conexion();
+    private boolean respuesta;
+    private final ClienteOp cliOp = new ClienteOp();
+    private final EmpleadosOp empOp = new EmpleadosOp();
+    private final AutoOp autOp = new AutoOp();
+    private final CuentaOp cueOp = new CuentaOp();
+    private final MantenimientosOp manOp = new MantenimientosOp();
+    private final ProveedorOp proOp = new ProveedorOp();
+    private final RepuestosOp repOp = new RepuestosOp();
     // Clientes
     public boolean agregarCliente(Cliente cli){
         conexion.crearConexion();
-        respuesta = conexion.agregarCliente(cli);
+        respuesta = cliOp.agregarCliente(cli);
         conexion.cerrarConexion();
         return respuesta;
     }
     public ArrayList<Cliente> verClientePorDato(String dato){
         conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.verClientesPorDato(dato);
+        ArrayList<Cliente> clientes = cliOp.verClientesPorDato(dato);
         conexion.cerrarConexion();
         return clientes;
     }    
     public boolean modificarCliente(Cliente cli){
         conexion.crearConexion();
-        respuesta = conexion.modificarCliente(cli);
+        respuesta = cliOp.modificarCliente(cli);
         conexion.crearConexion();
         return respuesta;
     }   
     public boolean eliminarCliente(String id){
         conexion.crearConexion();
-        respuesta = conexion.eliminarCliente(id);
+        respuesta = cliOp.eliminarCliente(id);
         conexion.crearConexion();
         return respuesta;
     }    
     public ArrayList<Cliente> consultarClientes(){
         conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.consultarClientes();
+        ArrayList<Cliente> clientes = cliOp.consultarClientes();
         conexion.cerrarConexion();
         return clientes;
     }  
     public boolean registrarUsuario(Cuenta c){
         conexion.crearConexion();
-        boolean r = conexion.registrarCuenta(c);
+        boolean r = cueOp.registrarCuenta(c);
         conexion.cerrarConexion();
         return r;
     }
-    public boolean validarUsuario(Cuenta c){
+    public String validarUsuario(Cuenta c){
         conexion.crearConexion();
-        respuesta = conexion.validarCuentas(c);
+        String r = cueOp.validarCuentas(c);
         conexion.cerrarConexion();
-        return respuesta;
+        return r;
     }
     // Auto
     public boolean agregarAuto(Auto aut){
         conexion.crearConexion();
-        respuesta = conexion.agregarAuto(aut);
+        respuesta = autOp.agregarAuto(aut);
         conexion.cerrarConexion();
         return respuesta;
     }
     public ArrayList<Cliente> consultarCli(){
         conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.consultarClientes();
+        ArrayList<Cliente> clientes = cliOp.consultarClientes();
         conexion.cerrarConexion();
         return clientes;
     }
     public ArrayList<Auto> verAutos(){
         conexion.crearConexion();
-        ArrayList<Auto> autos = conexion.verAutos();
+        ArrayList<Auto> autos = autOp.verAutos();
         conexion.cerrarConexion();
         return autos;
     }
     // Mecánico
-    public boolean agregarMecanico(Empleados mec){
+    public boolean agregarEmpleado(Empleados mec){
         conexion.crearConexion();
-        respuesta = conexion.agregarMecanico(mec);
+        respuesta = empOp.agregarEmpleado(mec);
         conexion.cerrarConexion();
         return respuesta;
     }   
      public ArrayList<Empleados> verEmpleadosPorDato(String dato){
         conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.verEmpleadosPorDato(dato);
+        ArrayList<Empleados> empleados = empOp.verEmpleadosPorDato(dato);
         conexion.cerrarConexion();
         return empleados;
     }   
       public ArrayList<Empleados> consultarEmpleados(){
         conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.consultarEmpleados();
+        ArrayList<Empleados> empleados = empOp.consultarEmpleados();
         conexion.cerrarConexion();
         return empleados;
     }    
-      public boolean modificarMecanico(Empleados mec){
+      public boolean modificarEmpleado(Empleados mec){
         conexion.crearConexion();
-        respuesta = conexion.modificarMecanico(mec);
+        respuesta = empOp.modificarEmpleado(mec);
         conexion.crearConexion();
         return respuesta;
     }  
-    public boolean eliminarMecanico(int id){
+    public boolean eliminarEmpleado(int id){
         conexion.crearConexion();
-        respuesta = conexion.eliminarMecanico(id);
+        respuesta = empOp.eliminarEmpleado(id);
         conexion.crearConexion();
         return respuesta;
     }
     // Proveedor
     public boolean agregarProveedor(Proveedor prov){
         conexion.crearConexion();
-        respuesta = conexion.agregarProveedor(prov);
+        respuesta = proOp.agregarProveedor(prov);
         conexion.cerrarConexion();
         return respuesta;
     }  
     public ArrayList<Proveedor> verProveedor(){
         conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.verProveedores();
+        ArrayList<Proveedor> proveedores = proOp.verProveedores();
         conexion.cerrarConexion();
         return proveedores;
     }
     public ArrayList<Proveedor> consultarProveedores(){
         conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.consultarProveedores();
+        ArrayList<Proveedor> proveedores = proOp.consultarProveedores();
         conexion.cerrarConexion();
         return proveedores;
     }
     public boolean modificarProveedor(Proveedor prov){
         conexion.crearConexion();
-        respuesta = conexion.modificarProveedor(prov);
+        respuesta = proOp.modificarProveedor(prov);
         conexion.crearConexion();
         return respuesta;
     }
     public boolean eliminarProveedor(int nit){
         conexion.crearConexion();
-        respuesta = conexion.eliminarProveedor(nit);
+        respuesta = proOp.eliminarProveedor(nit);
         conexion.crearConexion();
         return respuesta;
     }
     // Repuesto
     public boolean agregarRepuesto(Repuesto rep){
         conexion.crearConexion();
-        respuesta = conexion.agregarRepuesto(rep);
+        respuesta = repOp.agregarRepuesto(rep);
         conexion.cerrarConexion();
         return respuesta;
     }
     public ArrayList<Proveedor> consultarProveedor(){
         conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.consultarProveedores();
+        ArrayList<Proveedor> proveedores = proOp.consultarProveedores();
         conexion.cerrarConexion();
         return proveedores;
     }
     public ArrayList<Repuesto> verRepuestos(){
         conexion.crearConexion();
-        ArrayList<Repuesto> repuestos = conexion.verRepuestos();
+        ArrayList<Repuesto> repuestos = repOp.verRepuestos();
         conexion.cerrarConexion();
         return repuestos;
     } 
     // Mantenimiento
     public boolean agregarMantenimiento(Mantenimiento man){
         conexion.crearConexion();
-        respuesta = conexion.agregarMantenimiento(man);
+        respuesta = manOp.agregarMantenimiento(man);
         conexion.cerrarConexion();
         return respuesta;
     }
     
     public ArrayList<Auto> consultarAutos(){
         conexion.crearConexion();
-        ArrayList<Auto> autos = conexion.consultarAutos();
+        ArrayList<Auto> autos = autOp.consultarAutos();
         conexion.cerrarConexion();
         return autos;
     }
     
     public ArrayList<Empleados> consultarMecanico(){
         conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.consultarEmpleados();
+        ArrayList<Empleados> empleados = empOp.consultarEmpleados();
         conexion.cerrarConexion();
         return empleados;
     }
     
     public ArrayList<Mantenimiento> verMantenimientos(){
         conexion.crearConexion();
-        ArrayList<Mantenimiento> mantenimientos = conexion.verMantenimientos();
+        ArrayList<Mantenimiento> mantenimientos = manOp.verMantenimientos();
         conexion.cerrarConexion();
         return mantenimientos;
     } 
     
     public boolean eliminarMantenimiento(Mantenimiento man){
         conexion.crearConexion();
-        respuesta = conexion.eliminarMantenimiento(man);
+        respuesta = manOp.eliminarMantenimiento(man);
         conexion.cerrarConexion();
         return respuesta;
     }
     
     public ArrayList<Mantenimiento> consultarManteniminetos(){
         conexion.crearConexion();
-        ArrayList<Mantenimiento> mantnimientos = conexion.consultarMantenimientos();
+        ArrayList<Mantenimiento> mantnimientos = manOp.consultarMantenimientos();
         conexion.cerrarConexion();
         return mantnimientos;
     }
 
     public boolean actualizarMantenimiento(Mantenimiento man) {
         conexion.crearConexion();
-        respuesta = conexion.actualizarMantenimiento(man);
+        respuesta = manOp.actualizarMantenimiento(man);
         conexion.cerrarConexion();
         return respuesta;
+    }
+
+    public ResultSet TraerDatosCliente(String id) {
+        conexion.crearConexion();
+        ResultSet r = cliOp.TraerDatosClientes(id);
+        return r;
     }
 }
