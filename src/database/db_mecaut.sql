@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 06-10-2014 a las 18:02:11
--- Versión del servidor: 5.5.16
--- Versión de PHP: 5.3.8
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-10-2014 a las 03:41:40
+-- Versión del servidor: 5.5.34
+-- Versión de PHP: 5.4.22
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -106,6 +106,28 @@ CREATE TABLE IF NOT EXISTS `empleados` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `grupoclientes`
+--
+
+CREATE TABLE IF NOT EXISTS `grupoclientes` (
+  `gru_id` varchar(10) NOT NULL,
+  `gru_nombre` enum('Activo','Inactivo','Habitual','Ocasional','Potencial') NOT NULL,
+  `cli_id` varchar(15) NOT NULL,
+  PRIMARY KEY (`gru_id`),
+  KEY `cli_id` (`cli_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `grupoclientes`
+--
+
+INSERT INTO `grupoclientes` (`gru_id`, `gru_nombre`, `cli_id`) VALUES
+('345ABC', 'Activo', '1053844273'),
+('435FRG', 'Habitual', '950630');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mantenimientos`
 --
 
@@ -164,6 +186,12 @@ CREATE TABLE IF NOT EXISTS `repuestos` (
 --
 ALTER TABLE `autos`
   ADD CONSTRAINT `cli_id` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
+
+--
+-- Filtros para la tabla `grupoclientes`
+--
+ALTER TABLE `grupoclientes`
+  ADD CONSTRAINT `grupoclientes_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
 -- Filtros para la tabla `mantenimientos`

@@ -6,6 +6,7 @@ import modelo.Logica.Auto;
 import modelo.Logica.Cliente;
 import modelo.Logica.Cuenta;
 import modelo.Logica.Empleados;
+import modelo.Logica.GrupoClientes;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Proveedor;
 import modelo.Logica.Repuesto;
@@ -211,5 +212,12 @@ public class Gestor {
         conexion.crearConexion();
         ResultSet r = conexion.TraerDatosClientes(id);
         return r;
+    }
+
+    public ArrayList<GrupoClientes> verGrupoClientes(String dato) {
+        conexion.crearConexion();
+        ArrayList<GrupoClientes> grupo = conexion.verGrupoClientes(dato);
+        conexion.cerrarConexion();
+        return grupo;
     }
 }

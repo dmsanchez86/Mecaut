@@ -3,6 +3,8 @@ package controlador;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.Date;
@@ -17,6 +19,7 @@ import modelo.Logica.Cuenta;
 import modelo.Gestor;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Empleados;
+import modelo.Logica.GrupoClientes;
 import modelo.Logica.Proveedor;
 import modelo.Logica.Repuesto;
 import vista.FormulariosPrincipales.frmAdmin;
@@ -24,6 +27,7 @@ import vista.FormulariosPrincipales.frmCliente;
 import vista.FormulariosPrincipales.frmEmpleado;
 import vista.FormulariosPrincipales.frmLoggin;
 import vista.Clientes.jifActualizarCliente;
+import vista.Clientes.jifGrupoClientes;
 import vista.jifRegistrarAuto;
 import vista.Clientes.jifRegistrarCliente;
 import vista.Mantenimientos.jifActualizarMantenimiento;
@@ -64,6 +68,7 @@ public class Controlador {
     private final frmLoggin Login;
     private final frmCliente frmCliente;
     private final frmEmpleado frmEmpleado;
+    private final jifGrupoClientes jifGrupoClientes;
     /* CONSTRUCTOR */
 
     public Controlador() {
@@ -89,6 +94,7 @@ public class Controlador {
         jifProveedor = new jifRegistrarProveedor();
         jifEmpleado = new jifRegistrarEmpleado();
         jifRepuesto = new jifRegistrarRepuesto();
+        jifGrupoClientes = new jifGrupoClientes();
         // Se añaden los jInternalFrame al jDesktopPanel
         form.jDesktopPane1.add(jifMantenimiento);
         form.jDesktopPane1.add(jifCliente);
@@ -106,6 +112,7 @@ public class Controlador {
         form.jDesktopPane1.add(jifListaMantenimientos);
         form.jDesktopPane1.add(jifActualizarMantenimiento);
         form.jDesktopPane1.add(jifActualizarProveedor);
+        form.jDesktopPane1.add(jifGrupoClientes);
     }
     /* INICIO LOGGIN */
 
@@ -170,6 +177,13 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmListaClientes();
+            }
+        });
+        form.jmiGrupoClientes.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmGrupoClientes();
             }
         });
         form.jmiListaAutos.addActionListener(new ActionListener() {
@@ -837,7 +851,19 @@ public class Controlador {
         });
         jifListaClientes.setVisible(true);
     }
+    private void frmGrupoClientes(){
+        evtVerGrupoClientes("");
+        jifGrupoClientes.jcbTipo.addItemListener(new ItemListener() {
 
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String dato = jifGrupoClientes.jcbTipo.getSelectedItem().toString();
+                evtVerGrupoClientes(dato);
+            }
+        });
+        
+        jifGrupoClientes.setVisible(true);
+    }
     private void frmListaAutos() {
         ArrayList<Auto> autos = Gestor.verAutos();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -1058,5 +1084,41 @@ public class Controlador {
             modelo.addRow(fila);
         }
         jifListaEmpleados.jtListaMecanicos.setModel(modelo);
+    }
+    private void evtVerGrupoClientes(String tipo) {
+        ArrayList<GrupoClientes> grupo;
+        
+        switch(tipo){
+            case "Habitual":
+                    grupo = Gestor.verGrupoClientes("Habitual");
+                break;
+            case "Ocasional":
+                    grupo = Gestor.verGrupoClientes("Ocasional");
+                break;
+            case "Potencial":
+                    grupo = Gestor.verGrupoClientes("Potencial");
+                break;
+            case "Activo":
+                    grupo = Gestor.verGrupoClientes("Activo");
+                break;
+            case "Inactivo":
+                    grupo = Gestor.verGrupoClientes("Inactivo");
+                break;
+            default:
+                    grupo = Gestor.verGrupoClientes("");
+                break;
+        }
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre Grupo");
+        modelo.addColumn("Cliente-Identificación");
+        for (GrupoClientes grupos : grupo) {
+            Object[] fila = new Object[3];
+            fila[0] = grupos.getCodigo();
+            fila[1] = grupos.getNombre();
+            fila[2] = grupos.getCli_Id();
+            modelo.addRow(fila);
+        }
+        jifGrupoClientes.jtGrupoClientes.setModel(modelo);
     }
 }
