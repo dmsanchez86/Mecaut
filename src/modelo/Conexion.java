@@ -486,26 +486,26 @@ public class Conexion {
         try {
             switch(dato){
                 case "Habitual":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE gru_nombre = "+dato);
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 case "Ocasional":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE gru_nombre = "+dato);
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 case "Potencial":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE gru_nombre = "+dato);
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 case "Activo":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE gru_nombre = "+dato);
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 case "Inactivo":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE gru_nombre = "+dato);
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 default:
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = 'Activo' OR gru_nombre = '"+dato+"'");
             }
             rs = consulta.executeQuery();
             while(rs.next()){
-                grupo.add(new GrupoClientes(rs.getString(1), rs.getString(2), rs.getString(3)));
+                grupo.add(new GrupoClientes(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
             }
         } catch (SQLException e) {
             return null;

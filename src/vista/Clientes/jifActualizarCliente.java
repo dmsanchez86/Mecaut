@@ -212,6 +212,9 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel1.getAccessibleContext().setAccessibleName("Datos clienteee");
+        jPanel1.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

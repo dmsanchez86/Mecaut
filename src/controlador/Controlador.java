@@ -138,13 +138,9 @@ public class Controlador {
                         case "empleado":
                             Login.setVisible(false);
                             lanzarFormularioEmpleado();
-                        default:
-                            JOptionPane.showMessageDialog(null, "El usuario o la contraseña no son correctas...\nVerifique los Datos.", "Loggin - MECAUT", JOptionPane.ERROR_MESSAGE);
-                            Login.jtfContraseña.setText("");
-                            break;
                     }
-                } catch (HeadlessException e) {
-                    JOptionPane.showMessageDialog(null, "Error en el tipo de datos...\n" + e.getMessage(), "Error -- MECAUT", JOptionPane.ERROR_MESSAGE);
+                } catch (HeadlessException | NullPointerException e) {
+                    JOptionPane.showMessageDialog(null, "¡¡¡ Los Datos Ingresados Son Incorrectos !!!\n\n\tVerifiquelos Nuevamente...." , "MECAUT - Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -852,7 +848,7 @@ public class Controlador {
         jifListaClientes.setVisible(true);
     }
     private void frmGrupoClientes(){
-        evtVerGrupoClientes("");
+        evtVerGrupoClientes("Activo");
         jifGrupoClientes.jcbTipo.addItemListener(new ItemListener() {
 
             @Override
@@ -1087,7 +1083,6 @@ public class Controlador {
     }
     private void evtVerGrupoClientes(String tipo) {
         ArrayList<GrupoClientes> grupo;
-        
         switch(tipo){
             case "Habitual":
                     grupo = Gestor.verGrupoClientes("Habitual");
@@ -1112,11 +1107,13 @@ public class Controlador {
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre Grupo");
         modelo.addColumn("Cliente-Identificación");
+        modelo.addColumn("Estado");
         for (GrupoClientes grupos : grupo) {
-            Object[] fila = new Object[3];
+            Object[] fila = new Object[4];
             fila[0] = grupos.getCodigo();
             fila[1] = grupos.getNombre();
             fila[2] = grupos.getCli_Id();
+            fila[3] = grupos.getEstado();
             modelo.addRow(fila);
         }
         jifGrupoClientes.jtGrupoClientes.setModel(modelo);

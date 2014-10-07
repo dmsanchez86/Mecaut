@@ -4,11 +4,13 @@ public class GrupoClientes {
     private final String codigo;
     private final String nombre;
     private final String cli_id;
+    private final String estado;
     
-    public GrupoClientes(String codigo,String nombre,String cli_id){
+    public GrupoClientes(String codigo,String nombre,String cli_id,String estado){
         this.codigo = codigo;
         this.nombre = nombre;
         this.cli_id = cli_id;
+        this.estado = estado;
     }
     
     public String getCodigo(){
@@ -19,5 +21,8 @@ public class GrupoClientes {
     }
     public String getCli_Id(){
         return cli_id;
+    }
+    public String getEstado(){
+        return estado;
     }
 }

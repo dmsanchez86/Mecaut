@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2014 a las 03:41:40
+-- Tiempo de generación: 07-10-2014 a las 06:35:17
 -- Versión del servidor: 5.5.34
 -- Versión de PHP: 5.4.22
 
@@ -61,6 +61,9 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cli_telefono`, `cli_direccion`, `cli_correo`) VALUES
 ('1053844273', 'Daniel Mauricio', 'Sánchez Ávila', 'Masculino', '8769164', 'Solferino', 'dmsanchez86@misena.edu.co'),
+('456', 'Eulises', 'Calles', 'Masculino', '546456', 'Villamaria', 'ddddd@ggg.com'),
+('87547', 'Angela', 'Marcela', 'Femenino', '4545654', 'La Sultana', 'marcela@info.com'),
+('888989', 'Mauricio', 'Escobar', 'Masculino', '4453332', 'La Florida', 'gthuir@gmail.com'),
 ('950630', 'Angie Camila', 'Giraldo Gomez', 'Femenino', '3104258312', 'Villahermosa', 'angie@misena.edu.co');
 
 -- --------------------------------------------------------
@@ -111,8 +114,9 @@ CREATE TABLE IF NOT EXISTS `empleados` (
 
 CREATE TABLE IF NOT EXISTS `grupoclientes` (
   `gru_id` varchar(10) NOT NULL,
-  `gru_nombre` enum('Activo','Inactivo','Habitual','Ocasional','Potencial') NOT NULL,
+  `gru_nombre` enum('Habitual','Ocasional','Potencial') NOT NULL,
   `cli_id` varchar(15) NOT NULL,
+  `cli_estado` enum('Activo','Inactivo','','') NOT NULL,
   PRIMARY KEY (`gru_id`),
   KEY `cli_id` (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,9 +125,12 @@ CREATE TABLE IF NOT EXISTS `grupoclientes` (
 -- Volcado de datos para la tabla `grupoclientes`
 --
 
-INSERT INTO `grupoclientes` (`gru_id`, `gru_nombre`, `cli_id`) VALUES
-('345ABC', 'Activo', '1053844273'),
-('435FRG', 'Habitual', '950630');
+INSERT INTO `grupoclientes` (`gru_id`, `gru_nombre`, `cli_id`, `cli_estado`) VALUES
+('322FRG', 'Habitual', '456', 'Activo'),
+('345ABC', 'Ocasional', '1053844273', 'Activo'),
+('435FRG', 'Potencial', '950630', 'Activo'),
+('678UIO', '', '87547', 'Inactivo'),
+('998GTT', '', '87547', 'Inactivo');
 
 -- --------------------------------------------------------
 
