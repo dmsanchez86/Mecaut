@@ -21,6 +21,7 @@ public class frmCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
+        jmiSalir1 = new javax.swing.JMenuItem();
         jmServicios = new javax.swing.JMenu();
         jmServicios1 = new javax.swing.JMenu();
         jmAyuda = new javax.swing.JMenu();
@@ -63,6 +64,13 @@ public class frmCliente extends javax.swing.JFrame {
         jmClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jmClientes.setMargin(new java.awt.Insets(10, 10, 10, 10));
         jmClientes.setName(""); // NOI18N
+
+        jmiSalir1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
+        jmiSalir1.setText("Configuración");
+        jmiSalir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmClientes.add(jmiSalir1);
+
         jMenuBar1.add(jmClientes);
 
         jmServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gerente-de-servicio-icono-4188-64.png"))); // NOI18N
@@ -156,5 +164,6 @@ public class frmCliente extends javax.swing.JFrame {
     private javax.swing.JMenu jmServicios;
     private javax.swing.JMenu jmServicios1;
     public javax.swing.JMenuItem jmiSalir;
+    public javax.swing.JMenuItem jmiSalir1;
     // End of variables declaration//GEN-END:variables
 }

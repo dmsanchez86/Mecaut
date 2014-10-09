@@ -35,7 +35,7 @@ public class Conexion {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, usuario, contraseña);
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos");
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos","MECAUT",JOptionPane.ERROR_MESSAGE);
         }
         return true;
     }
@@ -70,9 +70,11 @@ public class Conexion {
     //metodo para registrar una cuenta
     public boolean registrarCuenta(Cuenta c) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?)");
-            consulta.setString(1, c.getUsuario());
-            consulta.setString(2, c.getContrasena());
+            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?,?,?)");
+            consulta.setString(1, null);
+            consulta.setString(2, c.getUsuario());
+            consulta.setString(3, c.getContrasena());
+            consulta.setString(4, c.getTipo());
             consulta.executeUpdate();
             conexion.close();
         } catch (SQLException e) {
@@ -410,7 +412,7 @@ public class Conexion {
             consulta.setString(5, emp.getTelefono());
             consulta.setString(6, emp.getDireccion());
             consulta.setString(7, emp.getSalario());
-            consulta.setString(3, emp.getCorreo());
+            consulta.setString(8, emp.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -511,5 +513,15 @@ public class Conexion {
             return null;
         }
         return grupo;      
+    }
+
+    public ResultSet ConsultarAutosClientes(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM autos WHERE cli_id = '"+id+"'");
+            ResultSet r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
     }
 }

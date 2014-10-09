@@ -17,6 +17,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenu();
@@ -75,18 +76,24 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiListaFacturas = new javax.swing.JMenuItem();
         jmAyuda = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenu();
+        jmiConfiguracion = new javax.swing.JMenuItem();
         jmiSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú - Administrador - MECAUT");
         setFocusable(false);
         setIconImage(getIconImage());
+        setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mecuat.JPG"))); // NOI18N
         jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(400, 170, 510, 350);
+        jLabel4.setBounds(400, 80, 510, 350);
+
+        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 2, 12)); // NOI18N
+        jLabel1.setText("Usuario:   ");
 
         jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
         jMenuBar1.setToolTipText("");
@@ -465,6 +472,11 @@ public class frmAdmin extends javax.swing.JFrame {
         jmSalir.setText("Salir   ");
         jmSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
 
+        jmiConfiguracion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
+        jmiConfiguracion.setText("Configuración");
+        jmSalir.add(jmiConfiguracion);
+
         jmiSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552697_exit.png"))); // NOI18N
         jmiSalir.setText("Cerrar sesión");
@@ -479,11 +491,21 @@ public class frmAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -523,6 +545,7 @@ public class frmAdmin extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JDesktopPane jDesktopPane1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -548,6 +571,7 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiBuscarProveedor;
     public javax.swing.JMenuItem jmiBuscarRepuesto;
     private javax.swing.JMenu jmiCliente;
+    private javax.swing.JMenuItem jmiConfiguracion;
     public javax.swing.JMenuItem jmiCotizacion;
     public javax.swing.JMenuItem jmiCreditos;
     private javax.swing.JMenu jmiCuentas;

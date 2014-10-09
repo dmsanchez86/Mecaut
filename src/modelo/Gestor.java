@@ -220,4 +220,10 @@ public class Gestor {
         conexion.cerrarConexion();
         return grupo;
     }
+
+    public ResultSet ConsultarAutosClientes(String id) {
+        conexion.crearConexion();
+        ResultSet r = conexion.ConsultarAutosClientes(id);
+        return r;
+    }
 }
