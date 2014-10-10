@@ -45,4 +45,9 @@ public class Empleados {
     public String getSalario() {
         return salario;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ identificacion;
+    }
 }

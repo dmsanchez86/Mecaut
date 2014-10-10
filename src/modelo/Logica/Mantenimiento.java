@@ -66,4 +66,9 @@ public class Mantenimiento {
     public String getIdMecanico() {
         return idMecanico;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ codigo;
+    }
 }

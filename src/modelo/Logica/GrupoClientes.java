@@ -25,4 +25,9 @@ public class GrupoClientes {
     public String getEstado(){
         return estado;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ codigo;
+    }
 }

@@ -146,6 +146,13 @@ public class Gestor {
         conexion.cerrarConexion();
         return respuesta;
     }
+    
+    public ResultSet TraerDatosRepuesto(String codigo) {
+        conexion.crearConexion();
+        ResultSet r = conexion.TraerDatosRepuesto(codigo);
+        return r;
+    }
+    
     public ArrayList<Proveedor> consultarProveedor(){
         conexion.crearConexion();
         ArrayList<Proveedor> proveedores = conexion.consultarProveedores();

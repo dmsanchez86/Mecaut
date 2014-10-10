@@ -237,6 +237,17 @@ public class Conexion {
         }
         return true;
     }
+   
+    public ResultSet TraerDatosRepuesto(String codigo) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = "+codigo+"");
+            ResultSet r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
     //Metodo para ver la lista de los repuestos
     public ArrayList<Repuesto> verRepuestos() {
         ArrayList<Repuesto> Repuestos = new ArrayList<>();

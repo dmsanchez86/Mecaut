@@ -41,4 +41,9 @@ public class Cliente {
     public String getCorreo(){
         return correo;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ identificacion;
+    }
 }

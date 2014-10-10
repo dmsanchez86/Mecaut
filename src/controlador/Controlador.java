@@ -47,6 +47,7 @@ import vista.Empleados.jifRegistrarEmpleado;
 import vista.Proveedores.jifRegistrarProveedor;
 import vista.Repuestos.jifRegistrarRepuesto;
 import vista.Mantenimientos.jifRegistrarMantenimiento;
+import vista.Repuestos.jifActualizarRepuesto;
 
 /* @author Grupo - MECAUT */
 public class Controlador {
@@ -67,6 +68,7 @@ public class Controlador {
     private final jifRegistrarEmpleado jifEmpleado;
     private final jifActualizarEmpleado jifActualizarEmpleado;
     private final jifRegistrarRepuesto jifRepuesto;
+    private final jifActualizarRepuesto jifActualizarRepuesto;
     private final jifListaMantenimientos jifListaMantenimientos;
     private final jifActualizarMantenimiento jifActualizarMantenimiento;
     private final frmLoggin Login;
@@ -98,6 +100,7 @@ public class Controlador {
         jifProveedor = new jifRegistrarProveedor();
         jifEmpleado = new jifRegistrarEmpleado();
         jifRepuesto = new jifRegistrarRepuesto();
+        jifActualizarRepuesto = new jifActualizarRepuesto();
         jifGrupoClientes = new jifGrupoClientes();
         // Se añaden los jInternalFrame al jDesktopPanel
         form.jDesktopPane1.add(jifMantenimiento);
@@ -113,6 +116,7 @@ public class Controlador {
         form.jDesktopPane1.add(jifEmpleado);
         form.jDesktopPane1.add(jifActualizarEmpleado);
         form.jDesktopPane1.add(jifRepuesto);
+        form.jDesktopPane1.add(jifActualizarRepuesto);
         form.jDesktopPane1.add(jifListaMantenimientos);
         form.jDesktopPane1.add(jifActualizarMantenimiento);
         form.jDesktopPane1.add(jifActualizarProveedor);
@@ -245,6 +249,14 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmRegistrarRepuestos();
+            }
+        });
+        
+        form.jmiActualizarRepuesto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmActualizarRepuesto();
             }
         });
         form.jmiRegistrarMantenimiento.addActionListener(new ActionListener() {
@@ -865,6 +877,43 @@ public class Controlador {
             }
         });
         jifRepuesto.setVisible(true);
+    }
+    
+    private void frmActualizarRepuesto(){
+        jifActualizarRepuesto.jtfNitProveedor.setEnabled(false);        
+        jifActualizarRepuesto.jtfNomProveedor.setEnabled(false);
+        jifActualizarRepuesto.jbtModificar.setEnabled(false);
+        jifActualizarRepuesto.jbtEliminar.setEnabled(false);
+        jifActualizarRepuesto.jbtConsultar1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ResultSet r;
+                    String codigo = jifActualizarRepuesto.jtfCodigo.getText();
+                    if (codigo.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese un codigo", "MECAUT", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        r = Gestor.TraerDatosRepuesto(codigo);
+//                        if (!r.next()) {
+//                            JOptionPane.showMessageDialog(null, "No se encontraron resultados...","MECAUT - Búsqueda",JOptionPane.ERROR_MESSAGE);
+//                        }
+                        while (r.next()) {   
+                            jifActualizarRepuesto.jtfTipo.setText(r.getString(2));
+                            jifActualizarRepuesto.jtfMarca.setText(r.getString(3));
+                            jifActualizarRepuesto.jtfCantidad.setText(r.getString(4));                            
+                            jifActualizarRepuesto.jtfPrecio.setText(r.getString(5));
+                            jifActualizarRepuesto.jtfNitProveedor.setText(r.getString(6));
+                            jifActualizarRepuesto.jtfNomProveedor.setText(r.getString(7));
+                        }
+                        jifActualizarRepuesto.jbtEliminar.setEnabled(true);
+                        jifActualizarRepuesto.jbtModificar.setEnabled(true);
+                    }
+                } catch (HeadlessException | SQLException ee) {
+                    JOptionPane.showMessageDialog(null, "" + ee.getMessage(), "MECAUT", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        jifActualizarRepuesto.setVisible(true);
     }
 
     private void frmListaClientes() {

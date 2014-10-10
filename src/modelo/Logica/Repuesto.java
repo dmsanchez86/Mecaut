@@ -47,4 +47,9 @@ public class Repuesto {
     public String getNomProv() {
         return nomProv;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ codigo;
+    } 
 }

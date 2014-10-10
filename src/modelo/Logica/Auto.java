@@ -47,4 +47,10 @@ public class Auto {
     public String getApellidosCliente() {
         return apellidosCliente;
     }
+    
+    @Override
+    public String toString() {
+        return ""+ placa;
+    }
+    
 }
