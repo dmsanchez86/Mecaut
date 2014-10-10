@@ -83,7 +83,6 @@ public class frmAdmin extends javax.swing.JFrame {
         setTitle("Menú - Administrador - MECAUT");
         setFocusable(false);
         setIconImage(getIconImage());
-        setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createCompoundBorder());

@@ -1,6 +1,7 @@
 package controlador;
 
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -121,53 +122,28 @@ public class Controlador {
 
     public void lanzarLogin() {
         /* Boton para iniciar sesión */
-        Login.lbIngresar.addMouseListener(new MouseListener() {
+        Login.btnIngresar.addActionListener(new ActionListener() {
 
             @Override
-            public void mouseClicked(MouseEvent e) {
-                try {
-                    Login.lbIngresar.setIcon(new ImageIcon("../iconos/1412806404_678134-sign-check-32.png"));
-                    String usuario = Login.jtfUsuario.getText();
-                    String contrasena = Login.jtfContraseña.getText();
-                    Cuenta cuenta = new Cuenta(usuario, contrasena, "");
-                    String r = Gestor.validarUsuario(cuenta);
-                    switch (r) {
-                        case "administrador":
-                            Login.setVisible(false);
-                            lanzarFormularioAdministrador();
-                            break;
-                        case "cliente":
-                            Login.setVisible(false);
-                            lanzarFormularioCliente();
-                            break;
-                        case "empleado":
-                            Login.setVisible(false);
-                            lanzarFormularioEmpleado();
-                    }
-                } catch (HeadlessException | NullPointerException ex) {
-                    JOptionPane.showMessageDialog(null, "¡¡¡ Los Datos Ingresados Son Incorrectos !!!\n\n\tVerifiquelos Nuevamente....", "MECAUT - Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+            public void actionPerformed(ActionEvent e) {
+                evtIniciarSesion();
             }
         });
         /* Boton para cerrar el programa */
+        Login.jtfUsuario.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                evtIniciarSesion();
+            }
+        });
+        Login.jtfContraseña.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                evtIniciarSesion();;
+            }
+        });
         Login.jbtSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -177,7 +153,6 @@ public class Controlador {
         Login.setVisible(true);
     }
     /* frmAdmin Administrador */
-
     private void lanzarFormularioAdministrador() {
         /* MenuBar acciones de los eventos */
         /* MENU - CLIENTES */
@@ -454,7 +429,6 @@ public class Controlador {
                 }
             }
         });
-
         jifAuto.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -489,8 +463,6 @@ public class Controlador {
 
     private void frmRegistrarMantenimientos() {
         limpiar();
-        jifMantenimiento.separador.setVisible(false);
-        jifMantenimiento.panelMantenimiento.setVisible(false);
         jifMantenimiento.btnConsultar.addActionListener(new ActionListener() {
 
             @Override
@@ -520,9 +492,6 @@ public class Controlador {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jifMantenimiento.separador.setVisible(true);
-                jifMantenimiento.panelMantenimiento.setVisible(true);
-                jifMantenimiento.setBounds(0, 0, 960, 450);
             }
         });
 //        ArrayList<Auto> autos = Gestor.consultarAutos();
@@ -1190,4 +1159,27 @@ public class Controlador {
         }
         jifGrupoClientes.jtGrupoClientes.setModel(modelo);
     }
+    private void evtIniciarSesion(){
+            try {
+                String usuario = Login.jtfUsuario.getText();
+                String contrasena = Login.jtfContraseña.getText();
+                Cuenta cuenta = new Cuenta(usuario, contrasena, "");
+                String r = Gestor.validarUsuario(cuenta);
+                switch (r) {
+                    case "administrador":
+                        Login.setVisible(false);
+                        lanzarFormularioAdministrador();
+                        break;
+                    case "cliente":
+                        Login.setVisible(false);
+                        lanzarFormularioCliente();
+                        break;
+                    case "empleado":
+                        Login.setVisible(false);
+                        lanzarFormularioEmpleado();
+                }
+            } catch (HeadlessException | NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "¡¡¡ Los Datos Ingresados Son Incorrectos !!!\n\n\tVerifiquelos Nuevamente....", "MECAUT - Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 }
