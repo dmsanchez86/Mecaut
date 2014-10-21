@@ -102,7 +102,7 @@ public class Gestor {
         conexion.crearConexion();
         return respuesta;
     }  
-    public boolean eliminarEmpleado(int id){
+    public boolean eliminarEmpleado(String id){
         conexion.crearConexion();
         respuesta = conexion.eliminarEmpleado(id);
         conexion.crearConexion();
@@ -218,6 +218,12 @@ public class Gestor {
     public ResultSet TraerDatosCliente(String id) {
         conexion.crearConexion();
         ResultSet r = conexion.TraerDatosClientes(id);
+        return r;
+    }
+    
+    public ResultSet traerDatosEmpleado(String id){
+        conexion.crearConexion();
+        ResultSet r = conexion.TraerDatosEmpleado(id);
         return r;
     }
 

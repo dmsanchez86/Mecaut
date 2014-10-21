@@ -23,7 +23,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiCliente = new javax.swing.JMenu();
         jmiRegistrarCliente = new javax.swing.JMenuItem();
         jmiActualizarCliente = new javax.swing.JMenuItem();
-        jmiBuscarCliente = new javax.swing.JMenuItem();
         jmiCuentas = new javax.swing.JMenu();
         jmiRegistrarCuenta = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -48,7 +47,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiEmpleados = new javax.swing.JMenu();
         jmiRegistrarMecanico = new javax.swing.JMenuItem();
         jmiActualizarMecanico = new javax.swing.JMenuItem();
-        jmiBuscarEmpleado = new javax.swing.JMenuItem();
         jmInventario = new javax.swing.JMenu();
         jmiOrdenPedido = new javax.swing.JMenuItem();
         jmiRepuestos = new javax.swing.JMenu();
@@ -128,13 +126,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarCliente.setToolTipText("Modificar o Eliminar un Cliente");
         jmiActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiCliente.add(jmiActualizarCliente);
-
-        jmiBuscarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiBuscarCliente.setText("Buscar");
-        jmiBuscarCliente.setToolTipText("Busqueda de Clientes");
-        jmiBuscarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmiCliente.add(jmiBuscarCliente);
 
         jmClientes.add(jmiCliente);
 
@@ -296,12 +287,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarMecanico.setText("Modificar");
         jmiActualizarMecanico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiEmpleados.add(jmiActualizarMecanico);
-
-        jmiBuscarEmpleado.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiBuscarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiBuscarEmpleado.setText("Buscar");
-        jmiBuscarEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmiEmpleados.add(jmiBuscarEmpleado);
 
         jmPersonal.add(jmiEmpleados);
 
@@ -564,8 +549,6 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiActualizarMecanico;
     public javax.swing.JMenuItem jmiActualizarProveedor;
     public javax.swing.JMenuItem jmiActualizarRepuesto;
-    public javax.swing.JMenuItem jmiBuscarCliente;
-    public javax.swing.JMenuItem jmiBuscarEmpleado;
     public javax.swing.JMenuItem jmiBuscarFactura;
     public javax.swing.JMenuItem jmiBuscarProveedor;
     public javax.swing.JMenuItem jmiBuscarRepuesto;

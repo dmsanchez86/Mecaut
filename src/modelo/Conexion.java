@@ -219,6 +219,16 @@ public class Conexion {
             return null;
         }
     }
+    
+    public ResultSet TraerDatosEmpleado(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM empleados WHERE emp_id = "+id+"");
+            ResultSet r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;}
+    }
+       
     //metodo para agregar un repuesto
     public boolean agregarRepuesto(Repuesto rep) {
         try {
@@ -415,15 +425,16 @@ public class Conexion {
     }
     public boolean agregarEmpleado(Empleados emp) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?)");
             consulta.setString(1, emp.getIdentificacion());
             consulta.setString(2, emp.getNombre());
             consulta.setString(3, emp.getApellidos());
-            consulta.setString(4, emp.getTipo());
-            consulta.setString(5, emp.getTelefono());
-            consulta.setString(6, emp.getDireccion());
-            consulta.setString(7, emp.getSalario());
+            consulta.setString(4, emp.getSexo());
+            consulta.setString(5, emp.getTipo());
+            consulta.setString(6, emp.getTelefono());
+            consulta.setString(7, emp.getDireccion());            
             consulta.setString(8, emp.getCorreo());
+            consulta.setString(9, emp.getSalario());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -432,10 +443,10 @@ public class Conexion {
         return true;
     }
     //Metodo para eliminar un mecanico 
-    public boolean eliminarEmpleado(int id) {
+    public boolean eliminarEmpleado(String id) {
         try {
             consulta = conexion.prepareStatement("DELETE FROM empleados WHERE emp_id = ?");
-            consulta.setInt(1, id);
+            consulta.setString(1, id);
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -446,15 +457,16 @@ public class Conexion {
     //metodo para modificar un mecanico
     public boolean modificarEmpleado(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_tipo = ?,emp_telefono = ?, emp_direccion = ?, emp_salario = ?,emp_correo = ? WHERE emp_id = ?");
+            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_correo = ?, emp_salario = ? WHERE emp_id = ?");
             consulta.setString(1, mec.getNombre());
             consulta.setString(2, mec.getApellidos());
-            consulta.setString(3, mec.getTipo());
-            consulta.setString(4, mec.getTelefono());
-            consulta.setString(5, mec.getDireccion());
-            consulta.setString(6, mec.getSalario());
-            consulta.setString(7, mec.getCorreo());
-            consulta.setString(8, mec.getIdentificacion());
+            consulta.setString(3, mec.getSexo());
+            consulta.setString(4, mec.getTipo());
+            consulta.setString(5, mec.getTelefono());
+            consulta.setString(6, mec.getDireccion());            
+            consulta.setString(8, mec.getCorreo());
+            consulta.setString(7, mec.getSalario());
+            consulta.setString(9, mec.getIdentificacion());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -470,13 +482,14 @@ public class Conexion {
             consulta = conexion.prepareStatement("Select * FROM empleados");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
         } catch (SQLException e) {
             return null;
         }
         return empleados;
     }
+    
     //metodo para consultar un empleado ingresando un dato
     public ArrayList<Empleados> verEmpleadosPorDato(String dato) {
         ArrayList<Empleados> empleados = new ArrayList<>();
@@ -485,7 +498,7 @@ public class Conexion {
             consulta = conexion.prepareStatement("Select * FROM empleados WHERE mec_id LIKE '" + dato + "%' OR mec_nombre LIKE '" + dato + "%' OR mec_apellidos LIKE '" + dato + "%' OR  mec_direccion LIKE '" + dato + "%'");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
             }
         } catch (SQLException e) {
             return null;
