@@ -527,7 +527,7 @@ public class Conexion {
                     consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
                     break;
                 default:
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = 'Activo' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = 'Activo'");
             }
             rs = consulta.executeQuery();
             while(rs.next()){

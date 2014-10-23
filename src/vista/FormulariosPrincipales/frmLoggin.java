@@ -1,10 +1,8 @@
 package vista.FormulariosPrincipales;
 
-import controlador.Controlador;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 
 /* @author Grupo - MECAUT */
 public class frmLoggin extends javax.swing.JFrame {
@@ -39,7 +37,7 @@ public class frmLoggin extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Iniciar Sesión en MECAUT");
+        setTitle("MECAUT");
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(254, 254, 254));
@@ -76,7 +74,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412805919_sign-up.png"))); // NOI18N
         jLabel5.setText("Obtener una cuenta?");
-        jLabel5.setToolTipText("Registrase en mecaut.com");
+        jLabel5.setToolTipText("Registrese en mecaut.com");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -169,39 +167,32 @@ public class frmLoggin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void foco(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_foco
-        if ("Usuario".equals(jtfUsuario.getText())) {
+        if ("Usuario".equals(jtfUsuario.getText()))
             jtfUsuario.setText(null);
-        }
     }//GEN-LAST:event_foco
     private void jtfContraseñaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfContraseñaFocusGained
-        if ("Contraseña".equals(jtfContraseña.getText())) {
+        if ("Contraseña".equals(jtfContraseña.getText()))
             jtfContraseña.setText(null);
-        }
     }//GEN-LAST:event_jtfContraseñaFocusGained
     private void jtfUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfUsuarioFocusLost
-        if ("".equals(jtfUsuario.getText())) {
+        if ("".equals(jtfUsuario.getText()))
             jtfUsuario.setText("Usuario");
-        }
     }//GEN-LAST:event_jtfUsuarioFocusLost
     private void jtfContraseñaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfContraseñaFocusLost
-        if ("".equals(jtfContraseña.getText())) {
+        if ("".equals(jtfContraseña.getText())) 
             jtfContraseña.setText("Contraseña");
-        }
     }//GEN-LAST:event_jtfContraseñaFocusLost
 
     private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
-        // TODO add your handling code here:
         jLabel5.setForeground(Color.ORANGE);
     }//GEN-LAST:event_jLabel5MouseEntered
     private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
-        // TODO add your handling code here:
         jLabel5.setForeground(Color.red);
     }//GEN-LAST:event_jLabel5MouseExited
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Controlador().lanzarLogin();
             }
         });
     }

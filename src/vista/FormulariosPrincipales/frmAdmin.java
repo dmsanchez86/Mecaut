@@ -86,17 +86,32 @@ public class frmAdmin extends javax.swing.JFrame {
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mecuat.JPG"))); // NOI18N
-        jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(400, 80, 510, 350);
 
-        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 2, 12)); // NOI18N
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(418, 418, 418)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(537, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(165, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159))
+        );
+        jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
         jLabel1.setText("Usuario:   ");
 
-        jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
         jMenuBar1.setToolTipText("");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jMenuBar1.setMargin(new java.awt.Insets(0, 30, 0, 30));
+        jMenuBar1.setMargin(new java.awt.Insets(0, 5, 0, 5));
         jMenuBar1.setName(""); // NOI18N
 
         jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
@@ -105,11 +120,12 @@ public class frmAdmin extends javax.swing.JFrame {
         jmClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jmClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jmClientes.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmClientes.setMargin(new java.awt.Insets(5, 0, 5, 10));
         jmClientes.setName(""); // NOI18N
 
         jmiCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553282_group.png"))); // NOI18N
         jmiCliente.setText("Clientes");
+        jmiCliente.setToolTipText("Registra, Actualiza o Elimina un Cliente");
         jmiCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
 
@@ -131,6 +147,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jmiCuentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552722_stock_contact.png"))); // NOI18N
         jmiCuentas.setText("Cuentas");
+        jmiCuentas.setToolTipText("Registra y mira todas las Cuentas en MECAUT");
         jmiCuentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiCuentas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
 
@@ -143,6 +160,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412572886_CabrioletRed.png"))); // NOI18N
         jMenu1.setText("Auto");
+        jMenu1.setToolTipText("Registra un auto a un Cliente");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
 
@@ -157,7 +175,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jmiGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiGrupoClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553320_testimonials.png"))); // NOI18N
-        jmiGrupoClientes.setText("Grupo de Clientes");
+        jmiGrupoClientes.setText("Ver los Grupos de Clientes");
         jmiGrupoClientes.setToolTipText("Grupos de Clientes");
         jmiGrupoClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmClientes.add(jmiGrupoClientes);
@@ -168,7 +186,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmServicios.setText("Servicios");
         jmServicios.setToolTipText("Modulo Servicios");
         jmServicios.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmServicios.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmServicios.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
         jMenu2.setText("Mantenimientos");
@@ -223,7 +241,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmServicios.add(jmiCotizacion);
 
         jmiFichaRecepcion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiFichaRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
+        jmiFichaRecepcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554340_area_chart.png"))); // NOI18N
         jmiFichaRecepcion.setText("Ficha Recepción Auto");
         jmiFichaRecepcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios.add(jmiFichaRecepcion);
@@ -233,9 +251,9 @@ public class frmAdmin extends javax.swing.JFrame {
         jmProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion-lorrygreen-icono-9499-64.png"))); // NOI18N
         jmProveedores.setText("Suministros");
         jmProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmProveedores.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmProveedores.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
-        jmiProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554623_emblem-new.png"))); // NOI18N
+        jmiProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554134_Delivery.png"))); // NOI18N
         jmiProveedor.setText("Proveedores");
         jmiProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
@@ -268,7 +286,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/usuario-administrador-personal-icono-9746-64.png"))); // NOI18N
         jmPersonal.setText("Personal");
         jmPersonal.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmPersonal.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmPersonal.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jmiEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552762_config-users.png"))); // NOI18N
         jmiEmpleados.setText("Empleados");
@@ -295,10 +313,10 @@ public class frmAdmin extends javax.swing.JFrame {
         jmInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/anadir-los-archivos-a-los-archivos-icono-9712-64.png"))); // NOI18N
         jmInventario.setText("Inventario");
         jmInventario.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmInventario.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmInventario.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jmiOrdenPedido.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiOrdenPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554134_Delivery.png"))); // NOI18N
+        jmiOrdenPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
         jmiOrdenPedido.setText("Orden de Pedido");
         jmiOrdenPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmInventario.add(jmiOrdenPedido);
@@ -345,6 +363,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574800_money.png"))); // NOI18N
         jmVentas.setText("Ventas  ");
         jmVentas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmVentas.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jmiFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554496_invoice.png"))); // NOI18N
         jmiFactura.setText("Factura");
@@ -394,7 +413,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/centrejust-icono-5615-64.png"))); // NOI18N
         jmReportes.setText("Reportes");
         jmReportes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmReportes.setMargin(new java.awt.Insets(10, 10, 10, 10));
+        jmReportes.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jmiListaCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
@@ -450,11 +469,13 @@ public class frmAdmin extends javax.swing.JFrame {
         jmAyuda.setText("Ayuda   ");
         jmAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmAyuda.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmAyuda.setMargin(new java.awt.Insets(5, 0, 5, 10));
         jMenuBar1.add(jmAyuda);
 
         jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
-        jmSalir.setText("Salir   ");
+        jmSalir.setText("Salir");
         jmSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmSalir.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
         jmiConfiguracion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
@@ -475,28 +496,23 @@ public class frmAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1261, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jDesktopPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -518,8 +534,6 @@ public class frmAdmin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
