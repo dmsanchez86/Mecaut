@@ -278,7 +278,7 @@ public class Controlador {
             }
         });
         form.setVisible(true);
-        form.jLabel1.setText(form.jLabel1.getText() + Login.jtfUsuario.getText().toUpperCase());
+        form.user.setText(Login.jtfUsuario.getText().toUpperCase());
     }
     /* Formulario Cliente */
     private void lanzarFormularioCliente() {
