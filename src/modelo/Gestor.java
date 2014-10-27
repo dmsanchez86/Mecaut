@@ -245,4 +245,24 @@ public class Gestor {
         ResultSet r = conexion.consultarDatosAuto(id);
         return r;
     }
+
+    public ResultSet IdsClientes() {
+        conexion.crearConexion();
+        ResultSet r = conexion.IdsClientes();
+        return r;
+    }
+
+    public boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
+        conexion.crearConexion();
+        respuesta = conexion.agregarGrupoCliente(id,cod,nom,est);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+
+    public boolean actualizarGrupoCliente(String id, String cod, String nom, String est) {
+        conexion.crearConexion();
+        respuesta = conexion.modificarGrupoCliente(id,cod,nom,est);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
 }

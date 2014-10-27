@@ -28,6 +28,7 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jcbId = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jbtRegistrar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -100,6 +101,11 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412671721_Groups_Black.png"))); // NOI18N
 
+        jbtRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
+        jbtRegistrar.setText("Registrar");
+        jbtRegistrar.setToolTipText("Actualizar Grupo Cliente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,12 +133,15 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(jLabel6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jbtRegistrar)
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +165,9 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
                     .addComponent(jcbId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jbtRegistrar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -210,6 +221,8 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
             int op = "Activo".equals(est)?1:2;
             jcbId.setSelectedIndex(op);
         }
+        jbtRegistrar.setEnabled(false);
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_jtGrupoClientesMouseClicked
     private void jtfIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdKeyTyped
         c = evt.getKeyChar();
@@ -237,6 +250,7 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton jbtRegistrar;
     public javax.swing.JComboBox jcbId;
     public javax.swing.JComboBox jcbTipo;
     public javax.swing.JTable jtGrupoClientes;

@@ -560,4 +560,42 @@ public class Conexion {
             return null;
         }
     }
+
+    ResultSet IdsClientes() {
+        try {
+            consulta = conexion.prepareStatement("SELECT cli_id FROM clientes");
+            ResultSet r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO grupoclientes VALUES (?,?,?,?)");
+            consulta.setString(1, cod);
+            consulta.setString(2, nom);
+            consulta.setString(3, id);
+            consulta.setString(4, est);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    boolean modificarGrupoCliente(String id, String cod, String nom, String est) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, cli_id = ?, cli_estado = ? WHERE gru_codigo = ?");
+            consulta.setString(1, nom);
+            consulta.setString(2, id);
+            consulta.setString(3, est);
+            consulta.setString(4, cod);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
