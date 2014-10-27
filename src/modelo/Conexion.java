@@ -85,14 +85,16 @@ public class Conexion {
     }
     public boolean agregarAuto(Auto aut) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO autos VALUES (?,?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO autos VALUES (?,?,?,?,?,?,?,?,?)");
             consulta.setString(1, aut.getPlaca());
             consulta.setString(2, aut.getCiudad());
-            consulta.setString(3, aut.getModelo());
-            consulta.setString(4, aut.getMarca());
-            consulta.setString(5, aut.getIdCliente());
-            consulta.setString(6, aut.getNombreCliente());
-            consulta.setString(7, aut.getApellidosCliente());
+            consulta.setString(3, aut.getTipo());
+            consulta.setString(4, aut.getModelo());
+            consulta.setString(5, aut.getMarca());
+            consulta.setString(6, aut.getKilometraje());
+            consulta.setString(7, aut.getCombustible());
+            consulta.setString(8, aut.getIdCliente());
+            consulta.setString(9, aut.getNombreCliente());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -108,7 +110,7 @@ public class Conexion {
             consulta = conexion.prepareStatement("Select * FROM autos");
             rs = consulta.executeQuery();
             while (rs.next()) {
-                autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8),rs.getString(9)));
             }
         } catch (SQLException e) {
             return null;
@@ -124,7 +126,7 @@ public class Conexion {
 
             rs = consulta.executeQuery();
             while (rs.next()) {
-                Autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+                Autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8),rs.getString(9)));
             }
         } catch (SQLException e) {
             return null;
@@ -183,7 +185,7 @@ public class Conexion {
         ArrayList<Cliente> clientes = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM clientes");
+            consulta = conexion.prepareStatement("Select * FROM clientes ORDER BY cli_nombre");
             rs = consulta.executeQuery();
             while (rs.next()) {
                 clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
@@ -199,7 +201,7 @@ public class Conexion {
         ArrayList<Cliente> clientes = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM clientes WHERE cli_id LIKE '" + dato + "%' OR cli_nombre LIKE '" + dato + "%' OR cli_apellidos LIKE '" + dato + "%' OR  cli_direccion LIKE '" + dato + "%'");
+            consulta = conexion.prepareStatement("Select * FROM clientes WHERE cli_id LIKE '" + dato + "%' OR cli_nombre LIKE '" + dato + "%' OR cli_apellidos LIKE '" + dato + "%' OR  cli_direccion LIKE '" + dato + "%' ORDER BY cli_nombre");
             rs = consulta.executeQuery();
             while (rs.next()) {
                 clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
@@ -432,9 +434,9 @@ public class Conexion {
             consulta.setString(4, emp.getSexo());
             consulta.setString(5, emp.getTipo());
             consulta.setString(6, emp.getTelefono());
-            consulta.setString(7, emp.getDireccion());            
-            consulta.setString(8, emp.getCorreo());
-            consulta.setString(9, emp.getSalario());
+            consulta.setString(7, emp.getDireccion());
+            consulta.setString(8, emp.getSalario());
+            consulta.setString(9, emp.getCorreo());
             consulta.executeUpdate();
             consulta.close();
         } catch (SQLException e) {
@@ -457,15 +459,15 @@ public class Conexion {
     //metodo para modificar un mecanico
     public boolean modificarEmpleado(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_correo = ?, emp_salario = ? WHERE emp_id = ?");
+            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
             consulta.setString(1, mec.getNombre());
             consulta.setString(2, mec.getApellidos());
             consulta.setString(3, mec.getSexo());
             consulta.setString(4, mec.getTipo());
             consulta.setString(5, mec.getTelefono());
-            consulta.setString(6, mec.getDireccion());            
-            consulta.setString(8, mec.getCorreo());
+            consulta.setString(6, mec.getDireccion());
             consulta.setString(7, mec.getSalario());
+            consulta.setString(8, mec.getCorreo());
             consulta.setString(9, mec.getIdentificacion());
             consulta.executeUpdate();
             consulta.close();
@@ -479,7 +481,7 @@ public class Conexion {
         ArrayList<Empleados> empleados = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM empleados");
+            consulta = conexion.prepareStatement("Select * FROM empleados ORDER BY emp_nombre");
             rs = consulta.executeQuery();
             while (rs.next()) {
                 empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
@@ -495,7 +497,7 @@ public class Conexion {
         ArrayList<Empleados> empleados = new ArrayList<>();
         ResultSet rs;
         try {
-            consulta = conexion.prepareStatement("Select * FROM empleados WHERE mec_id LIKE '" + dato + "%' OR mec_nombre LIKE '" + dato + "%' OR mec_apellidos LIKE '" + dato + "%' OR  mec_direccion LIKE '" + dato + "%'");
+            consulta = conexion.prepareStatement("Select * FROM empleados WHERE emp_id LIKE '" + dato + "%' OR emp_nombre LIKE '" + dato + "%' OR emp_apellidos LIKE '" + dato + "%' OR  emp_direccion LIKE '" + dato + "%' ORDER BY emp_nombre");
             rs = consulta.executeQuery();
             while (rs.next()) {
                 empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
@@ -544,6 +546,16 @@ public class Conexion {
             consulta = conexion.prepareStatement("SELECT * FROM autos WHERE cli_id = '"+id+"'");
             ResultSet r = consulta.executeQuery();
             return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    ResultSet consultarDatosAuto(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
+            ResultSet r = consulta.executeQuery();
+            return r;            
         } catch (SQLException e) {
             return null;
         }

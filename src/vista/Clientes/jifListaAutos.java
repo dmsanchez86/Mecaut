@@ -1,4 +1,4 @@
-package vista;
+package vista.Clientes;
 
 public class jifListaAutos extends javax.swing.JInternalFrame {
 

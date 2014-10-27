@@ -239,4 +239,10 @@ public class Gestor {
         ResultSet r = conexion.ConsultarAutosClientes(id);
         return r;
     }
+
+    public ResultSet consultarDatosAuto(String id) {
+        conexion.crearConexion();
+        ResultSet r = conexion.consultarDatosAuto(id);
+        return r;
+    }
 }

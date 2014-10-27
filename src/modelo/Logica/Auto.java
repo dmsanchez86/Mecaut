@@ -4,20 +4,24 @@ package modelo.Logica;
 public class Auto {
     private final String placa;
     private final String ciudad;
+    private final String tipo;
     private final String modelo;
     private final String marca;
+    private final String kilometraje;
+    private final String combustible;
     private final String idCliente;
     private final String nombreCliente;
-    private final String apellidosCliente;
 
-    public Auto(String placa, String ciudad, String modelo, String marca, String idCliente, String nombreCliente, String apellidosCliente) {
+    public Auto(String placa, String ciudad,String tipo, String modelo, String marca,String kilometraje,String combustible, String idCliente, String nombreCliente) {
         this.placa = placa;
         this.ciudad = ciudad;
+        this.tipo = tipo;
         this.modelo = modelo;
         this.marca = marca;
+        this.kilometraje = kilometraje;
+        this.combustible = combustible;
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
-        this.apellidosCliente = apellidosCliente;
     }
 
     public String getPlaca() {
@@ -36,16 +40,24 @@ public class Auto {
         return marca;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public String getKilometraje() {
+        return kilometraje;
+    }
+
+    public String getCombustible() {
+        return combustible;
+    }
+
     public String getIdCliente() {
         return idCliente;
     }
 
     public String getNombreCliente() {
         return nombreCliente;
-    }
-
-    public String getApellidosCliente() {
-        return apellidosCliente;
     }
     
     @Override

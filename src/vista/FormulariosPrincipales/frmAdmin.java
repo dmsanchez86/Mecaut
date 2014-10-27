@@ -18,15 +18,18 @@ public class frmAdmin extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenu();
         jmiRegistrarCliente = new javax.swing.JMenuItem();
         jmiActualizarCliente = new javax.swing.JMenuItem();
+        jmiListaCliente = new javax.swing.JMenuItem();
         jmiCuentas = new javax.swing.JMenu();
         jmiRegistrarCuenta = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmiRegistrarAuto = new javax.swing.JMenuItem();
+        jmiListaAutos = new javax.swing.JMenuItem();
         jmiGrupoClientes = new javax.swing.JMenuItem();
         jmServicios = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -43,10 +46,12 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiRegitrarProveedor = new javax.swing.JMenuItem();
         jmiActualizarProveedor = new javax.swing.JMenuItem();
         jmiBuscarProveedor = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmPersonal = new javax.swing.JMenu();
         jmiEmpleados = new javax.swing.JMenu();
         jmiRegistrarMecanico = new javax.swing.JMenuItem();
         jmiActualizarMecanico = new javax.swing.JMenuItem();
+        jmiListaEmpleados = new javax.swing.JMenuItem();
         jmInventario = new javax.swing.JMenu();
         jmiOrdenPedido = new javax.swing.JMenuItem();
         jmiRepuestos = new javax.swing.JMenu();
@@ -64,10 +69,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiObtenerCotizacion = new javax.swing.JMenuItem();
         jmiCreditos = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
-        jmiListaCliente = new javax.swing.JMenuItem();
-        jmiListaAutos = new javax.swing.JMenuItem();
         jmiListaRepuestos = new javax.swing.JMenuItem();
-        jmiListaMecanicos = new javax.swing.JMenuItem();
         jmiListaProveedores = new javax.swing.JMenuItem();
         jmiListaMantenimientos = new javax.swing.JMenuItem();
         jmiListaCreditos = new javax.swing.JMenuItem();
@@ -93,20 +95,23 @@ public class frmAdmin extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(418, 418, 418)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                .addGap(537, 537, 537))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(165, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(159, 159, 159))
         );
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
         jLabel1.setText("Usuario:   ");
+
+        user.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
+        user.setText(" ");
 
         jMenuBar1.setToolTipText("");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -143,6 +148,13 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiCliente.add(jmiActualizarCliente);
 
+        jmiListaCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaCliente.setText("Consultar");
+        jmiListaCliente.setToolTipText("Ver Todos los Clientes");
+        jmiListaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiCliente.add(jmiListaCliente);
+
         jmClientes.add(jmiCliente);
 
         jmiCuentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552722_stock_contact.png"))); // NOI18N
@@ -153,6 +165,7 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jmiRegistrarCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552707_gnome-app-install.png"))); // NOI18N
         jmiRegistrarCuenta.setText("Nueva");
+        jmiRegistrarCuenta.setToolTipText("Registrar ");
         jmiRegistrarCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiCuentas.add(jmiRegistrarCuenta);
 
@@ -170,6 +183,13 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiRegistrarAuto.setToolTipText("Registrar un Auto a un Cliente");
         jmiRegistrarAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.add(jmiRegistrarAuto);
+
+        jmiListaAutos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaAutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaAutos.setText("Consultar");
+        jmiListaAutos.setToolTipText("Ver Todos los Autos Registrados");
+        jmiListaAutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.add(jmiListaAutos);
 
         jmClientes.add(jMenu1);
 
@@ -274,12 +294,15 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jmiBuscarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiBuscarProveedor.setText("Buscar");
-        jmiBuscarProveedor.setToolTipText("Buscar Proveedores");
+        jmiBuscarProveedor.setText("Consultar");
+        jmiBuscarProveedor.setToolTipText("Ver Todos los Proveedores");
         jmiBuscarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiProveedor.add(jmiBuscarProveedor);
 
         jmProveedores.add(jmiProveedor);
+
+        jMenuItem1.setText("Devoluciones");
+        jmProveedores.add(jMenuItem1);
 
         jMenuBar1.add(jmProveedores);
 
@@ -305,6 +328,12 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarMecanico.setText("Modificar");
         jmiActualizarMecanico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiEmpleados.add(jmiActualizarMecanico);
+
+        jmiListaEmpleados.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaEmpleados.setText("Lista");
+        jmiListaEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiEmpleados.add(jmiListaEmpleados);
 
         jmPersonal.add(jmiEmpleados);
 
@@ -415,51 +444,33 @@ public class frmAdmin extends javax.swing.JFrame {
         jmReportes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmReportes.setMargin(new java.awt.Insets(5, 0, 5, 10));
 
-        jmiListaCliente.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiListaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaCliente.setText("Lista de clientes");
-        jmiListaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmReportes.add(jmiListaCliente);
-
-        jmiListaAutos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiListaAutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaAutos.setText("Lista de autos");
-        jmiListaAutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmReportes.add(jmiListaAutos);
-
         jmiListaRepuestos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaRepuestos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaRepuestos.setText("Lista de repuestos");
+        jmiListaRepuestos.setText("Lista de Repuestos");
         jmiListaRepuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaRepuestos);
 
-        jmiListaMecanicos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiListaMecanicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaMecanicos.setText("Lista de personal");
-        jmiListaMecanicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmReportes.add(jmiListaMecanicos);
-
         jmiListaProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaProveedores.setText("Lista de proveedores");
+        jmiListaProveedores.setText("Lista de Proveedores");
         jmiListaProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaProveedores);
 
         jmiListaMantenimientos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaMantenimientos.setText("Lista de mantenimientos");
+        jmiListaMantenimientos.setText("Lista de Mantenimientos");
         jmiListaMantenimientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaMantenimientos);
 
         jmiListaCreditos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaCreditos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaCreditos.setText("Lista de creditos");
+        jmiListaCreditos.setText("Lista de Creditos");
         jmiListaCreditos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaCreditos);
 
         jmiListaFacturas.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaFacturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaFacturas.setText("Lista de facturas");
+        jmiListaFacturas.setText("Lista de Facturas");
         jmiListaFacturas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaFacturas);
 
@@ -499,7 +510,9 @@ public class frmAdmin extends javax.swing.JFrame {
             .addComponent(jDesktopPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -507,7 +520,9 @@ public class frmAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(user)))
         );
 
         pack();
@@ -548,6 +563,7 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jmAyuda;
     public javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmInventario;
@@ -581,9 +597,9 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiListaAutos;
     public javax.swing.JMenuItem jmiListaCliente;
     public javax.swing.JMenuItem jmiListaCreditos;
+    public javax.swing.JMenuItem jmiListaEmpleados;
     public javax.swing.JMenuItem jmiListaFacturas;
     public javax.swing.JMenuItem jmiListaMantenimientos;
-    public javax.swing.JMenuItem jmiListaMecanicos;
     public javax.swing.JMenuItem jmiListaProveedores;
     public javax.swing.JMenuItem jmiListaRepuestos;
     public javax.swing.JMenuItem jmiManuales;
@@ -603,5 +619,6 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jmiRepuestos;
     public javax.swing.JMenuItem jmiReservas;
     public javax.swing.JMenuItem jmiSalir;
+    public javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }
