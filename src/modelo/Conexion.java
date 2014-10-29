@@ -25,11 +25,18 @@ public class Conexion {
     private final String contraseña = "";
     private Connection conexion;
     private PreparedStatement consulta;
+    private ResultSet r;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<GrupoClientes> grupo;
+    private ArrayList<Auto> autos;
+    private ArrayList<Mantenimiento> mantenimientos;
+    private ArrayList<Proveedor> proveedores;
+    private ArrayList<Empleados> empleados;
+    private ArrayList<Repuesto> repuestos;
+    
+    public Conexion(){}
 
-    public Conexion() {
-    }
-
-    //metodo para crear la conexion
+    //metodo para crear la conexion 
     public boolean crearConexion() {
         try {
             Class.forName(driver);
@@ -39,7 +46,6 @@ public class Conexion {
         }
         return true;
     }
-
     //Metodo para cerrar la conexion
     public void cerrarConexion() {
         try {
@@ -51,11 +57,9 @@ public class Conexion {
     //metodo para validar cuenta
     public String validarCuentas(Cuenta c) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = ? AND cue_contrasena = ?");
-            consulta.setString(1, c.getUsuario());
-            consulta.setString(2, c.getContrasena());
+            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = '"+c.getUsuario()+"' AND cue_contrasena = MD5('"+c.getContrasena()+"')");
             consulta.executeQuery();
-            ResultSet r = consulta.getResultSet();
+            r = consulta.getResultSet();
             while (r.next()) {
                 return r.getString(4);
             }
@@ -66,74 +70,25 @@ public class Conexion {
         }
         return null;
     }
-
     //metodo para registrar una cuenta
     public boolean registrarCuenta(Cuenta c) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?,MD5(?),?)");
             consulta.setString(1, null);
             consulta.setString(2, c.getUsuario());
             consulta.setString(3, c.getContrasena());
             consulta.setString(4, c.getTipo());
             consulta.executeUpdate();
             conexion.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-        return true;
-    }
-    public boolean agregarAuto(Auto aut) {
-        try {
-            consulta = conexion.prepareStatement("INSERT INTO autos VALUES (?,?,?,?,?,?,?,?,?)");
-            consulta.setString(1, aut.getPlaca());
-            consulta.setString(2, aut.getCiudad());
-            consulta.setString(3, aut.getTipo());
-            consulta.setString(4, aut.getModelo());
-            consulta.setString(5, aut.getMarca());
-            consulta.setString(6, aut.getKilometraje());
-            consulta.setString(7, aut.getCombustible());
-            consulta.setString(8, aut.getIdCliente());
-            consulta.setString(9, aut.getNombreCliente());
-            consulta.executeUpdate();
-            consulta.close();
+            return true;
         } catch (SQLException e) {
             return false;
         }
-        return true;
     }
-    //metodo para consultar la placa del auto al que se realizara el mantenimeinto
-    public ArrayList<Auto> consultarAutos() {
-        ArrayList<Auto> autos = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM autos");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8),rs.getString(9)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return autos;
-    }
-    //metodo para ver la lista de los autos
-    public ArrayList<Auto> verAutos() {
-        ArrayList<Auto> Autos = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM autos");
-
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                Autos.add(new Auto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),rs.getString(8),rs.getString(9)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return Autos;
-    }
-     public boolean agregarCliente(Cliente cli) {
+    
+    /* 1. Modulo clientes */
+    // *Clientes    
+    public boolean agregarCliente(Cliente cli) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO clientes VALUES (?,?,?,?,?,?,?)");
             consulta.setString(1, cli.getIdentificacion());
@@ -145,24 +100,11 @@ public class Conexion {
             consulta.setString(7, cli.getCorreo());
             consulta.executeUpdate();
             consulta.close();
+            return true;
         } catch (SQLException e) {
             return false;
         }
-        return true;
     }
-    //Metodo para eliminar un cliente
-    public boolean eliminarCliente(String id) {
-        try {
-            consulta = conexion.prepareStatement("DELETE FROM clientes WHERE cli_id = ?");
-            consulta.setString(1, id);
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //Metodo para modificar los datos de un cliente
     public boolean modificarCliente(Cliente cli) {
         try {
             consulta = conexion.prepareStatement("UPDATE clientes SET cli_nombre = ?, cli_apellidos = ?, cli_sexo = ?, cli_telefono = ?, cli_direccion = ?, cli_correo = ? WHERE cli_id = ?");
@@ -175,342 +117,96 @@ public class Conexion {
             consulta.setString(7, cli.getIdentificacion());
             consulta.executeUpdate();
             consulta.close();
+            return true;
         } catch (SQLException e) {
             return false;
         }
-        return true;
     }
-    //Metodo para consultar los datos del cliente al que se le registrara el auto
-    public ArrayList<Cliente> consultarClientes() {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ResultSet rs;
+    public boolean eliminarCliente(String id) {
         try {
-            consulta = conexion.prepareStatement("Select * FROM clientes ORDER BY cli_nombre");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return clientes;
-    }
-    
-    //metodo para consultar un clientes ingresanto un dato
-    public ArrayList<Cliente> verClientesPorDato(String dato) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM clientes WHERE cli_id LIKE '" + dato + "%' OR cli_nombre LIKE '" + dato + "%' OR cli_apellidos LIKE '" + dato + "%' OR  cli_direccion LIKE '" + dato + "%' ORDER BY cli_nombre");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                clientes.add(new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return clientes;
-    }
-    
-    public ResultSet TraerDatosClientes(String id) {
-        try {
-            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
-            ResultSet r = consulta.executeQuery();
-            return r;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-    
-    public ResultSet TraerDatosEmpleado(String id) {
-        try {
-            consulta = conexion.prepareStatement("SELECT * FROM empleados WHERE emp_id = "+id+"");
-            ResultSet r = consulta.executeQuery();
-            return r;
-        } catch (SQLException e) {
-            return null;}
-    }
-       
-    //metodo para agregar un repuesto
-    public boolean agregarRepuesto(Repuesto rep) {
-        try {
-            consulta = conexion.prepareStatement("INSERT INTO repuestos VALUES (?,?,?,?,?,?,?)");
-            consulta.setString(1, rep.getCodigo());
-            consulta.setString(2, rep.getTipo());
-            consulta.setString(3, rep.getMarca());
-            consulta.setString(4, rep.getCantidad());
-            consulta.setString(5, rep.getPrecio());
-            consulta.setString(6, rep.getNitProv());
-            consulta.setString(7, rep.getNomProv());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-   
-    public ResultSet TraerDatosRepuesto(String codigo) {
-        try {
-            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = "+codigo+"");
-            ResultSet r = consulta.executeQuery();
-            return r;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-    
-    //Metodo para ver la lista de los repuestos
-    public ArrayList<Repuesto> verRepuestos() {
-        ArrayList<Repuesto> Repuestos = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM repuestos");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                Repuestos.add(new Repuesto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return Repuestos;
-    }
-    public boolean agregarProveedor(Proveedor prov) {
-        
-        try {
-            consulta = conexion.prepareStatement("INSERT INTO proveedores VALUES (?,?,?,?,?)");
-            consulta.setString(1, prov.getNit());
-            consulta.setString(2, prov.getNombre());
-            consulta.setString(3, prov.getDireccion());
-            consulta.setString(4, prov.getTelefono());
-            consulta.setString(5, prov.getDescripcion());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para eliminar un proveedor
-    public boolean eliminarProveedor(int nit) {
-        try {
-            consulta = conexion.prepareStatement("DELETE FROM proveedores WHERE prov_nit = ?");
-            consulta.setInt(1, nit);
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para modificar un proveedor
-    public boolean modificarProveedor(Proveedor prov) {
-        try {
-            consulta = conexion.prepareStatement("UPDATE proveedores SET prov_nombre = ?, prov_direccion = ?, prov_telefono = ?, prov_descripcion = ? WHERE prov_nit = ?");
-            consulta.setString(1, prov.getNombre());
-            consulta.setString(2, prov.getDireccion());
-            consulta.setString(3, prov.getTelefono());
-            consulta.setString(4, prov.getDescripcion());
-            consulta.setString(5, prov.getNit());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para ver la la lista de los proveedores
-    public ArrayList<Proveedor> verProveedores() {
-        ArrayList<Proveedor> proveedores = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM proveedores");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                proveedores.add(new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return proveedores;
-    }
-    //Metodo para consultar el nit del proveedor del repuesto
-    public ArrayList<Proveedor> consultarProveedores() {
-        ArrayList<Proveedor> proveedores = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM proveedores");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                proveedores.add(new Proveedor(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return proveedores;
-    }
-    
-     public boolean agregarMantenimiento(Mantenimiento man) {
-        try {
-            consulta = conexion.prepareStatement("INSERT INTO mantenimientos VALUES (?,?,?,?,?,?)");
-            consulta.setString(1, man.getTipo());
-            consulta.setDate(2, man.getFecha());
-            consulta.setString(3, man.getDescripcion());
-            consulta.setString(4, man.getCosto());
-            consulta.setString(5, man.getPlacaAuto());
-            consulta.setString(6, man.getIdMecanico());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para eliminar un mantenimiento
-    public boolean eliminarMantenimiento(Mantenimiento man) {
-        try {
-            consulta = conexion.prepareStatement("Delete From mantenimientos Where man_codigo = ?");
-            consulta.setInt(1, man.getCodigo());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para modificar un mantenimiento
-    public boolean actualizarMantenimiento(Mantenimiento man) {
-        try {
-            consulta = conexion.prepareStatement("UPDATE mantenimientos SET man_tipo = ?, man_fecha = ?, man_descripcion = ?, man_costo = ? WHERE man_codigo = ?");
-            consulta.setString(1, man.getTipo());
-            consulta.setDate(2, man.getFecha());
-            consulta.setString(3, man.getDescripcion());
-            consulta.setString(4, man.getCosto());
-            consulta.setInt(5, man.getCodigo());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //metodo para consultar los datos del mantenimiento para modificarlos o eliminarlos
-    public ArrayList<Mantenimiento> consultarMantenimientos() {
-        ArrayList<Mantenimiento> mantenimientos = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("SELECT * FROM mantenimientos");
-            rs = consulta.executeQuery();
-
-            while (rs.next()) {
-                mantenimientos.add(new Mantenimiento(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return mantenimientos;
-    }
-    //metodo para ver la lista de los mantenimientos
-    public ArrayList<Mantenimiento> verMantenimientos() {
-        ArrayList<Mantenimiento> mantenimientos = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM mantenimientos");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                mantenimientos.add(new Mantenimiento(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return mantenimientos;
-    }
-    public boolean agregarEmpleado(Empleados emp) {
-        try {
-            consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?)");
-            consulta.setString(1, emp.getIdentificacion());
-            consulta.setString(2, emp.getNombre());
-            consulta.setString(3, emp.getApellidos());
-            consulta.setString(4, emp.getSexo());
-            consulta.setString(5, emp.getTipo());
-            consulta.setString(6, emp.getTelefono());
-            consulta.setString(7, emp.getDireccion());
-            consulta.setString(8, emp.getSalario());
-            consulta.setString(9, emp.getCorreo());
-            consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    //Metodo para eliminar un mecanico 
-    public boolean eliminarEmpleado(String id) {
-        try {
-            consulta = conexion.prepareStatement("DELETE FROM empleados WHERE emp_id = ?");
+            consulta = conexion.prepareStatement("DELETE FROM clientes WHERE cli_id = ?");
             consulta.setString(1, id);
             consulta.executeUpdate();
             consulta.close();
+            return true;
         } catch (SQLException e) {
             return false;
         }
-        return true;
     }
-    //metodo para modificar un mecanico
-    public boolean modificarEmpleado(Empleados mec) {
+    public ArrayList<Cliente> consultarClientes() {
+        clientes = new ArrayList<>();
         try {
-            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
-            consulta.setString(1, mec.getNombre());
-            consulta.setString(2, mec.getApellidos());
-            consulta.setString(3, mec.getSexo());
-            consulta.setString(4, mec.getTipo());
-            consulta.setString(5, mec.getTelefono());
-            consulta.setString(6, mec.getDireccion());
-            consulta.setString(7, mec.getSalario());
-            consulta.setString(8, mec.getCorreo());
-            consulta.setString(9, mec.getIdentificacion());
+            consulta = conexion.prepareStatement("Select * FROM clientes ORDER BY cli_nombre");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                clientes.add(new Cliente(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7)));
+            }
+            return clientes;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ArrayList<Cliente> verClientesPorDato(String dato) {
+        clientes = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM clientes WHERE cli_id LIKE '" + dato + "%' OR cli_nombre LIKE '" + dato + "%' OR cli_apellidos LIKE '" + dato + "%' OR  cli_direccion LIKE '" + dato + "%' ORDER BY cli_nombre");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                clientes.add(new Cliente(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7)));
+            }
+            return clientes;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet TraerDatosClientes(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet IdsClientes() {
+        try {
+            consulta = conexion.prepareStatement("SELECT cli_id FROM clientes");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    // *Grupo Clientes
+    public boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO grupoclientes VALUES (?,?,?,?)");
+            consulta.setString(1, cod);
+            consulta.setString(2, nom);
+            consulta.setString(3, id);
+            consulta.setString(4, est);
             consulta.executeUpdate();
-            consulta.close();
-        } catch (SQLException e) {
+            conexion.close();
+            return true;
+        } catch (Exception e) {
             return false;
         }
-        return true;
     }
-    //metodo para consultar la identificacion del mecanico que realizo el mantenimiento
-    public ArrayList<Empleados> consultarEmpleados() {
-        ArrayList<Empleados> empleados = new ArrayList<>();
-        ResultSet rs;
+    public boolean modificarGrupoCliente(String id, String cod, String nom, String est) {
         try {
-            consulta = conexion.prepareStatement("Select * FROM empleados ORDER BY emp_nombre");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
-            }
-        } catch (SQLException e) {
-            return null;
+            consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, cli_id = ?, cli_estado = ? WHERE gru_codigo = ?");
+            consulta.setString(1, nom);
+            consulta.setString(2, id);
+            consulta.setString(3, est);
+            consulta.setString(4, cod);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        return empleados;
     }
-    
-    //metodo para consultar un empleado ingresando un dato
-    public ArrayList<Empleados> verEmpleadosPorDato(String dato) {
-        ArrayList<Empleados> empleados = new ArrayList<>();
-        ResultSet rs;
-        try {
-            consulta = conexion.prepareStatement("Select * FROM empleados WHERE emp_id LIKE '" + dato + "%' OR emp_nombre LIKE '" + dato + "%' OR emp_apellidos LIKE '" + dato + "%' OR  emp_direccion LIKE '" + dato + "%' ORDER BY emp_nombre");
-            rs = consulta.executeQuery();
-            while (rs.next()) {
-                empleados.add(new Empleados(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)));
-            }
-        } catch (SQLException e) {
-            return null;
-        }
-        return empleados;
-    }
-
     public ArrayList<GrupoClientes> verGrupoClientes(String dato) {
-        ArrayList<GrupoClientes> grupo = new ArrayList<>();
-        ResultSet rs;
+        grupo = new ArrayList<>();
         try {
             switch(dato){
                 case "Habitual":
@@ -531,53 +227,367 @@ public class Conexion {
                 default:
                     consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = 'Activo'");
             }
-            rs = consulta.executeQuery();
-            while(rs.next()){
-                grupo.add(new GrupoClientes(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4)));
+            r = consulta.executeQuery();
+            while(r.next()){
+                grupo.add(new GrupoClientes(r.getString(1), r.getString(2), r.getString(3),r.getString(4)));
             }
+            return grupo;
+        } catch (SQLException e) {
+            return null;
+        } 
+    }
+    // *Auto
+    public boolean agregarAuto(Auto aut) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO autos VALUES (?,?,?,?,?,?,?,?,?)");
+            consulta.setString(1, aut.getPlaca());
+            consulta.setString(2, aut.getCiudad());
+            consulta.setString(3, aut.getTipo());
+            consulta.setString(4, aut.getModelo());
+            consulta.setString(5, aut.getMarca());
+            consulta.setString(6, aut.getKilometraje());
+            consulta.setString(7, aut.getCombustible());
+            consulta.setString(8, aut.getIdCliente());
+            consulta.setString(9, aut.getNombreCliente());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public ArrayList<Auto> consultarAutos() {
+        autos = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM autos");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                autos.add(new Auto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7),r.getString(8),r.getString(9)));
+            }
+            return autos;
         } catch (SQLException e) {
             return null;
         }
-        return grupo;      
     }
-
     public ResultSet ConsultarAutosClientes(String id) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM autos WHERE cli_id = '"+id+"'");
-            ResultSet r = consulta.executeQuery();
+            r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
             return null;
         }
     }
-
-    ResultSet consultarDatosAuto(String id) {
+    public ResultSet consultarDatosAuto(String id) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
-            ResultSet r = consulta.executeQuery();
+            r = consulta.executeQuery();
             return r;            
         } catch (SQLException e) {
             return null;
         }
     }
-
-    ResultSet IdsClientes() {
-        try {
-            consulta = conexion.prepareStatement("SELECT cli_id FROM clientes");
-            ResultSet r = consulta.executeQuery();
+    public ResultSet placasAutos(){
+        try{
+            consulta = conexion.prepareStatement("SELECT aut_placa FROM autos");
+            r = consulta.executeQuery();
             return r;
-        } catch (Exception e) {
+        }
+        catch(SQLException e){
             return null;
         }
     }
-
-    boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
+    public ResultSet datosMantenimiento(String placa){
+        try{
+            consulta = conexion.prepareStatement("SELECT cli_id, cli_nombre FROM autos WHERE aut_placa = ?");
+            consulta.setString(1, placa);
+            r = consulta.executeQuery();
+            return r;
+        }
+        catch(SQLException e){
+            return null;
+        }
+    }
+    /* 2. Modulo Servicios */
+    public boolean agregarMantenimiento(Mantenimiento man) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO grupoclientes VALUES (?,?,?,?)");
-            consulta.setString(1, cod);
-            consulta.setString(2, nom);
-            consulta.setString(3, id);
-            consulta.setString(4, est);
+            consulta = conexion.prepareStatement("INSERT INTO mantenimientos VALUES (?,?,?,?,?,?)");
+            consulta.setString(1, man.getTipo());
+            consulta.setDate(2, man.getFecha());
+            consulta.setString(3, man.getDescripcion());
+            consulta.setString(4, man.getCosto());
+            consulta.setString(5, man.getPlacaAuto());
+            consulta.setString(6, man.getIdMecanico());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public boolean actualizarMantenimiento(Mantenimiento man) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE mantenimientos SET man_tipo = ?, man_fecha = ?, man_descripcion = ?, man_costo = ? WHERE man_codigo = ?");
+            consulta.setString(1, man.getTipo());
+            consulta.setDate(2, man.getFecha());
+            consulta.setString(3, man.getDescripcion());
+            consulta.setString(4, man.getCosto());
+            consulta.setInt(5, man.getCodigo());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public boolean eliminarMantenimiento(Mantenimiento man) {
+        try {
+            consulta = conexion.prepareStatement("Delete From mantenimientos Where man_codigo = ?");
+            consulta.setInt(1, man.getCodigo());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public ArrayList<Mantenimiento> consultarMantenimientos() {
+        mantenimientos = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM mantenimientos");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                mantenimientos.add(new Mantenimiento(r.getInt(1), r.getString(2), r.getDate(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7)));
+            }
+            return mantenimientos;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    /* 3. Modulo Suministros */
+    public boolean agregarProveedor(Proveedor prov) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO proveedores VALUES (?,?,?,?,?)");
+            consulta.setString(1, prov.getNit());
+            consulta.setString(2, prov.getNombre());
+            consulta.setString(3, prov.getDireccion());
+            consulta.setString(4, prov.getTelefono());
+            consulta.setString(5, prov.getDescripcion());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public boolean modificarProveedor(Proveedor prov) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE proveedores SET prov_nombre = ?, prov_direccion = ?, prov_telefono = ?, prov_descripcion = ? WHERE prov_nit = ?");
+            consulta.setString(1, prov.getNombre());
+            consulta.setString(2, prov.getDireccion());
+            consulta.setString(3, prov.getTelefono());
+            consulta.setString(4, prov.getDescripcion());
+            consulta.setString(5, prov.getNit());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }  
+    public boolean eliminarProveedor(int nit) {
+        try {
+            consulta = conexion.prepareStatement("DELETE FROM proveedores WHERE prov_nit = ?");
+            consulta.setInt(1, nit);
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public ArrayList<Proveedor> consultarProveedores() {
+        proveedores = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM proveedores ORDER BY prov_nombre");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                proveedores.add(new Proveedor(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5)));
+            }
+            return proveedores;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    /* 4. Modulo Personal */
+    public boolean agregarEmpleado(Empleados emp) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?)");
+            consulta.setString(1, emp.getIdentificacion());
+            consulta.setString(2, emp.getNombre());
+            consulta.setString(3, emp.getApellidos());
+            consulta.setString(4, emp.getSexo());
+            consulta.setString(5, emp.getTipo());
+            consulta.setString(6, emp.getTelefono());
+            consulta.setString(7, emp.getDireccion());
+            consulta.setString(8, emp.getSalario());
+            consulta.setString(9, emp.getCorreo());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public boolean modificarEmpleado(Empleados mec) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
+            consulta.setString(1, mec.getNombre());
+            consulta.setString(2, mec.getApellidos());
+            consulta.setString(3, mec.getSexo());
+            consulta.setString(4, mec.getTipo());
+            consulta.setString(5, mec.getTelefono());
+            consulta.setString(6, mec.getDireccion());
+            consulta.setString(7, mec.getSalario());
+            consulta.setString(8, mec.getCorreo());
+            consulta.setString(9, mec.getIdentificacion());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public boolean eliminarEmpleado(String id) {
+        try {
+            consulta = conexion.prepareStatement("DELETE FROM empleados WHERE emp_id = ?");
+            consulta.setString(1, id);
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public ArrayList<Empleados> consultarEmpleados() {
+        empleados = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM empleados ORDER BY emp_nombre");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                empleados.add(new Empleados(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7), r.getString(8), r.getString(9)));
+            }
+            return empleados;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ArrayList<Empleados> verEmpleadosPorDato(String dato) {
+        empleados = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM empleados WHERE emp_id LIKE '" + dato + "%' OR emp_nombre LIKE '" + dato + "%' OR emp_apellidos LIKE '" + dato + "%' OR  emp_direccion LIKE '" + dato + "%' ORDER BY emp_nombre");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                empleados.add(new Empleados(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7), r.getString(8), r.getString(9)));
+            }
+            return empleados;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet TraerDatosEmpleado(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM empleados WHERE emp_id = "+id+"");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet idsMecanicos(){
+        try{
+            consulta = conexion.prepareStatement("SELECT emp_id FROM empleados WHERE emp_tipo = 'Mécanico'");
+            r = consulta.executeQuery();
+            return r;
+        }catch(SQLException e){
+            return null;
+        }
+    }
+    /* 5. Modulo Inventario */
+    public boolean agregarRepuesto(Repuesto rep) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO repuestos VALUES (?,?,?,?,?,?,?)");
+            consulta.setString(1, rep.getCodigo());
+            consulta.setString(2, rep.getTipo());
+            consulta.setString(3, rep.getMarca());
+            consulta.setString(4, rep.getCantidad());
+            consulta.setString(5, rep.getPrecio());
+            consulta.setString(6, rep.getNitProv());
+            consulta.setString(7, rep.getNomProv());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    public ArrayList<Repuesto> verRepuestos() {
+        repuestos = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("Select * FROM repuestos");
+            r = consulta.executeQuery();
+            while (r.next()) {
+                repuestos.add(new Repuesto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7)));
+            }
+            return repuestos;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet TraerDatosRepuesto(String codigo) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = "+codigo+"");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet codRepuestos(){
+        try{
+            consulta = conexion.prepareStatement("SELECT rep_codigo FROM repuestos");
+            r = consulta.executeQuery();
+            return r;
+        }catch(SQLException e){
+            return null;
+        }
+    }
+    public ResultSet datosRepuesto(String c){
+        try{
+            consulta = conexion.prepareStatement("SELECT rep_tipo FROM repuestos WHERE rep_codigo = ?");
+            consulta.setString(1,c);
+            r = consulta.executeQuery();
+            return r;
+        }catch(SQLException e){
+            return null;
+        }
+    }
+    /* 6. Modulo Ventas */    
+
+    boolean detallesMantenimiento(String codMan, String tipoMan, String descripcion, String fecha, String placa, String cli_nombre, String id_mec, String nom_mec, String cod_rep, String tip_rep, String can_rep) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO detallesmantenimientos VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            consulta.setString(1, codMan);
+            consulta.setString(2, tipoMan);
+            consulta.setString(3, descripcion);
+            consulta.setString(4, fecha);
+            consulta.setString(5, placa);
+            consulta.setString(6, cli_nombre);
+            consulta.setString(7, id_mec);
+            consulta.setString(8, nom_mec);
+            consulta.setString(9, cod_rep);
+            consulta.setString(10, tip_rep);
+            consulta.setString(11, can_rep);
             consulta.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -585,13 +595,14 @@ public class Conexion {
         }
     }
 
-    boolean modificarGrupoCliente(String id, String cod, String nom, String est) {
+    boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado) {
         try {
-            consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, cli_id = ?, cli_estado = ? WHERE gru_codigo = ?");
-            consulta.setString(1, nom);
-            consulta.setString(2, id);
-            consulta.setString(3, est);
-            consulta.setString(4, cod);
+            consulta = conexion.prepareStatement("INSERT INTO mantenimientos VALUES(?,?,?,?,?)");
+            consulta.setString(1, null);
+            consulta.setString(2, fechaInicio);
+            consulta.setString(3, estado);
+            consulta.setString(4, costo);
+            consulta.setString(5, observaciones);
             consulta.executeUpdate();
             return true;
         } catch (Exception e) {

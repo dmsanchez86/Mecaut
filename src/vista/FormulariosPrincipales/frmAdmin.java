@@ -108,7 +108,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
-        jLabel1.setText("Usuario:   ");
+        jLabel1.setText("Usuario:");
 
         user.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
         user.setText(" ");
@@ -510,9 +510,9 @@ public class frmAdmin extends javax.swing.JFrame {
             .addComponent(jDesktopPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(user)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

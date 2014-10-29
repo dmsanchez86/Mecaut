@@ -1,11 +1,11 @@
 package vista.Clientes;
 
-import javax.swing.JOptionPane;
 import modelo.Gestor;
 
 public class jifGrupoClientes extends javax.swing.JInternalFrame {
     Gestor ges = new Gestor();
     char c;
+    int ope = 0;
     public jifGrupoClientes() {
         initComponents();
     }
@@ -24,11 +24,13 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jtfId = new javax.swing.JTextField();
         jtfCodigo = new javax.swing.JTextField();
-        jtfNombre = new javax.swing.JTextField();
-        jcbId = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        jcbEstado = new javax.swing.JComboBox();
+        jbtModificar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jbtRegistrar = new javax.swing.JButton();
+        jtfNombre = new javax.swing.JTextField();
+        nRegistros = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -40,7 +42,8 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jLabel1.setText("Búsqueda Clientes: ");
 
         jcbTipo.setFont(new java.awt.Font("Segoe UI Semibold", 2, 12)); // NOI18N
-        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------", "Habitual", "Ocasional", "Potencial", "Activo", "Inactivo" }));
+        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-------", "Activo", "Inactivo", "Habitual", "Ocasional", "Potencial" }));
+        jcbTipo.setSelectedIndex(1);
         jcbTipo.setToolTipText("Seleccione el Nombre o el Estado de un Grupo de Cliente");
 
         jtGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
@@ -82,29 +85,24 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jtfCodigo.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
         jtfCodigo.setToolTipText("Codigo del Grupo de Cliente");
 
-        jtfNombre.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
-        jtfNombre.setToolTipText("Nombre del Grupo de Cliente");
-        jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfNombreKeyTyped(evt);
-            }
-        });
+        jcbEstado.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
+        jcbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Activo", "Inactivo" }));
+        jcbEstado.setToolTipText("Estado del Grupo de Cliente");
 
-        jcbId.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
-        jcbId.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Activo", "Inactivo" }));
-        jcbId.setToolTipText("Estado del Grupo de Cliente");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
-        jButton1.setText("Modificar");
-        jButton1.setToolTipText("Actualizar Grupo Cliente");
+        jbtModificar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
+        jbtModificar.setText("Modificar");
+        jbtModificar.setToolTipText("Actualizar Grupo Cliente");
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412671721_Groups_Black.png"))); // NOI18N
 
         jbtRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
         jbtRegistrar.setText("Registrar");
-        jbtRegistrar.setToolTipText("Actualizar Grupo Cliente");
+        jbtRegistrar.setToolTipText("Registrar Grupo Cliente");
+
+        jtfNombre.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
+        jtfNombre.setToolTipText("Codigo del Grupo de Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,36 +110,32 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbId, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(jLabel6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jbtRegistrar)
-                .addGap(22, 22, 22))
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(51, Short.MAX_VALUE)
+                        .addComponent(jbtModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfCodigo)
+                            .addComponent(jtfId)
+                            .addComponent(jtfNombre)
+                            .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,25 +145,32 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtfCodigo))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel4)
+                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jbtModificar)
                     .addComponent(jbtRegistrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        nRegistros.setFont(new java.awt.Font("Lucida Sans", 3, 15)); // NOI18N
+        nRegistros.setText("0");
+
+        jLabel7.setFont(new java.awt.Font("Lucida Sans", 2, 16)); // NOI18N
+        jLabel7.setText("N° Reg.");
+        jLabel7.setToolTipText("Número de Registros");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,9 +178,13 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -193,9 +198,13 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(nRegistros))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -208,21 +217,19 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void jtGrupoClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGrupoClientesMouseClicked
         int i = jtGrupoClientes.getSelectedRow();
-        if (i == -1) {
-            JOptionPane.showMessageDialog(null,"Seleccione una Columna!!!","MECAUT",JOptionPane.QUESTION_MESSAGE);
-        }else{
-            String cod = (String)jtGrupoClientes.getValueAt(i, 0);
-            String nom = (String)jtGrupoClientes.getValueAt(i, 1);
-            String id = (String)jtGrupoClientes.getValueAt(i, 2);
-            String est = (String)jtGrupoClientes.getValueAt(i, 3);
-            jtfId.setText(id);
-            jtfNombre.setText(nom);
-            jtfCodigo.setText(cod);
-            int op = "Activo".equals(est)?1:2;
-            jcbId.setSelectedIndex(op);
-        }
+        String cod = (String)jtGrupoClientes.getValueAt(i, 0);
+        String nom = (String)jtGrupoClientes.getValueAt(i, 1);
+        String id = (String)jtGrupoClientes.getValueAt(i, 2);
+        String est = (String)jtGrupoClientes.getValueAt(i, 3);
+        jtfId.setText(id);
+        jtfNombre.setText(nom);
+        jtfCodigo.setText(cod);
+        int op = "Activo".equals(est)?1:2;
+        jcbEstado.setSelectedIndex(op);
+        jtfId.setEnabled(false);
+        jtfCodigo.setEnabled(false);
         jbtRegistrar.setEnabled(false);
-        jButton1.setEnabled(true);
+        jbtModificar.setEnabled(true);
     }//GEN-LAST:event_jtGrupoClientesMouseClicked
     private void jtfIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdKeyTyped
         c = evt.getKeyChar();
@@ -231,31 +238,24 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtfIdKeyTyped
-    private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
-        c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfNombreKeyTyped
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton jbtModificar;
     public javax.swing.JButton jbtRegistrar;
-    public javax.swing.JComboBox jcbId;
+    public javax.swing.JComboBox jcbEstado;
     public javax.swing.JComboBox jcbTipo;
     public javax.swing.JTable jtGrupoClientes;
     public javax.swing.JTextField jtfCodigo;
     public javax.swing.JTextField jtfId;
     public javax.swing.JTextField jtfNombre;
+    public javax.swing.JLabel nRegistros;
     // End of variables declaration//GEN-END:variables
 }

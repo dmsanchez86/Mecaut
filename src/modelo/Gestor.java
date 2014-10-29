@@ -12,120 +12,169 @@ import modelo.Logica.Proveedor;
 import modelo.Logica.Repuesto;
 
 /* @author grupo - MECAUT */
-public class Gestor {
+public class Gestor{
     private final Conexion conexion = new Conexion();
+    private ResultSet r;
     private boolean respuesta;
-    // Clientes
+    private String res;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<GrupoClientes> grupo;
+    private ArrayList<Auto> autos;
+    private ArrayList<Mantenimiento> mantenimientos;
+    private ArrayList<Proveedor> proveedores;
+    private ArrayList<Empleados> empleados;
+    private ArrayList<Repuesto> repuestos;
+    
+    // Cuentas
+    public boolean registrarUsuario(Cuenta c){
+        conexion.crearConexion();
+        respuesta = conexion.registrarCuenta(c);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public String validarUsuario(Cuenta c){
+        conexion.crearConexion();
+        res = conexion.validarCuentas(c);
+        conexion.cerrarConexion();
+        return res;
+    }
+    // 1. Modulo Clientes
+    // *Clientes
     public boolean agregarCliente(Cliente cli){
         conexion.crearConexion();
         respuesta = conexion.agregarCliente(cli);
         conexion.cerrarConexion();
         return respuesta;
     }
-    public ArrayList<Cliente> verClientePorDato(String dato){
-        conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.verClientesPorDato(dato);
-        conexion.cerrarConexion();
-        return clientes;
-    }    
     public boolean modificarCliente(Cliente cli){
         conexion.crearConexion();
         respuesta = conexion.modificarCliente(cli);
         conexion.crearConexion();
         return respuesta;
-    }   
+    } 
     public boolean eliminarCliente(String id){
         conexion.crearConexion();
         respuesta = conexion.eliminarCliente(id);
         conexion.crearConexion();
         return respuesta;
-    }    
+    } 
     public ArrayList<Cliente> consultarClientes(){
         conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.consultarClientes();
+        clientes = conexion.consultarClientes();
         conexion.cerrarConexion();
         return clientes;
+    }
+    public ArrayList<Cliente> verClientePorDato(String dato){
+        conexion.crearConexion();
+        ArrayList<Cliente> cli = conexion.verClientesPorDato(dato);
+        conexion.cerrarConexion();
+        return cli;
     }  
-    public boolean registrarUsuario(Cuenta c){
+    public ResultSet TraerDatosCliente(String id) {
         conexion.crearConexion();
-        boolean r = conexion.registrarCuenta(c);
-        conexion.cerrarConexion();
+        r = conexion.TraerDatosClientes(id);
         return r;
     }
-    public String validarUsuario(Cuenta c){
+    public ResultSet IdsClientes() {
         conexion.crearConexion();
-        String r = conexion.validarCuentas(c);
-        conexion.cerrarConexion();
+        r = conexion.IdsClientes();
         return r;
     }
-    // Auto
+    // *Grupo Clientes
+    public boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
+        conexion.crearConexion();
+        respuesta = conexion.agregarGrupoCliente(id,cod,nom,est);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public boolean actualizarGrupoCliente(String id, String cod, String nom, String est) {
+        conexion.crearConexion();
+        respuesta = conexion.modificarGrupoCliente(id,cod,nom,est);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public ArrayList<GrupoClientes> verGrupoClientes(String dato) {
+        conexion.crearConexion();
+        grupo = conexion.verGrupoClientes(dato);
+        conexion.cerrarConexion();
+        return grupo;
+    }
+    // *Autos
     public boolean agregarAuto(Auto aut){
         conexion.crearConexion();
         respuesta = conexion.agregarAuto(aut);
         conexion.cerrarConexion();
         return respuesta;
     }
-    public ArrayList<Cliente> consultarCli(){
-        conexion.crearConexion();
-        ArrayList<Cliente> clientes = conexion.consultarClientes();
-        conexion.cerrarConexion();
-        return clientes;
-    }
     public ArrayList<Auto> verAutos(){
         conexion.crearConexion();
-        ArrayList<Auto> autos = conexion.verAutos();
+        autos = conexion.consultarAutos();
         conexion.cerrarConexion();
         return autos;
     }
-    // Mecánico
-    public boolean agregarEmpleado(Empleados mec){
+    public ArrayList<Auto> consultarAutos(){
         conexion.crearConexion();
-        respuesta = conexion.agregarEmpleado(mec);
+        autos = conexion.consultarAutos();
         conexion.cerrarConexion();
-        return respuesta;
-    }   
-     public ArrayList<Empleados> verEmpleadosPorDato(String dato){
+        return autos;
+    }
+    public ResultSet ConsultarAutosClientes(String id) {
         conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.verEmpleadosPorDato(dato);
+        r = conexion.ConsultarAutosClientes(id);
+        return r;
+    }
+    public ResultSet consultarDatosAuto(String id) {
+        conexion.crearConexion();
+        r = conexion.consultarDatosAuto(id);
+        return r;
+    } 
+    public ResultSet placasAutos(){
+        conexion.crearConexion();
+        r = conexion.placasAutos();
+        return r;
+    }
+    public ResultSet datosMantenimiento(String placa){
+        conexion.crearConexion();
+        r = conexion.datosMantenimiento(placa);
+        return r;
+    }
+    // 2. Servicios
+    public boolean agregarMantenimiento(Mantenimiento man){
+        conexion.crearConexion();
+        respuesta = conexion.agregarMantenimiento(man);
         conexion.cerrarConexion();
-        return empleados;
-    }   
-      public ArrayList<Empleados> consultarEmpleados(){
-        conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.consultarEmpleados();
-        conexion.cerrarConexion();
-        return empleados;
-    }    
-      public boolean modificarEmpleado(Empleados mec){
-        conexion.crearConexion();
-        respuesta = conexion.modificarEmpleado(mec);
-        conexion.crearConexion();
-        return respuesta;
-    }  
-    public boolean eliminarEmpleado(String id){
-        conexion.crearConexion();
-        respuesta = conexion.eliminarEmpleado(id);
-        conexion.crearConexion();
         return respuesta;
     }
-    // Proveedor
+    public boolean actualizarMantenimiento(Mantenimiento man) {
+        conexion.crearConexion();
+        respuesta = conexion.actualizarMantenimiento(man);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public boolean eliminarMantenimiento(Mantenimiento man){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarMantenimiento(man);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public ArrayList<Mantenimiento> verMantenimientos(){
+        conexion.crearConexion();
+        mantenimientos = conexion.consultarMantenimientos();
+        conexion.cerrarConexion();
+        return mantenimientos;
+    }
+    public ArrayList<Mantenimiento> consultarManteniminetos(){
+        conexion.crearConexion();
+        mantenimientos = conexion.consultarMantenimientos();
+        conexion.cerrarConexion();
+        return mantenimientos;
+    }
+    // 3. Suministros
     public boolean agregarProveedor(Proveedor prov){
         conexion.crearConexion();
         respuesta = conexion.agregarProveedor(prov);
         conexion.cerrarConexion();
         return respuesta;
-    }  
-    public ArrayList<Proveedor> verProveedor(){
-        conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.verProveedores();
-        conexion.cerrarConexion();
-        return proveedores;
-    }
-    public ArrayList<Proveedor> consultarProveedores(){
-        conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.consultarProveedores();
-        conexion.cerrarConexion();
-        return proveedores;
     }
     public boolean modificarProveedor(Proveedor prov){
         conexion.crearConexion();
@@ -139,130 +188,104 @@ public class Gestor {
         conexion.crearConexion();
         return respuesta;
     }
-    // Repuesto
+    public ArrayList<Proveedor> consultarProveedores(){
+        conexion.crearConexion();
+        proveedores = conexion.consultarProveedores();
+        conexion.cerrarConexion();
+        return proveedores;
+    }
+    public ArrayList<Proveedor> consultarProveedor(){
+        conexion.crearConexion();
+        proveedores = conexion.consultarProveedores();
+        conexion.cerrarConexion();
+        return proveedores;
+    }
+    // 4. Personal
+    public boolean agregarEmpleado(Empleados mec){
+        conexion.crearConexion();
+        respuesta = conexion.agregarEmpleado(mec);
+        conexion.cerrarConexion();
+        return respuesta;
+    }  
+    public boolean modificarEmpleado(Empleados mec){
+        conexion.crearConexion();
+        respuesta = conexion.modificarEmpleado(mec);
+        conexion.crearConexion();
+        return respuesta;
+    }  
+    public boolean eliminarEmpleado(String id){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarEmpleado(id);
+        conexion.crearConexion();
+        return respuesta;
+    }
+    public ArrayList<Empleados> verEmpleadosPorDato(String dato){
+        conexion.crearConexion();
+        empleados = conexion.verEmpleadosPorDato(dato);
+        conexion.cerrarConexion();
+        return empleados;
+    }   
+    public ArrayList<Empleados> consultarEmpleados(){
+        conexion.crearConexion();
+        empleados = conexion.consultarEmpleados();
+        conexion.cerrarConexion();
+        return empleados;
+    }
+    public ArrayList<Empleados> consultarMecanico(){
+        conexion.crearConexion();
+        empleados = conexion.consultarEmpleados();
+        conexion.cerrarConexion();
+        return empleados;
+    }    
+    public ResultSet traerDatosEmpleado(String id){
+        conexion.crearConexion();
+        r = conexion.TraerDatosEmpleado(id);
+        return r;
+    }  
+    public ResultSet idsMecanicos(){
+        conexion.crearConexion();
+        r = conexion.idsMecanicos();
+        return r;
+    }
+    // 5. Inventario
     public boolean agregarRepuesto(Repuesto rep){
         conexion.crearConexion();
         respuesta = conexion.agregarRepuesto(rep);
         conexion.cerrarConexion();
         return respuesta;
     }
-    
-    public ResultSet TraerDatosRepuesto(String codigo) {
-        conexion.crearConexion();
-        ResultSet r = conexion.TraerDatosRepuesto(codigo);
-        return r;
-    }
-    
-    public ArrayList<Proveedor> consultarProveedor(){
-        conexion.crearConexion();
-        ArrayList<Proveedor> proveedores = conexion.consultarProveedores();
-        conexion.cerrarConexion();
-        return proveedores;
-    }
     public ArrayList<Repuesto> verRepuestos(){
         conexion.crearConexion();
-        ArrayList<Repuesto> repuestos = conexion.verRepuestos();
+        repuestos = conexion.verRepuestos();
         conexion.cerrarConexion();
         return repuestos;
     } 
-    // Mantenimiento
-    public boolean agregarMantenimiento(Mantenimiento man){
+    public ResultSet TraerDatosRepuesto(String codigo) {
         conexion.crearConexion();
-        respuesta = conexion.agregarMantenimiento(man);
-        conexion.cerrarConexion();
-        return respuesta;
-    }
-    
-    public ArrayList<Auto> consultarAutos(){
-        conexion.crearConexion();
-        ArrayList<Auto> autos = conexion.consultarAutos();
-        conexion.cerrarConexion();
-        return autos;
-    }
-    
-    public ArrayList<Empleados> consultarMecanico(){
-        conexion.crearConexion();
-        ArrayList<Empleados> empleados = conexion.consultarEmpleados();
-        conexion.cerrarConexion();
-        return empleados;
-    }
-    
-    public ArrayList<Mantenimiento> verMantenimientos(){
-        conexion.crearConexion();
-        ArrayList<Mantenimiento> mantenimientos = conexion.verMantenimientos();
-        conexion.cerrarConexion();
-        return mantenimientos;
-    } 
-    
-    public boolean eliminarMantenimiento(Mantenimiento man){
-        conexion.crearConexion();
-        respuesta = conexion.eliminarMantenimiento(man);
-        conexion.cerrarConexion();
-        return respuesta;
-    }
-    
-    public ArrayList<Mantenimiento> consultarManteniminetos(){
-        conexion.crearConexion();
-        ArrayList<Mantenimiento> mantnimientos = conexion.consultarMantenimientos();
-        conexion.cerrarConexion();
-        return mantnimientos;
-    }
-
-    public boolean actualizarMantenimiento(Mantenimiento man) {
-        conexion.crearConexion();
-        respuesta = conexion.actualizarMantenimiento(man);
-        conexion.cerrarConexion();
-        return respuesta;
-    }
-
-    public ResultSet TraerDatosCliente(String id) {
-        conexion.crearConexion();
-        ResultSet r = conexion.TraerDatosClientes(id);
+        r = conexion.TraerDatosRepuesto(codigo);
         return r;
     }
-    
-    public ResultSet traerDatosEmpleado(String id){
+    public ResultSet codRepuestos(){
         conexion.crearConexion();
-        ResultSet r = conexion.TraerDatosEmpleado(id);
+        r = conexion.codRepuestos();
         return r;
     }
-
-    public ArrayList<GrupoClientes> verGrupoClientes(String dato) {
+    public ResultSet datosRepuesto(String cod){
         conexion.crearConexion();
-        ArrayList<GrupoClientes> grupo = conexion.verGrupoClientes(dato);
-        conexion.cerrarConexion();
-        return grupo;
-    }
-
-    public ResultSet ConsultarAutosClientes(String id) {
-        conexion.crearConexion();
-        ResultSet r = conexion.ConsultarAutosClientes(id);
+        r = conexion.datosRepuesto(cod);
         return r;
     }
+    // 6. Ventas
 
-    public ResultSet consultarDatosAuto(String id) {
+    public boolean detallesMantenimiento(String codMan, String tipoMan, String descripcion, String fecha, String placa, String cli_nombre, String id_mec, String nom_mec, String cod_rep, String tip_rep, String can_rep) {
         conexion.crearConexion();
-        ResultSet r = conexion.consultarDatosAuto(id);
-        return r;
+        respuesta = conexion.detallesMantenimiento(codMan,tipoMan,descripcion,fecha,placa,cli_nombre,id_mec,nom_mec, cod_rep,tip_rep,can_rep);
+        return true;
     }
 
-    public ResultSet IdsClientes() {
+    public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado) {
         conexion.crearConexion();
-        ResultSet r = conexion.IdsClientes();
-        return r;
-    }
-
-    public boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
-        conexion.crearConexion();
-        respuesta = conexion.agregarGrupoCliente(id,cod,nom,est);
-        conexion.cerrarConexion();
-        return respuesta;
-    }
-
-    public boolean actualizarGrupoCliente(String id, String cod, String nom, String est) {
-        conexion.crearConexion();
-        respuesta = conexion.modificarGrupoCliente(id,cod,nom,est);
-        conexion.cerrarConexion();
+        respuesta = conexion.registrarMantenimiento(codigoMantenimiento,fechaInicio,observaciones,costo,estado);
         return respuesta;
     }
 }

@@ -14,6 +14,8 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
         jtListaClientes = new javax.swing.JTable();
         jtfDato = new javax.swing.JTextField();
         jbtBuscar = new javax.swing.JLabel();
+        nRegistros = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -53,6 +55,12 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
         jbtBuscar.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jbtBuscar.setText("Buscar");
 
+        nRegistros.setFont(new java.awt.Font("Lucida Sans", 3, 15)); // NOI18N
+        nRegistros.setText("0");
+
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 2, 16)); // NOI18N
+        jLabel1.setText("N° Registros:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,7 +73,11 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
                         .addComponent(jbtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtfDato, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -74,20 +86,24 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtBuscar))
+                    .addComponent(jbtBuscar)
+                    .addComponent(jLabel1)
+                    .addComponent(nRegistros))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     public javax.swing.JLabel jbtBuscar;
     public javax.swing.JTable jtListaClientes;
     public javax.swing.JTextField jtfDato;
+    public javax.swing.JLabel nRegistros;
     // End of variables declaration//GEN-END:variables
 }
