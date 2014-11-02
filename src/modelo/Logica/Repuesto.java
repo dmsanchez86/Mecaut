@@ -8,16 +8,14 @@ public class Repuesto {
     private final String cantidad;
     private final String precio;
     private final String nitProv;
-    private final String nomProv;
 
-    public Repuesto(String codigo, String tipo, String marca, String cantidad, String precio, String nitProv, String nomProv) {
+    public Repuesto(String codigo, String tipo, String marca, String cantidad, String precio, String nitProv) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.marca = marca;
         this.cantidad = cantidad;
         this.precio = precio;
         this.nitProv = nitProv;
-        this.nomProv = nomProv;
     }
 
     public String getCodigo() {
@@ -43,13 +41,9 @@ public class Repuesto {
     public String getNitProv() {
         return nitProv;
     }
-
-    public String getNomProv() {
-        return nomProv;
-    }
     
     @Override
     public String toString() {
         return ""+ codigo;
-    } 
+    }
 }

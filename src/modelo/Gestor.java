@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import modelo.Logica.Auto;
 import modelo.Logica.Cliente;
 import modelo.Logica.Cuenta;
+import modelo.Logica.DetalleFactura;
 import modelo.Logica.Empleados;
+import modelo.Logica.Factura;
 import modelo.Logica.GrupoClientes;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Proveedor;
@@ -128,6 +130,11 @@ public class Gestor{
         r = conexion.consultarDatosAuto(id);
         return r;
     } 
+    public ResultSet consultarDatosRepuestos(String codigo) {
+        conexion.crearConexion();
+        r = conexion.consultarDatosRepuestos(codigo);
+        return r;
+    } 
     public ResultSet placasAutos(){
         conexion.crearConexion();
         r = conexion.placasAutos();
@@ -187,12 +194,6 @@ public class Gestor{
         respuesta = conexion.eliminarProveedor(nit);
         conexion.crearConexion();
         return respuesta;
-    }
-    public ArrayList<Proveedor> consultarProveedores(){
-        conexion.crearConexion();
-        proveedores = conexion.consultarProveedores();
-        conexion.cerrarConexion();
-        return proveedores;
     }
     public ArrayList<Proveedor> consultarProveedor(){
         conexion.crearConexion();
@@ -286,6 +287,25 @@ public class Gestor{
     public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado) {
         conexion.crearConexion();
         respuesta = conexion.registrarMantenimiento(codigoMantenimiento,fechaInicio,observaciones,costo,estado);
+        return respuesta;
+    }
+    
+    public boolean registrarFactura(Factura fac){
+        conexion.crearConexion();
+        respuesta = conexion.registrarFactura(fac);
+        return respuesta;
+    }
+    
+    public boolean registrarDetalleFactura(DetalleFactura det){
+        conexion.crearConexion();
+        respuesta = conexion.registrarDealleFactura(det);
+        return respuesta;
+    }
+    
+    public boolean actualizarInventario(String codigo, int stockFinal){
+        conexion.crearConexion();
+        respuesta = conexion.actualizarInventario(codigo, stockFinal);
+        conexion.crearConexion();
         return respuesta;
     }
 }

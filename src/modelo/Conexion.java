@@ -10,7 +10,9 @@ import javax.swing.JOptionPane;
 import modelo.Logica.Auto;
 import modelo.Logica.Cliente;
 import modelo.Logica.Cuenta;
+import modelo.Logica.DetalleFactura;
 import modelo.Logica.Empleados;
+import modelo.Logica.Factura;
 import modelo.Logica.GrupoClientes;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Proveedor;
@@ -18,6 +20,7 @@ import modelo.Logica.Repuesto;
 
 public class Conexion {
 
+    Connection conect = null;   
     //--------------------------CONEXION CON MYSQL------------------------------
     private final String driver = "com.mysql.jdbc.Driver"; //Clase del driver de jConnector 
     private final String url = "jdbc:mysql://localhost:3306/db_mecaut"; //Cadena de conexion
@@ -33,8 +36,9 @@ public class Conexion {
     private ArrayList<Proveedor> proveedores;
     private ArrayList<Empleados> empleados;
     private ArrayList<Repuesto> repuestos;
-    
-    public Conexion(){}
+
+    public Conexion() {
+    }
 
     //metodo para crear la conexion 
     public boolean crearConexion() {
@@ -42,10 +46,11 @@ public class Conexion {
             Class.forName(driver);
             conexion = DriverManager.getConnection(url, usuario, contraseña);
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos","MECAUT",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos", "MECAUT", JOptionPane.ERROR_MESSAGE);
         }
         return true;
     }
+
     //Metodo para cerrar la conexion
     public void cerrarConexion() {
         try {
@@ -57,7 +62,7 @@ public class Conexion {
     //metodo para validar cuenta
     public String validarCuentas(Cuenta c) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = '"+c.getUsuario()+"' AND cue_contrasena = MD5('"+c.getContrasena()+"')");
+            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = '" + c.getUsuario() + "' AND cue_contrasena = MD5('" + c.getContrasena() + "')");
             consulta.executeQuery();
             r = consulta.getResultSet();
             while (r.next()) {
@@ -70,6 +75,7 @@ public class Conexion {
         }
         return null;
     }
+
     //metodo para registrar una cuenta
     public boolean registrarCuenta(Cuenta c) {
         try {
@@ -85,7 +91,7 @@ public class Conexion {
             return false;
         }
     }
-    
+
     /* 1. Modulo clientes */
     // *Clientes    
     public boolean agregarCliente(Cliente cli) {
@@ -105,6 +111,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean modificarCliente(Cliente cli) {
         try {
             consulta = conexion.prepareStatement("UPDATE clientes SET cli_nombre = ?, cli_apellidos = ?, cli_sexo = ?, cli_telefono = ?, cli_direccion = ?, cli_correo = ? WHERE cli_id = ?");
@@ -122,6 +129,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean eliminarCliente(String id) {
         try {
             consulta = conexion.prepareStatement("DELETE FROM clientes WHERE cli_id = ?");
@@ -133,6 +141,7 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<Cliente> consultarClientes() {
         clientes = new ArrayList<>();
         try {
@@ -146,6 +155,7 @@ public class Conexion {
             return null;
         }
     }
+
     public ArrayList<Cliente> verClientesPorDato(String dato) {
         clientes = new ArrayList<>();
         try {
@@ -159,15 +169,17 @@ public class Conexion {
             return null;
         }
     }
+
     public ResultSet TraerDatosClientes(String id) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
+            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = " + id + "");
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
             return null;
         }
     }
+
     public ResultSet IdsClientes() {
         try {
             consulta = conexion.prepareStatement("SELECT cli_id FROM clientes");
@@ -177,6 +189,7 @@ public class Conexion {
             return null;
         }
     }
+
     // *Grupo Clientes
     public boolean agregarGrupoCliente(String id, String cod, String nom, String est) {
         try {
@@ -192,6 +205,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean modificarGrupoCliente(String id, String cod, String nom, String est) {
         try {
             consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, cli_id = ?, cli_estado = ? WHERE gru_codigo = ?");
@@ -205,37 +219,39 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<GrupoClientes> verGrupoClientes(String dato) {
         grupo = new ArrayList<>();
         try {
-            switch(dato){
+            switch (dato) {
                 case "Habitual":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '" + dato + "' OR gru_nombre = '" + dato + "'");
                     break;
                 case "Ocasional":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '" + dato + "' OR gru_nombre = '" + dato + "'");
                     break;
                 case "Potencial":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '" + dato + "' OR gru_nombre = '" + dato + "'");
                     break;
                 case "Activo":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '" + dato + "' OR gru_nombre = '" + dato + "'");
                     break;
                 case "Inactivo":
-                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '"+dato+"' OR gru_nombre = '"+dato+"'");
+                    consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = '" + dato + "' OR gru_nombre = '" + dato + "'");
                     break;
                 default:
                     consulta = conexion.prepareStatement("SELECT * FROM grupoclientes WHERE cli_estado = 'Activo'");
             }
             r = consulta.executeQuery();
-            while(r.next()){
-                grupo.add(new GrupoClientes(r.getString(1), r.getString(2), r.getString(3),r.getString(4)));
+            while (r.next()) {
+                grupo.add(new GrupoClientes(r.getString(1), r.getString(2), r.getString(3), r.getString(4)));
             }
             return grupo;
         } catch (SQLException e) {
             return null;
-        } 
+        }
     }
+
     // *Auto
     public boolean agregarAuto(Auto aut) {
         try {
@@ -256,59 +272,73 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<Auto> consultarAutos() {
         autos = new ArrayList<>();
         try {
             consulta = conexion.prepareStatement("Select * FROM autos");
             r = consulta.executeQuery();
             while (r.next()) {
-                autos.add(new Auto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7),r.getString(8),r.getString(9)));
+                autos.add(new Auto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7), r.getString(8), r.getString(9)));
             }
             return autos;
         } catch (SQLException e) {
             return null;
         }
     }
+
     public ResultSet ConsultarAutosClientes(String id) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM autos WHERE cli_id = '"+id+"'");
+            consulta = conexion.prepareStatement("SELECT * FROM autos WHERE cli_id = '" + id + "'");
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
             return null;
         }
     }
+
     public ResultSet consultarDatosAuto(String id) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = "+id+"");
+            consulta = conexion.prepareStatement("SELECT * FROM clientes WHERE cli_id = " + id + "");
             r = consulta.executeQuery();
-            return r;            
+            return r;
         } catch (SQLException e) {
             return null;
         }
     }
-    public ResultSet placasAutos(){
-        try{
+    
+    public ResultSet consultarDatosRepuestos(String codigo) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = " + codigo + "");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public ResultSet placasAutos() {
+        try {
             consulta = conexion.prepareStatement("SELECT aut_placa FROM autos");
             r = consulta.executeQuery();
             return r;
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }
-    public ResultSet datosMantenimiento(String placa){
-        try{
+
+    public ResultSet datosMantenimiento(String placa) {
+        try {
             consulta = conexion.prepareStatement("SELECT cli_id, cli_nombre FROM autos WHERE aut_placa = ?");
             consulta.setString(1, placa);
             r = consulta.executeQuery();
             return r;
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }
     /* 2. Modulo Servicios */
+
     public boolean agregarMantenimiento(Mantenimiento man) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO mantenimientos VALUES (?,?,?,?,?,?)");
@@ -325,6 +355,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean actualizarMantenimiento(Mantenimiento man) {
         try {
             consulta = conexion.prepareStatement("UPDATE mantenimientos SET man_tipo = ?, man_fecha = ?, man_descripcion = ?, man_costo = ? WHERE man_codigo = ?");
@@ -340,6 +371,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean eliminarMantenimiento(Mantenimiento man) {
         try {
             consulta = conexion.prepareStatement("Delete From mantenimientos Where man_codigo = ?");
@@ -351,6 +383,7 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<Mantenimiento> consultarMantenimientos() {
         mantenimientos = new ArrayList<>();
         try {
@@ -365,6 +398,7 @@ public class Conexion {
         }
     }
     /* 3. Modulo Suministros */
+
     public boolean agregarProveedor(Proveedor prov) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO proveedores VALUES (?,?,?,?,?)");
@@ -380,6 +414,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean modificarProveedor(Proveedor prov) {
         try {
             consulta = conexion.prepareStatement("UPDATE proveedores SET prov_nombre = ?, prov_direccion = ?, prov_telefono = ?, prov_descripcion = ? WHERE prov_nit = ?");
@@ -394,7 +429,8 @@ public class Conexion {
         } catch (SQLException e) {
             return false;
         }
-    }  
+    }
+
     public boolean eliminarProveedor(int nit) {
         try {
             consulta = conexion.prepareStatement("DELETE FROM proveedores WHERE prov_nit = ?");
@@ -406,6 +442,7 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<Proveedor> consultarProveedores() {
         proveedores = new ArrayList<>();
         try {
@@ -420,6 +457,7 @@ public class Conexion {
         }
     }
     /* 4. Modulo Personal */
+
     public boolean agregarEmpleado(Empleados emp) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO empleados VALUES (?,?,?,?,?,?,?,?,?)");
@@ -439,6 +477,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean modificarEmpleado(Empleados mec) {
         try {
             consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
@@ -458,6 +497,7 @@ public class Conexion {
             return false;
         }
     }
+
     public boolean eliminarEmpleado(String id) {
         try {
             consulta = conexion.prepareStatement("DELETE FROM empleados WHERE emp_id = ?");
@@ -469,6 +509,7 @@ public class Conexion {
             return false;
         }
     }
+
     public ArrayList<Empleados> consultarEmpleados() {
         empleados = new ArrayList<>();
         try {
@@ -482,6 +523,7 @@ public class Conexion {
             return null;
         }
     }
+
     public ArrayList<Empleados> verEmpleadosPorDato(String dato) {
         empleados = new ArrayList<>();
         try {
@@ -495,35 +537,37 @@ public class Conexion {
             return null;
         }
     }
+
     public ResultSet TraerDatosEmpleado(String id) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM empleados WHERE emp_id = "+id+"");
+            consulta = conexion.prepareStatement("SELECT * FROM empleados WHERE emp_id = " + id + "");
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
             return null;
         }
     }
-    public ResultSet idsMecanicos(){
-        try{
+
+    public ResultSet idsMecanicos() {
+        try {
             consulta = conexion.prepareStatement("SELECT emp_id FROM empleados WHERE emp_tipo = 'Mécanico'");
             r = consulta.executeQuery();
             return r;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }
     /* 5. Modulo Inventario */
+
     public boolean agregarRepuesto(Repuesto rep) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO repuestos VALUES (?,?,?,?,?,?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO repuestos VALUES (?,?,?,?,?,?)");
             consulta.setString(1, rep.getCodigo());
             consulta.setString(2, rep.getTipo());
             consulta.setString(3, rep.getMarca());
             consulta.setString(4, rep.getCantidad());
             consulta.setString(5, rep.getPrecio());
             consulta.setString(6, rep.getNitProv());
-            consulta.setString(7, rep.getNomProv());
             consulta.executeUpdate();
             consulta.close();
             return true;
@@ -531,48 +575,52 @@ public class Conexion {
             return false;
         }
     }
+    
     public ArrayList<Repuesto> verRepuestos() {
         repuestos = new ArrayList<>();
         try {
-            consulta = conexion.prepareStatement("Select * FROM repuestos");
+            consulta = conexion.prepareStatement("Select * FROM repuestos ORDER BY rep_codigo");
             r = consulta.executeQuery();
             while (r.next()) {
-                repuestos.add(new Repuesto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7)));
+                repuestos.add(new Repuesto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6)));
             }
             return repuestos;
         } catch (SQLException e) {
             return null;
         }
     }
+
     public ResultSet TraerDatosRepuesto(String codigo) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = "+codigo+"");
+            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = " + codigo + "");
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
             return null;
         }
     }
-    public ResultSet codRepuestos(){
-        try{
+
+    public ResultSet codRepuestos() {
+        try {
             consulta = conexion.prepareStatement("SELECT rep_codigo FROM repuestos");
             r = consulta.executeQuery();
             return r;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }
-    public ResultSet datosRepuesto(String c){
-        try{
+
+    public ResultSet datosRepuesto(String c) {
+        try {
             consulta = conexion.prepareStatement("SELECT rep_tipo FROM repuestos WHERE rep_codigo = ?");
-            consulta.setString(1,c);
+            consulta.setString(1, c);
             r = consulta.executeQuery();
             return r;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return null;
         }
     }
-    /* 6. Modulo Ventas */    
+    /* 6. Modulo Ventas */
 
     boolean detallesMantenimiento(String codMan, String tipoMan, String descripcion, String fecha, String placa, String cli_nombre, String id_mec, String nom_mec, String cod_rep, String tip_rep, String can_rep) {
         try {
@@ -609,4 +657,48 @@ public class Conexion {
             return false;
         }
     }
+    
+    public boolean registrarFactura(Factura fac) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO factura VALUES(?,?,?,?,?)");
+            consulta.setString(1, fac.getNumero());
+            consulta.setDate(2, fac.getFecha());
+            consulta.setString(3, fac.getIdCliente());
+            consulta.setString(4, fac.getNombreCliente());
+            consulta.setString(5, fac.getTotal());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean registrarDealleFactura(DetalleFactura det) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO detallefactura VALUES(?,?,?,?,?,?)");
+            consulta.setString(1, det.getNumeroFactura());
+            consulta.setString(2, det.getCodigoRepuesto());
+            consulta.setString(3, det.getTipoRepuesto());
+            consulta.setString(4, det.getMarcaRepuesto());
+            consulta.setString(5, det.getCantidadRepuesto());
+            consulta.setString(6, det.getPrecioRepuesto());
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+     public boolean actualizarInventario(String codigo, int stockFinal) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE repuestos SET rep_cantidad='" + stockFinal + "' WHERE rep_codigo = '" + codigo + "'");            
+            consulta.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
 }
