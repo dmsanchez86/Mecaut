@@ -13,13 +13,13 @@ import java.sql.Date;
  * @author Sergio
  */
 public class Factura {
-    private final String numero;
+    private final int numero;
     private final Date fecha;
     private final String idCliente;
     private final String nombreCliente;
     private final String total;
 
-    public Factura(String numero, Date fecha, String idCliente, String nombreCliente, String total) {
+    public Factura(int numero, Date fecha, String idCliente, String nombreCliente, String total) {
         this.numero = numero;
         this.fecha = fecha;
         this.idCliente = idCliente;
@@ -27,7 +27,7 @@ public class Factura {
         this.total = total;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 

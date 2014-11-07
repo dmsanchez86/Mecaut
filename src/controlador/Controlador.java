@@ -431,7 +431,7 @@ public class Controlador {
                     } else {
                         Cliente cli = new Cliente(identificacion, nombre, apellidos, sexo, telefono, direccion, correo);
                         Cuenta cuenta = new Cuenta(identificacion, identificacion, "cliente", identificacion);
-                        if (Gestor.agregarCliente(cli) && Gestor.registrarUsuario(cuenta)) {
+                        if (Gestor.agregarCliente(cli) && Gestor.registrarUsuario(cuenta) && Gestor.agregarGrupoCliente(identificacion, "GRO002", "Ocasional", "Activo")) {
                             JOptionPane.showMessageDialog(null, "¡Datos del cliente " + nombre.toUpperCase() + " almacenados!", "MECAUT - Registro Cliente", JOptionPane.INFORMATION_MESSAGE);
                             jifCliente.jcbSexo.setSelectedIndex(0);
                             limpiar();
@@ -651,10 +651,13 @@ public class Controlador {
 
     private void frmGrupoClientes() {
         limpiar();
+        jifGrupoClientes.jcbcodigoGrupo.setSelectedIndex(0);
+        jifGrupoClientes.jcbNombregrupo.setSelectedIndex(0);
         evtVerGrupoClientes("Activo");
         int n2 = jifGrupoClientes.jtGrupoClientes.getRowCount();
         jifGrupoClientes.nRegistros.setText("" + n2);
         jifGrupoClientes.jbtModificar.setEnabled(false);
+        
         jifGrupoClientes.jcbTipo.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -662,35 +665,17 @@ public class Controlador {
                 evtVerGrupoClientes(dato);
             }
         });
-        jifGrupoClientes.jbtRegistrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String id = jifGrupoClientes.jtfId.getText();
-                String cod = jifGrupoClientes.jtfCodigo.getText();
-                String nom = jifGrupoClientes.jtfNombre.getText();
-                String est = jifGrupoClientes.jcbEstado.getSelectedItem().toString();
-                if (Gestor.agregarGrupoCliente(id, cod, nom, est)) {
-                    JOptionPane.showMessageDialog(null, "El cliente se agrego correctamente al grupo", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
-                    limpiar();
-                    jifGrupoClientes.jcbEstado.setSelectedItem(0);
-                    jifGrupoClientes.jbtRegistrar.setEnabled(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo agregar al grupo", "MECAUT", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
         jifGrupoClientes.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id = jifGrupoClientes.jtfId.getText();
-                String cod = jifGrupoClientes.jtfCodigo.getText();
-                String nom = jifGrupoClientes.jtfNombre.getText();
+                String cod = jifGrupoClientes.jcbcodigoGrupo.getSelectedItem().toString();
+                String nom = jifGrupoClientes.jcbNombregrupo.getSelectedItem().toString();
                 String est = jifGrupoClientes.jcbEstado.getSelectedItem().toString();
                 if (Gestor.actualizarGrupoCliente(id, cod, nom, est)) {
                     JOptionPane.showMessageDialog(null, "Se modifico correctamente el estado del cliente", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
                     limpiar();
                     jifGrupoClientes.jcbEstado.setSelectedItem(0);
-                    jifGrupoClientes.jbtRegistrar.setEnabled(true);
                     jifGrupoClientes.jbtModificar.setEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar el estado del cliente", "MECAUT", JOptionPane.ERROR_MESSAGE);
@@ -701,12 +686,9 @@ public class Controlador {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jifGrupoClientes.jtfId.setEditable(true);
-                jifGrupoClientes.jtfCodigo.setEditable(true);
                 limpiar();
                 jifGrupoClientes.jcbEstado.setSelectedIndex(0);
                 jifGrupoClientes.jbtModificar.setEnabled(false);
-                jifGrupoClientes.jbtRegistrar.setEnabled(true);
             }
         });
         TextAutoCompleter t = new TextAutoCompleter(jifGrupoClientes.jtfId);
@@ -715,8 +697,7 @@ public class Controlador {
             while (r.next()) {
                 t.addItem(r.getString("cli_id"));
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {        }
         jifGrupoClientes.setVisible(true);
         locacionfrm(jifGrupoClientes);
     }
@@ -2301,7 +2282,7 @@ public class Controlador {
                     if (numero.isEmpty() || idCliente.isEmpty() || nombreCliente.isEmpty()) {
                         /* Esta Condición es para que no salga error cuando se abre el formulario por 2da vez */
                     } else {
-                        Factura fac = new Factura(numero, fechaa, idCliente, nombreCliente, total);
+                        Factura fac = new Factura(Integer.parseInt(numero), fechaa, idCliente, nombreCliente, total);
                         if (Gestor.registrarFactura(fac)) {
                             evtRegistrarDetalleFactura();
                             evtActualizarRespuesto();
@@ -2398,8 +2379,6 @@ public class Controlador {
         jifAuto.jtfCombustible.setText("");
         jifAuto.jtfKilometraje.setText("");
         jifGrupoClientes.jtfId.setText("");
-        jifGrupoClientes.jtfCodigo.setText("");
-        jifGrupoClientes.jtfNombre.setText("");
         jifEmpleado.jtfIdentificacion.setText("");
         jifEmpleado.jtfNombre.setText("");
         jifEmpleado.jtfApellidos.setText("");

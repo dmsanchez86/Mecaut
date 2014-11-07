@@ -224,14 +224,14 @@ public class Conexion {
 
     public boolean modificarGrupoCliente(String id, String cod, String nom, String est) {
         try {
-            consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, cli_id = ?, cli_estado = ? WHERE gru_codigo = ?");
+            consulta = conexion.prepareStatement("UPDATE grupoclientes set gru_nombre = ?, gru_codigo = ?, cli_estado = ? WHERE cli_id = ?");
             consulta.setString(1, nom);
-            consulta.setString(2, id);
+            consulta.setString(2, cod);
             consulta.setString(3, est);
-            consulta.setString(4, cod);
+            consulta.setString(4, id);
             consulta.executeUpdate();
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -857,7 +857,7 @@ public class Conexion {
     public boolean registrarFactura(Factura fac) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO factura VALUES(?,?,?,?,?)");
-            consulta.setString(1, fac.getNumero());
+            consulta.setInt(1, 0);
             consulta.setDate(2, fac.getFecha());
             consulta.setString(3, fac.getIdCliente());
             consulta.setString(4, fac.getNombreCliente());
@@ -980,7 +980,7 @@ public class Conexion {
             consulta = conexion.prepareStatement("SELECT * FROM factura");
             r = consulta.executeQuery();
             while(r.next())
-                fac.add(new Factura(r.getString(1), r.getDate(2), r.getString(3), r.getString(4), r.getString(5)));
+                fac.add(new Factura(r.getInt(1), r.getDate(2), r.getString(3), r.getString(4), r.getString(5)));
             return fac;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, ""+e.getMessage());
