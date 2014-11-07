@@ -27,14 +27,15 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jcbEstado = new javax.swing.JComboBox();
         jbtModificar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jbtRegistrar = new javax.swing.JButton();
         jtfNombre = new javax.swing.JTextField();
+        jbtCancelar = new javax.swing.JButton();
+        jbtRegistrar = new javax.swing.JButton();
         nRegistros = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-        setResizable(true);
+        setIconifiable(true);
         setTitle("Grupo de Clientes");
         setToolTipText("");
 
@@ -96,46 +97,57 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412671721_Groups_Black.png"))); // NOI18N
 
+        jtfNombre.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
+        jtfNombre.setToolTipText("Codigo del Grupo de Cliente");
+
+        jbtCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jbtCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
+        jbtCancelar.setToolTipText("Cancelar");
+        jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtCancelarActionPerformed(evt);
+            }
+        });
+
         jbtRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
         jbtRegistrar.setText("Registrar");
         jbtRegistrar.setToolTipText("Registrar Grupo Cliente");
-
-        jtfNombre.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
-        jtfNombre.setToolTipText("Codigo del Grupo de Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(jbtCancelar)
+                .addGap(18, 18, 18)
+                .addComponent(jbtModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel6))
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(51, Short.MAX_VALUE)
-                        .addComponent(jbtModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfCodigo)
-                            .addComponent(jtfId)
-                            .addComponent(jtfNombre)
-                            .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfId, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                    .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfNombre))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,9 +171,11 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
                     .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtModificar)
-                    .addComponent(jbtRegistrar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtCancelar)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbtModificar)
+                        .addComponent(jbtRegistrar)))
                 .addContainerGap())
         );
 
@@ -226,8 +240,8 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jtfCodigo.setText(cod);
         int op = "Activo".equals(est)?1:2;
         jcbEstado.setSelectedIndex(op);
-        jtfId.setEnabled(false);
-        jtfCodigo.setEnabled(false);
+        jtfId.setEditable(false);
+        jtfCodigo.setEditable(false);
         jbtRegistrar.setEnabled(false);
         jbtModificar.setEnabled(true);
     }//GEN-LAST:event_jtGrupoClientesMouseClicked
@@ -238,6 +252,11 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jtfIdKeyTyped
+
+    private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtCancelarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -248,6 +267,7 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton jbtCancelar;
     public javax.swing.JButton jbtModificar;
     public javax.swing.JButton jbtRegistrar;
     public javax.swing.JComboBox jcbEstado;

@@ -1,8 +1,12 @@
 package vista.FormulariosPrincipales;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /* @author Grupo - MECAUT */
 public class frmLoggin extends javax.swing.JFrame {
@@ -48,6 +52,8 @@ public class frmLoggin extends javax.swing.JFrame {
         jtfUsuario.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jtfUsuario.setText("Usuario");
         jtfUsuario.setToolTipText("Ingrese el nombre de Usuario");
+        jtfUsuario.setSelectionEnd(1);
+        jtfUsuario.setSelectionStart(1);
         jtfUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 foco(evt);
@@ -60,6 +66,8 @@ public class frmLoggin extends javax.swing.JFrame {
         jtfContraseña.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jtfContraseña.setText("Contraseña");
         jtfContraseña.setToolTipText("Ingrese la Contraseña");
+        jtfContraseña.setSelectionEnd(2);
+        jtfContraseña.setSelectionStart(2);
         jtfContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtfContraseñaFocusGained(evt);
@@ -93,7 +101,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jbtSalir.setToolTipText("Salir de MECAUT");
         jbtSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412806304_ok-sign-64.png"))); // NOI18N
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412806306_ok-sign-48.png"))); // NOI18N
         btnIngresar.setToolTipText("Iniciar Sesión");
         btnIngresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnIngresar.setBorderPainted(false);
@@ -191,9 +199,10 @@ public class frmLoggin extends javax.swing.JFrame {
     private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
         jLabel5.setForeground(Color.red);
     }//GEN-LAST:event_jLabel5MouseExited
-
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        
+        try {
+            Desktop.getDesktop().browse(new URI("http://localhost/mecaut/?op=registro"));
+	} catch (URISyntaxException | IOException ex) {}
     }//GEN-LAST:event_jLabel5MouseClicked
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

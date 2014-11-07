@@ -9,9 +9,11 @@ import modelo.Logica.DetalleFactura;
 import modelo.Logica.Empleados;
 import modelo.Logica.Factura;
 import modelo.Logica.GrupoClientes;
+import modelo.Logica.HistorialMantenimiento;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Proveedor;
 import modelo.Logica.Repuesto;
+import modelo.Logica.Reserva;
 
 /* @author grupo - MECAUT */
 public class Gestor{
@@ -26,7 +28,15 @@ public class Gestor{
     private ArrayList<Proveedor> proveedores;
     private ArrayList<Empleados> empleados;
     private ArrayList<Repuesto> repuestos;
+    private ArrayList<HistorialMantenimiento> histMantenimientos;
+    private ArrayList<Factura> factura;
     
+    
+    public String estadoConexion(){
+        conexion.crearConexion();
+        String est = conexion.estadoConexion();
+        return est;
+    }
     // Cuentas
     public boolean registrarUsuario(Cuenta c){
         conexion.crearConexion();
@@ -146,10 +156,15 @@ public class Gestor{
         return r;
     }
     // 2. Servicios
-    public boolean agregarMantenimiento(Mantenimiento man){
+    public boolean detallesMantenimiento(String codMan, String tipoMan, String descripcion, String fecha, String placa, String cli_nombre, String id_mec, String nom_mec, String cod_rep, String tip_rep, String can_rep) {
         conexion.crearConexion();
-        respuesta = conexion.agregarMantenimiento(man);
-        conexion.cerrarConexion();
+        respuesta = conexion.detallesMantenimiento(codMan,tipoMan,descripcion,fecha,placa,cli_nombre,id_mec,nom_mec, cod_rep,tip_rep,can_rep);
+        return true;
+    }
+
+    public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado,String cli_id) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarMantenimiento(codigoMantenimiento,fechaInicio,observaciones,costo,estado,cli_id);
         return respuesta;
     }
     public boolean actualizarMantenimiento(Mantenimiento man) {
@@ -158,9 +173,21 @@ public class Gestor{
         conexion.cerrarConexion();
         return respuesta;
     }
-    public boolean eliminarMantenimiento(Mantenimiento man){
+    public boolean eliminarMantenimiento(String cod){
         conexion.crearConexion();
-        respuesta = conexion.eliminarMantenimiento(man);
+        respuesta = conexion.eliminarMantenimiento(cod);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public boolean eliminarDetMantenimiento(String cod){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarDetMantenimiento(cod);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public boolean eliminarHisMantenimiento(String cod){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarHisMantenimiento(cod);
         conexion.cerrarConexion();
         return respuesta;
     }
@@ -176,6 +203,37 @@ public class Gestor{
         conexion.cerrarConexion();
         return mantenimientos;
     }
+    public ResultSet traerDatosMantenimiento(String cod){
+        conexion.crearConexion();
+        r = conexion.traerDatosMantenimiento(cod);
+        return r;
+    }
+    public ResultSet traerDatosDetallesMantenimiento(String cod){
+        conexion.crearConexion();
+        r = conexion.traerDatosDetallesMantenimiento(cod);
+        return r;
+    }
+    public ResultSet codigoMantenimiento() {
+        conexion.crearConexion();
+        r = conexion.codigoMantenimiento();
+        return r;
+    }
+    public ResultSet codigosMantenimientos(){
+        conexion.crearConexion();
+        r = conexion.codigosMantenimientos();
+        return r;
+    }
+    public boolean registrarHistorialMantenimiento(String placa, String codigoMantenimiento, String cli_id, String fecha) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarHistorialMantenimiento(placa,codigoMantenimiento,cli_id,fecha);
+        conexion.cerrarConexion();
+        return respuesta;
+    }
+    public ArrayList<HistorialMantenimiento> listaHistorialMantenimientos(String dato,String campo) {
+        conexion.crearConexion();
+        histMantenimientos = conexion.listaHisMantenimientos(dato,campo);
+        return histMantenimientos;
+    }
     // 3. Suministros
     public boolean agregarProveedor(Proveedor prov){
         conexion.crearConexion();
@@ -186,13 +244,11 @@ public class Gestor{
     public boolean modificarProveedor(Proveedor prov){
         conexion.crearConexion();
         respuesta = conexion.modificarProveedor(prov);
-        conexion.crearConexion();
         return respuesta;
     }
-    public boolean eliminarProveedor(int nit){
+    public boolean eliminarProveedor(String nit){
         conexion.crearConexion();
         respuesta = conexion.eliminarProveedor(nit);
-        conexion.crearConexion();
         return respuesta;
     }
     public ArrayList<Proveedor> consultarProveedor(){
@@ -255,6 +311,17 @@ public class Gestor{
         conexion.cerrarConexion();
         return respuesta;
     }
+    public boolean modificarRepuesto(String cod, String marca, String cant, String precio) {
+        conexion.crearConexion();
+        respuesta = conexion.modificarRepuesto(cod,marca,cant,precio);
+        return respuesta;
+    }
+
+    public boolean eliminarRepuesto(String cod) {
+        conexion.crearConexion();
+        respuesta = conexion.eliminarRepuesto(cod);
+        return respuesta;
+    }
     public ArrayList<Repuesto> verRepuestos(){
         conexion.crearConexion();
         repuestos = conexion.verRepuestos();
@@ -277,18 +344,6 @@ public class Gestor{
         return r;
     }
     // 6. Ventas
-
-    public boolean detallesMantenimiento(String codMan, String tipoMan, String descripcion, String fecha, String placa, String cli_nombre, String id_mec, String nom_mec, String cod_rep, String tip_rep, String can_rep) {
-        conexion.crearConexion();
-        respuesta = conexion.detallesMantenimiento(codMan,tipoMan,descripcion,fecha,placa,cli_nombre,id_mec,nom_mec, cod_rep,tip_rep,can_rep);
-        return true;
-    }
-
-    public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado) {
-        conexion.crearConexion();
-        respuesta = conexion.registrarMantenimiento(codigoMantenimiento,fechaInicio,observaciones,costo,estado);
-        return respuesta;
-    }
     
     public boolean registrarFactura(Factura fac){
         conexion.crearConexion();
@@ -302,10 +357,124 @@ public class Gestor{
         return respuesta;
     }
     
-    public boolean actualizarInventario(String codigo, int stockFinal){
+    public boolean actualizarRepuesto(String codigo, String stockFinal){
         conexion.crearConexion();
-        respuesta = conexion.actualizarInventario(codigo, stockFinal);
+        respuesta = conexion.actualizarRepuesto(codigo, stockFinal);
+        return respuesta;
+    }
+
+    public ResultSet nRegistrosHisMantenimientos() {
         conexion.crearConexion();
+        r = conexion.nRegistrosHisMantenimientos();
+        return r;
+    }
+
+    public ResultSet codigoReserva() {
+        conexion.crearConexion();
+        r = conexion.codigoReserva();
+        return r;
+    }
+
+    public ResultSet datosReserva(String id) {
+        conexion.crearConexion();
+        r = conexion.datosReserva(id);
+        return r;
+    }
+
+    public boolean registrarReserva(Reserva res) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarReserva(res);
+        return respuesta;
+    }
+
+    public ResultSet datosProveedor(String nit) {
+        conexion.crearConexion();
+        r = conexion.datosProveedor(nit);
+        return r;
+    }
+
+    public ResultSet codigoOrdenPedido() {
+        conexion.crearConexion();
+        r = conexion.codigoOrdenPedido();
+        return r;
+    }
+
+    public ResultSet NitsProveedores() {
+        conexion.crearConexion();
+        r = conexion.NitsProveedores();
+        return r;
+    }
+
+    public ResultSet DatosOrden(String nit) {
+        conexion.crearConexion();
+        r = conexion.DatosOrden(nit);
+        return r;
+    }
+
+    public ResultSet nomRepuestos() {
+        conexion.crearConexion();
+        r = conexion.nomRepuestos();
+        return r;
+    }
+
+    public ResultSet datosRepuestoNombre(String nombre) {
+        conexion.crearConexion();
+        r = conexion.datosRepuestoNombre(nombre);
+        return r;
+    }
+
+    public boolean registrarOrdenPedido(String fecha, String nitPro, String nomPro, String telPro, String dirPro, String total) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarOrdenPedido(fecha,nitPro,nomPro,telPro,dirPro,total);
+        return respuesta;
+    }
+
+    public boolean registrarDetallesOrden(String cod,String codRep, String tipRep, String marRep, String canRep, String preRep) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarDetallesOrden(cod,codRep,tipRep, marRep,canRep,preRep);
+        return respuesta;
+    }
+
+    public ArrayList<Factura> consultarFacturas() {
+        conexion.crearConexion();
+        factura = new ArrayList<>();
+        factura = conexion.consultarFacturas();
+        return factura;
+    }
+
+    public ResultSet codigosCotizacion() {
+        conexion.crearConexion();
+        r = conexion.codigosCotizacion();
+        return r;
+    }
+
+    public ArrayList<Mantenimiento> datosCotizacion(String id) {
+        conexion.crearConexion();
+        mantenimientos = conexion.datosCotizacion(id);
+        return mantenimientos;
+    }
+
+    public boolean registrarCotizacion(String fecha, String idCliente, String nombreCliente, String codMante, String valorMantenimiento,String totalMantenimiento, String valorCotizacion, String observaciones) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarCotizacion(fecha,idCliente,nombreCliente,codMante,valorMantenimiento,totalMantenimiento,valorCotizacion,observaciones);
+        return respuesta;
+    }
+
+    public boolean actualizarMantenimiento(String codMante, String totalMantenimiento) {
+        conexion.crearConexion();
+        respuesta = conexion.actualizarMantenimiento(codMante,totalMantenimiento);
+        return respuesta;
+    }
+
+    public int validarFicha(String placa) {
+        conexion.crearConexion();
+        int numr = conexion.validarFicha(placa);
+        return numr;
+    }
+
+    public boolean registrarFichaTecnica(String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarFichaTecnica(idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces);
         return respuesta;
     }
 }

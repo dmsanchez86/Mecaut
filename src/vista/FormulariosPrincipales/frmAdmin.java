@@ -2,6 +2,9 @@ package vista.FormulariosPrincipales;
 
 import controlador.Controlador;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /* @author Grupo - MECAUT */
 public class frmAdmin extends javax.swing.JFrame {
@@ -11,6 +14,7 @@ public class frmAdmin extends javax.swing.JFrame {
         setIconImage(icon);
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -19,6 +23,8 @@ public class frmAdmin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JLabel();
+        conection = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmClientes = new javax.swing.JMenu();
         jmiCliente = new javax.swing.JMenu();
@@ -45,8 +51,8 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiProveedor = new javax.swing.JMenu();
         jmiRegitrarProveedor = new javax.swing.JMenuItem();
         jmiActualizarProveedor = new javax.swing.JMenuItem();
-        jmiBuscarProveedor = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiListaProveedores = new javax.swing.JMenuItem();
+        jmiDevoluciones = new javax.swing.JMenuItem();
         jmPersonal = new javax.swing.JMenu();
         jmiEmpleados = new javax.swing.JMenu();
         jmiRegistrarMecanico = new javax.swing.JMenuItem();
@@ -70,7 +76,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiCreditos = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
         jmiListaRepuestos = new javax.swing.JMenuItem();
-        jmiListaProveedores = new javax.swing.JMenuItem();
         jmiListaMantenimientos = new javax.swing.JMenuItem();
         jmiListaCreditos = new javax.swing.JMenuItem();
         jmiListaFacturas = new javax.swing.JMenuItem();
@@ -101,17 +106,24 @@ public class frmAdmin extends javax.swing.JFrame {
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addGap(162, 162, 162)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addGap(159, 159, 159))
         );
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Purisa", 3, 14)); // NOI18N
         jLabel1.setText("Usuario:");
 
         user.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
         user.setText(" ");
+
+        conection.setFont(new java.awt.Font("Purisa", 3, 14)); // NOI18N
+        conection.setForeground(new java.awt.Color(255, 142, 41));
+        conection.setToolTipText("Estado de la Conexión");
+
+        jLabel2.setFont(new java.awt.Font("Purisa", 2, 15)); // NOI18N
+        jLabel2.setText("Estado:");
 
         jMenuBar1.setToolTipText("");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -292,17 +304,20 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmiProveedor.add(jmiActualizarProveedor);
 
-        jmiBuscarProveedor.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiBuscarProveedor.setText("Consultar");
-        jmiBuscarProveedor.setToolTipText("Ver Todos los Proveedores");
-        jmiBuscarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmiProveedor.add(jmiBuscarProveedor);
+        jmiListaProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiListaProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
+        jmiListaProveedores.setText("Lista");
+        jmiListaProveedores.setToolTipText("Lista de Proveedores");
+        jmiListaProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmiProveedor.add(jmiListaProveedores);
 
         jmProveedores.add(jmiProveedor);
 
-        jMenuItem1.setText("Devoluciones");
-        jmProveedores.add(jMenuItem1);
+        jmiDevoluciones.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiDevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574572_briefcase_16.png"))); // NOI18N
+        jmiDevoluciones.setText("Devoluciones");
+        jmiDevoluciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmProveedores.add(jmiDevoluciones);
 
         jMenuBar1.add(jmProveedores);
 
@@ -450,12 +465,6 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiListaRepuestos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmReportes.add(jmiListaRepuestos);
 
-        jmiListaProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiListaProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
-        jmiListaProveedores.setText("Lista de Proveedores");
-        jmiListaProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmReportes.add(jmiListaProveedores);
-
         jmiListaMantenimientos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiListaMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jmiListaMantenimientos.setText("Lista de Mantenimientos");
@@ -481,6 +490,16 @@ public class frmAdmin extends javax.swing.JFrame {
         jmAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmAyuda.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmAyuda.setMargin(new java.awt.Insets(5, 0, 5, 10));
+        jmAyuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmAyudaMouseClicked(evt);
+            }
+        });
+        jmAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAyudaActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jmAyuda);
 
         jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
@@ -513,7 +532,11 @@ public class frmAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(conection, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,11 +545,24 @@ public class frmAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(user)))
+                    .addComponent(user)
+                    .addComponent(conection)
+                    .addComponent(jLabel2)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAyudaActionPerformed
+
+    }//GEN-LAST:event_jmAyudaActionPerformed
+
+    private void jmAyudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmAyudaMouseClicked
+        try {
+            Desktop.getDesktop().browse(new URI("http://localhost/mecaut/?op=ayuda"));
+        } catch (URISyntaxException | IOException ex) {
+        }
+    }//GEN-LAST:event_jmAyudaMouseClicked
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -557,14 +593,15 @@ public class frmAdmin extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel conection;
     public javax.swing.JDesktopPane jDesktopPane1;
     public javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenu jmAyuda;
+    public javax.swing.JMenu jmAyuda;
     public javax.swing.JMenu jmClientes;
     private javax.swing.JMenu jmInventario;
     private javax.swing.JMenu jmPersonal;
@@ -580,7 +617,6 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiActualizarProveedor;
     public javax.swing.JMenuItem jmiActualizarRepuesto;
     public javax.swing.JMenuItem jmiBuscarFactura;
-    public javax.swing.JMenuItem jmiBuscarProveedor;
     public javax.swing.JMenuItem jmiBuscarRepuesto;
     private javax.swing.JMenu jmiCliente;
     private javax.swing.JMenuItem jmiConfiguracion;
@@ -588,6 +624,7 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiCreditos;
     private javax.swing.JMenu jmiCuentas;
     public javax.swing.JMenuItem jmiCuentasPagar;
+    public javax.swing.JMenuItem jmiDevoluciones;
     private javax.swing.JMenu jmiEmpleados;
     private javax.swing.JMenu jmiFactura;
     public javax.swing.JMenuItem jmiFichaRecepcion;
@@ -610,7 +647,7 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jmiProveedor;
     public javax.swing.JMenuItem jmiRegistrarAuto;
     public javax.swing.JMenuItem jmiRegistrarCliente;
-    private javax.swing.JMenuItem jmiRegistrarCuenta;
+    public javax.swing.JMenuItem jmiRegistrarCuenta;
     public javax.swing.JMenuItem jmiRegistrarFactura;
     public javax.swing.JMenuItem jmiRegistrarMantenimiento;
     public javax.swing.JMenuItem jmiRegistrarMecanico;

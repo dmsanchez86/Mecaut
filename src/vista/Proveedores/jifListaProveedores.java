@@ -13,6 +13,7 @@ public class jifListaProveedores extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
         setTitle("Lista proveedores");
 
         jtListaMecanicos.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N

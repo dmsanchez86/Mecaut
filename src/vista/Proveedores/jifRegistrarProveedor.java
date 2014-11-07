@@ -25,6 +25,7 @@ public class jifRegistrarProveedor extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setIconifiable(true);
         setTitle("Registrar proveedor");
         setToolTipText("");
 
