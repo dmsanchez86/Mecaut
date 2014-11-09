@@ -466,15 +466,21 @@ public class Gestor{
         return respuesta;
     }
 
-    public int validarFicha(String placa) {
+    public ResultSet validarFicha(String placa) {
         conexion.crearConexion();
-        int numr = conexion.validarFicha(placa);
-        return numr;
+        r = conexion.validarFicha(placa);
+        return r;
     }
 
     public boolean registrarFichaTecnica(String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
         conexion.crearConexion();
         respuesta = conexion.registrarFichaTecnica(idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces);
         return respuesta;
+    }
+
+    public ResultSet codigoFactura() {
+        conexion.crearConexion();
+        r = conexion.codigoFactura();
+        return r;
     }
 }

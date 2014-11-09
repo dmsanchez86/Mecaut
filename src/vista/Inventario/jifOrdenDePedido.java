@@ -5,6 +5,9 @@
  */
 package vista.Inventario;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author daniel
@@ -59,10 +62,10 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jbtAgregarRepuesto = new javax.swing.JButton();
-        jbtEliminarRepuesto = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jtfTotal = new javax.swing.JTextField();
         jbtRegistrar = new javax.swing.JButton();
+        jbtEliminar = new javax.swing.JButton();
 
         jFrame1.setTitle("Detalles de los repuestos");
         jFrame1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -283,8 +286,6 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtEliminarRepuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
-
         jLabel8.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
         jLabel8.setText("Total");
 
@@ -292,6 +293,14 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
 
         jbtRegistrar.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
         jbtRegistrar.setText("Registrar Orden");
+
+        jbtEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
+        jbtEliminar.setToolTipText("Eliminar repuesto");
+        jbtEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -315,8 +324,8 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbtAgregarRepuesto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbtEliminarRepuesto))
+                                .addGap(18, 18, 18)
+                                .addComponent(jbtEliminar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -339,19 +348,19 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
                     .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7)
                     .addComponent(jbtAgregarRepuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtEliminarRepuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jbtRegistrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -378,6 +387,16 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbtAgregarRepuestoActionPerformed
 
+    private void jbtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEliminarActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int i = jTable1.getSelectedRow();
+        if (i <0) {
+            JOptionPane.showMessageDialog(null, "Seleccione una columna","MECAUT",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        model.removeRow(i);
+    }//GEN-LAST:event_jbtEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton5;
@@ -402,7 +421,7 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
     public javax.swing.JTable jTable1;
     public javax.swing.JButton jbtAceptar;
     public javax.swing.JButton jbtAgregarRepuesto;
-    public javax.swing.JButton jbtEliminarRepuesto;
+    public javax.swing.JButton jbtEliminar;
     public javax.swing.JButton jbtRegistrar;
     public javax.swing.JComboBox jcbNIT;
     public javax.swing.JComboBox jcbTipoRep;

@@ -75,6 +75,11 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(rbRangoFecha);
         rbRangoFecha.setText("Todos los Registros");
+        rbRangoFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbRangoFechaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("N° Registros: ");
 
@@ -195,6 +200,17 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             jdcFecha.setEnabled(true);
         }
     }//GEN-LAST:event_rbFechaActionPerformed
+
+    private void rbRangoFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRangoFechaActionPerformed
+        if (rbRangoFecha.isSelected()) {
+            jtfPlaca.setText("");
+            jtfIdCliente.setText("");
+            jdcFecha.setDate(null);
+            jtfPlaca.setEnabled(false);
+            jtfIdCliente.setEnabled(false);
+            jdcFecha.setEnabled(false);
+        }
+    }//GEN-LAST:event_rbRangoFechaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

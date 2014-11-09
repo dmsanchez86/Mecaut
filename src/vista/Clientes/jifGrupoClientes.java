@@ -3,9 +3,7 @@ package vista.Clientes;
 import modelo.Gestor;
 
 public class jifGrupoClientes extends javax.swing.JInternalFrame {
-    Gestor ges = new Gestor();
-    char c;
-    int ope = 0;
+    
     public jifGrupoClientes() {
         initComponents();
     }
@@ -74,13 +72,9 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jLabel5.setText("Ident. Cliente");
 
+        jtfId.setEditable(false);
         jtfId.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
         jtfId.setToolTipText("Identificacion del Cliente");
-        jtfId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtfIdKeyTyped(evt);
-            }
-        });
 
         jcbEstado.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
         jcbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Activo", "Inactivo" }));
@@ -90,17 +84,13 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
         jbtModificar.setText("Modificar");
         jbtModificar.setToolTipText("Actualizar Grupo Cliente");
+        jbtModificar.setEnabled(false);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412671721_Groups_Black.png"))); // NOI18N
 
         jbtCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jbtCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtCancelar.setToolTipText("Cancelar");
-        jbtCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtCancelarActionPerformed(evt);
-            }
-        });
 
         jcbcodigoGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------", "GRH001", "GRO002", "GRP003" }));
         jcbcodigoGrupo.addItemListener(new java.awt.event.ItemListener() {
@@ -235,21 +225,8 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
              jcbcodigoGrupo.setSelectedIndex(3);
         int op = "Activo".equals(est)?1:2;
         jcbEstado.setSelectedIndex(op);
-        jtfId.setEditable(false);
-        jcbEstado.setEditable(false);
         jbtModificar.setEnabled(true);
     }//GEN-LAST:event_jtGrupoClientesMouseClicked
-    private void jtfIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfIdKeyTyped
-        c = evt.getKeyChar();
-        if (Character.isLetter(c)) {
-            getToolkit().beep();
-            evt.consume();
-        }
-    }//GEN-LAST:event_jtfIdKeyTyped
-
-    private void jbtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtCancelarActionPerformed
 
     private void jcbcodigoGrupoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbcodigoGrupoItemStateChanged
         int op = jcbcodigoGrupo.getSelectedIndex();

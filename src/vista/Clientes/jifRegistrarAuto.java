@@ -95,6 +95,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jbtRegistrar.setText("Registrar");
         jbtRegistrar.setToolTipText("Registrar Datos del Auto");
         jbtRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtRegistrar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,7 +164,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addComponent(jbtRegistrar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Propietario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N

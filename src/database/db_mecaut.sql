@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-11-2014 a las 17:33:37
--- Versión del servidor: 5.5.16
--- Versión de PHP: 5.3.8
+-- Tiempo de generación: 09-11-2014 a las 01:01:59
+-- Versión del servidor: 5.6.20
+-- Versión de PHP: 5.5.15
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -35,9 +35,7 @@ CREATE TABLE IF NOT EXISTS `autos` (
   `aut_kilometraje` varchar(10) NOT NULL,
   `aut_combustible` varchar(20) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `cli_nombre` varchar(20) NOT NULL,
-  PRIMARY KEY (`aut_placa`),
-  KEY `cli_id` (`cli_id`)
+  `cli_nombre` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -66,8 +64,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `cli_sexo` varchar(15) NOT NULL,
   `cli_telefono` varchar(10) NOT NULL,
   `cli_direccion` varchar(25) NOT NULL,
-  `cli_correo` varchar(50) NOT NULL,
-  PRIMARY KEY (`cli_id`)
+  `cli_correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -76,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cli_telefono`, `cli_direccion`, `cli_correo`) VALUES
 ('', '', '', '----------', '', '', ''),
-('1053', 'DAniel', 'Sanchez', 'Masculino', '2323', 'Solferino', 'dmsanchez@misena.du.co'),
+('1053', 'Daniel', 'Sanchez', 'Masculino', '2323', 'Solferino', 'dmsanchez@misena.du.co'),
 ('1053843130', 'Yuliana', 'Ramirez', 'Femenino', '3232323', 'Sena', 'yuliana10@misena.edu.co'),
 ('1053844273', 'Mauricio', 'Sánchez', 'Masculino', '3203768421', 'Pereira', 'dmsanchez86@misena.edu.co'),
 ('1060648721', 'Andres', 'Zapata', 'Masculino', '3127185122', 'Villamaria', 'andres@gmail.com'),
@@ -102,7 +99,7 @@ INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cl
 --
 
 CREATE TABLE IF NOT EXISTS `cotizacion` (
-  `cot_numero` int(11) NOT NULL AUTO_INCREMENT,
+`cot_numero` int(11) NOT NULL,
   `cot_fecha` varchar(30) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
   `cli_nombre` varchar(30) NOT NULL,
@@ -111,9 +108,8 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
   `man_precioFinal` varchar(20) NOT NULL,
   `cot_valor` varchar(20) NOT NULL,
   `cot_observaciones` varchar(200) NOT NULL,
-  `cot_estado` varchar(30) NOT NULL,
-  PRIMARY KEY (`cot_numero`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `cot_estado` varchar(30) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `cotizacion`
@@ -121,7 +117,9 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
 
 INSERT INTO `cotizacion` (`cot_numero`, `cot_fecha`, `cli_id`, `cli_nombre`, `man_codigo`, `man_precio`, `man_precioFinal`, `cot_valor`, `cot_observaciones`, `cot_estado`) VALUES
 (1, '14-11-06', '1053844273', 'Mauricio', '1', '365000', '360000', '5000', 'ninguna', 'Pendiente'),
-(2, '14-11-06', '1053844273', 'Mauricio', '25', '235000', '85000', '150000', 'abono 150 lucas', 'Pendiente');
+(2, '14-11-06', '1053844273', 'Mauricio', '25', '235000', '85000', '150000', 'abono 150 lucas', 'Pendiente'),
+(3, '14-11-08', '1060648721', 'Andres', '26', '34000', '14000', '20000', 'Ninguna', 'Pendiente'),
+(4, '14-11-14', '1053844273', 'Mauricio', '3', '300000', '254700', '45300', 'abono', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -130,13 +128,11 @@ INSERT INTO `cotizacion` (`cot_numero`, `cot_fecha`, `cli_id`, `cli_nombre`, `ma
 --
 
 CREATE TABLE IF NOT EXISTS `cuentas` (
-  `cue_numero` int(11) NOT NULL AUTO_INCREMENT,
+`cue_numero` int(11) NOT NULL,
   `cue_usuario` varchar(30) NOT NULL,
   `cue_contrasena` varchar(255) NOT NULL,
   `cue_tipoUsuario` varchar(20) NOT NULL,
-  `usu_id` varchar(20) NOT NULL,
-  PRIMARY KEY (`cue_numero`),
-  KEY `cli_id` (`usu_id`)
+  `usu_id` varchar(20) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
@@ -171,8 +167,7 @@ CREATE TABLE IF NOT EXISTS `detallefactura` (
   `rep_tipo` varchar(20) NOT NULL DEFAULT '',
   `rep_marca` varchar(10) NOT NULL DEFAULT '',
   `rep_cantidad` varchar(5) NOT NULL DEFAULT '',
-  `rep_precio` varchar(8) NOT NULL DEFAULT '',
-  KEY `FK_detallefactura_1` (`fac_numero`)
+  `rep_precio` varchar(8) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -180,7 +175,10 @@ CREATE TABLE IF NOT EXISTS `detallefactura` (
 --
 
 INSERT INTO `detallefactura` (`fac_numero`, `rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, `rep_precio`) VALUES
-('1', '2', 'Motor', 'michellin', '2', '1200000');
+('1', '2', 'Motor', 'michellin', '2', '1200000'),
+('2', '56', 'Bomba de gasolina', 'Yamaha', '1', '45000'),
+('3', '2', 'Motor', 'michellin', '5', '1200000'),
+('3', '2', 'Motor', 'michellin', '5', '1200000');
 
 -- --------------------------------------------------------
 
@@ -199,11 +197,7 @@ CREATE TABLE IF NOT EXISTS `detallesmantenimientos` (
   `emp_nombre` varchar(30) NOT NULL,
   `rep_codigo` varchar(8) NOT NULL,
   `rep_tipo` varchar(30) NOT NULL,
-  `rep_cantidad` varchar(11) NOT NULL,
-  KEY `man_codigo` (`man_codigo`),
-  KEY `aut_placa` (`aut_placa`),
-  KEY `emp_id` (`emp_id`),
-  KEY `rep_codigo` (`rep_codigo`)
+  `rep_cantidad` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -211,7 +205,6 @@ CREATE TABLE IF NOT EXISTS `detallesmantenimientos` (
 --
 
 INSERT INTO `detallesmantenimientos` (`man_codigo`, `man_tipo`, `man_descripcion`, `man_fechaFin`, `aut_placa`, `cli_nombre`, `emp_id`, `emp_nombre`, `rep_codigo`, `rep_tipo`, `rep_cantidad`) VALUES
-(1, 'Cambio de Llantas', 'Se solicita cabio de las 2 llantas delanteras', 'Thu Nov 13 23:58:15 COT 2014', '234GGT', 'Mauricio', '111', 'Jeremiasss', '3', 'Amortiguador', '2'),
 (4, 'Cambio de Aceite', 'edfgsdf', 'Fri Nov 14 11:16:33 COT 2014', '877GTH', 'Mauricio', '232323', 'Felipe', '4', 'Amortiguador', '1'),
 (5, 'Cambio de Llantas', 'dfgas', '12/11/2014', '23321', 'Luz Adriana', '232323', 'Felipe', '3', 'Amortiguador', '1'),
 (6, 'Cambio de Llantas', 'sdfasdfs', '14/11/2014', '877GTH', 'Mauricio', '232323', 'Felipe', '4', 'Amortiguador', '3'),
@@ -232,7 +225,11 @@ INSERT INTO `detallesmantenimientos` (`man_codigo`, `man_tipo`, `man_descripcion
 (24, 'Cambio de Llantas', 'asf', '20/11/2014', '234GGT', 'Mauricio', '12', 'Casimiro', '3', 'Amortiguador', '3'),
 (25, 'Cambio de Aceite', 'ninguna', '04/11/2014', '111AAA', 'DAniel', '12', 'Casimiro', '1', 'Batería', '1'),
 (26, 'Cambio de Aceite', 'ninguna', '08/11/2014', '232BHG', 'Andres', '111', 'Jeremiasss', '1', 'Batería', '1'),
-(27, 'Reparación de Frenos', 'ninguna', '01/11/2014', '232BHG', 'Andres', '111', 'Jeremiasss', '3', 'Amortiguador', '2');
+(27, 'Reparación de Frenos', 'ninguna', '01/11/2014', '232BHG', 'Andres', '111', 'Jeremiasss', '3', 'Amortiguador', '2'),
+(28, 'Reparación de Frenos', 'asd', '14/11/2014', '234GGT', 'Mauricio', '12', 'Casimiro', '3', 'Amortiguador', '4'),
+(29, 'Cambio de Llantas', 'none', '16/11/2014', '232BHG', 'Andres', '12312', 'Caliman Sanchez', '56', 'Bomba de gasolina', '16'),
+(31, 'Cambio de Aceite', 'ninguna', '15/11/2014', '232BHG', 'Andres', '12312', 'Caliman Sanchez', '3', 'Amortiguador', '3'),
+(32, 'Cambio de Llantas', 'none', '16/11/2014', '232BHG', 'Andres', '111', 'Jeremiasss Vallejo', '2', 'Motor', '4');
 
 -- --------------------------------------------------------
 
@@ -256,7 +253,21 @@ CREATE TABLE IF NOT EXISTS `detalles_ordenpedido` (
 INSERT INTO `detalles_ordenpedido` (`ord_numero`, `rep_codigo`, `rep_nombre`, `rep_marca`, `rep_cantidad`, `rep_precio`) VALUES
 (2, '56', 'Bomba de gasolina', 'Yamaha', '6', '45000'),
 (2, '2', 'Motor', 'michellin', '8', '1200000'),
-(2, '1', 'Batería', 'Kia', '5', '132000');
+(2, '1', 'Batería', 'Kia', '5', '132000'),
+(3, '3', 'Amortiguador', 'michellin', '5', '80000'),
+(4, '56', 'Bomba de gasolina', 'Yamaha', '5', '45000'),
+(5, '56', 'Bomba de gasolina', 'Yamaha', '16', '45000'),
+(6, '56', 'Bomba de gasolina', 'Yamaha', '1', '45000'),
+(7, '1', 'Batería', 'Kia', '10', '132000'),
+(8, '1', 'Batería', 'Kia', '30', '132000'),
+(8, '2', 'Motor', 'michellin', '20', '1200000'),
+(9, '1', 'Batería', 'Kia', '10', '132000'),
+(10, '1', 'Batería', 'Kia', '29', '132000'),
+(11, '2', 'Motor', 'michellin', '33', '1200000'),
+(12, '3', 'Amortiguador', 'michellin', '10', '80000'),
+(12, '56', 'Bomba de gasolina', 'Yamaha', '34', '45000'),
+(17, '56', 'Bomba de gasolina', 'Yamaha', '10', '45000'),
+(17, '3', 'Amortiguador', 'michellin', '10', '80000');
 
 -- --------------------------------------------------------
 
@@ -273,8 +284,7 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `emp_telefono` varchar(10) NOT NULL,
   `emp_direccion` varchar(25) NOT NULL,
   `emp_salario` varchar(10) NOT NULL,
-  `emp_correo` varchar(50) NOT NULL,
-  PRIMARY KEY (`emp_id`)
+  `emp_correo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -297,20 +307,22 @@ INSERT INTO `empleados` (`emp_id`, `emp_nombre`, `emp_apellidos`, `emp_sexo`, `e
 --
 
 CREATE TABLE IF NOT EXISTS `factura` (
-  `fac_numero` int(11) NOT NULL AUTO_INCREMENT,
+`fac_numero` int(11) NOT NULL,
   `fac_fecha` varchar(20) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
   `cli_nombre` varchar(20) NOT NULL,
-  `fac_total` varchar(20) NOT NULL,
-  PRIMARY KEY (`fac_numero`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `fac_total` varchar(20) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `factura`
 --
 
 INSERT INTO `factura` (`fac_numero`, `fac_fecha`, `cli_id`, `cli_nombre`, `fac_total`) VALUES
-(1, '2014-11-07', '1053', 'DAniel', '2400000.0');
+(1, '2014-11-07', '1053', 'DAniel', '2400000.0'),
+(2, '2014-11-07', '9506', 'Felipe', '45000.0'),
+(3, '2014-11-07', '1053', 'Daniel Sanchez', '6000000.0'),
+(4, '2014-11-07', '1053', 'Daniel Sanchez', '6000000.0');
 
 -- --------------------------------------------------------
 
@@ -355,8 +367,7 @@ CREATE TABLE IF NOT EXISTS `grupoclientes` (
   `gru_codigo` enum('GRH001','GRO002','GRP003') NOT NULL,
   `gru_nombre` enum('Habitual','Ocasional','Potencial') NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `cli_estado` enum('Activo','Inactivo') NOT NULL,
-  KEY `cli_id` (`cli_id`)
+  `cli_estado` enum('Activo','Inactivo') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -364,9 +375,9 @@ CREATE TABLE IF NOT EXISTS `grupoclientes` (
 --
 
 INSERT INTO `grupoclientes` (`gru_codigo`, `gru_nombre`, `cli_id`, `cli_estado`) VALUES
-('GRO002', 'Ocasional', '11111', 'Inactivo'),
-('GRO002', 'Ocasional', '11111', 'Inactivo'),
-('GRP003', 'Potencial', '33333', 'Activo');
+('GRH001', 'Habitual', '11111', 'Activo'),
+('GRH001', 'Habitual', '11111', 'Activo'),
+('GRP003', 'Potencial', '33333', 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -378,10 +389,7 @@ CREATE TABLE IF NOT EXISTS `historialmantenimientos` (
   `aut_placa` varchar(8) NOT NULL,
   `man_codigo` int(11) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `his_fecha` varchar(30) NOT NULL,
-  KEY `aut_placa` (`aut_placa`),
-  KEY `man_codigo` (`man_codigo`),
-  KEY `cli_id` (`cli_id`)
+  `his_fecha` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -398,7 +406,12 @@ INSERT INTO `historialmantenimientos` (`aut_placa`, `man_codigo`, `cli_id`, `his
 ('234GGT', 24, '1053844273', '21/11/2014'),
 ('111AAA', 25, '1053', '14/11/2014'),
 ('232BHG', 26, '1060648721', '12/11/2014'),
-('232BHG', 27, '1060648721', '07/11/2014');
+('232BHG', 27, '1060648721', '07/11/2014'),
+('234GGT', 28, '1053844273', '09/11/2014'),
+('232BHG', 29, '1060648721', '14/11/2014'),
+('111AAA', 30, '1053', '14/11/2014'),
+('232BHG', 31, '1060648721', '06/11/2014'),
+('232BHG', 32, '1060648721', '15/11/2014');
 
 -- --------------------------------------------------------
 
@@ -407,23 +420,21 @@ INSERT INTO `historialmantenimientos` (`aut_placa`, `man_codigo`, `cli_id`, `his
 --
 
 CREATE TABLE IF NOT EXISTS `mantenimientos` (
-  `man_codigo` int(11) NOT NULL AUTO_INCREMENT,
+`man_codigo` int(11) NOT NULL,
   `man_fechaInicio` varchar(50) NOT NULL,
   `man_estado` enum('Pendiente','Rechazado','Realizado','') NOT NULL,
   `man_costo` varchar(20) NOT NULL,
   `man_observaciones` text NOT NULL,
-  `cli_id` varchar(15) NOT NULL,
-  PRIMARY KEY (`man_codigo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+  `cli_id` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Volcado de datos para la tabla `mantenimientos`
 --
 
 INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `man_costo`, `man_observaciones`, `cli_id`) VALUES
-(1, 'Wed Oct 29 01:14:20 COT 2014', 'Pendiente', '360000', 'Miercoles 29', '1053844273'),
 (2, 'Sat Oct 04 15:43:22 COT 2014', 'Pendiente', '123000', 'ninguna', ''),
-(3, 'Sat Nov 15 00:00:00 COT 2014', 'Pendiente', '300000', 'MAntenimiento de hoy', '1053844273'),
+(3, 'Sat Nov 15 00:00:00 COT 2014', 'Pendiente', '254700', 'MAntenimiento de hoy', '1053844273'),
 (4, 'Fri Nov 14 11:15:54 COT 2014', 'Pendiente', '20500', 'awdafad', ''),
 (5, '14/11/2014', 'Pendiente', '1205000', 'dfbsdf', ''),
 (6, '14/11/2014', 'Pendiente', '12000', 'asdfsdf', '1053844273'),
@@ -441,8 +452,13 @@ INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `ma
 (21, '22/11/2014', 'Pendiente', '123333', 'daf', ''),
 (24, '21/11/2014', 'Pendiente', '124444', 'jk', ''),
 (25, '14/11/2014', 'Pendiente', '85000', 'ninguna', '1053'),
-(26, '12/11/2014', 'Pendiente', '34000', 'none', '1060648721'),
-(27, '07/11/2014', 'Pendiente', '1200000', 'ninguna', '1060648721');
+(26, '12/11/2014', 'Pendiente', '14000', 'none', '1060648721'),
+(27, '07/11/2014', 'Pendiente', '1200000', 'ninguna', '1060648721'),
+(28, '09/11/2014', 'Pendiente', '340000', 'adas', '1053844273'),
+(29, '14/11/2014', 'Pendiente', '720000', 'weqf', '1060648721'),
+(30, '14/11/2014', 'Pendiente', '56000', 'dfg', '1053'),
+(31, '06/11/2014', 'Pendiente', '240000', 'ninguna', '1060648721'),
+(32, '15/11/2014', 'Pendiente', '$4800000', 'asdsf', '1060648721');
 
 -- --------------------------------------------------------
 
@@ -451,16 +467,15 @@ INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `ma
 --
 
 CREATE TABLE IF NOT EXISTS `ordenpedido` (
-  `ord_numero` int(11) NOT NULL AUTO_INCREMENT,
+`ord_numero` int(11) NOT NULL,
   `ord_fecha` varchar(20) NOT NULL,
   `prov_nit` varchar(15) NOT NULL,
   `prov_nombre` varchar(20) NOT NULL,
   `prov_telefono` varchar(20) NOT NULL,
   `prov_direccion` varchar(30) NOT NULL,
   `ord_estado` enum('Pendiente','Aceptada','Rechazada','') NOT NULL,
-  `ord_precio` varchar(20) NOT NULL,
-  PRIMARY KEY (`ord_numero`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `ord_precio` varchar(20) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Volcado de datos para la tabla `ordenpedido`
@@ -468,7 +483,35 @@ CREATE TABLE IF NOT EXISTS `ordenpedido` (
 
 INSERT INTO `ordenpedido` (`ord_numero`, `ord_fecha`, `prov_nit`, `prov_nombre`, `prov_telefono`, `prov_direccion`, `ord_estado`, `ord_precio`) VALUES
 (1, '14-11-14', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$2704000'),
-(2, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$10530000');
+(2, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$10530000'),
+(3, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$400000'),
+(4, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$225000'),
+(5, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$720000'),
+(6, '14-11-12', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '$45000'),
+(7, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1320000'),
+(8, '14-11-27', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$27960000'),
+(9, '14-11-15', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1320000'),
+(10, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$3828000'),
+(11, '14-11-13', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$39600000'),
+(12, '14-11-20', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '$2330000'),
+(13, '14-11-13', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$3640000'),
+(14, '14-11-07', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1700000'),
+(15, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$225000'),
+(16, '14-11-07', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$6000000'),
+(17, '14-11-05', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$1250000');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `promociones`
+--
+
+CREATE TABLE IF NOT EXISTS `promociones` (
+  `pro_fecha` varchar(20) NOT NULL,
+  `pro_tipo` varchar(30) NOT NULL,
+  `pro_descripcion` text NOT NULL,
+  `pro_estado` enum('Activa','Inactiva') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -481,8 +524,7 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `prov_nombre` varchar(20) NOT NULL,
   `prov_direccion` varchar(25) NOT NULL,
   `prov_telefono` varchar(10) NOT NULL,
-  `prov_descripcion` varchar(50) NOT NULL,
-  PRIMARY KEY (`prov_nit`)
+  `prov_descripcion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -507,9 +549,7 @@ CREATE TABLE IF NOT EXISTS `repuestos` (
   `rep_marca` varchar(10) NOT NULL,
   `rep_cantidad` varchar(5) NOT NULL,
   `rep_precio` varchar(8) NOT NULL,
-  `prov_nit` varchar(15) NOT NULL,
-  PRIMARY KEY (`rep_codigo`),
-  KEY `prov_nit` (`prov_nit`)
+  `prov_nit` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -517,10 +557,10 @@ CREATE TABLE IF NOT EXISTS `repuestos` (
 --
 
 INSERT INTO `repuestos` (`rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, `rep_precio`, `prov_nit`) VALUES
-('1', 'Batería', 'Kia', '203', '132000', '134'),
-('2', 'Motor', 'michellin', '0', '1200000', '134'),
-('3', 'Amortiguador', 'michellin', '2', '80000', '134'),
-('56', 'Bomba de gasolina', 'Yamaha', '1', '45000', '134');
+('1', 'Batería', 'Kia', '69', '132000', '134'),
+('2', 'Motor', 'michellin', '148', '1200000', '134'),
+('3', 'Amortiguador', 'michellin', '22', '80000', '134'),
+('56', 'Bomba de gasolina', 'Yamaha', '0', '45000', '134');
 
 -- --------------------------------------------------------
 
@@ -529,7 +569,7 @@ INSERT INTO `repuestos` (`rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, 
 --
 
 CREATE TABLE IF NOT EXISTS `reservas` (
-  `res_codigo` int(11) NOT NULL AUTO_INCREMENT,
+`res_codigo` int(11) NOT NULL,
   `res_fecha` date NOT NULL,
   `res_estado` enum('Pendiente','Finalizada','Aceptada','Rechazada') NOT NULL,
   `cli_id` varchar(15) NOT NULL,
@@ -541,12 +581,8 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   `aut_marca` varchar(30) NOT NULL,
   `emp_id` varchar(15) NOT NULL,
   `emp_nombre` varchar(50) NOT NULL,
-  `res_observaciones` text NOT NULL,
-  PRIMARY KEY (`res_codigo`),
-  KEY `cli_id` (`cli_id`),
-  KEY `aut_placa` (`aut_placa`),
-  KEY `emp_id` (`emp_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `res_observaciones` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `reservas`
@@ -556,8 +592,137 @@ INSERT INTO `reservas` (`res_codigo`, `res_fecha`, `res_estado`, `cli_id`, `cli_
 (1, '2014-11-18', 'Pendiente', '1053', 'DAniel', '2323', 'dmsanchez86@misena.edu.co', '111AAA', '2015', 'Mazda', '12', 'Casimiro', 'Ninguna'),
 (2, '2014-11-05', 'Pendiente', '1053', 'DAniel', '2323', 'dmsanchez@misena.du.co', '111AAA', '2015', 'Mazda', '12', 'Casimiro', 'fdgdfg'),
 (3, '2014-11-21', 'Pendiente', '1053844273', 'Mauricio', '3203768421', 'dmsanchez86@misena.edu.co', '234GGT', '2011', 'Kia', '111', 'Jeremiasss', 'dfg'),
-(4, '2014-11-12', 'Pendiente', '7789654', 'Paula Andrea', '3134258230', 'pao-345@yahoo.es', '300ZVA', '2011', 'Hyundai', '111', 'Jeremiasss', 'ninguna...');
+(4, '2014-11-12', 'Pendiente', '7789654', 'Paula Andrea', '3134258230', 'pao-345@yahoo.es', '300ZVA', '2011', 'Hyundai', '111', 'Jeremiasss', 'ninguna...'),
+(5, '2014-11-07', 'Pendiente', '1053843130', 'Daniel', '2323', 'dmsanchez@misena.du.co', '111AAA', '2015', 'Mazda', '111', 'Jeremiasss', 'dsfdgsdg');
 
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `autos`
+--
+ALTER TABLE `autos`
+ ADD PRIMARY KEY (`aut_placa`), ADD KEY `cli_id` (`cli_id`);
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+ ADD PRIMARY KEY (`cli_id`);
+
+--
+-- Indices de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+ ADD PRIMARY KEY (`cot_numero`);
+
+--
+-- Indices de la tabla `cuentas`
+--
+ALTER TABLE `cuentas`
+ ADD PRIMARY KEY (`cue_numero`), ADD KEY `cli_id` (`usu_id`);
+
+--
+-- Indices de la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+ ADD KEY `FK_detallefactura_1` (`fac_numero`);
+
+--
+-- Indices de la tabla `detallesmantenimientos`
+--
+ALTER TABLE `detallesmantenimientos`
+ ADD KEY `man_codigo` (`man_codigo`), ADD KEY `aut_placa` (`aut_placa`), ADD KEY `emp_id` (`emp_id`), ADD KEY `rep_codigo` (`rep_codigo`);
+
+--
+-- Indices de la tabla `empleados`
+--
+ALTER TABLE `empleados`
+ ADD PRIMARY KEY (`emp_id`);
+
+--
+-- Indices de la tabla `factura`
+--
+ALTER TABLE `factura`
+ ADD PRIMARY KEY (`fac_numero`);
+
+--
+-- Indices de la tabla `grupoclientes`
+--
+ALTER TABLE `grupoclientes`
+ ADD KEY `cli_id` (`cli_id`);
+
+--
+-- Indices de la tabla `historialmantenimientos`
+--
+ALTER TABLE `historialmantenimientos`
+ ADD KEY `aut_placa` (`aut_placa`), ADD KEY `man_codigo` (`man_codigo`), ADD KEY `cli_id` (`cli_id`);
+
+--
+-- Indices de la tabla `mantenimientos`
+--
+ALTER TABLE `mantenimientos`
+ ADD PRIMARY KEY (`man_codigo`);
+
+--
+-- Indices de la tabla `ordenpedido`
+--
+ALTER TABLE `ordenpedido`
+ ADD PRIMARY KEY (`ord_numero`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+ ADD PRIMARY KEY (`prov_nit`);
+
+--
+-- Indices de la tabla `repuestos`
+--
+ALTER TABLE `repuestos`
+ ADD PRIMARY KEY (`rep_codigo`), ADD KEY `prov_nit` (`prov_nit`);
+
+--
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+ ADD PRIMARY KEY (`res_codigo`), ADD KEY `cli_id` (`cli_id`), ADD KEY `aut_placa` (`aut_placa`), ADD KEY `emp_id` (`emp_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `cotizacion`
+--
+ALTER TABLE `cotizacion`
+MODIFY `cot_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `cuentas`
+--
+ALTER TABLE `cuentas`
+MODIFY `cue_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT de la tabla `factura`
+--
+ALTER TABLE `factura`
+MODIFY `fac_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `mantenimientos`
+--
+ALTER TABLE `mantenimientos`
+MODIFY `man_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT de la tabla `ordenpedido`
+--
+ALTER TABLE `ordenpedido`
+MODIFY `ord_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+MODIFY `res_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
@@ -566,34 +731,34 @@ INSERT INTO `reservas` (`res_codigo`, `res_fecha`, `res_estado`, `cli_id`, `cli_
 -- Filtros para la tabla `autos`
 --
 ALTER TABLE `autos`
-  ADD CONSTRAINT `autos_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
+ADD CONSTRAINT `autos_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
 -- Filtros para la tabla `grupoclientes`
 --
 ALTER TABLE `grupoclientes`
-  ADD CONSTRAINT `grupoclientes_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
+ADD CONSTRAINT `grupoclientes_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
 -- Filtros para la tabla `historialmantenimientos`
 --
 ALTER TABLE `historialmantenimientos`
-  ADD CONSTRAINT `historialmantenimientos_ibfk_1` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
-  ADD CONSTRAINT `historialmantenimientos_ibfk_3` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
+ADD CONSTRAINT `historialmantenimientos_ibfk_1` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
+ADD CONSTRAINT `historialmantenimientos_ibfk_3` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
 -- Filtros para la tabla `repuestos`
 --
 ALTER TABLE `repuestos`
-  ADD CONSTRAINT `repuestos_ibfk_1` FOREIGN KEY (`prov_nit`) REFERENCES `proveedores` (`prov_nit`);
+ADD CONSTRAINT `repuestos_ibfk_1` FOREIGN KEY (`prov_nit`) REFERENCES `proveedores` (`prov_nit`);
 
 --
 -- Filtros para la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`),
-  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
-  ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `empleados` (`emp_id`);
+ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`),
+ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
+ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `empleados` (`emp_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

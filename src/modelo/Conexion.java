@@ -797,13 +797,25 @@ public class Conexion {
     }
     
     public boolean actualizarRepuesto(String codigo, String stockFinal) {
+        int total, antes = 0,despues = 0;
+        try {
+            consulta = conexion.prepareStatement("SELECT rep_cantidad FROM repuestos WHERE rep_codigo = ?");
+            consulta.setString(1,codigo);
+            r = consulta.executeQuery();
+            while(r.next()){
+                antes = Integer.parseInt(r.getString("rep_cantidad"));
+            }
+        } catch (SQLException | HeadlessException e) {JOptionPane.showMessageDialog(null, ""+e.getMessage());}
+        despues = Integer.parseInt(stockFinal);
+        total = antes + despues;
         try {
             consulta = conexion.prepareStatement("UPDATE repuestos SET rep_cantidad= ? WHERE rep_codigo = ?"); 
-            consulta.setString(1, stockFinal);
+            consulta.setString(1, String.valueOf(total));
             consulta.setString(2, codigo);
             consulta.executeUpdate();
             return true;
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, ""+e.getMessage());
             return false;
         }
     }
@@ -845,7 +857,7 @@ public class Conexion {
 
     public ResultSet datosRepuesto(String c) {
         try {
-            consulta = conexion.prepareStatement("SELECT rep_tipo FROM repuestos WHERE rep_codigo = ?");
+            consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_codigo = ?");
             consulta.setString(1, c);
             r = consulta.executeQuery();
             return r;
@@ -999,7 +1011,7 @@ public class Conexion {
     ArrayList<Mantenimiento> datosCotizacion(String id) {
         try {
             mantenimientos = new ArrayList<>();
-            consulta = conexion.prepareStatement("SELECT m.man_codigo, m.man_fechaInicio, m.man_costo, c.cli_nombre FROM mantenimientos m, clientes c WHERE m.cli_id = ? AND c.cli_id = ? LIMIT 1");
+            consulta = conexion.prepareStatement("SELECT m.man_codigo, m.man_fechaInicio, m.man_costo, c.cli_nombre FROM mantenimientos m, clientes c WHERE m.cli_id = ? AND c.cli_id = ? ");
             consulta.setString(1, id);
             consulta.setString(2, id);
             r = consulta.executeQuery();
@@ -1043,15 +1055,15 @@ public class Conexion {
         }
     }
 
-    int validarFicha(String placa) {
+    ResultSet validarFicha(String placa) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM ficha_recepcion_auto WHERE aut_placa = ?");
             consulta.setString(1, placa);
-            int num = consulta.getMaxRows();
-            return num;
+            r = consulta.executeQuery();
+            return r;
         } catch (SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(null, ""+e.getMessage());
-            return 0;
+            return null;
         }
     }
 
@@ -1081,5 +1093,13 @@ public class Conexion {
             JOptionPane.showMessageDialog(null, ""+e.getMessage());
             return false;
         }
+    }
+
+    ResultSet codigoFactura() {
+        try {
+            consulta = conexion.prepareStatement("SELECT MAX(fac_numero) FROM factura");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
     }
 }

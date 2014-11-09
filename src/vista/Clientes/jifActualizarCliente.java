@@ -99,12 +99,14 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
         jbtModificar.setText("Modificar");
         jbtModificar.setToolTipText("Actualizar los Datos del Cliente");
         jbtModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtModificar.setEnabled(false);
 
         jbtEliminar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jbtEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtEliminar.setText("Eliminar");
         jbtEliminar.setToolTipText("Eliminar Cliente");
         jbtEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtEliminar.setEnabled(false);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-actualizar.png"))); // NOI18N
 
@@ -145,12 +147,13 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
                                 .addComponent(jbtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE))
                             .addComponent(jtfApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtfCorreo)
-                            .addComponent(jtfTelefono)
-                            .addComponent(jcbSexo, 0, 169, Short.MAX_VALUE)
-                            .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jtfTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcbSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, 125, Short.MAX_VALUE))
+                            .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jbtEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
