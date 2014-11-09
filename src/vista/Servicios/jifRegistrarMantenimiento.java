@@ -52,7 +52,6 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
         jtfIdCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jtfNombreCliente = new javax.swing.JTextField();
-        jbtConsultarAuto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jbtAgregar = new javax.swing.JButton();
@@ -251,7 +250,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbtModificarDetalles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -315,21 +314,23 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Mantenimientos");
+        setTitle("MECAUT - Registro Mantenimientos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel5.setText("Placa del Auto");
 
+        jLabel6.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel6.setText("Identificación");
 
         jtfIdCliente.setEditable(false);
 
+        jLabel7.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel7.setText("Nombre");
 
         jtfNombreCliente.setEditable(false);
-
-        jbtConsultarAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574455_search_16.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -345,8 +346,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtConsultarAuto))
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addComponent(jtfIdCliente)
                     .addComponent(jtfNombreCliente))
                 .addContainerGap())
@@ -354,12 +354,10 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtConsultarAuto))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -371,7 +369,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("NanumGothic", 3, 15)); // NOI18N
         jLabel1.setText("Tabla de Mantenimientos");
 
         jbtAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552707_gnome-app-install.png"))); // NOI18N
@@ -399,12 +397,15 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mantenimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel2.setText("Código");
 
         jtfCodigo.setEditable(false);
 
+        jLabel3.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel3.setText("Fecha Inicio");
 
+        jLabel4.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel4.setText("Observaciones");
 
         jtfObservaciones.setColumns(20);
@@ -459,6 +460,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel10.setText("Costo");
 
         jtfCosto.setEditable(false);
@@ -661,7 +663,6 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     public javax.swing.JButton jbtAgregar;
     public javax.swing.JButton jbtCancelar;
-    public javax.swing.JButton jbtConsultarAuto;
     public javax.swing.JButton jbtEliminar2;
     public javax.swing.JButton jbtModificarDetalles;
     public javax.swing.JButton jbtRegistrar;

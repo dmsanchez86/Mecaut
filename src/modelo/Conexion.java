@@ -292,7 +292,7 @@ public class Conexion {
     public ArrayList<Auto> consultarAutos() {
         autos = new ArrayList<>();
         try {
-            consulta = conexion.prepareStatement("Select * FROM autos");
+            consulta = conexion.prepareStatement("Select * FROM autos ORDER BY aut_ciudad");
             r = consulta.executeQuery();
             while (r.next()) {
                 autos.add(new Auto(r.getString(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6), r.getString(7), r.getString(8), r.getString(9)));
@@ -756,6 +756,15 @@ public class Conexion {
             return null;
         }
     }
+    public ResultSet idsEmpleados() {
+        try {
+            consulta = conexion.prepareStatement("SELECT emp_id FROM empleados");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
     /* 5. Modulo Inventario */
 
     public boolean agregarRepuesto(Repuesto rep) {
@@ -1067,10 +1076,10 @@ public class Conexion {
         }
     }
 
-    boolean registrarFichaTecnica(String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
+    public boolean registrarFichaTecnica(String fecha,String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO ficha_recepcion_auto VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            consulta.setString(1, null);
+            consulta.setString(1, fecha);
             consulta.setString(2, null);
             consulta.setString(3, idCli);
             consulta.setString(4, Placa);
@@ -1087,6 +1096,47 @@ public class Conexion {
             consulta.setString(15, cojineria);
             consulta.setString(16, puertas);
             consulta.setString(17, luces);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, ""+e.getMessage());
+            return false;
+        }
+    }
+    
+    public boolean modificarFichaAuto(String fechaActualizacion,String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces){
+        try {
+            consulta = conexion.prepareStatement("UPDATE ficha_recepcion_auto SET "
+                    + "fic_fechaActualizacion = ?,"
+                    + "aut_cilindraje = ?, "
+                    + "aut_frenos = ?,"
+                    + "aut_peso = ?,"
+                    + "aut_color = ?,"
+                    + "aut_motor = ?,"
+                    + "aut_potencia = ?, "
+                    + "aut_transmision = ?, "
+                    + "aut_largo = ?, "
+                    + "aut_ancho = ?, "
+                    + "aut_alto = ?, "
+                    + "aut_cojineria = ?, "
+                    + "aut_puertas = ?, "
+                    + "aut_farolas = ? WHERE cli_id = ? AND aut_placa = ?");
+            consulta.setString(1, fechaActualizacion);
+            consulta.setString(2, cil);
+            consulta.setString(3, fre);
+            consulta.setString(4, peso);
+            consulta.setString(5, col);
+            consulta.setString(6, mot);
+            consulta.setString(7, pot);
+            consulta.setString(8, tran);
+            consulta.setString(9, lar);
+            consulta.setString(10, anc);
+            consulta.setString(11, alt);
+            consulta.setString(12, cojineria);
+            consulta.setString(13, puertas);
+            consulta.setString(14, luces);
+            consulta.setString(15, idCli);
+            consulta.setString(16, Placa);
             consulta.executeUpdate();
             return true;
         } catch (Exception e) {

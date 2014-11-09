@@ -38,9 +38,11 @@ public class jifActualizarMantenimiento extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Modificar Mantenimiento");
+        setTitle("MECAUT - Modificar Mantenimiento");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554244_Bank_account.png"))); // NOI18N
 
         jbtEliminar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jbtEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtEliminar.setText("Eliminar");
         jbtEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jbtEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -50,40 +52,62 @@ public class jifActualizarMantenimiento extends javax.swing.JInternalFrame {
         });
 
         jbtModificar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
         jbtModificar.setText("Modificar");
         jbtModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mantenimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(1, 1, 1));
         jLabel13.setText("Código");
 
+        jLabel14.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 1, 1));
         jLabel14.setText("Fecha");
 
         jtfObsevaciones.setEditable(false);
 
+        jLabel15.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(1, 1, 1));
         jLabel15.setText("Observaciones");
 
+        jLabel16.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(1, 1, 1));
         jLabel16.setText("Costo");
 
         jtfCosto.setEditable(false);
 
         jcbCodigoMantenimiento.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jcbCodigoMantenimiento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----" }));
         jcbCodigoMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel17.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(1, 1, 1));
         jLabel17.setText("Estado");
 
         jtfEstado.setEditable(false);
 
         jtfFecha.setEditable(false);
 
+        jLabel18.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(1, 1, 1));
         jLabel18.setText("Id Cliente");
 
+        jLabel19.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(1, 1, 1));
         jLabel19.setText("Nombre Cliente");
 
+        jLabel20.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(1, 1, 1));
         jLabel20.setText("Nombre Empleado");
 
+        jLabel21.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(1, 1, 1));
         jLabel21.setText("Id Empleado");
 
+        jLabel22.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(1, 1, 1));
         jLabel22.setText("Placa del Auto");
 
         jtfIdCliente.setEditable(false);
@@ -130,15 +154,15 @@ public class jifActualizarMantenimiento extends javax.swing.JInternalFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
                             .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfPlaca))
-                        .addGap(79, 79, 79)
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
                             .addComponent(jtfIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
+                        .addGap(87, 87, 87)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addComponent(jtfNombreEmpleado))
@@ -165,13 +189,14 @@ public class jifActualizarMantenimiento extends javax.swing.JInternalFrame {
                         .addComponent(jtfEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jtfObsevaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jtfCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel18)
-                    .addComponent(jLabel19)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19)
+                        .addComponent(jLabel22))
                     .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22))
+                    .addComponent(jLabel21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

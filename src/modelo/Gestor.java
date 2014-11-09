@@ -304,6 +304,11 @@ public class Gestor{
         r = conexion.idsMecanicos();
         return r;
     }
+    public ResultSet idsEmpleados(){
+        conexion.crearConexion();
+        r = conexion.idsEmpleados();
+        return r;
+    }
     // 5. Inventario
     public boolean agregarRepuesto(Repuesto rep){
         conexion.crearConexion();
@@ -472,9 +477,14 @@ public class Gestor{
         return r;
     }
 
-    public boolean registrarFichaTecnica(String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
+    public boolean registrarFichaTecnica(String fecha, String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
         conexion.crearConexion();
-        respuesta = conexion.registrarFichaTecnica(idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces);
+        respuesta = conexion.registrarFichaTecnica(fecha, idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces);
+        return respuesta;
+    }
+    public boolean modificarFichaAuto(String fechaActualizacion, String idCli, String Placa, String cil, String fre, String peso, String col, String mot, String pot, String tran, String lar, String anc, String alt, String cojineria, String puertas, String luces) {
+        conexion.crearConexion();
+        respuesta = conexion.modificarFichaAuto(fechaActualizacion, idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces);
         return respuesta;
     }
 

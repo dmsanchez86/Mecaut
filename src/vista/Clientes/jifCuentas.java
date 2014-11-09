@@ -80,37 +80,52 @@ char c;
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Registro de Cuentas");
+        setTitle("MECAUT - Registro de Cuentas");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553971_keyboard_layout.png"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Cuenta", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("Usuario");
 
+        jLabel2.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setText("Contraseña");
 
+        jLabel3.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("Confirmar Contraseña");
 
+        jLabel4.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setText("Tipo de Cuenta");
 
+        jTabbedPane1.setBackground(java.awt.SystemColor.activeCaption);
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
         jLabel5.setText("Identificación");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(1, 1, 1));
         jLabel6.setText("Nombre");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(1, 1, 1));
         jLabel7.setText("Apellidos");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(1, 1, 1));
         jLabel8.setText("Dirección");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(1, 1, 1));
         jLabel9.setText("Teléfono");
 
         jtfApellidosc.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -148,10 +163,12 @@ char c;
         jtfCorreoc.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfCorreoc.setToolTipText("Ingrese el Correo Electronico del Cliente");
 
-        Correo.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        Correo.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        Correo.setForeground(new java.awt.Color(1, 1, 1));
         Correo.setText("Correo");
 
-        Correo1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        Correo1.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        Correo1.setForeground(new java.awt.Color(1, 1, 1));
         Correo1.setText("Sexo");
 
         jcbSexoc.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------", "Femenino", "Masculino", "Otro" }));
@@ -187,7 +204,7 @@ char c;
                                 .addComponent(jtfDireccionc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                                 .addComponent(jtfApellidosc)
                                 .addComponent(jtfNombrec, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -225,26 +242,33 @@ char c;
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtfCorreoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Correo))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Cliente", jPanel2);
+        jTabbedPane1.addTab("Cliente", new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553282_group.png")), jPanel2); // NOI18N
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Empleado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Empleado", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel3.setForeground(new java.awt.Color(1, 1, 1));
+        jPanel3.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(1, 1, 1));
         jLabel11.setText("Identificación");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(1, 1, 1));
         jLabel12.setText("Nombre");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(1, 1, 1));
         jLabel13.setText("Apellidos");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(1, 1, 1));
         jLabel14.setText("Dirección");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(1, 1, 1));
         jLabel15.setText("Teléfono");
 
         jtfApellidos1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
@@ -290,24 +314,28 @@ char c;
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(1, 1, 1));
         jLabel16.setText("Salario");
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/worker.png"))); // NOI18N
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(1, 1, 1));
         jLabel18.setText("Tipo");
 
         jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------", "Mécanico", "Administrador" }));
         jcbTipo.setToolTipText("Seleccione el Rol que Tendra el Empleado");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(1, 1, 1));
         jLabel19.setText("Correo");
 
         jtfCorreo1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfCorreo1.setToolTipText("Ingrese el Correo Eléctronio del Empleado");
 
-        Correo2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        Correo2.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
+        Correo2.setForeground(new java.awt.Color(1, 1, 1));
         Correo2.setText("Sexo");
 
         jcbSexo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------", "Femenino", "Masculino", "Otro" }));
@@ -332,7 +360,7 @@ char c;
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtfCorreo1, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)))
+                            .addComponent(jtfCorreo1)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -396,7 +424,7 @@ char c;
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Empleado", jPanel3);
+        jTabbedPane1.addTab("Empleado", new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552762_config-users.png")), jPanel3); // NOI18N
 
         jcbTipoCuenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "administrador", "cliente", "empleado" }));
 
@@ -419,49 +447,50 @@ char c;
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
                             .addComponent(jLabel3))
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfUsuario)
-                            .addComponent(jcbTipoCuenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfcontrasena)
-                            .addComponent(jtfconfContrasena))
-                        .addGap(69, 69, 69)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jcbTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jtfconfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtfcontrasena, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
                         .addComponent(jbtCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(41, 41, 41))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jtfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
+                        .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jtfcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jtfcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jtfconfContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jcbTipoCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jbtCrearCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jbtCrearCuenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

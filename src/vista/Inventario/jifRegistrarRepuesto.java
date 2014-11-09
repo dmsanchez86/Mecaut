@@ -36,11 +36,13 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jcbNitProveedor = new javax.swing.JComboBox();
+        jbtRegistrar1 = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Registrar repuesto");
+        setTitle("MECAUT - Registro Repuesto");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
 
         jbtRegistrar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574564_pencil_16.png"))); // NOI18N
@@ -48,7 +50,7 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
         jbtRegistrar.setToolTipText("Registrar Repuesto");
         jbtRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos repuesto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Repuesto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel1.setText("Codigo");
@@ -179,7 +181,7 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
         );
 
         jcbTipo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Batería", "Motor", "Rin", "Llanta", "Radiador", "Amortiguador", "Pastillas de freno", "Bomba de gasolina" }));
+        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------", "Batería", "Motor", "Rin", "Llanta", "Radiador", "Amortiguador", "Pastillas de freno", "Bomba de gasolina" }));
         jcbTipo.setToolTipText("Seleccione el Tipo de Repuesto");
         jcbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -241,7 +243,7 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 89, Short.MAX_VALUE)
@@ -249,12 +251,13 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
                     .addGap(0, 89, Short.MAX_VALUE)))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos proveedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Proveedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabel4.setText("Nit");
 
         jcbNitProveedor.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jcbNitProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----" }));
         jcbNitProveedor.setToolTipText("Seleccione el NIT del Proveedor");
         jcbNitProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -278,6 +281,12 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
+        jbtRegistrar1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jbtRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
+        jbtRegistrar1.setText("Cancelar");
+        jbtRegistrar1.setToolTipText("Registrar Repuesto");
+        jbtRegistrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,13 +294,11 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtRegistrar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -302,8 +309,10 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -341,6 +350,7 @@ public class jifRegistrarRepuesto extends javax.swing.JInternalFrame {
     public javax.swing.JPanel jPanel3;
     public javax.swing.JButton jbtGuardar1;
     public javax.swing.JButton jbtRegistrar;
+    public javax.swing.JButton jbtRegistrar1;
     public javax.swing.JComboBox jcbNitProveedor;
     public javax.swing.JComboBox jcbTipo;
     public javax.swing.JComboBox jcbTipo1;

@@ -35,7 +35,8 @@ public class jifListaFacturas extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Lista de Facturas");
+        setTitle("MECAUT - Lista de Facturas");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
 
         tablaFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -7,6 +7,7 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
         jtfIdCliente.setEnabled(false);
         jtfPlaca.setEnabled(false);
         jdcFecha.setEnabled(false);
+        jbtConsultar.setVisible(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -23,17 +24,18 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
         jtfPlaca = new javax.swing.JTextField();
         jtfIdCliente = new javax.swing.JTextField();
         jdcFecha = new com.toedter.calendar.JDateChooser();
-        jbtConsultar = new javax.swing.JButton();
         rbRangoFecha = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         lblRegistros = new javax.swing.JLabel();
+        jbtConsultar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Historial de Mantenimientos");
+        setTitle("MECAUT - Historial de Mantenimientos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/historial.png"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Mantenimiento", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14))); // NOI18N
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -45,10 +47,13 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel1.setText("Busqueda por: ");
 
         buttonGroup1.add(rbPlaca);
+        rbPlaca.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         rbPlaca.setText("Placa");
+        rbPlaca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbPlaca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbPlacaActionPerformed(evt);
@@ -56,7 +61,9 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
         });
 
         buttonGroup1.add(rbIdCliente);
+        rbIdCliente.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         rbIdCliente.setText("Id Cliente");
+        rbIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbIdCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbIdClienteActionPerformed(evt);
@@ -64,27 +71,40 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
         });
 
         buttonGroup1.add(rbFecha);
+        rbFecha.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         rbFecha.setText("Fecha");
+        rbFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbFechaActionPerformed(evt);
             }
         });
 
-        jbtConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574455_search_16.png"))); // NOI18N
+        jtfPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfPlacaActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rbRangoFecha);
+        rbRangoFecha.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         rbRangoFecha.setText("Todos los Registros");
+        rbRangoFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rbRangoFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbRangoFechaActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel3.setText("N° Registros: ");
 
-        lblRegistros.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        lblRegistros.setFont(new java.awt.Font("NanumGothic", 3, 15)); // NOI18N
         lblRegistros.setText("0");
+
+        jbtConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574455_search_16.png"))); // NOI18N
+        jbtConsultar.setToolTipText("Consultar Fecha");
+        jbtConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,61 +113,61 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbRangoFecha)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rbIdCliente)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbFecha)
+                            .addComponent(rbPlaca))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtfPlaca))
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbPlaca)
-                                    .addComponent(rbIdCliente))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbtConsultar)
-                                        .addGap(6, 6, 6))
-                                    .addComponent(jtfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbFecha)
-                                .addGap(46, 46, 46)
-                                .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rbRangoFecha))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rbRangoFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbIdCliente)
+                            .addComponent(jtfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbPlaca)
+                            .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(rbFecha)
+                            .addComponent(jdcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtConsultar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(lblRegistros))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rbPlaca)
-                        .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtConsultar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbIdCliente)
-                    .addComponent(jtfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbFecha)
-                    .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(rbRangoFecha)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -178,6 +198,8 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             jtfIdCliente.setEnabled(false);
             jdcFecha.setEnabled(false);
             jtfPlaca.setEnabled(true);
+            jtfPlaca.requestFocus();
+            jbtConsultar.setVisible(false);
         }
     }//GEN-LAST:event_rbPlacaActionPerformed
 
@@ -188,6 +210,8 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             jtfPlaca.setEnabled(false);
             jdcFecha.setEnabled(false);
             jtfIdCliente.setEnabled(true);
+            jtfIdCliente.requestFocus();
+            jbtConsultar.setVisible(false);
         }
     }//GEN-LAST:event_rbIdClienteActionPerformed
 
@@ -198,6 +222,8 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             jtfIdCliente.setEnabled(false);
             jtfPlaca.setEnabled(false);
             jdcFecha.setEnabled(true);
+            jdcFecha.requestFocus();
+            jbtConsultar.setVisible(true);
         }
     }//GEN-LAST:event_rbFechaActionPerformed
 
@@ -209,12 +235,17 @@ public class jifHistMantenimiento extends javax.swing.JInternalFrame {
             jtfPlaca.setEnabled(false);
             jtfIdCliente.setEnabled(false);
             jdcFecha.setEnabled(false);
+            jbtConsultar.setVisible(false);
         }
     }//GEN-LAST:event_rbRangoFechaActionPerformed
 
+    private void jtfPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPlacaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfPlacaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    public javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

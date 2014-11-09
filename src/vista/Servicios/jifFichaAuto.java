@@ -30,8 +30,10 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
         jtfPotencia = new javax.swing.JTextField();
         jcbTransmision = new javax.swing.JComboBox();
         jtfFrenos = new javax.swing.JTextField();
-        jbtRegistrar = new javax.swing.JButton();
+        jbtNuevaFicha = new javax.swing.JButton();
         jbtancelar = new javax.swing.JButton();
+        jbtModificar = new javax.swing.JButton();
+        jbtRegistrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -65,21 +67,25 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Ficha Técnica del Auto");
+        setTitle("MECAUT - Ficha Técnica del Auto");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Del Auto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Auto", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel1.setText("Placa");
 
         jcbPlaca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbPlaca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        jLabel2.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel2.setText("Id Cliente");
 
         jtfIdCliente.setEditable(false);
 
         jtfNombreCliente.setEditable(false);
 
+        jLabel18.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel18.setText("Nombre");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -117,16 +123,21 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Motor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Motor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel3.setText("Cilindraje");
 
+        jLabel4.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel4.setText("Frenos");
 
+        jLabel11.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel11.setText("Motor");
 
+        jLabel12.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel12.setText("Potencia");
 
+        jLabel13.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel13.setText("Transmisión");
 
         jtfCilindraje.setEnabled(false);
@@ -135,21 +146,35 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
 
         jtfPotencia.setEnabled(false);
 
-        jcbTransmision.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Automatica", "Manual" }));
+        jcbTransmision.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-------", "Automatica", "Manual" }));
         jcbTransmision.setEnabled(false);
 
         jtfFrenos.setEnabled(false);
 
-        jbtRegistrar.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
-        jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
-        jbtRegistrar.setText("Nueva Ficha");
-        jbtRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbtRegistrar.setEnabled(false);
+        jbtNuevaFicha.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
+        jbtNuevaFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552707_gnome-app-install.png"))); // NOI18N
+        jbtNuevaFicha.setToolTipText("Nueva Ficha");
+        jbtNuevaFicha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtNuevaFicha.setEnabled(false);
 
         jbtancelar.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
         jbtancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
-        jbtancelar.setText("Cancelar");
+        jbtancelar.setToolTipText("Cancelar");
         jbtancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jbtModificar.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
+        jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
+        jbtModificar.setText("Modificar");
+        jbtModificar.setToolTipText("Modificar Ficha");
+        jbtModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtModificar.setEnabled(false);
+
+        jbtRegistrar.setFont(new java.awt.Font("Ubuntu", 3, 13)); // NOI18N
+        jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
+        jbtRegistrar.setText("Registrar");
+        jbtRegistrar.setToolTipText("Registrar Ficha");
+        jbtRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtRegistrar.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,31 +183,33 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfFrenos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addComponent(jtfFrenos))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfPotencia, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                    .addComponent(jtfMotor)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jtfCilindraje))))
+                            .addComponent(jtfCilindraje)
+                            .addComponent(jtfMotor)
+                            .addComponent(jtfPotencia)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(jcbTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jbtancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jbtancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtNuevaFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -209,14 +236,19 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13)
                     .addComponent(jcbTransmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtRegistrar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtNuevaFicha)
+                    .addComponent(jbtRegistrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtancelar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtancelar)
+                    .addComponent(jbtModificar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dimensiones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dimensiones", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel5.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel5.setText("Alto");
 
         jLabel6.setText("cm");
@@ -224,6 +256,7 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
         jsAlto.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
         jsAlto.setEnabled(false);
 
+        jLabel7.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel7.setText("Largo");
 
         jsLargo.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
@@ -231,6 +264,7 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
 
         jLabel8.setText("cm");
 
+        jLabel9.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel9.setText("Ancho");
 
         jsAncho.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
@@ -260,7 +294,7 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jsAncho)))
+                        .addComponent(jsAncho, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -293,50 +327,59 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
         bgLuces.add(jcbRegularL);
+        jcbRegularL.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbRegularL.setText("Regular");
         jcbRegularL.setEnabled(false);
 
         bgLuces.add(jcbMalaL);
+        jcbMalaL.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbMalaL.setText("Mala");
         jcbMalaL.setEnabled(false);
 
         bgLuces.add(jcbBuenaL);
+        jcbBuenaL.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbBuenaL.setText("Buena");
         jcbBuenaL.setEnabled(false);
 
-        jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel15.setText("Luces");
 
-        jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel14.setText("Cojineria");
 
         bgCojineria.add(jcbMalaC);
+        jcbMalaC.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbMalaC.setText("Mala");
         jcbMalaC.setEnabled(false);
 
         bgCojineria.add(jcbRegularC);
+        jcbRegularC.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbRegularC.setText("Regular");
         jcbRegularC.setEnabled(false);
 
         bgCojineria.add(jcbBuenaC);
+        jcbBuenaC.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbBuenaC.setText("Buena");
         jcbBuenaC.setEnabled(false);
 
-        jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel16.setText("Puertas");
 
         bgPuertas.add(jcbRegularP);
+        jcbRegularP.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbRegularP.setText("Regular");
         jcbRegularP.setEnabled(false);
 
         bgPuertas.add(jcbMalaP);
+        jcbMalaP.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbMalaP.setText("Mala");
         jcbMalaP.setEnabled(false);
 
         bgPuertas.add(jcbBuenaP);
+        jcbBuenaP.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jcbBuenaP.setText("Buena");
         jcbBuenaP.setEnabled(false);
 
@@ -366,7 +409,7 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                     .addComponent(jcbRegularP)
                     .addComponent(jcbMalaP)
                     .addComponent(jcbBuenaP))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,10 +443,12 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Diseño", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Diseño", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 12))); // NOI18N
 
+        jLabel17.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel17.setText("Color");
 
+        jLabel19.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         jLabel19.setText("Peso");
 
         jsPeso.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
@@ -513,6 +558,8 @@ public class jifFichaAuto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    public javax.swing.JButton jbtModificar;
+    public javax.swing.JButton jbtNuevaFicha;
     public javax.swing.JButton jbtRegistrar;
     public javax.swing.JButton jbtancelar;
     public javax.swing.JCheckBox jcbBuenaC;

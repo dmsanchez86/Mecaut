@@ -17,7 +17,8 @@ public class jifListaAutos extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("Lista autos");
+        setTitle("MECAUT - Lista Autos");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
 
         jtListaAutos.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jtListaAutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -31,7 +32,6 @@ public class jifListaAutos extends javax.swing.JInternalFrame {
             }
         ));
         jtListaAutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jtListaAutos.setEnabled(false);
         jScrollPane2.setViewportView(jtListaAutos);
 
         lbRegistros.setFont(new java.awt.Font("Ubuntu", 3, 17)); // NOI18N

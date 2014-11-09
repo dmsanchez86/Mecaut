@@ -22,7 +22,10 @@
     <Property name="closable" type="boolean" value="true"/>
     <Property name="defaultCloseOperation" type="int" value="1"/>
     <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Ficha T&#xe9;cnica del Auto"/>
+    <Property name="title" type="java.lang.String" value="MECAUT - Ficha T&#xe9;cnica del Auto"/>
+    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+      <Image iconType="3" name="/iconos/1412553092_note_edit.png"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -90,7 +93,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Datos Del Auto">
+            <TitledBorder justification="2" title="Datos Auto">
               <Font PropertyName="font" name="Dialog" size="12" style="3"/>
             </TitledBorder>
           </Border>
@@ -141,6 +144,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Placa"/>
           </Properties>
         </Component>
@@ -164,6 +170,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Id Cliente"/>
           </Properties>
         </Component>
@@ -185,6 +194,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel18">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
         </Component>
@@ -194,7 +206,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Motor">
+            <TitledBorder justification="2" title="Motor">
               <Font PropertyName="font" name="Dialog" size="12" style="3"/>
             </TitledBorder>
           </Border>
@@ -207,11 +219,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jbtRegistrar" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jtfFrenos" min="-2" pref="89" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="jtfFrenos" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -219,27 +230,30 @@
                               <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jtfPotencia" pref="89" max="32767" attributes="0"/>
-                                      <Component id="jtfMotor" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jtfCilindraje" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jtfCilindraje" max="32767" attributes="0"/>
+                              <Component id="jtfMotor" max="32767" attributes="0"/>
+                              <Component id="jtfPotencia" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jcbTransmision" min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="jLabel13" min="-2" pref="94" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Component id="jcbTransmision" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jbtancelar" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jbtancelar" max="32767" attributes="0"/>
+                              <Component id="jbtNuevaFicha" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jbtRegistrar" max="32767" attributes="0"/>
+                              <Component id="jbtModificar" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -274,9 +288,15 @@
                       <Component id="jcbTransmision" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbtRegistrar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jbtNuevaFicha" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtRegistrar" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbtancelar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jbtancelar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtModificar" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -285,26 +305,41 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cilindraje"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Frenos"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Motor"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Potencia"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Transmisi&#xf3;n"/>
           </Properties>
         </Component>
@@ -336,7 +371,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value=""/>
+                <StringItem index="0" value="-------"/>
                 <StringItem index="1" value="Automatica"/>
                 <StringItem index="2" value="Manual"/>
               </StringArray>
@@ -355,15 +390,15 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtRegistrar">
+        <Component class="javax.swing.JButton" name="jbtNuevaFicha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="13" style="3"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconos/1412574555_tick_16.png"/>
+              <Image iconType="3" name="/iconos/1412552707_gnome-app-install.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nueva Ficha"/>
+            <Property name="toolTipText" type="java.lang.String" value="Nueva Ficha"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
@@ -381,10 +416,48 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/1412553884_mail-delete.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cancelar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>
             </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbtModificar">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="13" style="3"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/1412552741_gtk-refresh.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Modificar Ficha"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbtRegistrar">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="13" style="3"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/iconos/1412553092_note_edit.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Registrar"/>
+            <Property name="toolTipText" type="java.lang.String" value="Registrar Ficha"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -396,7 +469,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Dimensiones">
+            <TitledBorder justification="2" title="Dimensiones">
               <Font PropertyName="font" name="Dialog" size="12" style="3"/>
             </TitledBorder>
           </Border>
@@ -429,7 +502,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jsAncho" max="32767" attributes="0"/>
+                          <Component id="jsAncho" pref="94" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -478,6 +551,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Alto"/>
           </Properties>
         </Component>
@@ -499,6 +575,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Largo"/>
           </Properties>
         </Component>
@@ -520,6 +599,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Ancho"/>
           </Properties>
         </Component>
@@ -545,7 +627,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Estado">
+            <TitledBorder justification="2" title="Estado">
               <Font PropertyName="font" name="Dialog" size="12" style="3"/>
             </TitledBorder>
           </Border>
@@ -580,7 +662,7 @@
                       <Component id="jcbMalaP" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jcbBuenaP" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -631,6 +713,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgLuces"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Regular"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -642,6 +727,9 @@
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgLuces"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mala"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -655,6 +743,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgLuces"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buena"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -665,7 +756,7 @@
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Luces"/>
           </Properties>
@@ -673,7 +764,7 @@
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cojineria"/>
           </Properties>
@@ -682,6 +773,9 @@
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgCojineria"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mala"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -695,6 +789,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgCojineria"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Regular"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -707,6 +804,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgCojineria"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buena"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -717,7 +817,7 @@
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Puertas"/>
           </Properties>
@@ -726,6 +826,9 @@
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgPuertas"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Regular"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -739,6 +842,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgPuertas"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mala"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -750,6 +856,9 @@
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="bgPuertas"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buena"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -764,7 +873,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Dise&#xf1;o">
+            <TitledBorder justification="2" title="Dise&#xf1;o">
               <Font PropertyName="font" name="Dialog" size="12" style="3"/>
             </TitledBorder>
           </Border>
@@ -815,11 +924,17 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel17">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Color"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel19">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="NanumGothic" size="15" style="2"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Peso"/>
           </Properties>
         </Component>
