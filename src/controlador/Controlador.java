@@ -9,6 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,8 @@ import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.Gestor;
 import modelo.Logica.Auto;
@@ -1879,7 +1882,183 @@ public class Controlador {
     }
     
     private void frmPromocionesCombos(){
+        limpiar();
+        limpiarComboBox();
+        limpiarFechas();
+        codigoPromocion();
+        jifPromociones.jbtActualizar.setEnabled(false);
+        jifPromociones.jbtEliminar.setEnabled(false);
+        
+        jifPromociones.jTabbedPane1.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent ce) {
+                if(jifPromociones.jTabbedPane1.getSelectedIndex() == 2){
+                    evtListaDePromociones();
+                }
+            }
+        });
+        
+        jifPromociones.jbtConsultar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(jifPromociones.jtfCodigoA.getText().isEmpty())
+                    JOptionPane.showMessageDialog(null, "Ingrese un codigo","MECAUT",JOptionPane.ERROR_MESSAGE);
+                else{
+                    ResultSet dato = Gestor.datosPromocion(jifPromociones.jtfCodigoA.getText());
+                    try {
+                        while (dato.next()) {
+                            if ("Repuesto".equals(dato.getString("pro_tipo"))) 
+                                jifPromociones.jcbTipoA.setSelectedIndex(1);
+                            else
+                                jifPromociones.jcbTipoA.setSelectedIndex(2);
+                            if ("Activa".equals(dato.getString("pro_estado"))) 
+                                jifPromociones.jcbEstadoA.setSelectedIndex(1);
+                            else
+                                jifPromociones.jcbEstadoA.setSelectedIndex(2);                            
+                            jifPromociones.jtfDescripcionA.setText(dato.getString("pro_descripcion"));
+                            jifPromociones.jdcFechaA.setDate(Date.valueOf(dato.getString("pro_fecha")));
+                            jifPromociones.jbtActualizar.setEnabled(true);
+                            jifPromociones.jbtEliminar.setEnabled(true);
+                        }
+                    } catch (Exception e) {}
+                }
+            }
+        });
+        
+        jifPromociones.jbtRegistrar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String desc = jifPromociones.jtfDescripcionN.getText();
+                if (jifPromociones.jdcFechaN.getDate() == null)
+                    JOptionPane.showMessageDialog(null,"Ingrese una fecha para la promoción","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jcbEstadoN.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null,"Selecciones el estado de la promoción","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jcbTipoN.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null,"Selecciones el tipo de la promoción","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(desc.isEmpty())
+                    JOptionPane.showMessageDialog(null,"Llene todos los campos","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    java.util.Date f = jifPromociones.jdcFechaN.getDate();
+                    SimpleDateFormat sf = new SimpleDateFormat("dd/MM/YYYY");
+                    String fecha = sf.format(f);
+                    String tipo = jifPromociones.jcbTipoN.getSelectedItem().toString();
+                    String estado = jifPromociones.jcbEstadoN.getSelectedItem().toString();
+                    if (Gestor.registrarPromocion(fecha,tipo,estado,desc)) {
+                        JOptionPane.showMessageDialog(null,"Se registro correctamente la promocion","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                        limpiar();
+                        limpiarFechas();
+                        limpiarComboBox();
+                        codigoPromocion();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null,"No se pudo registrar la promoción","MECAUT",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        jifPromociones.jbtCancelar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                limpiar();
+                limpiarComboBox();
+                limpiarFechas();
+            }
+        });
+        
+        jifPromociones.jbtActualizar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(jifPromociones.jtfCodigoA.getText().isEmpty())
+                    JOptionPane.showMessageDialog(null,"Ingrese un número","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jdcFechaA.getDate() == null)
+                    JOptionPane.showMessageDialog(null,"Ingrese una fecha","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jcbEstadoA.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null,"Ingrese un estado","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jcbTipoA.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null,"Ingrese un tipo","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifPromociones.jtfDescripcionA.getText().isEmpty())
+                    JOptionPane.showMessageDialog(null,"Ingrese una descripcion","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    String codigo = jifPromociones.jtfCodigoA.getText();
+                    java.util.Date f = jifPromociones.jdcFechaA.getDate();
+                    SimpleDateFormat sf = new SimpleDateFormat("dd/MM/YYYY");
+                    String fecha = sf.format(f);
+                    String tipo = jifPromociones.jcbTipoA.getSelectedItem().toString();
+                    String estado = jifPromociones.jcbEstadoA.getSelectedItem().toString();
+                    String desc = jifPromociones.jtfDescripcionA.getText();
+                    if (Gestor.modificarPromocion(codigo, fecha, tipo, estado, desc)) {
+                        JOptionPane.showMessageDialog(null,"Se modifico la promoción correctamente","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                        limpiar();
+                        limpiarComboBox();
+                        limpiarFechas();
+                        jifPromociones.jbtActualizar.setEnabled(false);
+                        jifPromociones.jbtEliminar.setEnabled(false);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null,"No se pudo modificar la promción","MECAUT",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        jifPromociones.jbtEliminar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if (jifPromociones.jtfCodigoA.getText().isEmpty())
+                   JOptionPane.showMessageDialog(null,"Ingrese el codigo de la Promocion","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else
+                    if (Gestor.eliminarPromocion(jifPromociones.jtfCodigoA.getText())) {
+                        JOptionPane.showMessageDialog(null,"Se elimino correctamente la promoción","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                        limpiar();
+                        limpiarComboBox();
+                        limpiarFechas();
+                        jifPromociones.jbtActualizar.setEnabled(false);
+                        jifPromociones.jbtEliminar.setEnabled(false);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null,"No se pudo eliminar la  Promocion","MECAUT",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
         jifPromociones.setVisible(true);
+        locacionfrm(jifPromociones);
+    }
+    
+    public void evtListaDePromociones(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Estado");
+        ResultSet datos = Gestor.listaDePromociones();
+        try {
+            while(datos.next()){
+                Object[] fila = new Object[5];
+                fila[0] = datos.getString(1);
+                fila[1] = datos.getString(2);
+                fila[2] = datos.getString(3);
+                fila[3] = datos.getString(4);
+                fila[4] = datos.getString(5);
+                modelo.addRow(fila);
+            }
+            jifPromociones.jTable1.setModel(modelo);
+        } catch (Exception e) {  }
+    }
+    
+    private void codigoPromocion(){
+        ResultSet cod = Gestor.codigoPromocion();
+        String code = "";
+        try {
+            while(cod.next())
+                code = cod.getString(1);
+            int codigo = Integer.parseInt(code);
+            jifPromociones.jtfCodigoN.setText(""+(++codigo));
+        } catch (SQLException | NumberFormatException e) {}
     }
     /* 3. Modulo Suministros */
  
@@ -2802,6 +2981,9 @@ public class Controlador {
     
     //Limpia todos los jtextField de los formulario
     private void limpiar(){
+        jifPromociones.jtfCodigoA.setText("");
+        jifPromociones.jtfDescripcionA.setText("");
+        jifPromociones.jtfDescripcionN.setText("");
         jifActualizarEmpleado.jtfTipo1.setText("");
         jifFactura.lblTotal.setText("");
         jifFichaAuto.jtfCilindraje.setText("");
@@ -2941,6 +3123,10 @@ public class Controlador {
     }
     
     private void limpiarComboBox(){
+        jifPromociones.jcbEstadoA.setSelectedIndex(0);
+        jifPromociones.jcbEstadoN.setSelectedIndex(0);
+        jifPromociones.jcbTipoA.setSelectedIndex(0);
+        jifPromociones.jcbTipoN.setSelectedIndex(0);
         jifReservas.jcbIdMecanico.setSelectedIndex(0);
         jifAuto.jcbIdCliente.setSelectedIndex(0);
         jifActualizarCliente.jcbSexo.setSelectedIndex(0);
@@ -2974,6 +3160,8 @@ public class Controlador {
     }
     
     private void limpiarFechas(){
+        jifPromociones.jdcFechaA.setDate(null);
+        jifPromociones.jdcFechaN.setDate(null);
         jifOrdenDePedido.jdcFecha.setDate(null);
         jifMantenimiento.jdcFecha.setDate(null);
         jifMantenimiento.jdcFechaInicio.setDate(null);

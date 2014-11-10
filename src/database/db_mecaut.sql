@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 3.4.5
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2014 at 12:10 AM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Erstellungszeit: 10. Nov 2014 um 17:55
+-- Server Version: 5.5.16
+-- PHP-Version: 5.3.8
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_mecaut`
+-- Datenbank: `db_mecaut`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autos`
+-- Tabellenstruktur für Tabelle `autos`
 --
 
 CREATE TABLE IF NOT EXISTS `autos` (
@@ -35,11 +35,13 @@ CREATE TABLE IF NOT EXISTS `autos` (
   `aut_kilometraje` varchar(10) NOT NULL,
   `aut_combustible` varchar(20) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `cli_nombre` varchar(20) NOT NULL
+  `cli_nombre` varchar(20) NOT NULL,
+  PRIMARY KEY (`aut_placa`),
+  KEY `cli_id` (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `autos`
+-- Daten für Tabelle `autos`
 --
 
 INSERT INTO `autos` (`aut_placa`, `aut_ciudad`, `aut_tipo`, `aut_modelo`, `aut_marca`, `aut_kilometraje`, `aut_combustible`, `cli_id`, `cli_nombre`) VALUES
@@ -55,7 +57,7 @@ INSERT INTO `autos` (`aut_placa`, `aut_ciudad`, `aut_tipo`, `aut_modelo`, `aut_m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
+-- Tabellenstruktur für Tabelle `clientes`
 --
 
 CREATE TABLE IF NOT EXISTS `clientes` (
@@ -65,11 +67,12 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `cli_sexo` varchar(15) NOT NULL,
   `cli_telefono` varchar(10) NOT NULL,
   `cli_direccion` varchar(25) NOT NULL,
-  `cli_correo` varchar(50) NOT NULL
+  `cli_correo` varchar(50) NOT NULL,
+  PRIMARY KEY (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `clientes`
+-- Daten für Tabelle `clientes`
 --
 
 INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cli_telefono`, `cli_direccion`, `cli_correo`) VALUES
@@ -94,11 +97,11 @@ INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cotizacion`
+-- Tabellenstruktur für Tabelle `cotizacion`
 --
 
 CREATE TABLE IF NOT EXISTS `cotizacion` (
-`cot_numero` int(11) NOT NULL,
+  `cot_numero` int(11) NOT NULL AUTO_INCREMENT,
   `cot_fecha` varchar(30) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
   `cli_nombre` varchar(30) NOT NULL,
@@ -107,11 +110,12 @@ CREATE TABLE IF NOT EXISTS `cotizacion` (
   `man_precioFinal` varchar(20) NOT NULL,
   `cot_valor` varchar(20) NOT NULL,
   `cot_observaciones` varchar(200) NOT NULL,
-  `cot_estado` varchar(30) NOT NULL
+  `cot_estado` varchar(30) NOT NULL,
+  PRIMARY KEY (`cot_numero`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `cotizacion`
+-- Daten für Tabelle `cotizacion`
 --
 
 INSERT INTO `cotizacion` (`cot_numero`, `cot_fecha`, `cli_id`, `cli_nombre`, `man_codigo`, `man_precio`, `man_precioFinal`, `cot_valor`, `cot_observaciones`, `cot_estado`) VALUES
@@ -123,19 +127,21 @@ INSERT INTO `cotizacion` (`cot_numero`, `cot_fecha`, `cli_id`, `cli_nombre`, `ma
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cuentas`
+-- Tabellenstruktur für Tabelle `cuentas`
 --
 
 CREATE TABLE IF NOT EXISTS `cuentas` (
-`cue_numero` int(11) NOT NULL,
+  `cue_numero` int(11) NOT NULL AUTO_INCREMENT,
   `cue_usuario` varchar(30) NOT NULL,
   `cue_contrasena` varchar(255) NOT NULL,
   `cue_tipoUsuario` varchar(20) NOT NULL,
-  `usu_id` varchar(20) NOT NULL
+  `usu_id` varchar(20) NOT NULL,
+  PRIMARY KEY (`cue_numero`),
+  KEY `cli_id` (`usu_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `cuentas`
+-- Daten für Tabelle `cuentas`
 --
 
 INSERT INTO `cuentas` (`cue_numero`, `cue_usuario`, `cue_contrasena`, `cue_tipoUsuario`, `usu_id`) VALUES
@@ -160,7 +166,7 @@ INSERT INTO `cuentas` (`cue_numero`, `cue_usuario`, `cue_contrasena`, `cue_tipoU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detallefactura`
+-- Tabellenstruktur für Tabelle `detallefactura`
 --
 
 CREATE TABLE IF NOT EXISTS `detallefactura` (
@@ -169,11 +175,12 @@ CREATE TABLE IF NOT EXISTS `detallefactura` (
   `rep_tipo` varchar(20) NOT NULL DEFAULT '',
   `rep_marca` varchar(10) NOT NULL DEFAULT '',
   `rep_cantidad` varchar(5) NOT NULL DEFAULT '',
-  `rep_precio` varchar(8) NOT NULL DEFAULT ''
+  `rep_precio` varchar(8) NOT NULL DEFAULT '',
+  KEY `FK_detallefactura_1` (`fac_numero`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detallefactura`
+-- Daten für Tabelle `detallefactura`
 --
 
 INSERT INTO `detallefactura` (`fac_numero`, `rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, `rep_precio`) VALUES
@@ -193,7 +200,7 @@ INSERT INTO `detallefactura` (`fac_numero`, `rep_codigo`, `rep_tipo`, `rep_marca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detallesmantenimientos`
+-- Tabellenstruktur für Tabelle `detallesmantenimientos`
 --
 
 CREATE TABLE IF NOT EXISTS `detallesmantenimientos` (
@@ -207,11 +214,15 @@ CREATE TABLE IF NOT EXISTS `detallesmantenimientos` (
   `emp_nombre` varchar(30) NOT NULL,
   `rep_codigo` varchar(8) NOT NULL,
   `rep_tipo` varchar(30) NOT NULL,
-  `rep_cantidad` varchar(11) NOT NULL
+  `rep_cantidad` varchar(11) NOT NULL,
+  KEY `man_codigo` (`man_codigo`),
+  KEY `aut_placa` (`aut_placa`),
+  KEY `emp_id` (`emp_id`),
+  KEY `rep_codigo` (`rep_codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detallesmantenimientos`
+-- Daten für Tabelle `detallesmantenimientos`
 --
 
 INSERT INTO `detallesmantenimientos` (`man_codigo`, `man_tipo`, `man_descripcion`, `man_fechaFin`, `aut_placa`, `cli_nombre`, `emp_id`, `emp_nombre`, `rep_codigo`, `rep_tipo`, `rep_cantidad`) VALUES
@@ -250,7 +261,7 @@ INSERT INTO `detallesmantenimientos` (`man_codigo`, `man_tipo`, `man_descripcion
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalles_ordenpedido`
+-- Tabellenstruktur für Tabelle `detalles_ordenpedido`
 --
 
 CREATE TABLE IF NOT EXISTS `detalles_ordenpedido` (
@@ -263,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `detalles_ordenpedido` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detalles_ordenpedido`
+-- Daten für Tabelle `detalles_ordenpedido`
 --
 
 INSERT INTO `detalles_ordenpedido` (`ord_numero`, `rep_codigo`, `rep_nombre`, `rep_marca`, `rep_cantidad`, `rep_precio`) VALUES
@@ -290,7 +301,7 @@ INSERT INTO `detalles_ordenpedido` (`ord_numero`, `rep_codigo`, `rep_nombre`, `r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleados`
+-- Tabellenstruktur für Tabelle `empleados`
 --
 
 CREATE TABLE IF NOT EXISTS `empleados` (
@@ -302,11 +313,12 @@ CREATE TABLE IF NOT EXISTS `empleados` (
   `emp_telefono` varchar(10) NOT NULL,
   `emp_direccion` varchar(25) NOT NULL,
   `emp_salario` varchar(10) NOT NULL,
-  `emp_correo` varchar(50) NOT NULL
+  `emp_correo` varchar(50) NOT NULL,
+  PRIMARY KEY (`emp_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `empleados`
+-- Daten für Tabelle `empleados`
 --
 
 INSERT INTO `empleados` (`emp_id`, `emp_nombre`, `emp_apellidos`, `emp_sexo`, `emp_tipo`, `emp_telefono`, `emp_direccion`, `emp_salario`, `emp_correo`) VALUES
@@ -323,19 +335,20 @@ INSERT INTO `empleados` (`emp_id`, `emp_nombre`, `emp_apellidos`, `emp_sexo`, `e
 -- --------------------------------------------------------
 
 --
--- Table structure for table `factura`
+-- Tabellenstruktur für Tabelle `factura`
 --
 
 CREATE TABLE IF NOT EXISTS `factura` (
-`fac_numero` int(11) NOT NULL,
+  `fac_numero` int(11) NOT NULL AUTO_INCREMENT,
   `fac_fecha` varchar(20) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
   `cli_nombre` varchar(20) NOT NULL,
-  `fac_total` varchar(20) NOT NULL
+  `fac_total` varchar(20) NOT NULL,
+  PRIMARY KEY (`fac_numero`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `factura`
+-- Daten für Tabelle `factura`
 --
 
 INSERT INTO `factura` (`fac_numero`, `fac_fecha`, `cli_id`, `cli_nombre`, `fac_total`) VALUES
@@ -353,7 +366,7 @@ INSERT INTO `factura` (`fac_numero`, `fac_fecha`, `cli_id`, `cli_nombre`, `fac_t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ficha_recepcion_auto`
+-- Tabellenstruktur für Tabelle `ficha_recepcion_auto`
 --
 
 CREATE TABLE IF NOT EXISTS `ficha_recepcion_auto` (
@@ -377,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `ficha_recepcion_auto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ficha_recepcion_auto`
+-- Daten für Tabelle `ficha_recepcion_auto`
 --
 
 INSERT INTO `ficha_recepcion_auto` (`fic_fechaRegistro`, `fic_fechaActualizacion`, `cli_id`, `aut_placa`, `aut_cilindraje`, `aut_frenos`, `aut_peso`, `aut_color`, `aut_motor`, `aut_potencia`, `aut_transmision`, `aut_largo`, `aut_ancho`, `aut_alto`, `aut_cojineria`, `aut_puertas`, `aut_farolas`) VALUES
@@ -388,39 +401,43 @@ INSERT INTO `ficha_recepcion_auto` (`fic_fechaRegistro`, `fic_fechaActualizacion
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grupoclientes`
+-- Tabellenstruktur für Tabelle `grupoclientes`
 --
 
 CREATE TABLE IF NOT EXISTS `grupoclientes` (
   `gru_codigo` enum('GRH001','GRO002','GRP003') NOT NULL,
   `gru_nombre` enum('Habitual','Ocasional','Potencial') NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `cli_estado` enum('Activo','Inactivo') NOT NULL
+  `cli_estado` enum('Activo','Inactivo') NOT NULL,
+  KEY `cli_id` (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `grupoclientes`
+-- Daten für Tabelle `grupoclientes`
 --
 
 INSERT INTO `grupoclientes` (`gru_codigo`, `gru_nombre`, `cli_id`, `cli_estado`) VALUES
-('GRP003', 'Potencial', '33333', 'Inactivo'),
-('GRO002', 'Ocasional', '121212', 'Activo');
+('GRO002', 'Ocasional', '33333', 'Inactivo'),
+('GRP003', 'Potencial', '121212', 'Activo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historialmantenimientos`
+-- Tabellenstruktur für Tabelle `historialmantenimientos`
 --
 
 CREATE TABLE IF NOT EXISTS `historialmantenimientos` (
   `aut_placa` varchar(8) NOT NULL,
   `man_codigo` int(11) NOT NULL,
   `cli_id` varchar(15) NOT NULL,
-  `his_fecha` varchar(30) NOT NULL
+  `his_fecha` varchar(30) NOT NULL,
+  KEY `aut_placa` (`aut_placa`),
+  KEY `man_codigo` (`man_codigo`),
+  KEY `cli_id` (`cli_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `historialmantenimientos`
+-- Daten für Tabelle `historialmantenimientos`
 --
 
 INSERT INTO `historialmantenimientos` (`aut_placa`, `man_codigo`, `cli_id`, `his_fecha`) VALUES
@@ -447,20 +464,21 @@ INSERT INTO `historialmantenimientos` (`aut_placa`, `man_codigo`, `cli_id`, `his
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mantenimientos`
+-- Tabellenstruktur für Tabelle `mantenimientos`
 --
 
 CREATE TABLE IF NOT EXISTS `mantenimientos` (
-`man_codigo` int(11) NOT NULL,
+  `man_codigo` int(11) NOT NULL AUTO_INCREMENT,
   `man_fechaInicio` varchar(50) NOT NULL,
   `man_estado` enum('Pendiente','Rechazado','Realizado','') NOT NULL,
   `man_costo` varchar(20) NOT NULL,
   `man_observaciones` text NOT NULL,
-  `cli_id` varchar(15) NOT NULL
+  `cli_id` varchar(15) NOT NULL,
+  PRIMARY KEY (`man_codigo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
--- Dumping data for table `mantenimientos`
+-- Daten für Tabelle `mantenimientos`
 --
 
 INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `man_costo`, `man_observaciones`, `cli_id`) VALUES
@@ -498,22 +516,23 @@ INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `ma
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordenpedido`
+-- Tabellenstruktur für Tabelle `ordenpedido`
 --
 
 CREATE TABLE IF NOT EXISTS `ordenpedido` (
-`ord_numero` int(11) NOT NULL,
+  `ord_numero` int(11) NOT NULL AUTO_INCREMENT,
   `ord_fecha` varchar(20) NOT NULL,
   `prov_nit` varchar(15) NOT NULL,
   `prov_nombre` varchar(20) NOT NULL,
   `prov_telefono` varchar(20) NOT NULL,
   `prov_direccion` varchar(30) NOT NULL,
   `ord_estado` enum('Pendiente','Aceptada','Rechazada','') NOT NULL,
-  `ord_precio` varchar(20) NOT NULL
+  `ord_precio` varchar(20) NOT NULL,
+  PRIMARY KEY (`ord_numero`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data for table `ordenpedido`
+-- Daten für Tabelle `ordenpedido`
 --
 
 INSERT INTO `ordenpedido` (`ord_numero`, `ord_fecha`, `prov_nit`, `prov_nombre`, `prov_telefono`, `prov_direccion`, `ord_estado`, `ord_precio`) VALUES
@@ -541,28 +560,32 @@ INSERT INTO `ordenpedido` (`ord_numero`, `ord_fecha`, `prov_nit`, `prov_nombre`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `promociones`
+-- Tabellenstruktur für Tabelle `promociones`
 --
 
 CREATE TABLE IF NOT EXISTS `promociones` (
-`pro_codigo` int(11) NOT NULL,
+  `pro_codigo` int(11) NOT NULL AUTO_INCREMENT,
   `pro_fecha` varchar(20) NOT NULL,
   `pro_tipo` varchar(30) NOT NULL,
   `pro_descripcion` text NOT NULL,
-  `pro_estado` enum('Activa','Inactiva') NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `pro_estado` enum('Activa','Inactiva') NOT NULL,
+  PRIMARY KEY (`pro_codigo`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `promociones`
+-- Daten für Tabelle `promociones`
 --
 
 INSERT INTO `promociones` (`pro_codigo`, `pro_fecha`, `pro_tipo`, `pro_descripcion`, `pro_estado`) VALUES
-(1, '09/11/2014', 'Repuesto', 'Compre 3 llantas y lleve 4', 'Activa');
+(1, '09/11/2014', 'Repuesto', 'Compre 3 llantas y lleve 4', 'Activa'),
+(2, '10/11/2014', 'Mantenimiento', 'Si solicita un cambio de frenos se le obsequia el liquido para ello', 'Activa'),
+(3, '14/11/2014', 'Repuesto', 'Lalalalalalal', 'Inactiva'),
+(4, '15/11/2014', 'Mantenimiento', 'ninguna', 'Activa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proveedores`
+-- Tabellenstruktur für Tabelle `proveedores`
 --
 
 CREATE TABLE IF NOT EXISTS `proveedores` (
@@ -570,11 +593,12 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
   `prov_nombre` varchar(20) NOT NULL,
   `prov_direccion` varchar(25) NOT NULL,
   `prov_telefono` varchar(10) NOT NULL,
-  `prov_descripcion` varchar(50) NOT NULL
+  `prov_descripcion` varchar(50) NOT NULL,
+  PRIMARY KEY (`prov_nit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `proveedores`
+-- Daten für Tabelle `proveedores`
 --
 
 INSERT INTO `proveedores` (`prov_nit`, `prov_nombre`, `prov_direccion`, `prov_telefono`, `prov_descripcion`) VALUES
@@ -586,7 +610,7 @@ INSERT INTO `proveedores` (`prov_nit`, `prov_nombre`, `prov_direccion`, `prov_te
 -- --------------------------------------------------------
 
 --
--- Table structure for table `repuestos`
+-- Tabellenstruktur für Tabelle `repuestos`
 --
 
 CREATE TABLE IF NOT EXISTS `repuestos` (
@@ -595,11 +619,13 @@ CREATE TABLE IF NOT EXISTS `repuestos` (
   `rep_marca` varchar(10) NOT NULL,
   `rep_cantidad` varchar(5) NOT NULL,
   `rep_precio` varchar(8) NOT NULL,
-  `prov_nit` varchar(15) NOT NULL
+  `prov_nit` varchar(15) NOT NULL,
+  PRIMARY KEY (`rep_codigo`),
+  KEY `prov_nit` (`prov_nit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `repuestos`
+-- Daten für Tabelle `repuestos`
 --
 
 INSERT INTO `repuestos` (`rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, `rep_precio`, `prov_nit`) VALUES
@@ -611,11 +637,11 @@ INSERT INTO `repuestos` (`rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservas`
+-- Tabellenstruktur für Tabelle `reservas`
 --
 
 CREATE TABLE IF NOT EXISTS `reservas` (
-`res_codigo` int(11) NOT NULL,
+  `res_codigo` int(11) NOT NULL AUTO_INCREMENT,
   `res_fecha` date NOT NULL,
   `res_estado` enum('Pendiente','Finalizada','Aceptada','Rechazada') NOT NULL,
   `cli_id` varchar(15) NOT NULL,
@@ -627,11 +653,15 @@ CREATE TABLE IF NOT EXISTS `reservas` (
   `aut_marca` varchar(30) NOT NULL,
   `emp_id` varchar(15) NOT NULL,
   `emp_nombre` varchar(50) NOT NULL,
-  `res_observaciones` text NOT NULL
+  `res_observaciones` text NOT NULL,
+  PRIMARY KEY (`res_codigo`),
+  KEY `cli_id` (`cli_id`),
+  KEY `aut_placa` (`aut_placa`),
+  KEY `emp_id` (`emp_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `reservas`
+-- Daten für Tabelle `reservas`
 --
 
 INSERT INTO `reservas` (`res_codigo`, `res_fecha`, `res_estado`, `cli_id`, `cli_nombre`, `cli_telefono`, `cli_correo`, `aut_placa`, `aut_modelo`, `aut_marca`, `emp_id`, `emp_nombre`, `res_observaciones`) VALUES
@@ -643,180 +673,41 @@ INSERT INTO `reservas` (`res_codigo`, `res_fecha`, `res_estado`, `cli_id`, `cli_
 (6, '2014-11-28', 'Pendiente', '1060648721', 'Andres', '3127185122', 'andres@gmail.com', '232BHG', '2015', 'Nissan', '232323', 'Felipe', 'Ninguna');
 
 --
--- Indexes for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Indexes for table `autos`
+-- Constraints der Tabelle `autos`
 --
 ALTER TABLE `autos`
- ADD PRIMARY KEY (`aut_placa`), ADD KEY `cli_id` (`cli_id`);
+  ADD CONSTRAINT `autos_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
--- Indexes for table `clientes`
---
-ALTER TABLE `clientes`
- ADD PRIMARY KEY (`cli_id`);
-
---
--- Indexes for table `cotizacion`
---
-ALTER TABLE `cotizacion`
- ADD PRIMARY KEY (`cot_numero`);
-
---
--- Indexes for table `cuentas`
---
-ALTER TABLE `cuentas`
- ADD PRIMARY KEY (`cue_numero`), ADD KEY `cli_id` (`usu_id`);
-
---
--- Indexes for table `detallefactura`
---
-ALTER TABLE `detallefactura`
- ADD KEY `FK_detallefactura_1` (`fac_numero`);
-
---
--- Indexes for table `detallesmantenimientos`
---
-ALTER TABLE `detallesmantenimientos`
- ADD KEY `man_codigo` (`man_codigo`), ADD KEY `aut_placa` (`aut_placa`), ADD KEY `emp_id` (`emp_id`), ADD KEY `rep_codigo` (`rep_codigo`);
-
---
--- Indexes for table `empleados`
---
-ALTER TABLE `empleados`
- ADD PRIMARY KEY (`emp_id`);
-
---
--- Indexes for table `factura`
---
-ALTER TABLE `factura`
- ADD PRIMARY KEY (`fac_numero`);
-
---
--- Indexes for table `grupoclientes`
+-- Constraints der Tabelle `grupoclientes`
 --
 ALTER TABLE `grupoclientes`
- ADD KEY `cli_id` (`cli_id`);
+  ADD CONSTRAINT `grupoclientes_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
--- Indexes for table `historialmantenimientos`
+-- Constraints der Tabelle `historialmantenimientos`
 --
 ALTER TABLE `historialmantenimientos`
- ADD KEY `aut_placa` (`aut_placa`), ADD KEY `man_codigo` (`man_codigo`), ADD KEY `cli_id` (`cli_id`);
+  ADD CONSTRAINT `historialmantenimientos_ibfk_1` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
+  ADD CONSTRAINT `historialmantenimientos_ibfk_3` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
 
 --
--- Indexes for table `mantenimientos`
---
-ALTER TABLE `mantenimientos`
- ADD PRIMARY KEY (`man_codigo`);
-
---
--- Indexes for table `ordenpedido`
---
-ALTER TABLE `ordenpedido`
- ADD PRIMARY KEY (`ord_numero`);
-
---
--- Indexes for table `promociones`
---
-ALTER TABLE `promociones`
- ADD PRIMARY KEY (`pro_codigo`);
-
---
--- Indexes for table `proveedores`
---
-ALTER TABLE `proveedores`
- ADD PRIMARY KEY (`prov_nit`);
-
---
--- Indexes for table `repuestos`
+-- Constraints der Tabelle `repuestos`
 --
 ALTER TABLE `repuestos`
- ADD PRIMARY KEY (`rep_codigo`), ADD KEY `prov_nit` (`prov_nit`);
+  ADD CONSTRAINT `repuestos_ibfk_1` FOREIGN KEY (`prov_nit`) REFERENCES `proveedores` (`prov_nit`);
 
 --
--- Indexes for table `reservas`
+-- Constraints der Tabelle `reservas`
 --
 ALTER TABLE `reservas`
- ADD PRIMARY KEY (`res_codigo`), ADD KEY `cli_id` (`cli_id`), ADD KEY `aut_placa` (`aut_placa`), ADD KEY `emp_id` (`emp_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cotizacion`
---
-ALTER TABLE `cotizacion`
-MODIFY `cot_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `cuentas`
---
-ALTER TABLE `cuentas`
-MODIFY `cue_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `factura`
---
-ALTER TABLE `factura`
-MODIFY `fac_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `mantenimientos`
---
-ALTER TABLE `mantenimientos`
-MODIFY `man_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `ordenpedido`
---
-ALTER TABLE `ordenpedido`
-MODIFY `ord_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT for table `promociones`
---
-ALTER TABLE `promociones`
-MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `reservas`
---
-ALTER TABLE `reservas`
-MODIFY `res_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `autos`
---
-ALTER TABLE `autos`
-ADD CONSTRAINT `autos_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
-
---
--- Constraints for table `grupoclientes`
---
-ALTER TABLE `grupoclientes`
-ADD CONSTRAINT `grupoclientes_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
-
---
--- Constraints for table `historialmantenimientos`
---
-ALTER TABLE `historialmantenimientos`
-ADD CONSTRAINT `historialmantenimientos_ibfk_1` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
-ADD CONSTRAINT `historialmantenimientos_ibfk_3` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`);
-
---
--- Constraints for table `repuestos`
---
-ALTER TABLE `repuestos`
-ADD CONSTRAINT `repuestos_ibfk_1` FOREIGN KEY (`prov_nit`) REFERENCES `proveedores` (`prov_nit`);
-
---
--- Constraints for table `reservas`
---
-ALTER TABLE `reservas`
-ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`),
-ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
-ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `empleados` (`emp_id`);
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`cli_id`) REFERENCES `clientes` (`cli_id`),
+  ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`aut_placa`) REFERENCES `autos` (`aut_placa`),
+  ADD CONSTRAINT `reservas_ibfk_3` FOREIGN KEY (`emp_id`) REFERENCES `empleados` (`emp_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

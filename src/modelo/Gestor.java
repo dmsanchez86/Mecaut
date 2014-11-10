@@ -493,4 +493,40 @@ public class Gestor{
         r = conexion.codigoFactura();
         return r;
     }
+
+    public ResultSet codigoPromocion() {
+        conexion.crearConexion();
+        r = conexion.codigoPromocion();
+        return r;
+    }
+
+    public boolean registrarPromocion(String fecha, String tipo, String estado, String desc) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarPromocion(fecha,tipo,estado,desc);
+        return respuesta;
+    }
+    public boolean modificarPromocion(String codigo, String fecha, String tipo, String estado, String desc) {
+        conexion.crearConexion();
+        respuesta = conexion.modificarPromocion(codigo, fecha,tipo,estado,desc);
+        return respuesta;
+    }
+    
+    public boolean eliminarPromocion(String codigo){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarPromocion(codigo);
+        return respuesta;
+    }
+    
+    public ResultSet listaDePromociones(){
+        conexion.crearConexion();
+        r = conexion.listaPromociones();
+        return r;
+    }
+    
+    public ResultSet datosPromocion(String codigo){
+        conexion.crearConexion();
+        r = conexion.datosPromocion(codigo);
+        return r;
+    }
+    
 }

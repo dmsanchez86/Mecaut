@@ -1152,4 +1152,65 @@ public class Conexion {
             return r;
         } catch (Exception e) {return null;}
     }
+
+    ResultSet codigoPromocion() {
+        try {
+            consulta = conexion.prepareStatement("SELECT MAX(pro_codigo) FROM promociones");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+
+    boolean registrarPromocion(String fecha, String tipo, String estado, String desc) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO promociones VALUES(?,?,?,?,?)");
+            consulta.setInt(1,0);
+            consulta.setString(2,fecha);
+            consulta.setString(3,tipo);
+            consulta.setString(4, desc);
+            consulta.setString(5, estado);
+            consulta.executeUpdate();
+            return true;
+        } catch (SQLException ex) {return false;}
+    }
+    boolean modificarPromocion(String cod,String fecha, String tipo, String estado, String desc){
+        try {
+            consulta = conexion.prepareStatement("UPDATE promociones SET pro_fecha = ?, pro_tipo = ?, pro_descripcion = ?, pro_estado = ? WHERE pro_codigo = ?");
+            consulta.setString(1,fecha);
+            consulta.setString(2,tipo);
+            consulta.setString(3,desc);
+            consulta.setString(4, estado);
+            consulta.setInt(5, Integer.parseInt(cod));
+            consulta.executeUpdate();
+            return true;
+        } catch (SQLException ex) {return false;}
+    }
+    boolean eliminarPromocion(String codigo){
+        try {
+            consulta = conexion.prepareStatement("DELETE FROM promociones WHERE pro_codigo = ?");
+            consulta.setInt(1, Integer.parseInt(codigo));
+            consulta.executeUpdate();
+            return true;
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, ""+e.getMessage());
+            return false;
+        }
+    }
+    
+    ResultSet listaPromociones(){
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM promociones ORDER BY pro_codigo DESC");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+    
+    ResultSet datosPromocion(String codigo){
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM promociones WHERE pro_codigo = ?");
+            consulta.setString(1,codigo);
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException | NumberFormatException e) {return null;}
+    }
 }
