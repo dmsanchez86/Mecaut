@@ -44,11 +44,12 @@ public class Gestor{
         conexion.cerrarConexion();
         return respuesta;
     }
-    public String validarUsuario(Cuenta c){
+    public String[] validarUsuario(String usuario, String clave){
+        String[] datos;
         conexion.crearConexion();
-        res = conexion.validarCuentas(c);
+        datos = conexion.validarCuentas(usuario,clave);
         conexion.cerrarConexion();
-        return res;
+        return datos;
     }
     // 1. Modulo Clientes
     // *Clientes
@@ -148,6 +149,11 @@ public class Gestor{
     public ResultSet placasAutos(){
         conexion.crearConexion();
         r = conexion.placasAutos();
+        return r;
+    }
+    public ResultSet placasAutosClientes(String id){
+        conexion.crearConexion();
+        r = conexion.placasAutosClientes(id);
         return r;
     }
     public ResultSet datosMantenimiento(String placa){
@@ -527,6 +533,65 @@ public class Gestor{
         conexion.crearConexion();
         r = conexion.datosPromocion(codigo);
         return r;
+    }
+
+    public boolean desactivarCuenta(String id, String contraseña) {
+        conexion.crearConexion();
+        respuesta = conexion.desactivarCuenta(id,contraseña);
+        return respuesta;
+    }
+
+    public boolean activarCuenta(String usuario, String con) {
+        conexion.crearConexion();
+        respuesta = conexion.activarCuenta(usuario,con);
+        return respuesta;
+    }
+
+    public boolean cambiarContrasena(String usu_id,String conVieja, String contrasenaNueva) {
+        conexion.crearConexion();
+        respuesta =conexion.cambiarContrasena(usu_id,conVieja,contrasenaNueva);
+        return respuesta;
+    }
+
+    public boolean registrarMantenimientoCliente(String placa, String id, String nombre, String estado, String fecha) {
+        conexion.crearConexion();
+        respuesta =conexion.registrarMantenimientoCliente(placa,id,nombre,estado,fecha);
+        return respuesta;
+    }
+    public boolean registrarDetallesMantenimientoCliente(String placa,String nombre, String tipoMantenimiento, String fecha,String descripcion) {
+        conexion.crearConexion();
+        respuesta =conexion.registrarDetallesMantenimientoCliente(placa, nombre, tipoMantenimiento, fecha, descripcion);
+        return respuesta;
+    }
+    
+    public ResultSet numeroMantenimientosPendientes(){
+        conexion.crearConexion();
+        r = conexion.numeroMantenimientosPendientes();
+        return r;
+    }
+
+    public ResultSet consultarManteniminetosPendientes(String dato) {
+        conexion.crearConexion();
+        r = conexion.consultarManteniminetosPendientes(dato);
+        return r;
+    }
+
+    public ResultSet DatosMantenimientoPendiente(String placa, String nombre) {
+        conexion.crearConexion();
+        r = conexion.DatosMantenimientoPendiente(placa,nombre);
+        return r;
+    }
+
+    public boolean modificarEstadoMantenimiento(String placa, String nombre) {
+        conexion.crearConexion();
+        respuesta =conexion.modificarEstadoMantenimiento(placa, nombre);
+        return respuesta;
+    }
+
+    public boolean actualizarEstadoMantenimiento(String placa,String id) {
+        conexion.crearConexion();
+        respuesta =conexion.actualizarEstadoMantenimiento(placa,id);
+        return respuesta;
     }
     
 }

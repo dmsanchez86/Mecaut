@@ -41,6 +41,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmiRegistrarMantenimiento = new javax.swing.JMenuItem();
         jmiActualizarMantenimiento = new javax.swing.JMenuItem();
+        jmiMantenimientosPendientes = new javax.swing.JMenuItem();
         jmiReservas = new javax.swing.JMenuItem();
         jmiHistMantenimiento = new javax.swing.JMenuItem();
         jmiPromociones = new javax.swing.JMenuItem();
@@ -89,7 +90,6 @@ public class frmAdmin extends javax.swing.JFrame {
         setFocusable(false);
         setIconImage(getIconImage());
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Wallpaper-auto-concept-neon-tuning-desktop1.jpg"))); // NOI18N
@@ -122,7 +122,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jMenuBar1.setToolTipText("");
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jMenuBar1.setMargin(new java.awt.Insets(0, 80, 0, 80));
+        jMenuBar1.setMargin(new java.awt.Insets(0, 5, 0, 5));
         jMenuBar1.setName(""); // NOI18N
 
         jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
@@ -232,6 +232,12 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiActualizarMantenimiento.setToolTipText("Modificar o Eliminar un Mantenimiento");
         jmiActualizarMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu2.add(jmiActualizarMantenimiento);
+
+        jmiMantenimientosPendientes.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jmiMantenimientosPendientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574586_warning_16.png"))); // NOI18N
+        jmiMantenimientosPendientes.setText("Pendientes");
+        jmiMantenimientosPendientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.add(jmiMantenimientosPendientes);
 
         jmServicios.add(jMenu2);
 
@@ -504,6 +510,7 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiConfiguracion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
         jmiConfiguracion.setText("Configuración");
+        jmiConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmSalir.add(jmiConfiguracion);
 
         jmiSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
@@ -528,21 +535,21 @@ public class frmAdmin extends javax.swing.JFrame {
                 .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(conection, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(conection, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(user)
-                        .addComponent(jLabel2))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(user)
+                    .addComponent(jLabel2)
+                    .addComponent(conection, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4))
         );
 
         pack();
@@ -614,7 +621,7 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiBuscarFactura;
     public javax.swing.JMenuItem jmiBuscarRepuesto;
     private javax.swing.JMenu jmiCliente;
-    private javax.swing.JMenuItem jmiConfiguracion;
+    public javax.swing.JMenuItem jmiConfiguracion;
     public javax.swing.JMenuItem jmiCotizacion;
     public javax.swing.JMenuItem jmiCreditos;
     private javax.swing.JMenu jmiCuentas;
@@ -634,6 +641,7 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiListaMantenimientos;
     public javax.swing.JMenuItem jmiListaProveedores;
     public javax.swing.JMenuItem jmiListaRepuestos;
+    public javax.swing.JMenuItem jmiMantenimientosPendientes;
     public javax.swing.JMenuItem jmiManuales;
     public javax.swing.JMenuItem jmiObtenerCotizacion;
     public javax.swing.JMenuItem jmiOrdenPedido;

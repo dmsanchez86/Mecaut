@@ -1,7 +1,11 @@
 package vista.FormulariosPrincipales;
 
+import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /* @author Grupo - MECAUT */
 
@@ -18,22 +22,26 @@ public class frmCliente extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        conection = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jmClientes = new javax.swing.JMenu();
-        jmiConfiguracion = new javax.swing.JMenuItem();
-        jmiCambioContrasena = new javax.swing.JMenuItem();
         jmServicios = new javax.swing.JMenu();
         jmiSolicitarMantenimiento = new javax.swing.JMenuItem();
-        jmiRegistrarAuto = new javax.swing.JMenuItem();
         jmiSolicitarReserva = new javax.swing.JMenuItem();
+        jmiRegistrarAuto = new javax.swing.JMenuItem();
+        jmiVerFichaAuto = new javax.swing.JMenuItem();
         jmiHistorialAuto = new javax.swing.JMenuItem();
         jmiPromocionesCombos = new javax.swing.JMenuItem();
         jmiCotizar = new javax.swing.JMenuItem();
         jmServicios1 = new javax.swing.JMenu();
         jmiComprarRepuesto = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jmiSolicitarRepuesto = new javax.swing.JMenuItem();
         jmAyuda = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenu();
+        jmiConfiguracion = new javax.swing.JMenuItem();
         jmiCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,45 +55,34 @@ public class frmCliente extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(202, Short.MAX_VALUE)
+                .addContainerGap(289, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(171, 171, 171))
+                .addGap(243, 243, 243))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47))
+                .addGap(84, 84, 84))
         );
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel2.setFont(new java.awt.Font("Purisa", 3, 14)); // NOI18N
+        jLabel2.setText("Usuario:");
+
+        user.setFont(new java.awt.Font("Purisa", 3, 13)); // NOI18N
+        user.setText(" ");
+
+        jLabel3.setFont(new java.awt.Font("Purisa", 2, 15)); // NOI18N
+        jLabel3.setText("Estado:");
+
+        conection.setFont(new java.awt.Font("Purisa", 3, 14)); // NOI18N
+        conection.setForeground(new java.awt.Color(255, 142, 41));
+        conection.setToolTipText("Estado de la Conexión");
+
         jMenuBar1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jMenuBar1.setMargin(new java.awt.Insets(0, 80, 0, 80));
-
-        jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
-        jmClientes.setText("Cuenta");
-        jmClientes.setToolTipText("Modulo Clientes");
-        jmClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jmClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jmClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jmClientes.setMargin(new java.awt.Insets(10, 10, 10, 10));
-        jmClientes.setName(""); // NOI18N
-
-        jmiConfiguracion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
-        jmiConfiguracion.setText("Configuración");
-        jmiConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmClientes.add(jmiConfiguracion);
-
-        jmiCambioContrasena.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiCambioContrasena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412805919_sign-up.png"))); // NOI18N
-        jmiCambioContrasena.setText("Cambiar Contraseña");
-        jmiCambioContrasena.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmClientes.add(jmiCambioContrasena);
-
-        jMenuBar1.add(jmClientes);
 
         jmServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gerente-de-servicio-icono-4188-64.png"))); // NOI18N
         jmServicios.setText("Servicios");
@@ -94,37 +91,41 @@ public class frmCliente extends javax.swing.JFrame {
         jmServicios.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmServicios.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
-        jmiSolicitarMantenimiento.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiSolicitarMantenimiento.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jmiSolicitarMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574673_Options.png"))); // NOI18N
         jmiSolicitarMantenimiento.setText("Solicitar Mantenimiento");
         jmiSolicitarMantenimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios.add(jmiSolicitarMantenimiento);
 
-        jmiRegistrarAuto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiSolicitarReserva.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jmiSolicitarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
+        jmiSolicitarReserva.setText("Solicitar Reserva");
+        jmServicios.add(jmiSolicitarReserva);
+
+        jmiRegistrarAuto.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jmiRegistrarAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412572886_CabrioletRed.png"))); // NOI18N
         jmiRegistrarAuto.setText("Registrar Auto");
         jmiRegistrarAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios.add(jmiRegistrarAuto);
 
-        jmiSolicitarReserva.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jmiSolicitarReserva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553931_kwrite.png"))); // NOI18N
-        jmiSolicitarReserva.setText("Solicitar Reserva");
-        jmiSolicitarReserva.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jmServicios.add(jmiSolicitarReserva);
+        jmiVerFichaAuto.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jmiVerFichaAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/historial.png"))); // NOI18N
+        jmiVerFichaAuto.setText("Ver Ficha Técnica del Auto");
+        jmServicios.add(jmiVerFichaAuto);
 
-        jmiHistorialAuto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiHistorialAuto.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jmiHistorialAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574455_search_16.png"))); // NOI18N
         jmiHistorialAuto.setText("Consultar Historial del Auto");
         jmiHistorialAuto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios.add(jmiHistorialAuto);
 
-        jmiPromocionesCombos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiPromocionesCombos.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jmiPromocionesCombos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554934_23.png"))); // NOI18N
         jmiPromocionesCombos.setText("Ver Promociones o Combos");
         jmiPromocionesCombos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios.add(jmiPromocionesCombos);
 
-        jmiCotizar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiCotizar.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jmiCotizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554872_money.png"))); // NOI18N
         jmiCotizar.setText("Cotizar");
         jmiCotizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -145,6 +146,10 @@ public class frmCliente extends javax.swing.JFrame {
         jmiComprarRepuesto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmServicios1.add(jmiComprarRepuesto);
 
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554939_coins.png"))); // NOI18N
+        jMenuItem3.setText("Devolver Repuesto");
+        jmServicios1.add(jMenuItem3);
+
         jmiSolicitarRepuesto.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiSolicitarRepuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554134_Delivery.png"))); // NOI18N
         jmiSolicitarRepuesto.setText("Solicitar Repuesto");
@@ -157,12 +162,23 @@ public class frmCliente extends javax.swing.JFrame {
         jmAyuda.setText("Ayuda   ");
         jmAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmAyuda.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+        jmAyuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmAyudaMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jmAyuda);
 
         jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/salir-de-gnome-icono-7637-48.png"))); // NOI18N
         jmSalir.setText("Salir   ");
         jmSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jmSalir.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
+
+        jmiConfiguracion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
+        jmiConfiguracion.setText("Configuración");
+        jmiConfiguracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmSalir.add(jmiConfiguracion);
 
         jmiCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jmiCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552697_exit.png"))); // NOI18N
@@ -179,15 +195,39 @@ public class frmCliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(conection, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(user))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(conection, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmAyudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmAyudaMouseClicked
+        try {
+            Desktop.getDesktop().browse(new URI("http://localhost/mecaut/?op=ayuda"));
+        } catch (URISyntaxException | IOException ex) {
+        }
+    }//GEN-LAST:event_jmAyudaMouseClicked
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -218,15 +258,17 @@ public class frmCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public javax.swing.JLabel conection;
+    public javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu jmAyuda;
-    public javax.swing.JMenu jmClientes;
     public javax.swing.JMenu jmSalir;
     private javax.swing.JMenu jmServicios;
     private javax.swing.JMenu jmServicios1;
-    public javax.swing.JMenuItem jmiCambioContrasena;
     public javax.swing.JMenuItem jmiCerrarSesion;
     public javax.swing.JMenuItem jmiComprarRepuesto;
     public javax.swing.JMenuItem jmiConfiguracion;
@@ -237,5 +279,7 @@ public class frmCliente extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiSolicitarMantenimiento;
     public javax.swing.JMenuItem jmiSolicitarRepuesto;
     public javax.swing.JMenuItem jmiSolicitarReserva;
+    public javax.swing.JMenuItem jmiVerFichaAuto;
+    public javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

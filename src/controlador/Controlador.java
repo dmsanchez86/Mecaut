@@ -1,7 +1,7 @@
 package controlador;
 
-import modelo.Logica.Reserva;
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +19,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -34,6 +38,7 @@ import modelo.Logica.HistorialMantenimiento;
 import modelo.Logica.Mantenimiento;
 import modelo.Logica.Proveedor;
 import modelo.Logica.Repuesto;
+import modelo.Logica.Reserva;
 import vista.Clientes.jifActualizarCliente;
 import vista.Clientes.jifGrupoClientes;
 import vista.Clientes.jifListaAutos;
@@ -63,12 +68,33 @@ import vista.Inventario.jifOrdenDePedido;
 import vista.Clientes.jifCuentas;
 import vista.Ventas.jifListaFacturas;
 import vista.Servicios.jifCotizacion;
-import vista.Servicios.jifFichaAuto;
 import vista.Servicios.jifPromociones;
+import vista.Servicios.jifCotizar;
+import vista.Servicios.jifFichaAuto;
+import vista.Servicios.jifHistorialAuto;
+import vista.Servicios.jifRegistroAuto;
+import vista.Servicios.jifSolicitarMantenimiento;
+import vista.Servicios.jifSolicitarReserva;
+import vista.Servicios.jifVerFichaAuto;
+import vista.Servicios.jifVerPromociones;
+import vista.FormulariosPrincipales.jifConfiguracionAdmin;
+import vista.Servicios.jifListaMantenimientosPendientes;
 
 public class Controlador {
 
+    private final jifListaMantenimientosPendientes jifListaMantenimientosPendientes;
+    private final jifVerFichaAuto jifVerFichaAuto;
+    private final jifCotizar jifCotizar;
+    private final jifHistorialAuto jifHistorialAuto;
+    private final jifRegistroAuto jifRegistroAuto;
+    private final jifSolicitarMantenimiento jifSolicitarMantenimiento;
+    private final jifSolicitarReserva jifSolicitarReserva;
+    private final jifVerPromociones jifVerPromociones;
     private Calendar c;
+    private JPopupMenu MenuDesplegable;
+    private JMenuItem jmiModificar;
+    private JMenuItem jmiEliminar;
+    private JMenuItem jmiCambiarEstado;
     private final Gestor Gestor;
     private final frmAdmin form;
     private final jifRegistrarCliente jifCliente;
@@ -101,11 +127,24 @@ public class Controlador {
     private final jifCotizacion jifCotizacion;
     private final jifFichaAuto jifFichaAuto;
     private final jifPromociones jifPromociones;
+    private final jifConfiguracionAdmin jifConfiguracionAdmin;
     
     /* CONSTRUCTOR */
 
     public Controlador() {
         // Inicializamos todos los objetos de los jInternalFrame
+        MenuDesplegable = new JPopupMenu();
+        jmiModificar = new JMenuItem();
+        jmiEliminar = new JMenuItem();
+        jmiCambiarEstado = new JMenuItem();
+        jifHistorialAuto = new jifHistorialAuto();
+        jifVerFichaAuto = new jifVerFichaAuto();
+        jifCotizar = new jifCotizar();
+        jifRegistroAuto = new jifRegistroAuto();
+        jifSolicitarMantenimiento = new jifSolicitarMantenimiento();
+        jifSolicitarReserva = new jifSolicitarReserva();
+        jifVerPromociones = new jifVerPromociones();
+        jifListaMantenimientosPendientes = new jifListaMantenimientosPendientes();
         Gestor = new Gestor();
         Login = new frmLoggin();
         form = new frmAdmin();
@@ -138,6 +177,7 @@ public class Controlador {
         jifCotizacion = new jifCotizacion();
         jifFichaAuto = new jifFichaAuto();
         jifPromociones = new jifPromociones();
+        jifConfiguracionAdmin = new jifConfiguracionAdmin();
         // Se añaden los jInternalFrame al jDesktopPanel
         form.jDesktopPane1.add(jifMantenimiento);
         form.jDesktopPane1.add(jifCliente);
@@ -166,6 +206,15 @@ public class Controlador {
         form.jDesktopPane1.add(jifCotizacion);
         form.jDesktopPane1.add(jifFichaAuto);
         form.jDesktopPane1.add(jifPromociones);
+        form.jDesktopPane1.add(jifListaMantenimientosPendientes);
+        form.jDesktopPane1.add(jifConfiguracionAdmin);
+        frmCliente.jDesktopPane1.add(jifVerFichaAuto);
+        frmCliente.jDesktopPane1.add(jifCotizar);
+        frmCliente.jDesktopPane1.add(jifHistorialAuto);
+        frmCliente.jDesktopPane1.add(jifRegistroAuto);
+        frmCliente.jDesktopPane1.add(jifSolicitarMantenimiento);
+        frmCliente.jDesktopPane1.add(jifSolicitarReserva);
+        frmCliente.jDesktopPane1.add(jifVerPromociones);
     }
     /* INICIO LOGGIN */
     public void lanzarLogin() {
@@ -199,7 +248,7 @@ public class Controlador {
     
     /* Formulario Administrador */
 
-    private void lanzarFormularioAdministrador() {
+    private void lanzarFormularioAdministrador(String id) {
         limpiarInicio();
         /* MENU - CLIENTES */
         // 1. Modulo Clientes
@@ -258,6 +307,13 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmActualizarMantenimiento();
+            }
+        });
+        form.jmiMantenimientosPendientes.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmListaMantenimientosPendientes();
             }
         });
         form.jmiListaMantenimientos.addActionListener(new ActionListener() {
@@ -384,6 +440,14 @@ public class Controlador {
         // 8. Modulo ayuda
         
         // 9. Modulo salir
+        form.jmiConfiguracion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] d = form.user.getToolTipText().split(" ");
+                frmConfiguracionAdministrador(d[1]);
+            }
+        });
         form.jmiSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -391,30 +455,268 @@ public class Controlador {
                 Login.jtfContraseña.setText("");
                 Login.setVisible(true);
             }
-        });
+        });evtNumeroMantenimientosPendientes();
+        evtNumeroMantenimientosPendientes();
         String user = Login.jtfUsuario.getText();
         form.setVisible(true);
         form.user.setText(user.toUpperCase());
-        form.user.setToolTipText("Usuario: "+user);
+        form.user.setToolTipText("Identificación: "+id+" \nUsuario: "+user);
         form.conection.setText(Gestor.estadoConexion());
     }
     /* Formulario Cliente */
 
-    private void lanzarFormularioCliente() {
-        frmCliente.setVisible(true);
+    private void lanzarFormularioCliente(String id) {
+        
+        frmCliente.jmiSolicitarMantenimiento.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmSolicitarMantenimiento();
+            }
+        });
+        frmCliente.jmiSolicitarReserva.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifSolicitarReserva.setVisible(true);
+            }
+        });
+        frmCliente.jmiRegistrarAuto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmRegistrarAutoCliente();
+            }
+        });
+        frmCliente.jmiVerFichaAuto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frmVerFichaAuto();
+            }
+        });
+        frmCliente.jmiHistorialAuto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifHistorialAuto.setVisible(true);
+            }
+        });
+        frmCliente.jmiPromocionesCombos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifVerPromociones.setVisible(true);
+            }
+        });
+        frmCliente.jmiCotizar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifCotizar.setVisible(true);
+            }
+        });
         frmCliente.jmiCerrarSesion.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                frmCliente.hide();
+                frmCliente.setVisible(false);
                 Login.setVisible(true);
                 Login.jtfContraseña.setText(null);
             }
         });
+        
+        String user = Login.jtfUsuario.getText().toUpperCase();
+        frmCliente.user.setText(user.toUpperCase());
+        frmCliente.user.setToolTipText("Identificación: "+id+" Usuario: "+user);
+        frmCliente.conection.setText(Gestor.estadoConexion());
+        frmCliente.setVisible(true);
+    }
+    
+    public void frmSolicitarMantenimiento(){
+        limpiar();
+        limpiarTablas(jifSolicitarMantenimiento.Detalles);
+        jifSolicitarMantenimiento.ListaAutos.setEnabled(true);
+        String[] d = frmCliente.user.getToolTipText().split(" ");
+        ResultSet datos = Gestor.ConsultarAutosClientes(d[1]);
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Placa");
+            modelo.addColumn("Ciudad");
+            modelo.addColumn("Modelo");
+            modelo.addColumn("Marca");
+            while(datos.next()){
+                Object[] fila = new Object[4];
+                fila[0] = datos.getString("aut_placa");
+                fila[1] = datos.getString("aut_ciudad");
+                fila[2] = datos.getString("aut_modelo");
+                fila[3] = datos.getString("aut_marca");
+                modelo.addRow(fila);
+            }
+            jifSolicitarMantenimiento.ListaAutos.setModel(modelo);
+        } catch (Exception e) {
+        }
+        final DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Placa");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Tipo Mantenimiento");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Descripción");
+        jifSolicitarMantenimiento.jbtAgregar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] fila =  new Object[5];
+                String[] d = frmCliente.user.getToolTipText().split(" ");
+                ResultSet nom = Gestor.TraerDatosCliente(d[1]);
+                try {
+                    while(nom.next())
+                        fila[1] = nom.getString("cli_nombre");
+                    fila[0] = jifSolicitarMantenimiento.jtfPlaca.getText();
+                    fila[2] = "";
+                    fila[3] = "";
+                    fila[4] = "";
+                modelo.addRow(fila);
+                } catch (Exception exc) {}
+                jifSolicitarMantenimiento.Detalles.setModel(modelo);  
+                jifSolicitarMantenimiento.jFrame1.setBounds(290, 250, 270, 295);
+                jifSolicitarMantenimiento.jFrame1.setVisible(true);
+                jifSolicitarMantenimiento.jcbTipoMantenimiento.setSelectedIndex(0);
+                jifSolicitarMantenimiento.jdcFechaMantenimiento.setDate(null);
+                jifSolicitarMantenimiento.jtfDescripcion.setText(null);
+                jifSolicitarMantenimiento.ListaAutos.setEnabled(false);
+            }
+        });
+        jifSolicitarMantenimiento.jbtEliminar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int fs =jifSolicitarMantenimiento.Detalles.getSelectedRow();
+                if (fs < 0) 
+                    JOptionPane.showMessageDialog(null,"Selecciones una columna","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    DefaultTableModel m = (DefaultTableModel) jifSolicitarMantenimiento.Detalles.getModel();
+                    m.removeRow(fs);
+                }
+            }
+        });
+        jifSolicitarMantenimiento.jbtVolver.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifSolicitarMantenimiento.jFrame1.hide();
+            }
+        });
+        jifSolicitarMantenimiento.jbtSumar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (jifSolicitarMantenimiento.jcbTipoMantenimiento.getSelectedIndex() == 0) 
+                    JOptionPane.showMessageDialog(null, "Seleccione un tipo de mantenimiento para el auto","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifSolicitarMantenimiento.jdcFechaMantenimiento.getDate() == null)
+                    JOptionPane.showMessageDialog(null, "Seleccione una fecha para el tipo de mantenimiento","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifSolicitarMantenimiento.jtfDescripcion.getText().isEmpty())
+                    JOptionPane.showMessageDialog(null, "Ingrese una descripcion para el tipo de mantenimiento","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    java.util.Date f  = jifSolicitarMantenimiento.jdcFechaMantenimiento.getDate();
+                    SimpleDateFormat sf = new SimpleDateFormat("dd/MM/YYYY");
+                    String fecha = sf.format(f);
+                    int fila = jifSolicitarMantenimiento.Detalles.getRowCount()-1;
+                    jifSolicitarMantenimiento.Detalles.setValueAt(jifSolicitarMantenimiento.jcbTipoMantenimiento.getSelectedItem().toString(), fila, 2);
+                    jifSolicitarMantenimiento.Detalles.setValueAt(fecha, fila, 3);
+                    jifSolicitarMantenimiento.Detalles.setValueAt(jifSolicitarMantenimiento.jtfDescripcion.getText(), fila, 4);
+                    jifSolicitarMantenimiento.jFrame1.hide();
+                    jifSolicitarMantenimiento.jbtSolicitar.setEnabled(true);
+                }
+            }
+        });
+        jifSolicitarMantenimiento.jbtSolicitar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(jifSolicitarMantenimiento.Detalles.getRowCount()<=0)
+                    JOptionPane.showMessageDialog(null,"Ingrese por lo menos un tipo de mantenimiento","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    c = new GregorianCalendar();
+                    SimpleDateFormat sd = new SimpleDateFormat("YYYY-MM-dd");
+                    String fecha = sd.format(c.getTime());
+                    String placa = jifSolicitarMantenimiento.jtfPlaca.getText();
+                    String[] d = frmCliente.user.getToolTipText().split(" ");
+                    String id = d[1];
+                    String nombre ="";
+                    ResultSet n = Gestor.TraerDatosCliente(id);
+                    try {
+                        while(n.next())
+                            nombre = n.getString("cli_nombre");
+                    } catch (Exception ex) {}
+                    if (Gestor.registrarMantenimientoCliente(placa,id,nombre,"Pendiente",fecha)) {
+                        String [][] datos = new String[jifSolicitarMantenimiento.Detalles.getRowCount()][5];
+                        for (int i = 0; i < jifSolicitarMantenimiento.Detalles.getRowCount(); i++) {
+                            for (int j = 0; j < 5; j++) {
+                                datos[i][j] = (String)jifSolicitarMantenimiento.Detalles.getValueAt(i, j);
+                            }
+                        }
+                        for (int i = 0; i < jifSolicitarMantenimiento.Detalles.getRowCount(); i++) {
+                            if (Gestor.registrarDetallesMantenimientoCliente(datos[i][0], datos[i][1], datos[i][2], datos[i][3], datos[i][4])) {
+                                JOptionPane.showMessageDialog(null, "Se Registro correctamente la solicitud de mantenimiento","MECAUT",JOptionPane.INFORMATION_MESSAGE);                                
+                            }
+                        }
+                    }
+                    limpiar();
+                    limpiarTablas(jifSolicitarMantenimiento.Detalles);
+                    jifSolicitarMantenimiento.jbtSolicitar.setEnabled(false);
+                }
+            }
+        });
+        jifSolicitarMantenimiento.setVisible(true);
+        locacionfrm(jifSolicitarMantenimiento);
+    }
+    
+    public void frmRegistrarAutoCliente(){
+        
+        jifRegistroAuto.jbtRegistrar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] datos = frmCliente.user.getToolTipText().split(" ");
+                String cli_nombre = "";
+                ResultSet r = Gestor.TraerDatosCliente(datos[1]);
+                try {
+                    while(r.next())
+                        cli_nombre = r.getString("cli_nombre");
+                } catch (Exception ex) {}
+                String placa = jifRegistroAuto.jtfPlaca.getText();
+                String ciudad = jifRegistroAuto.jcbCiudad.getSelectedItem().toString();
+                String tipo = jifRegistroAuto.jcbTipo.getSelectedItem().toString();
+                String modelo = jifRegistroAuto.jcbModelo.getSelectedItem().toString();
+                String marca = jifRegistroAuto.jcbMarca.getSelectedItem().toString();
+                String kilometraje = jifRegistroAuto.jtfKilometraje.getText();
+                String combustible = jifRegistroAuto.jtfCombustible.getText();
+                
+                Auto auto = new Auto(placa, ciudad, tipo, modelo, marca, kilometraje, combustible, datos[1], cli_nombre);
+                if (Gestor.agregarAuto(auto)) {
+                    JOptionPane.showMessageDialog(null, "Se registro el auto correctamente","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                    limpiarComboBox();
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar el auto","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        jifRegistroAuto.jbtRegistrar1.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiar();
+                limpiarComboBox();
+            }
+        });
+        
+        jifRegistroAuto.setVisible(true);
     }
     /* Formulario Empleado */
 
-    private void lanzarFormularioEmpleado() {
+    private void lanzarFormularioEmpleado(String id) {
         frmEmpleado.setVisible(true);
         frmEmpleado.jmSalir.addActionListener(new ActionListener() {
 
@@ -888,10 +1190,286 @@ public class Controlador {
     }
     /* 2. Modulo Servicios */
 
+    private void frmRegistrarMantenimientos(String placa, String nombre) {
+        limpiar();
+        limpiarFechas();
+        limpiarTablas(jifMantenimiento.Detalles);
+        limpiarComboBox();
+        jifMantenimiento.jbtAgregar.setEnabled(false);
+        jifMantenimiento.jbtRegistrar.setEnabled(true);
+        
+        c = new GregorianCalendar();
+        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
+        jifMantenimiento.jdcFechaInicio.setDate(c.getTime());
+    
+        jifMantenimiento.jcbIdMecanico1.removeAllItems();
+        jifMantenimiento.jcbIdMecanico1.addItem("----");
+        jifMantenimiento.jcbcodRepuesto.removeAllItems();
+        jifMantenimiento.jcbcodRepuesto.addItem("----");
+        ResultSet ids = Gestor.idsMecanicos();
+        try {
+            while (ids.next())
+                jifMantenimiento.jcbIdMecanico1.addItem(ids.getString("emp_id"));
+        } catch (Exception e) {        }
+        ResultSet cods = Gestor.codRepuestos();
+        try {
+            while (cods.next())
+                jifMantenimiento.jcbcodRepuesto.addItem(cods.getString("rep_codigo"));
+        } catch (Exception e) {        }
+        
+        final DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Tipo Mantenimiento");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Placa Auto");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Id Mécanico");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Repuesto Código");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Precio");
+        codigoMantenimiento();
+        jifMantenimiento.jtfPlaca.setText(placa);
+        ResultSet datos = Gestor.DatosMantenimientoPendiente(placa,nombre);
+        try {
+            while(datos.next()){
+                Object[] f = new Object[11];
+                f[0] = datos.getString("man_tipo");
+                f[1] = "";
+                f[2] = "";
+                f[3] = datos.getString("aut_placa");
+                f[4] = datos.getString("cli_nombre");
+                f[5] = "";
+                f[6] = "";
+                f[7] = "";
+                f[8] = "";
+                f[9] = "";
+                f[10] = "";
+                modelo.addRow(f);
+            }
+            jifMantenimiento.Detalles.setModel(modelo);
+        } catch (Exception e) {System.out.println(e.getMessage());}
+        evtConsultarDatosAuto(placa);
+        jifMantenimiento.jcbIdMecanico1.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String id = jifMantenimiento.jcbIdMecanico1.getSelectedItem()!=null?jifMantenimiento.jcbIdMecanico1.getSelectedItem().toString():"";
+                ResultSet re = Gestor.traerDatosEmpleado(id);
+                try {
+                    while (re.next()) 
+                        jifMantenimiento.jtfNombreMecanico1.setText(re.getString("emp_nombre")+" "+re.getString("emp_apellidos"));
+                } catch (Exception ex) {}
+            }
+        });
+        
+        jifMantenimiento.jcbcodRepuesto.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String cod = jifMantenimiento.jcbcodRepuesto.getSelectedItem() != null ?jifMantenimiento.jcbcodRepuesto.getSelectedItem().toString():"";
+                ResultSet r = Gestor.datosRepuesto(cod);
+                try {
+                    while (r.next()) {
+                        jifMantenimiento.jtfnombreRepuesto.setText(r.getString("rep_tipo"));
+                        jifMantenimiento.disp.setText(r.getString("rep_cantidad"));
+                        jifMantenimiento.jtfPrecioRepuesto.setText(r.getString("rep_precio"));
+                        if(Integer.parseInt(r.getString("rep_cantidad")) == 0){
+                            jifMantenimiento.jscantidadRepuesto.setEnabled(false);
+                            int rs = JOptionPane.showConfirmDialog(null, "El repuesto no tiene mas articulos que vender\n\nDesea Hacer una nueva orden de pedido","MECAUT",JOptionPane.YES_NO_OPTION);
+                            if (rs == JOptionPane.YES_OPTION) {
+                                jifMantenimiento.jFrame1.hide();
+                                frmOrdenDePedido();
+                            }
+                        }
+                        else{
+                            jifMantenimiento.jscantidadRepuesto.setEnabled(true);
+                            jifMantenimiento.jscantidadRepuesto.setValue(0);
+                        }
+                    }
+                } catch (SQLException | NumberFormatException | HeadlessException ex) {
+                JOptionPane.showMessageDialog(null, ""+ex.getMessage());}
+            }
+        });
+        //jifMantenimiento.Detalles.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jifMantenimiento.Detalles.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int i = jifMantenimiento.Detalles.getSelectedRow();
+                String desc = (String)jifMantenimiento.Detalles.getValueAt(i,1);
+                String placa = (String)jifMantenimiento.Detalles.getValueAt(i, 3);
+                String cli_nombre = (String)jifMantenimiento.Detalles.getValueAt(i, 4);
+                String rep_cantidad = (String)jifMantenimiento.Detalles.getValueAt(i, 9);
+                jifMantenimiento.jcbIdMecanico1.setSelectedIndex(0);
+                jifMantenimiento.jcbcodRepuesto.setSelectedIndex(0);
+                jifMantenimiento.jtfdescripcion.setText(desc);
+                jifMantenimiento.jdcFecha.setDate(null);
+                jifMantenimiento.jtfplaca.setText(placa);
+                jifMantenimiento.jtfCliNombre.setText(cli_nombre);
+                jifMantenimiento.jtfPrecioRepuesto.setText("");
+                jifMantenimiento.jtfNombreMecanico1.setText("");
+                jifMantenimiento.jtfnombreRepuesto.setText("");
+                //jifMantenimiento.jscantidadRepuesto.setValue(Integer.parseInt(rep_cantidad));
+                jifMantenimiento.jFrame1.setVisible(true);
+                jifMantenimiento.jFrame1.setBounds(300, 150, 793, 490);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+        
+        jifMantenimiento.jbtModificarDetalles.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String tipo_mantenimiento = jifMantenimiento.jcbTipoMantenimiento1.getSelectedItem().toString();
+                String des = jifMantenimiento.jtfdescripcion.getText();
+                String id_mec = jifMantenimiento.jcbIdMecanico1.getSelectedItem().toString();
+                String nom_emp = jifMantenimiento.jtfNombreMecanico1.getText();
+                String cod_rep = jifMantenimiento.jcbcodRepuesto.getSelectedItem().toString();
+                String nom_rep = jifMantenimiento.jtfnombreRepuesto.getText();
+                String can_rep = jifMantenimiento.jscantidadRepuesto.getValue().toString();
+                String pre_rep = jifMantenimiento.jtfPrecioRepuesto.getText();
+                if(jifMantenimiento.jdcFecha.getDate() == null)
+                    JOptionPane.showMessageDialog(null, "Ingrese una fecha","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifMantenimiento.jcbTipoMantenimiento1.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null, "Seleccione un tipo de mantenimiento","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifMantenimiento.jcbIdMecanico1.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null, "Selecciones la identificación del mécanico","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(jifMantenimiento.jcbcodRepuesto.getSelectedIndex() == 0)
+                    JOptionPane.showMessageDialog(null, "Selecciones un codigo para el repuesto","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(des.isEmpty() || id_mec.isEmpty() || nom_emp.isEmpty() || cod_rep.isEmpty() || nom_rep.isEmpty() || can_rep.isEmpty() || pre_rep.isEmpty())
+                    JOptionPane.showMessageDialog(null, "Complete todos los campos","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else if(Integer.parseInt(jifMantenimiento.disp.getText()) == 0)
+                    JOptionPane.showMessageDialog(null, "El repuesto no tiene mas articulos que vender\n\nContacte a su proveedor mas cercano para recargar el inventario","MECAUT",JOptionPane.ERROR_MESSAGE);
+                else{
+                    java.util.Date fecha= jifMantenimiento.jdcFecha.getDate();
+                    SimpleDateFormat formatofecha= new SimpleDateFormat("dd/MM/YYYY");
+                    String fec=""+formatofecha.format(fecha);
+                    jifMantenimiento.jFrame1.hide();
+                    int i = jifMantenimiento.Detalles.getSelectedRow();
+                    jifMantenimiento.Detalles.setValueAt(tipo_mantenimiento, i, 0);
+                    jifMantenimiento.Detalles.setValueAt(des, i, 1);
+                    jifMantenimiento.Detalles.setValueAt(fec, i, 2);
+                    jifMantenimiento.Detalles.setValueAt(id_mec, i, 5);
+                    jifMantenimiento.Detalles.setValueAt(nom_emp, i, 6);
+                    jifMantenimiento.Detalles.setValueAt(cod_rep, i, 7);
+                    jifMantenimiento.Detalles.setValueAt(nom_rep, i, 8);
+                    jifMantenimiento.Detalles.setValueAt(can_rep, i, 9);
+                    jifMantenimiento.Detalles.setValueAt(pre_rep, i, 10);
+                    int columnas = jifMantenimiento.Detalles.getRowCount();
+                    int total = 0;
+                    for (int j = 0; j < columnas; j++) {
+                        String can = ((jifMantenimiento.Detalles.getValueAt(j, 9).toString()=="")?"0":(String)jifMantenimiento.Detalles.getValueAt(j, 9));
+                        String pre = ((jifMantenimiento.Detalles.getValueAt(j, 10).toString()=="")?"0":(String) jifMantenimiento.Detalles.getValueAt(j, 10));
+                        total += Integer.parseInt(can)*Integer.parseInt(pre); 
+                    }
+                    jifMantenimiento.jtfCosto.setText("$"+total);
+                    jifMantenimiento.jbtRegistrar.setEnabled(true);
+                }
+            }
+        });
+        
+        jifMantenimiento.jbtRegistrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    String codigoMantenimiento = jifMantenimiento.jtfCodigo.getText();
+                    String observaciones = jifMantenimiento.jtfObservaciones.getText();
+                    String costo = jifMantenimiento.jtfCosto.getText();
+                    String estado = "Pendiente";
+                    String cli_id = jifMantenimiento.jtfIdCliente.getText();
+                    String placa = jifMantenimiento.jtfPlaca.getText();
+                    if(jifMantenimiento.jdcFechaInicio == null)
+                        JOptionPane.showMessageDialog(null, "Ingrese una fecha para el Mantenimiento","MECAUT",JOptionPane.ERROR_MESSAGE);
+                    else if(observaciones.isEmpty() || placa.isEmpty())
+                        JOptionPane.showMessageDialog(null, "Debe llenar todos los datos","MECAUT",JOptionPane.ERROR_MESSAGE);
+                    else if(jifMantenimiento.Detalles.getRowCount() <= 0)
+                        JOptionPane.showMessageDialog(null, "Debe ingresar al menos un mantenimiento","MECAUT",JOptionPane.ERROR_MESSAGE);
+                    else{
+                        java.util.Date fechaInicio = jifMantenimiento.jdcFechaInicio.getDate();
+                        SimpleDateFormat formatofecha= new SimpleDateFormat("dd/MM/YYYY");
+                        String fec=""+formatofecha.format(fechaInicio);
+                        if (Gestor.registrarMantenimiento(codigoMantenimiento, fec, observaciones, costo, estado,cli_id) && Gestor.registrarHistorialMantenimiento(placa,codigoMantenimiento,cli_id,fec)&&Gestor.actualizarEstadoMantenimiento(placa,cli_id)) {
+                            int nColumnas = jifMantenimiento.Detalles.getRowCount();
+                            String[][] datosdetalles = new String[nColumnas][11];
+                            for (int i = 0; i < nColumnas; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    datosdetalles[i][j] = (String) jifMantenimiento.Detalles.getValueAt(i, j);
+                                }
+                            }
+                            for (int i = 0; i < datosdetalles.length; i++) {
+                                if (Gestor.detallesMantenimiento(
+                                        codigoMantenimiento,
+                                        datosdetalles[i][0],
+                                        datosdetalles[i][1],
+                                        datosdetalles[i][2],
+                                        datosdetalles[i][3],
+                                        datosdetalles[i][4],
+                                        datosdetalles[i][5],
+                                        datosdetalles[i][6],
+                                        datosdetalles[i][7],
+                                        datosdetalles[i][8],
+                                        datosdetalles[i][9])) {
+                                    int co = 0;
+                                    if(co == 0){
+                                        JOptionPane.showMessageDialog(null, "Se registro el Mantenimiento","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                                        co++;
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Algo salio mal :c");
+                                }
+                            }
+                            evtNumeroMantenimientosPendientes();
+                            limpiarTablas(jifMantenimiento.Detalles);
+                            jifMantenimiento.jcbIdMecanico1.setSelectedIndex(0);
+                            jifMantenimiento.jcbcodRepuesto.setSelectedIndex(0);
+                            jifMantenimiento.jdcFecha.setDate(null);
+                            jifMantenimiento.jdcFechaInicio.setDate(null);
+                            jifMantenimiento.Detalles.setModel(modelo);
+                            limpiar();
+                            codigoMantenimiento();
+                            limpiarComboBox();
+                            jifMantenimiento.jbtRegistrar.setEnabled(false);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "no se pudo registrar el mantenimiento","MECAUT",JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, "no se pudo registrar el mantenimiento\nVerifique si lleno todos los campos correcamente","MECAUT",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        
+        TextAutoCompleter t = new TextAutoCompleter(jifMantenimiento.jtfPlaca);
+        ResultSet res = Gestor.placasAutos();
+        try {
+            while (res.next()) 
+                t.addItem(res.getString("aut_placa"));
+        } catch (Exception e) { }
+        jifMantenimiento.setVisible(true);
+        locacionfrm(jifMantenimiento);
+    }
+    
     private void frmRegistrarMantenimientos() {
         limpiar();
         limpiarFechas();
         limpiarTablas(jifMantenimiento.Detalles);
+        limpiarComboBox();
         final DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Tipo Mantenimiento");
         modelo.addColumn("Descripcion");
@@ -919,11 +1497,11 @@ public class Controlador {
             while (cods.next())
                 jifMantenimiento.jcbcodRepuesto.addItem(cods.getString("rep_codigo"));
         } catch (Exception e) {        }
-        limpiarComboBox();
         jifMantenimiento.jtfPlaca.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                evtConsultarDatosAuto();
+                String placa = jifMantenimiento.jtfPlaca.getText();
+                evtConsultarDatosAuto(placa);
             }
         });
         jifMantenimiento.jtfPlaca.addKeyListener(new KeyListener() {
@@ -935,7 +1513,8 @@ public class Controlador {
             }
             @Override
             public void keyReleased(KeyEvent e) {
-                evtConsultarDatosAuto();
+                String placa = jifMantenimiento.jtfPlaca.getText();
+                evtConsultarDatosAuto(placa);
             }
         });
         jifMantenimiento.jcbIdMecanico1.addItemListener(new ItemListener() {
@@ -1103,8 +1682,7 @@ public class Controlador {
         locacionfrm(jifMantenimiento);
     }
 
-    private void evtConsultarDatosAuto(){
-        String dato = jifMantenimiento.jtfPlaca.getText();
+    private void evtConsultarDatosAuto(String dato){
         if(dato.isEmpty()){
             jifMantenimiento.jtfIdCliente.setText(null);
             jifMantenimiento.jtfNombreCliente.setText(null);
@@ -1227,6 +1805,118 @@ public class Controlador {
         jifListaMantenimientos.registros.setText(""+jifListaMantenimientos.jtListaMantenimientos.getRowCount());
         jifListaMantenimientos.setVisible(true);
         locacionfrm(jifListaMantenimientos);
+    }
+    
+    private void frmListaMantenimientosPendientes(){
+        evtMantenimientosPendientes("");
+        
+        jifListaMantenimientosPendientes.jcbBusqueda.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String dato = jifListaMantenimientosPendientes.jcbBusqueda.getSelectedItem().toString();
+                evtMantenimientosPendientes(dato);
+            }
+        });
+        
+        jmiCambiarEstado = jifListaMantenimientosPendientes.jmiCambiarEstado;
+        jmiModificar = jifListaMantenimientosPendientes.jmiModificarDatos;
+        jmiEliminar = jifListaMantenimientosPendientes.jmiEliminar;
+        JPopupMenu.Separator s;
+        s = jifListaMantenimientosPendientes.jSeparator1;
+        MenuDesplegable = jifListaMantenimientosPendientes.jPopupMenu1;
+        MenuDesplegable.add(jmiModificar);
+        MenuDesplegable.add(jmiCambiarEstado);
+        MenuDesplegable.add(s);
+        MenuDesplegable.add(jmiEliminar);
+        
+        jmiCambiarEstado.setText("Cambiar Estado");
+        jmiModificar.setText("Modificar Información");
+        jmiEliminar.setText("Eliminar");
+        
+        MenuDesplegable.setBounds(350, 50, 400, 300);
+        
+        jifListaMantenimientosPendientes.jTable1.setComponentPopupMenu(MenuDesplegable);
+        
+        jmiCambiarEstado.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                int i = jifListaMantenimientosPendientes.jTable1.getSelectedRow();
+                String placa = jifListaMantenimientosPendientes.jTable1.getValueAt(i, 0).toString();
+                String nombre = jifListaMantenimientosPendientes.jTable1.getValueAt(i, 2).toString();
+                if (Gestor.modificarEstadoMantenimiento(placa,nombre)) {
+                    evtMantenimientosPendientes("");
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar el estado","MECAUT",JOptionPane.ERROR_MESSAGE);
+                }catch(Exception ex){
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+        jmiModificar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String placa,nombre;
+                int i = jifListaMantenimientosPendientes.jTable1.getSelectedRow();
+                placa = (String) jifListaMantenimientosPendientes.jTable1.getValueAt(i, 0);
+                nombre = (String) jifListaMantenimientosPendientes.jTable1.getValueAt(i, 2);
+                frmRegistrarMantenimientos(placa,nombre);
+                jifListaMantenimientosPendientes.hide();
+            }
+        });
+        
+        locacionfrm(jifListaMantenimientosPendientes);
+        jifListaMantenimientosPendientes.setVisible(true);
+    }
+    
+    public void evtMantenimientosPendientes(String dato){
+        ResultSet datos;
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Placa");
+        modelo.addColumn("Id Cliente");
+        modelo.addColumn("Nombre Cliente");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Fecha");
+        switch(dato){
+            case "Pendientes":
+                datos = Gestor.consultarManteniminetosPendientes("Pendiente");
+                break;
+            case "Rechazadas":
+                datos = Gestor.consultarManteniminetosPendientes("Rechazada");
+                break;
+            case "Aceptadas":
+                datos = Gestor.consultarManteniminetosPendientes("Aceptada");
+                break;
+                default:
+                    datos = Gestor.consultarManteniminetosPendientes(null);
+                    break;
+        }
+        try {
+            while(datos.next()){
+                Object[] f = new Object[5];
+                f[0] = datos.getString("aut_placa");
+                f[1] = datos.getString("cli_id");
+                f[2] = datos.getString("cli_nombre");
+                f[3] = datos.getString("manp_estado");
+                f[4] = datos.getString("manp_fecha");
+                modelo.addRow(f);
+            }
+            jifListaMantenimientosPendientes.jTable1.setModel(modelo);
+            jifListaMantenimientosPendientes.registros.setText(""+jifListaMantenimientosPendientes.jTable1.getRowCount());
+        } catch (Exception e) {}
+    }
+    
+    public void evtNumeroMantenimientosPendientes(){
+        ResultSet d = Gestor.numeroMantenimientosPendientes();
+        try {
+            while(d.next()){
+                form.jmiMantenimientosPendientes.setText("Pendientes "+d.getString(1));
+            }
+        } catch (Exception e) {}
     }
     
     private void frmHistorialMantenimiento(){
@@ -1584,6 +2274,239 @@ public class Controlador {
         } catch (SQLException | NumberFormatException e) {JOptionPane.showMessageDialog(null, ""+e.getMessage());}
     }
     
+    private void frmVerFichaAuto(){
+        limpiar();
+        limpiarComboBox();
+        evtDesactivarPanelesFichaAuto();
+        evtFichaAuto();
+        jifVerFichaAuto.jbtNuevaFicha.setEnabled(false);
+        jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+        jifVerFichaAuto.jbtModificar.setEnabled(false);
+        jifVerFichaAuto.jcbPlacas.removeAllItems();
+        jifVerFichaAuto.jcbPlacas.addItem("----");
+        String[] datos = frmCliente.user.getToolTipText().split(" ");
+        ResultSet placas = Gestor.placasAutosClientes(datos[1]);
+        try {
+            while(placas.next())
+                jifVerFichaAuto.jcbPlacas.addItem(placas.getString("aut_placa"));
+        } catch (Exception e) {}
+        
+        jifVerFichaAuto.jcbPlacas.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                String placa = (jifVerFichaAuto.jcbPlacas.getSelectedItem() != null)?jifVerFichaAuto.jcbPlacas.getSelectedItem().toString():"";
+                ResultSet num = Gestor.validarFicha(placa);
+                try{
+                    if(!num.next()){                        
+                        try {
+                            ResultSet datos = Gestor.datosMantenimiento(placa);
+                            while(datos.next()){
+                                evtDesactivarPanelesFichaAuto();
+                                limpiar();
+                                jifVerFichaAuto.jcbTransmision.setSelectedIndex(0);
+                                evtFichaAuto();
+                                jifVerFichaAuto.jbtNuevaFicha.setEnabled(true);
+                                jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+                                jifVerFichaAuto.jbtModificar.setEnabled(false);
+                            }
+                        } catch (Exception ex) {}
+                    }
+                    else {
+                        placa = (jifVerFichaAuto.jcbPlacas.getSelectedItem() != null)?jifVerFichaAuto.jcbPlacas.getSelectedItem().toString():"";
+                        num = Gestor.validarFicha(placa);
+                        while(num.next()){
+                            evtActivarPanelesFichaAuto();
+                            jifVerFichaAuto.fRegistro.setText(num.getString("fic_fechaRegistro"));
+                            jifVerFichaAuto.fActualizacion.setText(num.getString("fic_fechaActualizacion")==null?"00/00/0000":num.getString("fic_fechaActualizacion"));
+                            jifVerFichaAuto.jtfCilindraje.setText(num.getString("aut_cilindraje"));
+                            jifVerFichaAuto.jtfFrenos.setText(num.getString("aut_frenos"));
+                            jifVerFichaAuto.jtfMotor.setText(num.getString("aut_motor"));
+                            jifVerFichaAuto.jtfPotencia.setText(num.getString("aut_potencia"));
+                            jifVerFichaAuto.jtfColor.setText(num.getString("aut_color"));
+                            jifVerFichaAuto.jsAlto.setValue(Integer.parseInt(num.getString("aut_alto")));
+                            jifVerFichaAuto.jsAncho.setValue(Integer.parseInt(num.getString("aut_ancho")));
+                            jifVerFichaAuto.jsLargo.setValue(Integer.parseInt(num.getString("aut_largo")));
+                            jifVerFichaAuto.jsPeso.setValue(Integer.parseInt(num.getString("aut_peso")));
+                            int op = ("Automatica".equals(num.getString("aut_transmision")))?1:2;
+                            jifVerFichaAuto.jcbTransmision.setSelectedIndex(op);
+                            if (null != num.getString("aut_cojineria"))
+                                switch (num.getString("aut_cojineria")) {
+                                case "Buena":
+                                    jifVerFichaAuto.jcbBuenaC.setSelected(true);
+                                    break;
+                                case "Regular":
+                                    jifVerFichaAuto.jcbRegularC.setSelected(true);
+                                    break;
+                                case "Mala":
+                                    jifVerFichaAuto.jcbMalaC.setSelected(true);
+                                    break;
+                            }
+                            if (null != num.getString("aut_puertas"))
+                                switch (num.getString("aut_puertas")) {
+                                case "Buena":
+                                    jifVerFichaAuto.jcbBuenaP.setSelected(true);
+                                    break;
+                                case "Regular":
+                                    jifVerFichaAuto.jcbRegularP.setSelected(true);
+                                    break;
+                                case "Mala":
+                                    jifVerFichaAuto.jcbMalaP.setSelected(true);
+                                    break;
+                            }
+                            if (null != num.getString("aut_farolas"))
+                                switch (num.getString("aut_farolas")) {
+                                case "Buena":
+                                    jifVerFichaAuto.jcbBuenaL.setSelected(true);
+                                    break;
+                                case "Regular":
+                                    jifVerFichaAuto.jcbRegularL.setSelected(true);
+                                    break;
+                                case "Mala":
+                                    jifVerFichaAuto.jcbMalaL.setSelected(true);
+                                    break;
+                            }
+                        }
+                        jifVerFichaAuto.jbtNuevaFicha.setEnabled(false);
+                        jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+                        jifVerFichaAuto.jbtModificar.setEnabled(true);
+                    }
+                }catch(SQLException | HeadlessException ec){ JOptionPane.showMessageDialog(null, ""+ec.getMessage());}
+            }
+        });
+        
+        jifVerFichaAuto.jbtNuevaFicha.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    jifVerFichaAuto.jbtRegistrar.setEnabled(true);
+                    evtActivarPanelesFichaAuto();
+            }
+        });
+        
+        jifVerFichaAuto.jbtRegistrar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] d= frmCliente.user.getToolTipText().split(" ");
+                c = new GregorianCalendar();
+                SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
+                String fecha = sd.format(c.getTime());
+                String Placa = jifVerFichaAuto.jcbPlacas.getSelectedItem().toString();
+                String idCli = d[1];
+                String cil = jifVerFichaAuto.jtfCilindraje.getText();
+                String fre = jifVerFichaAuto.jtfFrenos.getText();
+                String mot = jifVerFichaAuto.jtfMotor.getText();
+                String pot = jifVerFichaAuto.jtfMotor.getText();
+                String tran = jifVerFichaAuto.jcbTransmision.getSelectedItem().toString();
+                String alt = jifVerFichaAuto.jsAlto.getValue().toString();
+                String lar = jifVerFichaAuto.jsAlto.getValue().toString();
+                String anc = jifVerFichaAuto.jsAncho.getValue().toString();
+                String col = jifVerFichaAuto.jtfColor.getText();
+                String peso = jifVerFichaAuto.jsPeso.getValue().toString();
+                String luces,cojineria,puertas;
+                if(jifVerFichaAuto.jcbBuenaL.isSelected())
+                    luces = jifVerFichaAuto.jcbBuenaL.getText();
+                else if(jifVerFichaAuto.jcbRegularL.isSelected())
+                    luces = jifVerFichaAuto.jcbRegularL.getText();
+                else
+                    luces = jifVerFichaAuto.jcbMalaL.getText();
+                if(jifVerFichaAuto.jcbBuenaC.isSelected())
+                    cojineria = jifVerFichaAuto.jcbBuenaC.getText();
+                else if(jifVerFichaAuto.jcbRegularC.isSelected())
+                    cojineria = jifVerFichaAuto.jcbRegularC.getText();
+                else
+                    cojineria = jifVerFichaAuto.jcbMalaC.getText();
+                if(jifVerFichaAuto.jcbBuenaP.isSelected())
+                    puertas = jifVerFichaAuto.jcbBuenaP.getText();
+                else if(jifVerFichaAuto.jcbRegularP.isSelected())
+                    puertas = jifVerFichaAuto.jcbRegularP.getText();
+                else
+                    puertas = jifVerFichaAuto.jcbMalaP.getText();
+                if (Gestor.registrarFichaTecnica(fecha, idCli,Placa,cil,fre,peso,col,mot,pot,tran,lar,anc,alt,cojineria,puertas,luces)) {
+                    JOptionPane.showMessageDialog(null, "Se registro la ficha del auto","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                    limpiarComboBox();
+                    evtFichaAuto();
+                    evtDesactivarPanelesFichaAuto();
+                    jifVerFichaAuto.jbtNuevaFicha.setEnabled(false);
+                    jifVerFichaAuto.jbtModificar.setEnabled(false);
+                    jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+                }else
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar la ficha del auto","MECAUT",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
+        jifVerFichaAuto.jbtModificar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] d= frmCliente.user.getToolTipText().split(" ");
+                c = new GregorianCalendar();
+                c.getTime();
+                SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
+                String fechaActualizacion = sd.format(c.getTime());
+                String Placa = jifVerFichaAuto.jcbPlacas.getSelectedItem().toString();
+                String idCli = d[1];
+                String cil = jifVerFichaAuto.jtfCilindraje.getText();
+                String fre = jifVerFichaAuto.jtfFrenos.getText();
+                String mot = jifVerFichaAuto.jtfMotor.getText();
+                String pot = jifVerFichaAuto.jtfMotor.getText();
+                String tran = jifVerFichaAuto.jcbTransmision.getSelectedItem().toString();
+                String alt = jifVerFichaAuto.jsAlto.getValue().toString();
+                String lar = jifVerFichaAuto.jsAlto.getValue().toString();
+                String anc = jifVerFichaAuto.jsAncho.getValue().toString();
+                String col = jifVerFichaAuto.jtfColor.getText();
+                String peso = jifVerFichaAuto.jsPeso.getValue().toString();
+                String luces,cojineria,puertas;
+                if(jifVerFichaAuto.jcbBuenaL.isSelected())
+                    luces = jifVerFichaAuto.jcbBuenaL.getText();
+                else if(jifVerFichaAuto.jcbRegularL.isSelected())
+                    luces = jifVerFichaAuto.jcbRegularL.getText();
+                else
+                    luces = jifVerFichaAuto.jcbMalaL.getText();
+                if(jifVerFichaAuto.jcbBuenaC.isSelected())
+                    cojineria = jifVerFichaAuto.jcbBuenaC.getText();
+                else if(jifVerFichaAuto.jcbRegularC.isSelected())
+                    cojineria = jifVerFichaAuto.jcbRegularC.getText();
+                else
+                    cojineria = jifVerFichaAuto.jcbMalaC.getText();
+                if(jifVerFichaAuto.jcbBuenaP.isSelected())
+                    puertas = jifVerFichaAuto.jcbBuenaP.getText();
+                else if(jifVerFichaAuto.jcbRegularP.isSelected())
+                    puertas = jifVerFichaAuto.jcbRegularP.getText();
+                else
+                    puertas = jifVerFichaAuto.jcbMalaP.getText();
+                if(Gestor.modificarFichaAuto(fechaActualizacion, idCli, Placa, cil, fre, peso, col, mot, pot, tran, lar, anc, alt, cojineria, puertas, luces)){
+                    JOptionPane.showMessageDialog(null, "Se modifico correctamente la ficah del auto","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                    limpiar();
+                    limpiarComboBox();
+                    evtFichaAuto();
+                    evtDesactivarPanelesFichaAuto();
+                    jifVerFichaAuto.jbtNuevaFicha.setEnabled(false);
+                    jifVerFichaAuto.jbtModificar.setEnabled(false);
+                    jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+                }else
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar la ficha del auto","MECAUT",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+        
+        jifVerFichaAuto.jbtancelar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiar();
+                limpiarComboBox();
+                evtFichaAuto();
+                evtDesactivarPanelesFichaAuto();
+                jifVerFichaAuto.jbtNuevaFicha.setEnabled(false);
+                jifVerFichaAuto.jbtModificar.setEnabled(false);
+                jifVerFichaAuto.jbtRegistrar.setEnabled(false);
+            }
+        });
+        
+        jifVerFichaAuto.setVisible(true);
+    }
+    
     private void frmFichaRecepcionAuto(){
         limpiar();
         limpiarComboBox();
@@ -1703,7 +2626,6 @@ public class Controlador {
             @Override
             public void actionPerformed(ActionEvent e) {
                 c = new GregorianCalendar();
-                c.getTime();
                 SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
                 String fecha = sd.format(c.getTime());
                 String Placa = jifFichaAuto.jcbPlaca.getSelectedItem().toString();
@@ -1835,6 +2757,13 @@ public class Controlador {
         jifFichaAuto.bgCojineria.clearSelection();
         jifFichaAuto.bgLuces.clearSelection();
         jifFichaAuto.bgPuertas.clearSelection();
+        jifVerFichaAuto.jsAlto.setValue(0);
+        jifVerFichaAuto.jsAncho.setValue(0);
+        jifVerFichaAuto.jsLargo.setValue(0);
+        jifVerFichaAuto.jsPeso.setValue(0);
+        jifVerFichaAuto.bgCojineria.clearSelection();
+        jifVerFichaAuto.bgLuces.clearSelection();
+        jifVerFichaAuto.bgPuertas.clearSelection();
     }
     
     private void evtDesactivarPanelesFichaAuto(){
@@ -1857,6 +2786,25 @@ public class Controlador {
         jifFichaAuto.jcbBuenaP.setEnabled(false);
         jifFichaAuto.jcbRegularP.setEnabled(false);
         jifFichaAuto.jcbMalaP.setEnabled(false);
+        jifVerFichaAuto.jtfCilindraje.setEnabled(false);
+        jifVerFichaAuto.jtfFrenos.setEnabled(false);
+        jifVerFichaAuto.jtfMotor.setEnabled(false);
+        jifVerFichaAuto.jtfPotencia.setEnabled(false);
+        jifVerFichaAuto.jcbTransmision.setEnabled(false);
+        jifVerFichaAuto.jsAlto.setEnabled(false);
+        jifVerFichaAuto.jsAncho.setEnabled(false);
+        jifVerFichaAuto.jsLargo.setEnabled(false);
+        jifVerFichaAuto.jsPeso.setEnabled(false);
+        jifVerFichaAuto.jtfColor.setEnabled(false);
+        jifVerFichaAuto.jcbBuenaC.setEnabled(false);
+        jifVerFichaAuto.jcbRegularC.setEnabled(false);
+        jifVerFichaAuto.jcbMalaC.setEnabled(false);
+        jifVerFichaAuto.jcbBuenaL.setEnabled(false);
+        jifVerFichaAuto.jcbRegularL.setEnabled(false);
+        jifVerFichaAuto.jcbMalaL.setEnabled(false);
+        jifVerFichaAuto.jcbBuenaP.setEnabled(false);
+        jifVerFichaAuto.jcbRegularP.setEnabled(false);
+        jifVerFichaAuto.jcbMalaP.setEnabled(false);
     }
     
     private void evtActivarPanelesFichaAuto(){
@@ -1879,6 +2827,25 @@ public class Controlador {
         jifFichaAuto.jcbBuenaP.setEnabled(true);
         jifFichaAuto.jcbRegularP.setEnabled(true);
         jifFichaAuto.jcbMalaP.setEnabled(true);
+        jifVerFichaAuto.jtfCilindraje.setEnabled(true);
+        jifVerFichaAuto.jtfFrenos.setEnabled(true);
+        jifVerFichaAuto.jtfMotor.setEnabled(true);
+        jifVerFichaAuto.jtfPotencia.setEnabled(true);
+        jifVerFichaAuto.jcbTransmision.setEnabled(true);
+        jifVerFichaAuto.jsAlto.setEnabled(true);
+        jifVerFichaAuto.jsAncho.setEnabled(true);
+        jifVerFichaAuto.jsLargo.setEnabled(true);
+        jifVerFichaAuto.jsPeso.setEnabled(true);
+        jifVerFichaAuto.jtfColor.setEnabled(true);
+        jifVerFichaAuto.jcbBuenaC.setEnabled(true);
+        jifVerFichaAuto.jcbRegularC.setEnabled(true);
+        jifVerFichaAuto.jcbMalaC.setEnabled(true);
+        jifVerFichaAuto.jcbBuenaL.setEnabled(true);
+        jifVerFichaAuto.jcbRegularL.setEnabled(true);
+        jifVerFichaAuto.jcbMalaL.setEnabled(true);
+        jifVerFichaAuto.jcbBuenaP.setEnabled(true);
+        jifVerFichaAuto.jcbRegularP.setEnabled(true);
+        jifVerFichaAuto.jcbMalaP.setEnabled(true);
     }
     
     private void frmPromocionesCombos(){
@@ -2961,31 +3928,202 @@ public class Controlador {
         try {
             String usuario = Login.jtfUsuario.getText();
             String contrasena = Login.jtfContraseña.getText();
-            Cuenta cuenta = new Cuenta(usuario, contrasena, "","");
-            String r = Gestor.validarUsuario(cuenta);
-            switch (r) {
+            String[] r = Gestor.validarUsuario(usuario,contrasena);
+            if("Inactiva".equals(r[2])){
+                int res = JOptionPane.showConfirmDialog(null, "La cuenta a la que esta intentando ingresar esta desactivada...\n\n¿Quieres Activar tu Cuenta de Nuevo?","MECAUT",JOptionPane.YES_NO_OPTION);
+                if(res == JOptionPane.YES_OPTION){
+                    String clave = JOptionPane.showInputDialog(null, "Ingrese su Contraseña", "MECAUT - Activar Tu Cuenta",JOptionPane.QUESTION_MESSAGE);
+                    if (Gestor.activarCuenta(usuario,clave)) {
+                        r = Gestor.validarUsuario(usuario,clave);
+                        lanzarFormularioAdministrador(r[1]);
+                        Login.setVisible(false);
+                    }
+                }
+            }else{
+                switch (r[0]) {
                 case "administrador":
-                    lanzarFormularioAdministrador();
+                    lanzarFormularioAdministrador(r[1]);
                     break;
                 case "cliente":
-                    lanzarFormularioCliente();
+                    lanzarFormularioCliente(r[1]);
                     break;
                 case "empleado":
-                    lanzarFormularioEmpleado();
+                    lanzarFormularioEmpleado(r[1]);
+                }
+                Login.setVisible(false);
             }
-            Login.setVisible(false);
         } catch (HeadlessException | NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "¡¡¡ Los Datos Ingresados Son Incorrectos !!!\n\n\tVerifiquelos Nuevamente....", "MECAUT - Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
         }
     }
     
+    private void frmConfiguracionAdministrador(String id){
+        
+        ResultSet datos;
+        datos = Gestor.traerDatosEmpleado(id);
+        try {
+            while(datos.next()){
+                jifConfiguracionAdmin.jtfNombre.setText(datos.getString("emp_nombre"));
+                jifConfiguracionAdmin.jtfApellidos.setText(datos.getString("emp_apellidos"));
+                jifConfiguracionAdmin.jtfTelefono.setText(datos.getString("emp_telefono"));
+                jifConfiguracionAdmin.jtfDireccion.setText(datos.getString("emp_direccion"));
+                jifConfiguracionAdmin.jtfCorreo.setText(datos.getString("emp_correo"));
+            }
+        } catch (Exception e) {}
+        
+        jifConfiguracionAdmin.lblDesactivarCuenta.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String[] d = form.user.getToolTipText().split(" ");
+                String contraseña = JOptionPane.showInternalInputDialog(jifConfiguracionAdmin, "Ingrese su Contraseña", "MECAUT - Desactivar Tu Cuenta", JOptionPane.QUESTION_MESSAGE);
+                if (contraseña.isEmpty())
+                    JOptionPane.showMessageDialog(null, "No ingreso ninguna contraseña","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    if(Gestor.desactivarCuenta(d[3],contraseña)){
+                        limpiarInicio();
+                        form.setVisible(false);
+                        Login.setVisible(true);
+                        Login.jtfUsuario.setText("");
+                        Login.jtfContraseña.setText("");
+                        Login.jtfUsuario.requestFocus();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null,"No se pudo desactivar la cuenta","MECAUT",JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jifConfiguracionAdmin.lblDesactivarCuenta.setForeground(Color.RED);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jifConfiguracionAdmin.lblDesactivarCuenta.setForeground(Color.black);
+            }
+        });
+        
+        jifConfiguracionAdmin.jbtActualizarContraseña.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] d = form.user.getToolTipText().split(" ");
+                String contrasenaVieja = jifConfiguracionAdmin.jtfContrasenaActual.getText();
+                String contrasenaNueva = jifConfiguracionAdmin.jtfNuevaContrasena.getText();
+                String confContrasena = jifConfiguracionAdmin.jtfConfirmarContrasena.getText();
+                if(contrasenaNueva == null ? confContrasena != null : !contrasenaNueva.equals(confContrasena))
+                    JOptionPane.showMessageDialog(null,"Las contraseñas no coinciden","MECAUT",JOptionPane.WARNING_MESSAGE);
+                else{
+                    String[] v = Gestor.validarUsuario(d[3], contrasenaVieja);
+                    if (v == null) {
+                        JOptionPane.showMessageDialog(null, "La contraseña es incorrecta","MECAUT",JOptionPane.ERROR_MESSAGE);
+                        jifConfiguracionAdmin.jtfContrasenaActual.requestFocus();
+                    }
+                    else{
+                        if (Gestor.cambiarContrasena(v[1],contrasenaVieja,contrasenaNueva)) {
+                            JOptionPane.showMessageDialog(null, "Se cambio la contraseña correctamente","MECAUT",JOptionPane.INFORMATION_MESSAGE);
+                            jifConfiguracionAdmin.jtfConfirmarContrasena.setText(null);
+                            jifConfiguracionAdmin.jtfContrasenaActual.setText(null);
+                            jifConfiguracionAdmin.jtfNuevaContrasena.setText(null);
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "No se pudo cambiar la contraseña","MECAUT",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
+        
+        jifConfiguracionAdmin.jbtActualizarDatos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String apellidos = jifConfiguracionAdmin.jtfApellidos.getText();
+                String telefono = jifConfiguracionAdmin.jtfTelefono.getText();
+                String direccion = jifConfiguracionAdmin.jtfDireccion.getText();
+                String correo = jifConfiguracionAdmin.jtfCorreo.getText();
+                if(apellidos.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese un apellido","MECAUT",JOptionPane.WARNING_MESSAGE);
+                    jifConfiguracionAdmin.jtfApellidos.requestFocus();
+                }else if(telefono.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese un telefono","MECAUT",JOptionPane.WARNING_MESSAGE);
+                    jifConfiguracionAdmin.jtfTelefono.requestFocus();
+                }else if(direccion.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese una dirección","MECAUT",JOptionPane.WARNING_MESSAGE);
+                    jifConfiguracionAdmin.jtfDireccion.requestFocus();
+                }else if(correo.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese un correo eléctronico","MECAUT",JOptionPane.WARNING_MESSAGE);
+                    jifConfiguracionAdmin.jtfCorreo.requestFocus();
+                }else{
+                    String[] d = form.user.getToolTipText().split(" ");
+                    Empleados emp = new Empleados(d[1], jifConfiguracionAdmin.jtfNombre.getText(), apellidos, null , "Administrador", telefono, direccion, correo, null);
+                    if(Gestor.modificarEmpleado(emp)){
+                        JOptionPane.showMessageDialog(null, "Se modifico los datos correctamente","MECAUT",JOptionPane.WARNING_MESSAGE);
+                        ResultSet datos;
+                        datos = Gestor.traerDatosEmpleado(d[1]);
+                        try {
+                            while(datos.next()){
+                                jifConfiguracionAdmin.jtfNombre.setText(datos.getString("emp_nombre"));
+                                jifConfiguracionAdmin.jtfApellidos.setText(datos.getString("emp_apellidos"));
+                                jifConfiguracionAdmin.jtfTelefono.setText(datos.getString("emp_telefono"));
+                                jifConfiguracionAdmin.jtfDireccion.setText(datos.getString("emp_direccion"));
+                                jifConfiguracionAdmin.jtfCorreo.setText(datos.getString("emp_correo"));
+                            }
+                        } catch (Exception ex) {}
+                    }
+                }
+            }
+        });
+        
+        jifConfiguracionAdmin.jTabbedPane1.setVisible(false);
+        
+        jifConfiguracionAdmin.jmiCambiarContrasena.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifConfiguracionAdmin.jTabbedPane1.setVisible(true);
+                jifConfiguracionAdmin.jTabbedPane1.setSelectedIndex(0);
+            }
+        });
+        
+        jifConfiguracionAdmin.jmiActualizarDatos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jifConfiguracionAdmin.jTabbedPane1.setVisible(true);
+                jifConfiguracionAdmin.jTabbedPane1.setSelectedIndex(1);
+            }
+        });
+        
+        jifConfiguracionAdmin.setVisible(true);
+        locacionfrm(jifConfiguracionAdmin);
+    }
+    
     //Limpia todos los jtextField de los formulario
     private void limpiar(){
+        jifSolicitarMantenimiento.jtfPlaca.setText("");
+        jifSolicitarMantenimiento.jtfCiudad.setText("");
+        jifSolicitarMantenimiento.jtfMarca.setText("");
+        jifSolicitarMantenimiento.jtfModelo.setText("");
+        jifRegistroAuto.jtfCombustible.setText("");
+        jifRegistroAuto.jtfKilometraje.setText("");
+        jifRegistroAuto.jtfPlaca.setText("");
         jifPromociones.jtfCodigoA.setText("");
         jifPromociones.jtfDescripcionA.setText("");
         jifPromociones.jtfDescripcionN.setText("");
         jifActualizarEmpleado.jtfTipo1.setText("");
         jifFactura.lblTotal.setText("");
+        jifVerFichaAuto.jtfCilindraje.setText("");
+        jifVerFichaAuto.jtfColor.setText("");
+        jifVerFichaAuto.jtfFrenos.setText("");
+        jifVerFichaAuto.jtfMotor.setText("");
+        jifVerFichaAuto.fActualizacion.setText("");
+        jifVerFichaAuto.fRegistro.setText("");
+        jifVerFichaAuto.jtfPotencia.setText("");
         jifFichaAuto.jtfCilindraje.setText("");
         jifFichaAuto.jtfColor.setText("");
         jifFichaAuto.jtfFrenos.setText("");
@@ -3123,6 +4261,10 @@ public class Controlador {
     }
     
     private void limpiarComboBox(){
+        jifRegistroAuto.jcbCiudad.setSelectedIndex(0);
+        jifRegistroAuto.jcbMarca.setSelectedIndex(0);
+        jifRegistroAuto.jcbModelo.setSelectedIndex(0);
+        jifRegistroAuto.jcbTipo.setSelectedIndex(0);
         jifPromociones.jcbEstadoA.setSelectedIndex(0);
         jifPromociones.jcbEstadoN.setSelectedIndex(0);
         jifPromociones.jcbTipoA.setSelectedIndex(0);
@@ -3154,7 +4296,9 @@ public class Controlador {
         jifFichaAuto.jcbPlaca.setSelectedIndex(0);
         jifFichaAuto.jcbTransmision.setSelectedIndex(0);
         jifFichaAuto.jcbTransmision.setSelectedIndex(0);
-        jifFichaAuto.jcbPlaca.setSelectedIndex(0);
+        jifVerFichaAuto.jcbPlacas.setSelectedIndex(0);
+        jifVerFichaAuto.jcbTransmision.setSelectedIndex(0);
+        jifVerFichaAuto.jcbTransmision.setSelectedIndex(0);
         jifEmpleado.jcbSexo.setSelectedIndex(0);
         jifEmpleado.jcbTipo.setSelectedIndex(0);
     }
@@ -3198,5 +4342,6 @@ public class Controlador {
         jifProveedor.setVisible(false);
         jifRepuesto.setVisible(false);
         jifReservas.setVisible(false);
+        jifConfiguracionAdmin.setVisible(false);
     }
 }

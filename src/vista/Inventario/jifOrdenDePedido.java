@@ -91,7 +91,7 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
 
         jbtAceptar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jbtAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
-        jbtAceptar.setText("Aceptar");
+        jbtAceptar.setText("Agregar");
 
         jButton5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552697_exit.png"))); // NOI18N
@@ -135,7 +135,7 @@ public class jifOrdenDePedido extends javax.swing.JInternalFrame {
                         .addGap(56, 56, 56)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jbtAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbtAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(

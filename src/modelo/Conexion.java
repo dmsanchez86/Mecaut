@@ -72,17 +72,22 @@ public class Conexion {
     }
 
     //metodo para validar cuenta
-    public String validarCuentas(Cuenta c) {
+    public String[] validarCuentas(String usuario,String clave) {
         try {
-            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = '" + c.getUsuario() + "' AND cue_contrasena = MD5('" + c.getContrasena() + "')");
+            String[] datos = new String[3];
+            consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
+            consulta.setString(1, usuario);
+            consulta.setString(2, clave);
             consulta.executeQuery();
-            r = consulta.getResultSet();
+            r = consulta.executeQuery();
             while (r.next()) {
-                return r.getString(4);
+                datos[0] = r.getString("cue_tipoUsuario");
+                datos[1] = r.getString("usu_id");
+                datos[2] = r.getString("cue_estado");
+                return datos;
             }
             conexion.close();
         } catch (SQLException e) {
-            System.out.println(e);
             return null;
         }
         return null;
@@ -91,12 +96,13 @@ public class Conexion {
     //metodo para registrar una cuenta
     public boolean registrarCuenta(Cuenta c) {
         try {
-            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?,MD5(?),?,?)");
+            consulta = conexion.prepareStatement("INSERT INTO cuentas VALUES(?,?,MD5(?),?,?,?)");
             consulta.setInt(1, 0);
             consulta.setString(2, c.getUsuario());
             consulta.setString(3, c.getContrasena());
             consulta.setString(4, c.getTipo());
-            consulta.setString(5, c.getCli_id());
+            consulta.setString(5, "Activa");
+            consulta.setString(6, c.getCli_id());
             consulta.executeUpdate();
             conexion.close();
             return true;
@@ -339,6 +345,16 @@ public class Conexion {
     public ResultSet placasAutos() {
         try {
             consulta = conexion.prepareStatement("SELECT aut_placa FROM autos");
+            r = consulta.executeQuery();
+            return r;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public ResultSet placasAutosClientes(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT aut_placa FROM autos WHERE cli_id = ?");
+            consulta.setString(1,id);
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
@@ -678,18 +694,30 @@ public class Conexion {
 
     public boolean modificarEmpleado(Empleados mec) {
         try {
-            consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
-            consulta.setString(1, mec.getNombre());
-            consulta.setString(2, mec.getApellidos());
-            consulta.setString(3, mec.getSexo());
-            consulta.setString(4, mec.getTipo());
-            consulta.setString(5, mec.getTelefono());
-            consulta.setString(6, mec.getDireccion());
-            consulta.setString(7, mec.getSalario());
-            consulta.setString(8, mec.getCorreo());
-            consulta.setString(9, mec.getIdentificacion());
-            consulta.executeUpdate();
-            consulta.close();
+            if(mec.getSexo() == null){
+                consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_telefono = ?, emp_direccion = ?, emp_correo = ? WHERE emp_id = ?");
+                consulta.setString(1, mec.getNombre());
+                consulta.setString(2, mec.getApellidos());
+                consulta.setString(3, mec.getTelefono());
+                consulta.setString(4, mec.getDireccion());
+                consulta.setString(5, mec.getCorreo());
+                consulta.setString(6, mec.getIdentificacion());
+                consulta.executeUpdate();
+                consulta.close();
+            }else{
+                consulta = conexion.prepareStatement("UPDATE empleados SET emp_nombre = ?, emp_apellidos = ?, emp_sexo = ?, emp_tipo = ?, emp_telefono = ?, emp_direccion = ?, emp_salario = ?, emp_correo = ? WHERE emp_id = ?");
+                consulta.setString(1, mec.getNombre());
+                consulta.setString(2, mec.getApellidos());
+                consulta.setString(3, mec.getSexo());
+                consulta.setString(4, mec.getTipo());
+                consulta.setString(5, mec.getTelefono());
+                consulta.setString(6, mec.getDireccion());
+                consulta.setString(7, mec.getSalario());
+                consulta.setString(8, mec.getCorreo());
+                consulta.setString(9, mec.getIdentificacion());
+                consulta.executeUpdate();
+                consulta.close();
+            }
             return true;
         } catch (SQLException e) {
             return false;
@@ -1212,5 +1240,118 @@ public class Conexion {
             r = consulta.executeQuery();
             return r;
         } catch (SQLException | NumberFormatException e) {return null;}
+    }
+
+    boolean desactivarCuenta(String id, String contraseña) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE cuentas SET cue_estado = 'Inactiva' WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
+        consulta.setString(1, id);
+        consulta.setString(2, contraseña);
+        consulta.executeUpdate();
+        return true;
+        } catch (Exception e) {return false;}
+    }
+
+    boolean activarCuenta(String usuario, String con) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE cuentas SET cue_estado = 'Activa' WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
+            consulta.setString(1, usuario);
+            consulta.setString(2, con);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
+    }
+
+    boolean cambiarContrasena(String usu_id, String conVieja, String contrasenaNueva) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE cuentas SET cue_contrasena = MD5(?) WHERE usu_id = ? AND cue_contrasena = MD5(?)");
+            consulta.setString(1, contrasenaNueva);
+            consulta.setString(2, usu_id);
+            consulta.setString(3, conVieja);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
+    }
+
+    boolean registrarMantenimientoCliente(String placa, String id, String nombre, String estado, String fecha) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO mantenimientos_pendientes VALUES(?,?,?,?,?)");
+            consulta.setString(1, placa);
+            consulta.setString(2, id);
+            consulta.setString(3, nombre);
+            consulta.setString(4, estado);
+            consulta.setString(5, fecha);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
+    }
+    boolean registrarDetallesMantenimientoCliente(String placa,String nombre, String tipoMantenimiento, String fecha,String descripcion) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO detalles_mantenimientos_pendientes VALUES(?,?,?,?,?)");
+            consulta.setString(1,placa);
+            consulta.setString(2, nombre);
+            consulta.setString(3, tipoMantenimiento);
+            consulta.setString(4, fecha);
+            consulta.setString(5, descripcion);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
+    }
+    
+    ResultSet numeroMantenimientosPendientes(){
+        try {
+            consulta = conexion.prepareStatement("SELECT COUNT(*) FROM mantenimientos_pendientes WHERE manp_estado = 'Pendiente'");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+
+    ResultSet consultarManteniminetosPendientes(String dato) {
+        try {
+            if (dato==null) {
+                consulta = conexion.prepareStatement("SELECT * FROM mantenimientos_pendientes");
+                r = consulta.executeQuery();
+            }else{
+                consulta = conexion.prepareStatement("SELECT * FROM mantenimientos_pendientes WHERE manp_estado = ?");
+                consulta.setString(1, dato);
+                r = consulta.executeQuery();
+            }
+            return r;
+        } catch (Exception e) {return r;}
+    }
+
+    ResultSet DatosMantenimientoPendiente(String placa, String nombre) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM detalles_mantenimientos_pendientes WHERE aut_placa = ? AND cli_nombre = ?");
+            consulta.setString(1, placa);
+            consulta.setString(2, nombre);
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;}
+    }
+
+    boolean modificarEstadoMantenimiento(String placa, String nombre) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE mantenimientos_pendientes SET manp_estado = 'Rechazada' WHERE aut_placa = ? AND cli_nombre = ?");
+            consulta.setString(1, placa);
+            consulta.setString(2, nombre);
+            consulta.executeUpdate();
+            System.out.println(consulta);
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            return false;}
+    }
+
+    boolean actualizarEstadoMantenimiento(String placa, String id) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE mantenimientos_pendientes SET manp_estado = 'Aceptada' WHERE aut_placa = ? AND cli_id = ?");
+            consulta.setString(1, placa);
+            consulta.setString(2, id);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
     }
 }
