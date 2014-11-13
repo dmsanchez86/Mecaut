@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyVetoException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -259,7 +262,7 @@ public class Controlador {
         form.jmiRegistrarCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                frmRegistrarCliente();
+                frmRegistrarCliente(); 
             }
         });
         form.jmiActualizarCliente.addActionListener(new ActionListener() {
@@ -517,7 +520,7 @@ public class Controlador {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                jifVerPromociones.setVisible(true);
+                frmVerPromociones();
             }
         });
         frmCliente.jmiCotizar.addActionListener(new ActionListener() {
@@ -744,7 +747,7 @@ public class Controlador {
     private void frmRegistrarCliente() {
         limpiar();
         limpiarComboBox();
-        
+
         jifCliente.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -778,7 +781,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCliente.jbtCancelar.addActionListener(new ActionListener() {
 
             @Override
@@ -787,8 +790,8 @@ public class Controlador {
                 limpiarComboBox();
             }
         });
-        
         jifCliente.setVisible(true);
+        jifCliente.show();
         locacionfrm(jifCliente);
     }
 
@@ -3037,6 +3040,76 @@ public class Controlador {
             int codigo = Integer.parseInt(code);
             jifPromociones.jtfCodigoN.setText(""+(++codigo));
         } catch (SQLException | NumberFormatException e) {}
+    }
+    
+    private void frmVerPromociones(){
+        limpiar();
+        limpiarComboBox();
+        evtListaPromociones("");
+        
+        
+        jifVerPromociones.jcbTipoPromociones.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent ie) {
+                String dato = jifVerPromociones.jcbTipoPromociones.getSelectedItem().toString();
+                evtListaPromociones(dato);
+            }
+        });
+        
+        jifVerPromociones.ListaPromociones.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                int i = jifVerPromociones.ListaPromociones.getSelectedRow();
+                String codigo = jifVerPromociones.ListaPromociones.getValueAt(i, 0).toString();
+                String fecha = jifVerPromociones.ListaPromociones.getValueAt(i, 1).toString();
+                ResultSet des = Gestor.verDescripcionPromocion(codigo);
+                try {
+                    while(des.next())
+                        jifVerPromociones.jtfDescripcion.setText(des.getString("pro_descripcion"));
+                } catch (Exception e) {}
+                jifVerPromociones.lbCodigo.setText("Código "+codigo);
+                jifVerPromociones.lbFecha.setText("Fecha"+fecha);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent me) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent me) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+            }
+        });
+        
+        jifVerPromociones.setVisible(true);
+    }
+    
+    private void evtListaPromociones(String dato){
+        ResultSet datos = Gestor.consultarPromociones(dato);
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("Tipo");
+        try {
+            while(datos.next()){
+                Object[] f = new Object[3];
+                f[0] = datos.getString("pro_codigo");
+                f[1] = datos.getString("pro_fecha");
+                f[2] = datos.getString("pro_tipo");
+                modelo.addRow(f);
+            }
+            jifVerPromociones.ListaPromociones.setModel(modelo);
+        } catch (Exception e) {
+        }
     }
     /* 3. Modulo Suministros */
  

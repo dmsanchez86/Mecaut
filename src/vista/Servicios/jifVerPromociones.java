@@ -27,27 +27,121 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ListaPromociones = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtfDescripcion = new javax.swing.JTextArea();
+        lbFecha = new javax.swing.JLabel();
+        lbCodigo = new javax.swing.JLabel();
+        jcbTipoPromociones = new javax.swing.JComboBox();
+
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
         setTitle("MECAUT - Promociones & Combos");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553504_internt_web_technology-09-16.png"))); // NOI18N
 
+        ListaPromociones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        ListaPromociones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListaPromocionesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(ListaPromociones);
+
+        jLabel1.setText("Lista de Promociones");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jScrollPane2.setBackground(new java.awt.Color(167, 221, 246));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane2.setFocusable(false);
+        jScrollPane2.setFont(new java.awt.Font("Tekton Pro", 2, 24)); // NOI18N
+
+        jtfDescripcion.setEditable(false);
+        jtfDescripcion.setColumns(20);
+        jtfDescripcion.setRows(5);
+        jtfDescripcion.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(jtfDescripcion);
+
+        jScrollPane2.setBounds(50, 170, 350, 190);
+        jDesktopPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        lbFecha.setText("Fecha");
+        lbFecha.setBounds(250, 100, 170, 20);
+        jDesktopPane1.add(lbFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        lbCodigo.setText("Código");
+        lbCodigo.setBounds(70, 50, 110, 20);
+        jDesktopPane1.add(lbCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jcbTipoPromociones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "Repuesto", "Mantenimiento" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbTipoPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jcbTipoPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDesktopPane1)
+                    .addComponent(jSeparator1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ListaPromocionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaPromocionesMouseClicked
+        
+    }//GEN-LAST:event_ListaPromocionesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable ListaPromociones;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    public javax.swing.JComboBox jcbTipoPromociones;
+    public javax.swing.JTextArea jtfDescripcion;
+    public javax.swing.JLabel lbCodigo;
+    public javax.swing.JLabel lbFecha;
     // End of variables declaration//GEN-END:variables
 }

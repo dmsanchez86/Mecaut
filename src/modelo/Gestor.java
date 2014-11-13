@@ -600,5 +600,17 @@ public class Gestor{
         conexion.crearConexion();
         return respuesta;
     }
+
+    public ResultSet consultarPromociones(String dato) {
+        conexion.crearConexion();
+        r = conexion.consultarPromociones(dato);
+        return r;
+    }
+
+    public ResultSet verDescripcionPromocion(String codigo) {
+        conexion.crearConexion();
+        r = conexion.verDescripcionPromocion(codigo);
+        return r;
+    }
     
 }

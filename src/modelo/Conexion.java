@@ -1367,4 +1367,26 @@ public class Conexion {
             return false;
         }
     }
+
+    ResultSet consultarPromociones(String dato) {
+        try {
+            if ("".equals(dato)) {
+                consulta = conexion.prepareStatement("SELECT * FROM promociones");
+            }else{
+                consulta = conexion.prepareStatement("SELECT * FROM promociones WHERE pro_tipo = ?");
+                consulta.setString(1,dato);
+            }
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+
+    ResultSet verDescripcionPromocion(String codigo) {
+        try {
+            consulta = conexion.prepareStatement("SELECT pro_descripcion FROM promociones WHERE pro_codigo = ?");
+            consulta.setString(1, codigo);
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
 }
