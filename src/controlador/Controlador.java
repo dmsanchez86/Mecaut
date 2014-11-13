@@ -1,5 +1,6 @@
 package controlador;
 
+import vista.Clientes.jifUpdateContraseñaCli;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -128,6 +129,7 @@ public class Controlador {
     private final jifFichaAuto jifFichaAuto;
     private final jifPromociones jifPromociones;
     private final jifConfiguracionAdmin jifConfiguracionAdmin;
+    private final jifUpdateContraseñaCli jifUpdateContraseñaCli;
     
     /* CONSTRUCTOR */
 
@@ -178,6 +180,7 @@ public class Controlador {
         jifFichaAuto = new jifFichaAuto();
         jifPromociones = new jifPromociones();
         jifConfiguracionAdmin = new jifConfiguracionAdmin();
+        jifUpdateContraseñaCli = new jifUpdateContraseñaCli();
         // Se añaden los jInternalFrame al jDesktopPanel
         form.jDesktopPane1.add(jifMantenimiento);
         form.jDesktopPane1.add(jifCliente);
@@ -215,6 +218,7 @@ public class Controlador {
         frmCliente.jDesktopPane1.add(jifSolicitarMantenimiento);
         frmCliente.jDesktopPane1.add(jifSolicitarReserva);
         frmCliente.jDesktopPane1.add(jifVerPromociones);
+        frmCliente.jDesktopPane1.add(jifUpdateContraseñaCli);
     }
     /* INICIO LOGGIN */
     public void lanzarLogin() {
@@ -466,6 +470,13 @@ public class Controlador {
     /* Formulario Cliente */
 
     private void lanzarFormularioCliente(String id) {
+        frmCliente.jmiConfiguracion.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               frmConfiguracion();
+            }
+        });
         
         frmCliente.jmiSolicitarMantenimiento.addActionListener(new ActionListener() {
 
@@ -4101,6 +4112,49 @@ public class Controlador {
         
         jifConfiguracionAdmin.setVisible(true);
         locacionfrm(jifConfiguracionAdmin);
+    }
+    
+    private void frmConfiguracion(){
+        String usuario = frmCliente.user.getText();
+        jifUpdateContraseñaCli.jtfUsuario.setText(usuario);
+
+        jifUpdateContraseñaCli.jbtModificar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String usuario = jifUpdateContraseñaCli.jtfUsuario.getText();
+                String contra = jifUpdateContraseñaCli.jpContrasena.getText();
+                if (isPasswordCorrect(jifUpdateContraseñaCli.jpContrasena.getPassword(), jifUpdateContraseñaCli.jpContrasena2.getPassword())) {
+                    if(Gestor.UpdateContraseñaCliente(contra, usuario)){
+                        JOptionPane.showMessageDialog(null, "Contraseña modificada exitosamente");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No se pudo modificar la contraseña");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Verifique que las contraseñas sean iguales");
+                }
+            }
+        });
+
+        jifUpdateContraseñaCli.setVisible(true);
+    }
+    
+    private boolean isPasswordCorrect(char[] j1, char[] j2) {
+        boolean valor = false;
+        int puntero = 0;
+        if (j1.length != j2.length) {
+            valor = false;
+        } else {
+            while ((!valor) && (puntero < j1.length)) {
+                if (j1[puntero] != j2[puntero]) {
+                    valor = false;
+                } else {
+                    valor = true;
+                }
+            }
+        }
+        return valor;
     }
     
     //Limpia todos los jtextField de los formulario

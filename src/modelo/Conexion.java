@@ -1354,4 +1354,17 @@ public class Conexion {
             return true;
         } catch (Exception e) {return false;}
     }
+    
+    public boolean UpdateContraseñaCliente(String contra, String usu) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE cuentas SET cue_contrasena = MD5(?) WHERE cue_usuario = ?");
+            consulta.setString(1, contra);
+            consulta.setString(2, usu);
+            consulta.executeUpdate();
+            consulta.close();
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

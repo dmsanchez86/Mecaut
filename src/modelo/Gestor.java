@@ -594,4 +594,11 @@ public class Gestor{
         return respuesta;
     }
     
+    public boolean UpdateContraseñaCliente(String contra, String usu){
+        conexion.crearConexion();
+        respuesta = conexion.UpdateContraseñaCliente(contra, usu);
+        conexion.crearConexion();
+        return respuesta;
+    }
+    
 }
