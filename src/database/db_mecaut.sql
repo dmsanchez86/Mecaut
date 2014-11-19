@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-11-2014 a las 17:51:43
+-- Tiempo de generación: 19-11-2014 a las 01:31:06
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -80,21 +80,19 @@ INSERT INTO `clientes` (`cli_id`, `cli_nombre`, `cli_apellidos`, `cli_sexo`, `cl
 ('1053', 'Daniel', 'Sanchez', 'Masculino', '2323', 'La Florida', 'dmsanchez@misena.du.co'),
 ('1053843130', 'Yuliana', 'Ramirez', 'Femenino', '3232323', 'Sena', 'yuliana10@misena.edu.co'),
 ('1053844273', 'Mauricio', 'Sánchez', 'Masculino', '3203768421', 'Pereira', 'dmsanchez86@misena.edu.co'),
+('1057690788', 'Nelson', 'Perez', 'Masculino', '8766756', 'Pio XII', 'nel-perez89@outlook.com'),
 ('1060648721', 'Andres', 'Zapata', 'Masculino', '3127185122', 'Villamaria', 'andres@gmail.com'),
 ('1212', 'Alexandra', 'Gutierrez', 'Femenino', '33333', 'Villahermosa', 'alexa@outlook.com'),
 ('121212', 'Camila', 'Perez', 'Femenino', '342342', 'El Cable', 'camila@gmail.com'),
 ('12232', 'Yuliana', 'Valencia', 'Femenino', '454545', 'La Enea', 'yuli@yahoo.com'),
-('12345', 'MAo', 'Avila', 'Masculino', '222222', 'La Calle', 'mao@gmail.com'),
-('23', 'Julian', 'Arias', 'Masculino', '232323', 'La Enea', 'juli@gmail.com'),
 ('23233', 'Esteban', 'Castaño', 'Masculino', '4444444', 'Solferino', 'este@outlook.com'),
 ('2332', 'Julian', 'Arias', 'Masculino', '232323', 'La Enea', 'juli@gmail.com'),
-('33321321', 'Luz Adriana', 'Ávila', 'Femenino', '8765643', 'Armenia', 'adri.32@outlook.com'),
+('33321321', 'Luz Adriana', 'Ávila', 'Femenino', '8755555', 'Armenia', 'adri.32@outlook.com'),
 ('33333', 'Sergio', 'Londoño', 'Masculino', '111111', 'Aranjuez', 'nulll'),
 ('50450778', 'Julian Camilo', 'Arias Gallo', 'Masculino', '8766767', 'La Enea', 'juli@gmail.co'),
 ('6700874', 'Oscar Eduardo', 'Perez', 'Masculino', '8762323', 'Peralonso', 'os_eduar89@gmail.com'),
 ('7789654', 'Paula Andrea', 'Giraldo', 'Femenino', '3134258230', 'Los Cedros', 'pao-345@yahoo.es'),
-('9506', 'Felipe', 'Piolin', 'Masculino', '8918060', 'Altos de Granada', 'fel_piolin@gamil.com'),
-('9606', 'Mauricio', 'Sánchez', 'Masculino', '3456789', 'La Italia', 'dmsanchez@misena.edu.co');
+('9506', 'Felipe', 'Piolin', 'Masculino', '8918060', 'Altos de Granada', 'fel_piolin@gamil.com');
 
 -- --------------------------------------------------------
 
@@ -138,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `cuentas` (
   `cue_tipoUsuario` varchar(20) NOT NULL,
   `cue_estado` varchar(20) NOT NULL DEFAULT 'Activa',
   `usu_id` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Volcado de datos para la tabla `cuentas`
@@ -155,11 +153,13 @@ INSERT INTO `cuentas` (`cue_numero`, `cue_usuario`, `cue_contrasena`, `cue_tipoU
 (10, '1060648721', '5c6ce2a5574098384170ac8c8a3fb426', 'cliente', 'Activa', '1060648721'),
 (13, '11111', 'b0baee9d279d34fa1dfd71aadb908c3f', 'cliente', 'Activa', '11111'),
 (14, '2222', '934b535800b1cba8f96a5d72f72f1611', 'cliente', 'Activa', '2222'),
-(15, '33333', 'b7bc2a2f5bb6d521e64c8974c143e9a0', 'cliente', 'Activa', '33333'),
+(15, '33333', 'b7bc2a2f5bb6d521e64c8974c143e9a0', 'cliente', 'Inactiva', '33333'),
 (16, '121212', '93279e3308bdbbeed946fc965017f67a', 'cliente', 'Activa', '121212'),
 (17, '23423', '468171c825c02408cc99935447c785a5', 'empleado', 'Activa', '23423'),
 (18, '2323', '149815eb972b3c370dee3b89d645ae14', 'empleado', 'Activa', '2323'),
-(19, 'mao273', '1b9fc02e98389d29c1506fe944b07d16', 'cliente', 'Activa', '12345');
+(19, 'mao273', '1b9fc02e98389d29c1506fe944b07d16', 'cliente', 'Activa', '12345'),
+(20, 'empleado', 'ac8be4aee61f5f6e21b8c5afffb52939', 'empleado', 'Activa', '12121212'),
+(21, '1057690788', 'f2dfcbb61a967103d568dfbb575578fc', 'cliente', 'Activa', '1057690788');
 
 -- --------------------------------------------------------
 
@@ -257,7 +257,9 @@ INSERT INTO `detallesmantenimientos` (`man_codigo`, `man_tipo`, `man_descripcion
 (39, 'Reparación de Frenos', 'dfsg', '14/11/2014', '980GHT', 'MAo', '23', 'Calilo Giraldo', '2', 'Motor', '3'),
 (39, 'Reparación de Frenos', 'fsgdsd', '15/11/2014', '980GHT', 'MAo', '23', 'Calilo Giraldo', '3', 'Amortiguador', '100'),
 (39, 'Reparación de Frenos', 'fsgdsd', '15/11/2014', '980GHT', 'MAo', '23', 'Calilo Giraldo', '3', 'Amortiguador', '100'),
-(40, 'Cambio de Aceite', 'ninguna', '12/11/2014', '344HHH', 'Alexandra', '12312', 'Caliman Sanchez', '3', 'Amortiguador', '4');
+(40, 'Cambio de Aceite', 'ninguna', '12/11/2014', '344HHH', 'Alexandra', '12312', 'Caliman Sanchez', '3', 'Amortiguador', '4'),
+(41, 'Cambio de Llantas', 'se necesito cambio de llantas urgente', '21/11/2014', '980GHT', 'Mauricio', '12', 'Casimiro Pelante', '3', 'Amortiguador', '6'),
+(42, 'Reparación de Frenos', 'dfgfdsagasdf', '23/11/2014', '980GHT', 'MAo', '111', 'Jeremiasss Vallejo', '1', 'Batería', '4');
 
 -- --------------------------------------------------------
 
@@ -285,7 +287,8 @@ INSERT INTO `detalles_mantenimientos_pendientes` (`aut_placa`, `cli_nombre`, `ma
 ('980GHT', 'MAo', 'Luces', '13/11/2014', 'sdf'),
 ('980GHT', 'MAo', 'Frenos', '14/11/2014', 'dsfg'),
 ('980GHT', 'MAo', 'Motor', '13/11/2014', 'dfg'),
-('344HHH', 'Alexandra', 'Llantas', '12/11/2014', 'sdf');
+('344HHH', 'Alexandra', 'Llantas', '12/11/2014', 'sdf'),
+('980GHT', 'Mauricio', 'Llantas', '14/11/2014', 'necesito cambio urgente de llantas');
 
 -- --------------------------------------------------------
 
@@ -325,7 +328,8 @@ INSERT INTO `detalles_ordenpedido` (`ord_numero`, `rep_codigo`, `rep_nombre`, `r
 (17, '56', 'Bomba de gasolina', 'Yamaha', '10', '45000'),
 (17, '3', 'Amortiguador', 'michellin', '10', '80000'),
 (18, '56', 'Bomba de gasolina', 'Yamaha', '15', '45000'),
-(20, '2', 'Motor', 'michellin', '39', '1200000');
+(20, '2', 'Motor', 'michellin', '39', '1200000'),
+(21, '3', 'Amortiguador', 'michellin', '4', '80000');
 
 -- --------------------------------------------------------
 
@@ -373,6 +377,7 @@ INSERT INTO `empleados` (`emp_id`, `emp_nombre`, `emp_apellidos`, `emp_sexo`, `e
 ('1053844273', 'Daniel', 'Sánchez', 'Masculino', 'Administrador', '3203768421', 'Texas', '230040', 'dany@yahoo.com'),
 ('111', 'Jeremiasss', 'Vallejo', 'Masculino', 'Mécanico', '8918060', 'Comuneros', '550100', 'jer-111@yahoo.es'),
 ('12', 'Casimiro', 'Pelante', 'Femenino', 'Mécanico', '34234', 'La Plata', '230000', 'cas_34345@hotmail.com'),
+('12121212', 'Elias', 'Cardenaz', 'Masculino', 'Mécanico', '1212321', 'Solfe', '3400000', 'dmsanchez86@misena.edu.co'),
 ('12312', 'Caliman', 'Sanchez', 'Masculino', 'Mécanico', '23243', 'La Enea', '120000', 'cali-12@gmail.com'),
 ('23', 'Calilo', 'Giraldo', 'Masculino', 'Mécanico', '232323', 'Solferino', '34000', 'calilito@gamil.com'),
 ('232323', 'Felipe', 'Mejía', 'Masculino', 'Mécanico', '333333', 'San Sebastián', '340000', 'fel-6656@gmail.com'),
@@ -464,7 +469,8 @@ CREATE TABLE IF NOT EXISTS `grupoclientes` (
 
 INSERT INTO `grupoclientes` (`gru_codigo`, `gru_nombre`, `cli_id`, `cli_estado`) VALUES
 ('GRO002', 'Ocasional', '33333', 'Inactivo'),
-('GRP003', 'Potencial', '121212', 'Activo');
+('GRP003', 'Potencial', '121212', 'Activo'),
+('GRO002', 'Ocasional', '1057690788', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -506,7 +512,9 @@ INSERT INTO `historialmantenimientos` (`aut_placa`, `man_codigo`, `cli_id`, `his
 ('222AAA', 37, '12345', '12/11/2014'),
 ('222AAA', 38, '12345', '12/11/2014'),
 ('980GHT', 39, '12345', '12/11/2014'),
-('344HHH', 40, '1212', '12/11/2014');
+('344HHH', 40, '1212', '12/11/2014'),
+('980GHT', 41, '12345', '16/11/2014'),
+('980GHT', 42, '12345', '15/11/2014');
 
 -- --------------------------------------------------------
 
@@ -521,7 +529,7 @@ CREATE TABLE IF NOT EXISTS `mantenimientos` (
   `man_costo` varchar(20) NOT NULL,
   `man_observaciones` text NOT NULL,
   `cli_id` varchar(15) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `mantenimientos`
@@ -560,7 +568,9 @@ INSERT INTO `mantenimientos` (`man_codigo`, `man_fechaInicio`, `man_estado`, `ma
 (37, '12/11/2014', 'Pendiente', '', 'dfasd', '12345'),
 (38, '12/11/2014', 'Pendiente', '$1120000', 'fdgh', '12345'),
 (39, '12/11/2014', 'Pendiente', '$19600000', 'sdfgsdf', '12345'),
-(40, '12/11/2014', 'Pendiente', '$320000', 'niguna', '1212');
+(40, '12/11/2014', 'Pendiente', '$320000', 'niguna', '1212'),
+(41, '16/11/2014', 'Pendiente', '$480000', 'eraf', '12345'),
+(42, '15/11/2014', 'Pendiente', '$528000', 'dsfgasfd', '12345');
 
 -- --------------------------------------------------------
 
@@ -585,8 +595,9 @@ INSERT INTO `mantenimientos_pendientes` (`aut_placa`, `cli_id`, `cli_nombre`, `m
 ('222AAA', '12345', 'MAo', 'Rechazada', '2014-11-11'),
 ('111BBB', '12345', 'MAo', 'Rechazada', '2014-11-11'),
 ('111BBB', '12345', 'MAo', 'Rechazada', '2014-11-12'),
-('980GHT', '12345', 'MAo', 'Rechazada', '2014-11-12'),
-('344HHH', '1212', 'Alexandra', 'Aceptada', '2014-11-12');
+('980GHT', '12345', 'MAo', 'Aceptada', '2014-11-12'),
+('344HHH', '1212', 'Alexandra', 'Aceptada', '2014-11-12'),
+('980GHT', '12345', 'Mauricio', 'Aceptada', '2014-11-16');
 
 -- --------------------------------------------------------
 
@@ -603,33 +614,28 @@ CREATE TABLE IF NOT EXISTS `ordenpedido` (
   `prov_direccion` varchar(30) NOT NULL,
   `ord_estado` enum('Pendiente','Aceptada','Rechazada','') NOT NULL,
   `ord_precio` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Volcado de datos para la tabla `ordenpedido`
 --
 
 INSERT INTO `ordenpedido` (`ord_numero`, `ord_fecha`, `prov_nit`, `prov_nombre`, `prov_telefono`, `prov_direccion`, `ord_estado`, `ord_precio`) VALUES
-(1, '14-11-14', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$2704000'),
-(2, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$10530000'),
-(3, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$400000'),
-(4, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$225000'),
-(5, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$720000'),
-(6, '14-11-12', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '$45000'),
-(7, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1320000'),
-(8, '14-11-27', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$27960000'),
-(9, '14-11-15', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1320000'),
-(10, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$3828000'),
-(11, '14-11-13', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$39600000'),
-(12, '14-11-20', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '$2330000'),
-(13, '14-11-13', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$3640000'),
-(14, '14-11-07', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$1700000'),
-(15, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '$225000'),
-(16, '14-11-07', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$6000000'),
-(17, '14-11-05', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '$1250000'),
-(18, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '$675000'),
-(19, '14-11-07', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', ''),
-(20, '14-11-07', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '46800000');
+(2, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '10530000'),
+(3, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '400000'),
+(4, '14-11-14', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '225000'),
+(5, '14-11-07', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '720000'),
+(6, '14-11-12', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '45000'),
+(7, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '1320000'),
+(8, '14-11-27', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '27960000'),
+(9, '14-11-15', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '1320000'),
+(10, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '3828000'),
+(11, '14-11-13', '234', 'Renaultttt', '8786564', 'Manizales', 'Pendiente', '39600000'),
+(12, '14-11-20', '123', 'Mazda', '656565', 'Manizales', 'Pendiente', '2330000'),
+(17, '14-11-05', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '1250000'),
+(18, '14-11-13', '134', 'cd', '8787', 'arnjuez', 'Pendiente', '675000'),
+(20, '14-11-07', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '46800000'),
+(21, '14-11-15', '32423', '32423', 'Monteria', 'Hyundai', 'Pendiente', '320000');
 
 -- --------------------------------------------------------
 
@@ -643,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `promociones` (
   `pro_tipo` varchar(30) NOT NULL,
   `pro_descripcion` text NOT NULL,
   `pro_estado` enum('Activa','Inactiva') NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `promociones`
@@ -652,8 +658,8 @@ CREATE TABLE IF NOT EXISTS `promociones` (
 INSERT INTO `promociones` (`pro_codigo`, `pro_fecha`, `pro_tipo`, `pro_descripcion`, `pro_estado`) VALUES
 (1, '09/11/2014', 'Repuesto', 'Compre 3 llantas y lleve 4', 'Activa'),
 (2, '10/11/2014', 'Mantenimiento', 'Si solicita un cambio de frenos se le obsequia el liquido para ello', 'Activa'),
-(3, '14/11/2014', 'Repuesto', 'Lalalalalalal', 'Inactiva'),
-(4, '15/11/2014', 'Mantenimiento', 'ninguna', 'Activa');
+(4, '16/11/2014', 'Mantenimiento', 'Si compras un aleron obtendras un descuento del 10%', 'Inactiva'),
+(5, '22/11/2014', 'Mantenimiento', 'Por cambio de sistema electrico reciba completamente gratis una batería', 'Activa');
 
 -- --------------------------------------------------------
 
@@ -674,10 +680,10 @@ CREATE TABLE IF NOT EXISTS `proveedores` (
 --
 
 INSERT INTO `proveedores` (`prov_nit`, `prov_nombre`, `prov_direccion`, `prov_telefono`, `prov_descripcion`) VALUES
-('123', 'Mazda', 'Manizales', '656565', 'none'),
-('134', 'cd', 'arnjuez', '8787', 'ninguna'),
-('234', 'Renaultttt', 'Manizales', '8786564', 'Proveedor de Repuestos Renault'),
-('32423', '32423', 'Hyundai', 'Monteria', 'ninguna');
+('123', 'Mazda', 'Manizales', '656565', 'Proveedor de servicios mazda'),
+('134', 'Chevroleth', 'Aranjuez', '8787878', 'Proveedor de repuestos chevrolte'),
+('234', 'Renault', 'Manizales', '8786564', 'Proveedor de Repuestos Renault'),
+('324', 'Hyundai', 'Arauca', '3444444', 'Proveedor de repuestos hyundai');
 
 -- --------------------------------------------------------
 
@@ -701,7 +707,7 @@ CREATE TABLE IF NOT EXISTS `repuestos` (
 INSERT INTO `repuestos` (`rep_codigo`, `rep_tipo`, `rep_marca`, `rep_cantidad`, `rep_precio`, `prov_nit`) VALUES
 ('1', 'Batería', 'Kia', '69', '132000', '134'),
 ('2', 'Motor', 'michellin', '4302', '1200000', '134'),
-('3', 'Amortiguador', 'michellin', '142', '80000', '134'),
+('3', 'Amortiguador', 'michellin', '146', '80000', '134'),
 ('56', 'Bomba de gasolina', 'Yamaha', '45', '45000', '134');
 
 -- --------------------------------------------------------
@@ -857,7 +863,7 @@ MODIFY `cot_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT de la tabla `cuentas`
 --
 ALTER TABLE `cuentas`
-MODIFY `cue_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `cue_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `devoluciones`
 --
@@ -872,17 +878,17 @@ MODIFY `fac_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 -- AUTO_INCREMENT de la tabla `mantenimientos`
 --
 ALTER TABLE `mantenimientos`
-MODIFY `man_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+MODIFY `man_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `ordenpedido`
 --
 ALTER TABLE `ordenpedido`
-MODIFY `ord_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `ord_numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `promociones`
 --
 ALTER TABLE `promociones`
-MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `pro_codigo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --

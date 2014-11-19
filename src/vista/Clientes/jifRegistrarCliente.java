@@ -59,9 +59,11 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
 
         jtfApellidos.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfApellidos.setToolTipText("Ingrese los Apellidos del Cliente");
+        jtfApellidos.setNextFocusableComponent(jcbSexo);
 
         jtfTelefono.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfTelefono.setToolTipText("Ingrese el Telefono del Cliente");
+        jtfTelefono.setNextFocusableComponent(jtfDireccion);
         jtfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTelefonoKeyTyped(evt);
@@ -70,6 +72,7 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
 
         jtfNombre.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfNombre.setToolTipText("Ingrese los Nombres del Cliente");
+        jtfNombre.setNextFocusableComponent(jtfApellidos);
         jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfNombreKeyTyped(evt);
@@ -78,9 +81,11 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
 
         jtfDireccion.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfDireccion.setToolTipText("Ingrese la Dirección del Cliente");
+        jtfDireccion.setNextFocusableComponent(jtfCorreo);
 
         jtfIdentificacion.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfIdentificacion.setToolTipText("Ingrese la Identificación del Cliente");
+        jtfIdentificacion.setNextFocusableComponent(jtfNombre);
         jtfIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfIdentificacionKeyTyped(evt);
@@ -94,6 +99,7 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
 
         jtfCorreo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfCorreo.setToolTipText("Ingrese el Correo Electronico del Cliente");
+        jtfCorreo.setNextFocusableComponent(jbtRegistrar);
 
         Correo.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
         Correo.setForeground(new java.awt.Color(1, 1, 1));
@@ -103,20 +109,24 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
         Correo1.setForeground(new java.awt.Color(1, 1, 1));
         Correo1.setText("Sexo");
 
+        jcbSexo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jcbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------", "Femenino", "Masculino" }));
         jcbSexo.setToolTipText("Seleccione el Sexo del Cliente");
         jcbSexo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcbSexo.setNextFocusableComponent(jtfTelefono);
 
         jbtCancelar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jbtCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtCancelar.setToolTipText("Cancelar");
         jbtCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtCancelar.setNextFocusableComponent(jtfNombre);
 
         jbtRegistrar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jbtRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574564_pencil_16.png"))); // NOI18N
         jbtRegistrar.setText("Registrar");
         jbtRegistrar.setToolTipText("Registrar Cliente en MECAUT");
         jbtRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtRegistrar.setNextFocusableComponent(jbtCancelar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,35 +143,40 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
                             .addComponent(Correo1)
                             .addComponent(Correo)
                             .addComponent(jLabel2))
-                        .addGap(42, 42, 42)
+                        .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jcbSexo, javax.swing.GroupLayout.Alignment.LEADING, 0, 126, Short.MAX_VALUE)
-                                .addComponent(jtfTelefono, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jtfDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jcbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(91, 91, 91))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jtfApellidos)
-                                .addComponent(jtfNombre, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGap(38, 38, 38))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtfIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jbtCancelar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbtCancelar)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jtfIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,10 +207,7 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
                         .addGap(11, 11, 11)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbtCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)))
+                            .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

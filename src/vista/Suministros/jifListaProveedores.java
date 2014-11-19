@@ -1,4 +1,4 @@
-package vista.Proveedores;
+package vista.Suministros;
 
 public class jifListaProveedores extends javax.swing.JInternalFrame {
     public jifListaProveedores() {

@@ -78,19 +78,16 @@ public class Conexion {
             consulta = conexion.prepareStatement("SELECT * FROM cuentas WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
             consulta.setString(1, usuario);
             consulta.setString(2, clave);
-            consulta.executeQuery();
             r = consulta.executeQuery();
             while (r.next()) {
                 datos[0] = r.getString("cue_tipoUsuario");
                 datos[1] = r.getString("usu_id");
                 datos[2] = r.getString("cue_estado");
-                return datos;
             }
-            conexion.close();
-        } catch (SQLException e) {
+            return datos;
+        } catch (SQLException e){
             return null;
         }
-        return null;
     }
 
     //metodo para registrar una cuenta
@@ -393,6 +390,15 @@ public class Conexion {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    public ResultSet traerDetallesMantenimiento(String placa){
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM detallesmantenimientos WHERE aut_placa = ?");
+            consulta.setString(1, placa);
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
     }
 
     public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado, String cli_id) {
@@ -1388,5 +1394,23 @@ public class Conexion {
             r = consulta.executeQuery();
             return r;
         } catch (Exception e) {return null;}
+    }
+
+    ResultSet numeroDeOrdenes() {
+        try {
+            consulta = conexion.prepareStatement("SELECT ord_numero FROM ordenpedido");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+
+    ResultSet datosOrdenPedido(String numero) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM ordenpedido o, detalles_ordenpedido d WHERE o.ord_numero = ? AND d.ord_numero = ?");
+            consulta.setString(1, numero);
+            consulta.setString(2, numero);
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {System.out.println(e.getMessage());return null;}
     }
 }

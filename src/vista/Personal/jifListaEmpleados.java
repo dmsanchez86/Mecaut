@@ -33,8 +33,7 @@ public class jifListaEmpleados extends javax.swing.JInternalFrame {
             new String [] {
             }
         ));
-        jtListaMecanicos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jtListaMecanicos.setEnabled(false);
+        jtListaMecanicos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane2.setViewportView(jtListaMecanicos);
 
         jtfDato.setToolTipText("Buscar por Identificación, Nombre o Apellidos");
@@ -43,6 +42,7 @@ public class jifListaEmpleados extends javax.swing.JInternalFrame {
         jbtBuscar.setText("Buscar");
 
         registros.setFont(new java.awt.Font("NanumGothic", 3, 13)); // NOI18N
+        registros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         registros.setText("0");
 
         jLabel2.setFont(new java.awt.Font("NanumGothic", 2, 13)); // NOI18N

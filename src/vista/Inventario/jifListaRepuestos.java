@@ -34,7 +34,7 @@ public class jifListaRepuestos extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MECAUT - Lista Repuestos");
+        setTitle("MECAUT - Inventario Disponible\n");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
 
         jtListaRepuestos.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
@@ -91,6 +91,6 @@ public class jifListaRepuestos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jtListaRepuestos;
-    private javax.swing.JLabel registros;
+    public javax.swing.JLabel registros;
     // End of variables declaration//GEN-END:variables
 }

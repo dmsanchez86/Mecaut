@@ -217,7 +217,7 @@
         <Component class="javax.swing.JButton" name="btnIngresar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconos/1412806306_ok-sign-48.png"/>
+              <Image iconType="3" name="/iconos/1412806304_ok-sign-64.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Iniciar Sesi&#xf3;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

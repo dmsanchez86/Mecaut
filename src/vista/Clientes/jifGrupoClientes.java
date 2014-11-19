@@ -44,9 +44,9 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-------", "Activo", "Inactivo", "Habitual", "Ocasional", "Potencial" }));
         jcbTipo.setSelectedIndex(1);
         jcbTipo.setToolTipText("Seleccione el Nombre o el Estado de un Grupo de Cliente");
+        jcbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jtGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
-        jtGrupoClientes.setCellSelectionEnabled(true);
         jtGrupoClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtGrupoClientes.setFocusable(false);
         jtGrupoClientes.setSelectionBackground(new java.awt.Color(255, 153, 153));
@@ -71,15 +71,16 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jLabel4.setText("Nombre");
 
         jLabel5.setFont(new java.awt.Font("NanumGothic", 2, 15)); // NOI18N
-        jLabel5.setText("Ident. Cliente");
+        jLabel5.setText("Id Cliente");
 
         jtfId.setEditable(false);
         jtfId.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
         jtfId.setToolTipText("Identificacion del Cliente");
 
         jcbEstado.setFont(new java.awt.Font("Segoe UI Symbol", 2, 12)); // NOI18N
-        jcbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Activo", "Inactivo" }));
+        jcbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------", "Activo", "Inactivo" }));
         jcbEstado.setToolTipText("Estado del Grupo de Cliente");
+        jcbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jbtModificar.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
         jbtModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574555_tick_16.png"))); // NOI18N
@@ -93,14 +94,17 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jbtCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtCancelar.setToolTipText("Cancelar");
 
+        jcbcodigoGrupo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jcbcodigoGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------", "GRH001", "GRO002", "GRP003" }));
         jcbcodigoGrupo.setToolTipText("Codigo del Grupo de Clientes");
+        jcbcodigoGrupo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jcbcodigoGrupo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbcodigoGrupoItemStateChanged(evt);
             }
         });
 
+        jcbNombregrupo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jcbNombregrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----", "Habitual", "Ocasional", "Potencial" }));
         jcbNombregrupo.setToolTipText("Nombre del Grupo de Clientes");
         jcbNombregrupo.setEnabled(false);
@@ -110,19 +114,15 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(30, 30, 30)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbtCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jcbcodigoGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

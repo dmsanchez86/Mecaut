@@ -37,14 +37,17 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
         setLayer(1);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 3, 14), new java.awt.Color(1, 1, 1))); // NOI18N
+        jPanel1.setToolTipText("");
         jPanel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 2, 15)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel1.setLabelFor(jtfIdentificacion);
         jLabel1.setText("Identificación");
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 2, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel2.setLabelFor(jtfNombre);
         jLabel2.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 2, 15)); // NOI18N
@@ -116,13 +119,14 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-actualizar.png"))); // NOI18N
 
         jtfIdentificacion.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jtfIdentificacion.setToolTipText("Ingrese la Identificación del Cliente Previamente registrado en el Sistema");
+        jtfIdentificacion.setToolTipText("Ingrese la Identificación del Cliente previamente registrado en el Sistema");
         jtfIdentificacion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfIdentificacionKeyTyped(evt);
             }
         });
 
+        jcbSexo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jcbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------------", "Femenino", "Masculino" }));
         jcbSexo.setToolTipText("Modifique el Sexo del Cliente");
         jcbSexo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,7 +157,7 @@ public class jifActualizarCliente extends javax.swing.JInternalFrame {
                             .addComponent(jtfDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(jtfIdentificacion)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbtModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jbtEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)

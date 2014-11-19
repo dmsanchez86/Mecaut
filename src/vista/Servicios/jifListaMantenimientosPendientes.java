@@ -87,10 +87,13 @@ public class jifListaMantenimientosPendientes extends javax.swing.JInternalFrame
 
         jLabel1.setText("Búsqueda por:");
 
+        jcbBusqueda.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jcbBusqueda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----", "Pendientes", "Rechazadas", "Aceptadas" }));
+        jcbBusqueda.setSelectedIndex(1);
 
         jLabel2.setText("N° Registros:");
 
+        registros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         registros.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,7 +103,7 @@ public class jifListaMantenimientosPendientes extends javax.swing.JInternalFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

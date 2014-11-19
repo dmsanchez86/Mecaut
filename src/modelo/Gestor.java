@@ -167,6 +167,12 @@ public class Gestor{
         respuesta = conexion.detallesMantenimiento(codMan,tipoMan,descripcion,fecha,placa,cli_nombre,id_mec,nom_mec, cod_rep,tip_rep,can_rep);
         return true;
     }
+    
+    public ResultSet traerDetallesMantenimiento(String placa){
+        conexion.crearConexion();
+        r = conexion.traerDetallesMantenimiento(placa);
+        return r;
+    }
 
     public boolean registrarMantenimiento(String codigoMantenimiento, String fechaInicio, String observaciones, String costo, String estado,String cli_id) {
         conexion.crearConexion();
@@ -610,6 +616,18 @@ public class Gestor{
     public ResultSet verDescripcionPromocion(String codigo) {
         conexion.crearConexion();
         r = conexion.verDescripcionPromocion(codigo);
+        return r;
+    }
+
+    public ResultSet numeroDeOrdenes() {
+        conexion.crearConexion();
+        r = conexion.numeroDeOrdenes();
+        return r;
+    }
+
+    public ResultSet datosOrdenPedido(String numero) {
+        conexion.crearConexion();
+        r = conexion.datosOrdenPedido(numero);
         return r;
     }
     

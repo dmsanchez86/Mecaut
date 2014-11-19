@@ -101,7 +101,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jbtSalir.setToolTipText("Salir de MECAUT");
         jbtSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412806306_ok-sign-48.png"))); // NOI18N
+        btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412806304_ok-sign-64.png"))); // NOI18N
         btnIngresar.setToolTipText("Iniciar Sesión");
         btnIngresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnIngresar.setBorderPainted(false);

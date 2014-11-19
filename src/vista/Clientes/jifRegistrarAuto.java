@@ -29,7 +29,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jtfNombreCliente = new javax.swing.JTextField();
-        jcbIdCliente = new javax.swing.JComboBox();
+        jtfId = new javax.swing.JTextField();
         jbtRegistrar = new javax.swing.JButton();
         jbtRegistrar1 = new javax.swing.JButton();
 
@@ -55,12 +55,12 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jLabel2.setText("Ciudad");
 
         jcbCiudad.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Arauca", "Armenia", "Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Cartagena ", "Cúcuta", "Ibagué ", "Manizales", "Medellín", "Neiva", "Pasto", "Pereira", "Popayán", "Quibdó", "Riohacha", "San Andrés", "Santa Marta", "Sincelejo", "Valledupar", "Villavicencio", "Yopal" }));
+        jcbCiudad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Arauca", "Armenia", "Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Cartagena ", "Cucuta", "Ibagué ", "Manizales", "Medellín", "Neiva", "Pasto", "Pereira", "Popayán", "Quibdó", "Riohacha", "San Andrés", "Santa Marta", "Sincelejo", "Valledupar", "Villavicencio", "Yopal" }));
         jcbCiudad.setToolTipText("Seleccione La Ciudad de Inscripción del Auto");
         jcbCiudad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jcbModelo.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--------", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980" }));
+        jcbModelo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--------", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970" }));
         jcbModelo.setToolTipText("Seleccione el Modelo del Auto");
         jcbModelo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -73,7 +73,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jLabel5.setText("Marca");
 
         jcbMarca.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Mazda", "Toyota", "Chevrolet", "Hyundai", "Kia", "Nissan", "Ford", "Volkswagen ", "Audi", "Yamaha", "Hummer ", "Ferrari ", "Cadillac ", "Aston Martin", "Alfa Romeo ", "Acura ", "Lamborghini ", "BMW", "Porsche" }));
+        jcbMarca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-----------------", "Mercedez Benz", "Mazda", "Toyota", "Chevrolet", "Hyundai", "Kia", "Nissan", "Ford", "Volkswagen ", "Audi", "Yamaha", "Hummer ", "Ferrari ", "Cadillac ", "Aston Martin", "Alfa Romeo ", "Acura ", "Lamborghini ", "BMW", "Porsche" }));
         jcbMarca.setToolTipText("Seleccione la Marca del Auto");
         jcbMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -90,13 +90,13 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jLabel10.setText("Combustible");
 
         jtfKilometraje.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jtfKilometraje.setToolTipText("Ingrese la Placa del Auto");
+        jtfKilometraje.setToolTipText("Ingrese el combustible del Auto");
 
         jtfCombustible.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jtfCombustible.setToolTipText("Ingrese la Placa del Auto");
+        jtfCombustible.setToolTipText("Ingrese el kilometraje del Auto");
 
         jcbTipo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Camioneta", "Deportivo", "Campero", "Camion" }));
+        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------", "Bus", "Buseta", "Camion", "Camioneta", "Campero", "Deportivo", "Moto-Carro", "Volqueta" }));
         jcbTipo.setToolTipText("Selecciones el tipo de auto");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -176,10 +176,8 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jtfNombreCliente.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jtfNombreCliente.setToolTipText("Nombre Cliente");
 
-        jcbIdCliente.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jcbIdCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------" }));
-        jcbIdCliente.setToolTipText("Seleccione la Identificación del Cliente");
-        jcbIdCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtfId.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jtfId.setToolTipText("Ingrese la Placa del Auto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -190,9 +188,9 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel4))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jcbIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -202,7 +200,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jcbIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -220,7 +218,7 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
         jbtRegistrar1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         jbtRegistrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553884_mail-delete.png"))); // NOI18N
         jbtRegistrar1.setText("Cancelar");
-        jbtRegistrar1.setToolTipText("Registrar Datos del Auto");
+        jbtRegistrar1.setToolTipText("Cancelar");
         jbtRegistrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -231,11 +229,11 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbtRegistrar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,8 +247,9 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
                         .addComponent(jbtRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jbtRegistrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -275,11 +274,11 @@ public class jifRegistrarAuto extends javax.swing.JInternalFrame {
     public javax.swing.JButton jbtRegistrar;
     public javax.swing.JButton jbtRegistrar1;
     public javax.swing.JComboBox jcbCiudad;
-    public javax.swing.JComboBox jcbIdCliente;
     public javax.swing.JComboBox jcbMarca;
     public javax.swing.JComboBox jcbModelo;
     public javax.swing.JComboBox jcbTipo;
     public javax.swing.JTextField jtfCombustible;
+    public javax.swing.JTextField jtfId;
     public javax.swing.JTextField jtfKilometraje;
     public javax.swing.JTextField jtfNombreCliente;
     public javax.swing.JTextField jtfPlaca;

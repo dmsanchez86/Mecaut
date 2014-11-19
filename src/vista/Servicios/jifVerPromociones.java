@@ -31,12 +31,11 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
         ListaPromociones = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jcbTipoPromociones = new javax.swing.JComboBox();
+        lbCodigo = new javax.swing.JLabel();
+        lbFecha = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtfDescripcion = new javax.swing.JTextArea();
-        lbFecha = new javax.swing.JLabel();
-        lbCodigo = new javax.swing.JLabel();
-        jcbTipoPromociones = new javax.swing.JComboBox();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -63,33 +62,11 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jcbTipoPromociones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "Repuesto", "Mantenimiento" }));
 
-        jScrollPane2.setBackground(new java.awt.Color(167, 221, 246));
-        jScrollPane2.setBorder(null);
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane2.setFocusable(false);
-        jScrollPane2.setFont(new java.awt.Font("Tekton Pro", 2, 24)); // NOI18N
-
-        jtfDescripcion.setEditable(false);
         jtfDescripcion.setColumns(20);
         jtfDescripcion.setRows(5);
-        jtfDescripcion.setWrapStyleWord(true);
         jScrollPane2.setViewportView(jtfDescripcion);
-
-        jScrollPane2.setBounds(50, 170, 350, 190);
-        jDesktopPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        lbFecha.setText("Fecha");
-        lbFecha.setBounds(250, 100, 170, 20);
-        jDesktopPane1.add(lbFecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        lbCodigo.setText("Código");
-        lbCodigo.setBounds(70, 50, 110, 20);
-        jDesktopPane1.add(lbCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jcbTipoPromociones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "Repuesto", "Mantenimiento" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,8 +83,15 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,11 +101,16 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jcbTipoPromociones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDesktopPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSeparator1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,7 +123,6 @@ public class jifVerPromociones extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable ListaPromociones;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
