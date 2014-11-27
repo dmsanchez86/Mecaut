@@ -94,6 +94,12 @@ public class frmAdmin extends javax.swing.JFrame {
         jmiObtenerCotizacion = new javax.swing.JMenuItem();
         jmiCreditos = new javax.swing.JMenuItem();
         jmReportes = new javax.swing.JMenu();
+        jmiReporteClientes = new javax.swing.JMenuItem();
+        jmiReporteEmpleados = new javax.swing.JMenuItem();
+        jmiReporteAutos = new javax.swing.JMenuItem();
+        jmiReporteProveedores = new javax.swing.JMenuItem();
+        jmiReporteMantenimientos = new javax.swing.JMenuItem();
+        jmiReporteInventario = new javax.swing.JMenuItem();
         jmAyuda = new javax.swing.JMenu();
         jmSalir = new javax.swing.JMenu();
         jmiConfiguracion = new javax.swing.JMenuItem();
@@ -609,6 +615,49 @@ public class frmAdmin extends javax.swing.JFrame {
         jmReportes.setToolTipText("Modulo de Reportes");
         jmReportes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
         jmReportes.setMargin(new java.awt.Insets(5, 0, 5, 10));
+
+        jmiReporteClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553320_testimonials.png"))); // NOI18N
+        jmiReporteClientes.setText("Clientes");
+        jmiReporteClientes.setToolTipText("Generar Reporte de Todos los Clientes");
+        jmiReporteClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteClientes);
+
+        jmiReporteEmpleados.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552762_config-users.png"))); // NOI18N
+        jmiReporteEmpleados.setText("Empleados");
+        jmiReporteEmpleados.setToolTipText("Generar Reporte de Todoslos Empleados");
+        jmiReporteEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteEmpleados);
+
+        jmiReporteAutos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteAutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412572886_CabrioletRed.png"))); // NOI18N
+        jmiReporteAutos.setText("Autos");
+        jmiReporteAutos.setToolTipText("Generar Reporte de Todos los Autos");
+        jmiReporteAutos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteAutos);
+
+        jmiReporteProveedores.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554134_Delivery.png"))); // NOI18N
+        jmiReporteProveedores.setText("Proveedores");
+        jmiReporteProveedores.setToolTipText("Generar Reporte de Todos los Proveedores");
+        jmiReporteProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteProveedores);
+
+        jmiReporteMantenimientos.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteMantenimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
+        jmiReporteMantenimientos.setText("Mantenimientos");
+        jmiReporteMantenimientos.setToolTipText("Generar Reporte de Todos los Mantenimientos");
+        jmiReporteMantenimientos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteMantenimientos);
+
+        jmiReporteInventario.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jmiReporteInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574572_briefcase_16.png"))); // NOI18N
+        jmiReporteInventario.setText("Inventario");
+        jmiReporteInventario.setToolTipText("Generar Reporte del Inventario Actual");
+        jmiReporteInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jmReportes.add(jmiReporteInventario);
+
         jMenuBar1.add(jmReportes);
 
         jmAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412575142_help_forum-lb.png"))); // NOI18N
@@ -756,7 +805,7 @@ public class frmAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jmInventario;
     private javax.swing.JMenu jmPersonal;
     private javax.swing.JMenu jmProveedores;
-    private javax.swing.JMenu jmReportes;
+    public javax.swing.JMenu jmReportes;
     public javax.swing.JMenu jmSalir;
     private javax.swing.JMenu jmServicios;
     private javax.swing.JMenu jmVentas;
@@ -800,6 +849,12 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiRegistrarMecanico;
     public javax.swing.JMenuItem jmiRegistrarRepuestos;
     public javax.swing.JMenuItem jmiRegitrarProveedor;
+    public javax.swing.JMenuItem jmiReporteAutos;
+    public javax.swing.JMenuItem jmiReporteClientes;
+    public javax.swing.JMenuItem jmiReporteEmpleados;
+    public javax.swing.JMenuItem jmiReporteInventario;
+    public javax.swing.JMenuItem jmiReporteMantenimientos;
+    public javax.swing.JMenuItem jmiReporteProveedores;
     private javax.swing.JMenu jmiRepuestos;
     public javax.swing.JMenuItem jmiReservas;
     public javax.swing.JMenuItem jmiSalir;

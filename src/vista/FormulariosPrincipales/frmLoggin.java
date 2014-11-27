@@ -52,6 +52,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jtfUsuario.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jtfUsuario.setText("Usuario");
         jtfUsuario.setToolTipText("Ingrese el nombre de Usuario");
+        jtfUsuario.setNextFocusableComponent(jtfContraseña);
         jtfUsuario.setSelectionEnd(1);
         jtfUsuario.setSelectionStart(1);
         jtfUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -66,6 +67,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jtfContraseña.setFont(new java.awt.Font("Verdana", 3, 12)); // NOI18N
         jtfContraseña.setText("Contraseña");
         jtfContraseña.setToolTipText("Ingrese la Contraseña");
+        jtfContraseña.setNextFocusableComponent(btnIngresar);
         jtfContraseña.setSelectionEnd(2);
         jtfContraseña.setSelectionStart(2);
         jtfContraseña.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -84,6 +86,7 @@ public class frmLoggin extends javax.swing.JFrame {
         jLabel5.setText("Obtener una cuenta?");
         jLabel5.setToolTipText("Registrese en mecaut.com");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setNextFocusableComponent(jbtSalir);
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -100,12 +103,14 @@ public class frmLoggin extends javax.swing.JFrame {
         jbtSalir.setText("Salir");
         jbtSalir.setToolTipText("Salir de MECAUT");
         jbtSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbtSalir.setNextFocusableComponent(jtfUsuario);
 
         btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412806304_ok-sign-64.png"))); // NOI18N
         btnIngresar.setToolTipText("Iniciar Sesión");
         btnIngresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnIngresar.setBorderPainted(false);
         btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.setNextFocusableComponent(jLabel5);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);

@@ -70,6 +70,10 @@ public class Conexion {
             return "DESCONECTADO";
         }
     }
+    
+    public Connection getConexion(){
+        return this.conexion;
+    }
 
     //metodo para validar cuenta
     public String[] validarCuentas(String usuario,String clave) {
@@ -348,6 +352,7 @@ public class Conexion {
             return null;
         }
     }
+    
     public ResultSet placasAutosClientes(String id) {
         try {
             consulta = conexion.prepareStatement("SELECT aut_placa FROM autos WHERE cli_id = ?");
@@ -455,6 +460,7 @@ public class Conexion {
         }
     
     }
+    
     public boolean eliminarHisMantenimiento(String cod) {
         try {
             consulta = conexion.prepareStatement("Delete From historialmantenimientos Where man_codigo = ?");
@@ -790,6 +796,7 @@ public class Conexion {
             return null;
         }
     }
+    
     public ResultSet idsEmpleados() {
         try {
             consulta = conexion.prepareStatement("SELECT emp_id FROM empleados");
@@ -818,7 +825,7 @@ public class Conexion {
         }
     }
     
-    boolean modificarRepuesto(String cod, String marca, String cant, String precio) {
+    public boolean modificarRepuesto(String cod, String marca, String cant, String precio) {
         try {
             consulta = conexion.prepareStatement("UPDATE repuestos SET rep_marca = ?,rep_cantidad = ?, rep_precio = ? WHERE rep_codigo = ?");
             consulta.setString(1, marca);
@@ -830,7 +837,7 @@ public class Conexion {
         } catch (Exception e) {return false;}
     }
 
-    boolean eliminarRepuesto(String cod) {
+    public boolean eliminarRepuesto(String cod) {
         try {
             consulta = conexion.prepareStatement("DELETE repuestos WHERE rep_codigo = ?");
             consulta.setString(1, cod);
@@ -951,7 +958,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet codigoOrdenPedido() {
+    public ResultSet codigoOrdenPedido() {
         try {
             consulta = conexion.prepareStatement("SELECT MAX(ord_numero) FROM ordenpedido");
             r = consulta.executeQuery();
@@ -959,7 +966,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet NitsProveedores() {
+    public ResultSet NitsProveedores() {
         try {
             consulta = conexion.prepareStatement("SELECT prov_nit FROM proveedores");
             r = consulta.executeQuery();
@@ -967,7 +974,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet DatosOrden(String nit) {
+    public ResultSet DatosOrden(String nit) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM proveedores WHERE prov_nit = ?");
             consulta.setString(1, nit);
@@ -976,7 +983,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet nomRepuestos() {
+    public ResultSet nomRepuestos() {
         try {
             consulta = conexion.prepareStatement("SELECT rep_tipo FROM repuestos");
             r = consulta.executeQuery();
@@ -984,7 +991,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet datosRepuestoNombre(String nombre) {
+    public ResultSet datosRepuestoNombre(String nombre) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM repuestos WHERE rep_tipo = ? LIMIT 1");
             consulta.setString(1, nombre);
@@ -993,7 +1000,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    boolean registrarOrdenPedido(String fecha, String nitPro, String nomPro, String telPro, String dirPro, String total) {
+    public boolean registrarOrdenPedido(String fecha, String nitPro, String nomPro, String telPro, String dirPro, String total) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO ordenpedido VALUES(?,?,?,?,?,?,?,?)");
             consulta.setInt(1, 0);
@@ -1012,7 +1019,7 @@ public class Conexion {
         }
     }
 
-    boolean registrarDetallesOrden(String num,String codRep, String tipRep, String marRep, String canRep, String preRep) {
+    public boolean registrarDetallesOrden(String num,String codRep, String tipRep, String marRep, String canRep, String preRep) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO detalles_ordenpedido VALUES(?,?,?,?,?,?)");
             consulta.setString(1, num);
@@ -1029,7 +1036,7 @@ public class Conexion {
         }
     }
 
-    ArrayList<Factura> consultarFacturas() {
+    public ArrayList<Factura> consultarFacturas() {
         try {
             ArrayList<Factura> fac = new ArrayList<>();
             consulta = conexion.prepareStatement("SELECT * FROM factura");
@@ -1043,7 +1050,7 @@ public class Conexion {
         }
     }
 
-    ResultSet codigosCotizacion() {
+    public ResultSet codigosCotizacion() {
         try {
             consulta = conexion.prepareStatement("SELECT MAX(cot_numero) FROM cotizacion");
             r = consulta.executeQuery();
@@ -1051,7 +1058,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ArrayList<Mantenimiento> datosCotizacion(String id) {
+    public ArrayList<Mantenimiento> datosCotizacion(String id) {
         try {
             mantenimientos = new ArrayList<>();
             consulta = conexion.prepareStatement("SELECT m.man_codigo, m.man_fechaInicio, m.man_costo, c.cli_nombre FROM mantenimientos m, clientes c WHERE m.cli_id = ? AND c.cli_id = ? ");
@@ -1064,7 +1071,7 @@ public class Conexion {
         } catch (SQLException | HeadlessException e) {return null;}
     }
 
-    boolean registrarCotizacion(String fecha, String idCliente, String nombreCliente, String codMante, String valorMantenimiento, String totalMantenimiento, String valorCotizacion, String observaciones) {
+    public boolean registrarCotizacion(String fecha, String idCliente, String nombreCliente, String codMante, String valorMantenimiento, String totalMantenimiento, String valorCotizacion, String observaciones) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO cotizacion VALUES(?,?,?,?,?,?,?,?,?,?)");
             consulta.setInt(1, 0);
@@ -1085,7 +1092,7 @@ public class Conexion {
         }
     }
     
-    boolean actualizarMantenimiento(String codMante, String totalMantenimiento) {
+    public boolean actualizarMantenimiento(String codMante, String totalMantenimiento) {
         try {
             consulta = conexion.prepareStatement("UPDATE mantenimientos SET man_costo = ? WHERE man_codigo = ?");
             consulta.setString(1, totalMantenimiento);
@@ -1098,7 +1105,7 @@ public class Conexion {
         }
     }
 
-    ResultSet validarFicha(String placa) {
+    public ResultSet validarFicha(String placa) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM ficha_recepcion_auto WHERE aut_placa = ?");
             consulta.setString(1, placa);
@@ -1179,7 +1186,7 @@ public class Conexion {
         }
     }
 
-    ResultSet codigoFactura() {
+    public ResultSet codigoFactura() {
         try {
             consulta = conexion.prepareStatement("SELECT MAX(fac_numero) FROM factura");
             r = consulta.executeQuery();
@@ -1187,7 +1194,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet codigoPromocion() {
+    public ResultSet codigoPromocion() {
         try {
             consulta = conexion.prepareStatement("SELECT MAX(pro_codigo) FROM promociones");
             r = consulta.executeQuery();
@@ -1195,7 +1202,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    boolean registrarPromocion(String fecha, String tipo, String estado, String desc) {
+    public boolean registrarPromocion(String fecha, String tipo, String estado, String desc) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO promociones VALUES(?,?,?,?,?)");
             consulta.setInt(1,0);
@@ -1207,7 +1214,8 @@ public class Conexion {
             return true;
         } catch (SQLException ex) {return false;}
     }
-    boolean modificarPromocion(String cod,String fecha, String tipo, String estado, String desc){
+    
+    public boolean modificarPromocion(String cod,String fecha, String tipo, String estado, String desc){
         try {
             consulta = conexion.prepareStatement("UPDATE promociones SET pro_fecha = ?, pro_tipo = ?, pro_descripcion = ?, pro_estado = ? WHERE pro_codigo = ?");
             consulta.setString(1,fecha);
@@ -1219,7 +1227,8 @@ public class Conexion {
             return true;
         } catch (SQLException ex) {return false;}
     }
-    boolean eliminarPromocion(String codigo){
+    
+    public boolean eliminarPromocion(String codigo){
         try {
             consulta = conexion.prepareStatement("DELETE FROM promociones WHERE pro_codigo = ?");
             consulta.setInt(1, Integer.parseInt(codigo));
@@ -1231,7 +1240,7 @@ public class Conexion {
         }
     }
     
-    ResultSet listaPromociones(){
+    public ResultSet listaPromociones(){
         try {
             consulta = conexion.prepareStatement("SELECT * FROM promociones ORDER BY pro_codigo DESC");
             r = consulta.executeQuery();
@@ -1239,7 +1248,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
     
-    ResultSet datosPromocion(String codigo){
+    public ResultSet datosPromocion(String codigo){
         try {
             consulta = conexion.prepareStatement("SELECT * FROM promociones WHERE pro_codigo = ?");
             consulta.setString(1,codigo);
@@ -1248,7 +1257,7 @@ public class Conexion {
         } catch (SQLException | NumberFormatException e) {return null;}
     }
 
-    boolean desactivarCuenta(String id, String contraseña) {
+    public boolean desactivarCuenta(String id, String contraseña) {
         try {
             consulta = conexion.prepareStatement("UPDATE cuentas SET cue_estado = 'Inactiva' WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
         consulta.setString(1, id);
@@ -1258,7 +1267,7 @@ public class Conexion {
         } catch (Exception e) {return false;}
     }
 
-    boolean activarCuenta(String usuario, String con) {
+    public boolean activarCuenta(String usuario, String con) {
         try {
             consulta = conexion.prepareStatement("UPDATE cuentas SET cue_estado = 'Activa' WHERE cue_usuario = ? AND cue_contrasena = MD5(?)");
             consulta.setString(1, usuario);
@@ -1268,7 +1277,7 @@ public class Conexion {
         } catch (Exception e) {return false;}
     }
 
-    boolean cambiarContrasena(String usu_id, String conVieja, String contrasenaNueva) {
+    public boolean cambiarContrasena(String usu_id, String conVieja, String contrasenaNueva) {
         try {
             consulta = conexion.prepareStatement("UPDATE cuentas SET cue_contrasena = MD5(?) WHERE usu_id = ? AND cue_contrasena = MD5(?)");
             consulta.setString(1, contrasenaNueva);
@@ -1279,7 +1288,7 @@ public class Conexion {
         } catch (Exception e) {return false;}
     }
 
-    boolean registrarMantenimientoCliente(String placa, String id, String nombre, String estado, String fecha) {
+    public boolean registrarMantenimientoCliente(String placa, String id, String nombre, String estado, String fecha) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO mantenimientos_pendientes VALUES(?,?,?,?,?)");
             consulta.setString(1, placa);
@@ -1291,7 +1300,8 @@ public class Conexion {
             return true;
         } catch (Exception e) {return false;}
     }
-    boolean registrarDetallesMantenimientoCliente(String placa,String nombre, String tipoMantenimiento, String fecha,String descripcion) {
+    
+    public boolean registrarDetallesMantenimientoCliente(String placa,String nombre, String tipoMantenimiento, String fecha,String descripcion) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO detalles_mantenimientos_pendientes VALUES(?,?,?,?,?)");
             consulta.setString(1,placa);
@@ -1304,7 +1314,7 @@ public class Conexion {
         } catch (Exception e) {return false;}
     }
     
-    ResultSet numeroMantenimientosPendientes(){
+    public ResultSet numeroMantenimientosPendientes(){
         try {
             consulta = conexion.prepareStatement("SELECT COUNT(*) FROM mantenimientos_pendientes WHERE manp_estado = 'Pendiente'");
             r = consulta.executeQuery();
@@ -1312,7 +1322,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet consultarManteniminetosPendientes(String dato) {
+    public ResultSet consultarManteniminetosPendientes(String dato) {
         try {
             if (dato==null) {
                 consulta = conexion.prepareStatement("SELECT * FROM mantenimientos_pendientes");
@@ -1326,7 +1336,7 @@ public class Conexion {
         } catch (Exception e) {return r;}
     }
 
-    ResultSet DatosMantenimientoPendiente(String placa, String nombre) {
+    public ResultSet DatosMantenimientoPendiente(String placa, String nombre) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM detalles_mantenimientos_pendientes WHERE aut_placa = ? AND cli_nombre = ?");
             consulta.setString(1, placa);
@@ -1334,11 +1344,10 @@ public class Conexion {
             r = consulta.executeQuery();
             return r;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
             return null;}
     }
 
-    boolean modificarEstadoMantenimiento(String placa, String nombre) {
+    public boolean modificarEstadoMantenimiento(String placa, String nombre) {
         try {
             consulta = conexion.prepareStatement("UPDATE mantenimientos_pendientes SET manp_estado = 'Rechazada' WHERE aut_placa = ? AND cli_nombre = ?");
             consulta.setString(1, placa);
@@ -1347,11 +1356,10 @@ public class Conexion {
             System.out.println(consulta);
             return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             return false;}
     }
 
-    boolean actualizarEstadoMantenimiento(String placa, String id) {
+    public boolean actualizarEstadoMantenimiento(String placa, String id) {
         try {
             consulta = conexion.prepareStatement("UPDATE mantenimientos_pendientes SET manp_estado = 'Aceptada' WHERE aut_placa = ? AND cli_id = ?");
             consulta.setString(1, placa);
@@ -1374,7 +1382,7 @@ public class Conexion {
         }
     }
 
-    ResultSet consultarPromociones(String dato) {
+    public ResultSet consultarPromociones(String dato) {
         try {
             if ("".equals(dato)) {
                 consulta = conexion.prepareStatement("SELECT * FROM promociones");
@@ -1387,7 +1395,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet verDescripcionPromocion(String codigo) {
+    public ResultSet verDescripcionPromocion(String codigo) {
         try {
             consulta = conexion.prepareStatement("SELECT pro_descripcion FROM promociones WHERE pro_codigo = ?");
             consulta.setString(1, codigo);
@@ -1396,7 +1404,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet numeroDeOrdenes() {
+    public ResultSet numeroDeOrdenes() {
         try {
             consulta = conexion.prepareStatement("SELECT ord_numero FROM ordenpedido");
             r = consulta.executeQuery();
@@ -1404,7 +1412,7 @@ public class Conexion {
         } catch (Exception e) {return null;}
     }
 
-    ResultSet datosOrdenPedido(String numero) {
+    public ResultSet datosOrdenPedido(String numero) {
         try {
             consulta = conexion.prepareStatement("SELECT * FROM ordenpedido o, detalles_ordenpedido d WHERE o.ord_numero = ? AND d.ord_numero = ?");
             consulta.setString(1, numero);

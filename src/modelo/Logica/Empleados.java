@@ -47,7 +47,7 @@ public class Empleados {
         return direccion;
     }
     public String getCorreo(){
-        return correo;
+            return correo;
     }
     public String getSalario() {
         return salario;

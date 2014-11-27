@@ -46,7 +46,7 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jcbTipo.setToolTipText("Seleccione el Nombre o el Estado de un Grupo de Cliente");
         jcbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jtGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 3, 12)); // NOI18N
+        jtGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 2, 12)); // NOI18N
         jtGrupoClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtGrupoClientes.setFocusable(false);
         jtGrupoClientes.setSelectionBackground(new java.awt.Color(255, 153, 153));
