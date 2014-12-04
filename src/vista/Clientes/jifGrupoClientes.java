@@ -46,11 +46,13 @@ public class jifGrupoClientes extends javax.swing.JInternalFrame {
         jcbTipo.setToolTipText("Seleccione el Nombre o el Estado de un Grupo de Cliente");
         jcbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jtGrupoClientes.setFont(new java.awt.Font("Segoe UI Semibold", 2, 12)); // NOI18N
+        jtGrupoClientes.setFont(new java.awt.Font("Lucida Sans", 2, 13)); // NOI18N
+        jtGrupoClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jtGrupoClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jtGrupoClientes.setFocusable(false);
-        jtGrupoClientes.setSelectionBackground(new java.awt.Color(255, 153, 153));
-        jtGrupoClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jtGrupoClientes.setRowMargin(0);
+        jtGrupoClientes.setSelectionBackground(new java.awt.Color(2, 78, 165));
+        jtGrupoClientes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jtGrupoClientes.setUpdateSelectionOnSort(false);
         jtGrupoClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

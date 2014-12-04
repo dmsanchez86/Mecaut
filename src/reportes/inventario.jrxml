@@ -32,10 +32,6 @@
 					</textElement>
 					<text><![CDATA[MECAUT]]></text>
 				</staticText>
-				<image>
-					<reportElement uuid="5ea0c2e6-d0e4-4341-89c4-250f4eccf033" x="20" y="10" width="64" height="64"/>
-					<imageExpression><![CDATA["/home/mao/NetBeansProjects/Mecaut/src/iconos/ventas.PNG"]]></imageExpression>
-				</image>
 			</frame>
 		</band>
 	</title>

@@ -292,6 +292,7 @@ public class Conexion {
             consulta.close();
             return true;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -847,7 +848,7 @@ public class Conexion {
     }
     
     public boolean actualizarRepuesto(String codigo, String stockFinal) {
-        int total, antes = 0,despues = 0;
+        int total, antes = 0,despues;
         try {
             consulta = conexion.prepareStatement("SELECT rep_cantidad FROM repuestos WHERE rep_codigo = ?");
             consulta.setString(1,codigo);
@@ -1420,5 +1421,87 @@ public class Conexion {
             r = consulta.executeQuery();
             return r;
         } catch (Exception e) {System.out.println(e.getMessage());return null;}
+    }
+
+    public boolean registrarDevolucion(String fecha, String ord_numero, int numeroRepuestos, String descripcion) {
+        try{
+            consulta = conexion.prepareStatement("INSERT INTO devoluciones VALUES(?,?,?,?,?,?)");
+            consulta.setInt(1,0);
+            consulta.setString(2,fecha);
+            consulta.setString(3,ord_numero);
+            consulta.setString(4,String.valueOf(numeroRepuestos));
+            consulta.setString(5,descripcion);
+            consulta.setString(6,"Aceptada");
+            consulta.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    boolean registrarDetallesDevolucion(String ord_numero,String codigo,String nombre,String cantidad,String precio,String nit) {
+        try{
+            consulta = conexion.prepareStatement("INSERT INTO detalles_devolucion VALUES(?,?,?,?,?,?)");
+            consulta.setString(1,ord_numero);
+            consulta.setString(2,codigo);
+            consulta.setString(3,nombre);
+            consulta.setString(4,cantidad);
+            consulta.setString(5,precio);
+            consulta.setString(6,nit);
+            consulta.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public ResultSet fondo(String id) {
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM fondos WHERE usu_id = ?");
+            consulta.setString(1,id);
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {return null;}
+    }
+    public boolean fondoActualizado(String id,String fondo) {
+        try {
+            consulta = conexion.prepareStatement("UPDATE fondos set imagen = ? WHERE usu_id = ?");
+            consulta.setString(1,fondo);
+            consulta.setString(2, id);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
+    }
+
+    public boolean insertarFondo(String id) {
+        try {
+            consulta = conexion.prepareStatement("INSERT INTO fondos VALUES (?,?)");
+            consulta.setString(1,id);
+            consulta.setString(2,"Wallpaper-auto-concept-neon-tuning-desktop1.jpg");
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {System.out.println(e.getMessage());return false;}
+    }
+    
+    public ResultSet cargarTiposMantenimientos(){
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM tiposmantenimientos");
+            r = consulta.executeQuery();
+            return r;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    boolean eliminarMantenimientoPendiente(String placa,String id){
+        try {
+            consulta = conexion.prepareStatement("DELETE FROM mantenimientos_pendientes WHERE aut_placa = ? AND cli_id = ?");
+            consulta.setString(1,placa);
+            consulta.setString(2,id);
+            consulta.executeUpdate();
+            return true;
+        } catch (Exception e) {return false;}
     }
 }

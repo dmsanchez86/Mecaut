@@ -29,7 +29,6 @@ public class jifRegistrarCliente extends javax.swing.JInternalFrame {
         jbtRegistrar = new javax.swing.JButton();
 
         setClosable(true);
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
         setTitle("MECAUT - Registro Cliente");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553282_group.png"))); // NOI18N

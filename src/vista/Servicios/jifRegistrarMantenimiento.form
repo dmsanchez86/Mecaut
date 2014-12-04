@@ -217,11 +217,8 @@
             <Component class="javax.swing.JComboBox" name="jcbTipoMantenimiento1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="------------"/>
-                    <StringItem index="1" value="Cambio de Aceite"/>
-                    <StringItem index="2" value="Reparaci&#xf3;n de Frenos"/>
-                    <StringItem index="3" value="Cambio de Llantas"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="--------------------"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -703,19 +700,7 @@
         <Component class="javax.swing.JTable" name="Detalles">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="11" rowCount="0">
-                <Column editable="true" title="Tipo Mantenimiento" type="java.lang.Object"/>
-                <Column editable="true" title="Descripci&#xf3;n" type="java.lang.Object"/>
-                <Column editable="true" title="Fecha" type="java.lang.Object"/>
-                <Column editable="true" title="Auto Placa" type="java.lang.Object"/>
-                <Column editable="true" title="Cliente" type="java.lang.Object"/>
-                <Column editable="true" title="Mecanico Id" type="java.lang.Object"/>
-                <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Repuesto Cod" type="java.lang.Object"/>
-                <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Cantidad" type="java.lang.Object"/>
-                <Column editable="true" title="Precio" type="java.lang.Object"/>
-              </Table>
+              <Table columnCount="0" rowCount="0"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Mano"/>

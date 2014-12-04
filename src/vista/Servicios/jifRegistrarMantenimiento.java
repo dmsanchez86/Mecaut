@@ -110,7 +110,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
             }
         });
 
-        jcbTipoMantenimiento1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------------", "Cambio de Aceite", "Reparación de Frenos", "Cambio de Llantas" }));
+        jcbTipoMantenimiento1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--------------------" }));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -376,7 +376,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Tipo Mantenimiento", "Descripción", "Fecha", "Auto Placa", "Cliente", "Mecanico Id", "Nombre", "Repuesto Cod", "Nombre", "Cantidad", "Precio"
+
             }
         ));
         Detalles.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -575,7 +575,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
                 String pre = (String) Detalles.getValueAt(j, 10);
                 total += Integer.parseInt(can)*Integer.parseInt(pre); 
             }
-            jtfCosto.setText("$"+total);
+            jtfCosto.setText(""+total);
             jbtRegistrar.setEnabled(true);
         }
     }//GEN-LAST:event_jbtModificarDetallesActionPerformed
@@ -591,7 +591,7 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
         String can = (String)Detalles.getValueAt(columnas, 9);
         String pre = (String) Detalles.getValueAt(columnas, 10);
         int tota = Integer.parseInt(can)*Integer.parseInt(pre);
-        jtfCosto.setText("$"+(total-tota));
+        jtfCosto.setText(""+(total-tota));
         DefaultTableModel model = (DefaultTableModel) Detalles.getModel();
         int i = Detalles.getSelectedRow();
         if (i <0) {
@@ -605,7 +605,6 @@ public class jifRegistrarMantenimiento extends javax.swing.JInternalFrame {
         String desc = (String)Detalles.getValueAt(i,1);
         String placa = (String)Detalles.getValueAt(i, 3);
         String cli_nombre = (String)Detalles.getValueAt(i, 4);
-        String rep_cantidad = (String)Detalles.getValueAt(i, 9);
         jcbIdMecanico1.setSelectedIndex(0);
         jcbcodRepuesto.setSelectedIndex(0);
         jtfdescripcion.setText(desc);

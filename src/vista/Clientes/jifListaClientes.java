@@ -14,6 +14,8 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
         jmiRegistrarAuto = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jmiNuevoCliente = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jmiReporte = new javax.swing.JMenuItem();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtListaClientes = new javax.swing.JTable();
         jtfDato = new javax.swing.JTextField();
@@ -50,6 +52,13 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
         jmiNuevoCliente.setText("jMenuItem3");
         jmiNuevoCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPopupMenu1.add(jmiNuevoCliente);
+        jPopupMenu1.add(jSeparator2);
+
+        jmiReporte.setFont(new java.awt.Font("Dialog", 3, 11)); // NOI18N
+        jmiReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554340_area_chart.png"))); // NOI18N
+        jmiReporte.setText("jMenuItem1");
+        jmiReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPopupMenu1.add(jmiReporte);
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -58,7 +67,7 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
 
         jtListaClientes.setBorder(new javax.swing.border.MatteBorder(null));
-        jtListaClientes.setFont(new java.awt.Font("Tahoma", 2, 14));
+        jtListaClientes.setFont(new java.awt.Font("Lucida Sans", 2, 13)); // NOI18N
         jtListaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -70,13 +79,14 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
 
             }
         ));
-        jtListaClientes.setToolTipText("Clic Derecho para más detalles");
+        jtListaClientes.setToolTipText("");
         jtListaClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jtListaClientes.setComponentPopupMenu(jPopupMenu1);
         jtListaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtListaClientes.setRowHeight(20);
         jtListaClientes.setRowMargin(0);
-        jtListaClientes.setSelectionBackground(new java.awt.Color(153, 153, 255));
-        jtListaClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jtListaClientes.setSelectionBackground(new java.awt.Color(2, 160, 160));
+        jtListaClientes.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jtListaClientes.setUpdateSelectionOnSort(false);
         jScrollPane2.setViewportView(jtListaClientes);
 
@@ -136,11 +146,13 @@ public class jifListaClientes extends javax.swing.JInternalFrame {
     public javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     public javax.swing.JLabel jbtBuscar;
     public javax.swing.JMenuItem jmiEliminar;
     public javax.swing.JMenuItem jmiModificar;
     public javax.swing.JMenuItem jmiNuevoCliente;
     public javax.swing.JMenuItem jmiRegistrarAuto;
+    public javax.swing.JMenuItem jmiReporte;
     public javax.swing.JTable jtListaClientes;
     public javax.swing.JTextField jtfDato;
     public javax.swing.JLabel nRegistros;

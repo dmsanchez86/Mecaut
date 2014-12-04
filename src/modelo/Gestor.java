@@ -630,5 +630,44 @@ public class Gestor{
         r = conexion.datosOrdenPedido(numero);
         return r;
     }
+
+    public boolean registrarDevolucion(String fecha, String ord_numero, int numeroRepuestos, String descripcion) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarDevolucion(fecha,ord_numero,numeroRepuestos,descripcion);
+        return respuesta;
+    }
+
+    public boolean registrarDetallesDevolucion(String ord_numero,String codigo,String nombre,String cantidad,String precio,String nit) {
+        conexion.crearConexion();
+        respuesta = conexion.registrarDetallesDevolucion(ord_numero,codigo,nombre,cantidad,precio,nit);
+        return respuesta;
+    }
+    public ResultSet fondo(String id){
+        conexion.crearConexion();
+        r = conexion.fondo(id);
+        return r;
+    }
+    public boolean fondoActualizado(String id,String fondo){
+        conexion.crearConexion();
+        respuesta = conexion.fondoActualizado(id,fondo);
+        return respuesta;
+    }
+
+    public boolean insertarFondo(String id) {
+        conexion.crearConexion();
+        respuesta = conexion.insertarFondo(id);
+        return respuesta;
+    }
     
+    public ResultSet cargarTiposMantenimientos(){
+        conexion.crearConexion();
+        r = conexion.cargarTiposMantenimientos();
+        return r;
+    }
+    
+    public boolean eliminarMantenimientoPendiente(String placa,String id){
+        conexion.crearConexion();
+        respuesta = conexion.eliminarMantenimientoPendiente(placa, id);
+        return respuesta;
+    }
 }

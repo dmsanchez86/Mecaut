@@ -36,10 +36,6 @@
 					</textElement>
 					<text><![CDATA[MECAUT]]></text>
 				</staticText>
-				<image>
-					<reportElement uuid="d4b1dd17-76f8-4f89-89c7-0c27a74d2f5c" x="20" y="20" width="64" height="64"/>
-					<imageExpression><![CDATA["/home/mao/NetBeansProjects/Mecaut/src/iconos/usuario-administrador-personal-icono-9746-64.png"]]></imageExpression>
-				</image>
 			</frame>
 		</band>
 	</title>

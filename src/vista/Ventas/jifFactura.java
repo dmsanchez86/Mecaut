@@ -385,13 +385,7 @@ public class jifFactura extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtEliminarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int i = jTable1.getSelectedRow();
-        if (i <0) {
-            JOptionPane.showMessageDialog(null, "Seleccione una columna","MECAUT",JOptionPane.WARNING_MESSAGE);
-        }
-        else
-            model.removeRow(i);
+        
     }//GEN-LAST:event_jbtEliminarActionPerformed
 
     private void jbtRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRegistrarActionPerformed

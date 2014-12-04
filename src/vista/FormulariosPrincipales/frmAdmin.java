@@ -36,7 +36,15 @@ public class frmAdmin extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenu6 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -107,43 +115,36 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jPopupMenu1.setInvoker(jDesktopPane1);
 
-        jMenuItem1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412573336_gear_16.png"))); // NOI18N
         jMenuItem1.setText("jMenuItem1");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPopupMenu1.add(jMenuItem1);
         jPopupMenu1.add(jSeparator2);
 
-        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553092_note_edit.png"))); // NOI18N
         jMenu3.setText("jMenu3");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.setFocusTraversalPolicyProvider(true);
-        jMenu3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem2.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553282_group.png"))); // NOI18N
         jMenuItem2.setText("jMenuItem2");
         jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.add(jMenuItem2);
 
-        jMenuItem4.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem4.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552722_stock_contact.png"))); // NOI18N
         jMenuItem4.setText("jMenuItem3");
         jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.add(jMenuItem4);
 
-        jMenuItem5.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem5.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574606_clock_16.png"))); // NOI18N
         jMenuItem5.setText("jMenuItem3");
         jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu3.add(jMenuItem5);
 
-        jMenuItem12.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem12.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412572886_CabrioletRed.png"))); // NOI18N
         jMenuItem12.setText("jMenuItem12");
@@ -152,28 +153,24 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jPopupMenu1.add(jMenu3);
 
-        jMenu4.setForeground(new java.awt.Color(0, 0, 0));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552741_gtk-refresh.png"))); // NOI18N
         jMenu4.setText("jMenu3");
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.setFocusTraversalPolicyProvider(true);
-        jMenu4.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItem6.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem6.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412553282_group.png"))); // NOI18N
         jMenuItem6.setText("jMenuItem2");
         jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.add(jMenuItem6);
 
-        jMenuItem7.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem7.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552722_stock_contact.png"))); // NOI18N
         jMenuItem7.setText("jMenuItem3");
         jMenuItem7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.add(jMenuItem7);
 
-        jMenuItem8.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem8.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554340_area_chart.png"))); // NOI18N
         jMenuItem8.setText("jMenuItem3");
@@ -182,28 +179,24 @@ public class frmAdmin extends javax.swing.JFrame {
 
         jPopupMenu1.add(jMenu4);
 
-        jMenu5.setForeground(new java.awt.Color(0, 0, 0));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412554636_file-manager.png"))); // NOI18N
         jMenu5.setText("jMenu3");
         jMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu5.setFocusTraversalPolicyProvider(true);
-        jMenu5.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jMenu5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
 
-        jMenuItem9.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem9.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jMenuItem9.setText("jMenuItem2");
         jMenuItem9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu5.add(jMenuItem9);
 
-        jMenuItem10.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem10.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jMenuItem10.setText("jMenuItem3");
         jMenuItem10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu5.add(jMenuItem10);
 
-        jMenuItem11.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         jMenuItem11.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-lector-icono-7654-16.png"))); // NOI18N
         jMenuItem11.setText("jMenuItem3");
@@ -213,12 +206,52 @@ public class frmAdmin extends javax.swing.JFrame {
         jPopupMenu1.add(jMenu5);
         jPopupMenu1.add(jSeparator1);
 
-        jMenuItem3.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
-        jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412552697_exit.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/1412574673_Options.png"))); // NOI18N
+        jMenu6.setText("jMenu6");
+        jMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+
+        jMenuItem3.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
         jMenuItem3.setText("jMenuItem3");
         jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPopupMenu1.add(jMenuItem3);
+        jMenu6.add(jMenuItem3);
+
+        jMenuItem13.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem13.setText("jMenuItem13");
+        jMenuItem13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem13);
+
+        jMenuItem14.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem14.setText("jMenuItem14");
+        jMenuItem14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem14);
+
+        jMenuItem15.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem15.setText("jMenuItem3");
+        jMenuItem15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem15);
+
+        jMenuItem16.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem16.setText("jMenuItem3");
+        jMenuItem16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem16);
+
+        jMenuItem17.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem17.setText("jMenuItem3");
+        jMenuItem17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem17);
+
+        jMenuItem18.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem18.setText("jMenuItem3");
+        jMenuItem18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem18);
+
+        jMenuItem19.setFont(new java.awt.Font("Dialog", 3, 12)); // NOI18N
+        jMenuItem19.setText("jMenuItem3");
+        jMenuItem19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.add(jMenuItem19);
+
+        jPopupMenu1.add(jMenu6);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MECAUT - Administrador");
@@ -778,17 +811,25 @@ public class frmAdmin extends javax.swing.JFrame {
     public javax.swing.JDesktopPane jDesktopPane1;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     public javax.swing.JMenu jMenu3;
     public javax.swing.JMenu jMenu4;
     public javax.swing.JMenu jMenu5;
+    public javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenuItem jMenuItem1;
     public javax.swing.JMenuItem jMenuItem10;
     public javax.swing.JMenuItem jMenuItem11;
     public javax.swing.JMenuItem jMenuItem12;
+    public javax.swing.JMenuItem jMenuItem13;
+    public javax.swing.JMenuItem jMenuItem14;
+    public javax.swing.JMenuItem jMenuItem15;
+    public javax.swing.JMenuItem jMenuItem16;
+    public javax.swing.JMenuItem jMenuItem17;
+    public javax.swing.JMenuItem jMenuItem18;
+    public javax.swing.JMenuItem jMenuItem19;
     public javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenuItem jMenuItem3;
     public javax.swing.JMenuItem jMenuItem4;
