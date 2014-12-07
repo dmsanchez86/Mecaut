@@ -329,6 +329,7 @@ public class Conexion {
             r = consulta.executeQuery();
             return r;
         } catch (SQLException e) {
+            System.out.println(e);
             return null;
         }
     }
@@ -848,20 +849,20 @@ public class Conexion {
     }
     
     public boolean actualizarRepuesto(String codigo, String stockFinal) {
-        int total, antes = 0,despues;
-        try {
-            consulta = conexion.prepareStatement("SELECT rep_cantidad FROM repuestos WHERE rep_codigo = ?");
-            consulta.setString(1,codigo);
-            r = consulta.executeQuery();
-            while(r.next()){
-                antes = Integer.parseInt(r.getString("rep_cantidad"));
-            }
-        } catch (SQLException | HeadlessException e) {JOptionPane.showMessageDialog(null, ""+e.getMessage());}
-        despues = Integer.parseInt(stockFinal);
-        total = antes + despues;
+//        int total, antes = 0,despues;
+//        try {
+//            consulta = conexion.prepareStatement("SELECT rep_cantidad FROM repuestos WHERE rep_codigo = ?");
+//            consulta.setString(1,codigo);
+//            r = consulta.executeQuery();
+//            while(r.next()){
+//                antes = Integer.parseInt(r.getString("rep_cantidad"));
+//            }
+//        } catch (SQLException | HeadlessException e) {JOptionPane.showMessageDialog(null, ""+e.getMessage());}
+//        despues = Integer.parseInt(stockFinal);
+//        total = antes + despues;
         try {
             consulta = conexion.prepareStatement("UPDATE repuestos SET rep_cantidad= ? WHERE rep_codigo = ?"); 
-            consulta.setString(1, String.valueOf(total));
+            consulta.setString(1, String.valueOf(stockFinal));
             consulta.setString(2, codigo);
             consulta.executeUpdate();
             return true;
@@ -920,7 +921,7 @@ public class Conexion {
     public boolean registrarFactura(Factura fac) {
         try {
             consulta = conexion.prepareStatement("INSERT INTO factura VALUES(?,?,?,?,?)");
-            consulta.setInt(1, 0);
+            consulta.setInt(1, fac.getNumero());
             consulta.setDate(2, fac.getFecha());
             consulta.setString(3, fac.getIdCliente());
             consulta.setString(4, fac.getNombreCliente());
@@ -929,6 +930,7 @@ public class Conexion {
             consulta.close();
             return true;
         } catch (SQLException e) {
+            System.out.println();
             return false;
         }
     }
@@ -1503,5 +1505,21 @@ public class Conexion {
             consulta.executeUpdate();
             return true;
         } catch (Exception e) {return false;}
+    }
+    
+    public ArrayList<Factura> verFacturaPorDato(String id){
+        ArrayList<Factura> lista = new ArrayList<>();
+        try {
+            consulta = conexion.prepareStatement("SELECT * FROM factura WHERE cli_id LIKE ?");
+            consulta.setString(1, "%"+id+"%");
+            r = consulta.executeQuery();
+            while(r.next()){
+                lista.add(new Factura(r.getInt(1), r.getDate(2), r.getString(3),r.getString(4),r.getString(5)));
+            }
+            return lista;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+            return null;
+        }
     }
 }

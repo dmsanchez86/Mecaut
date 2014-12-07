@@ -15,6 +15,9 @@ public class frmCliente extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("../../iconos/icono.png"));
         setIconImage(icon);
         initComponents();
+        jmServicios1.setVisible(false);
+        jmiCotizar.setVisible(false);
+        jmiSolicitarReserva.setVisible(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

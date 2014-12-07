@@ -14,6 +14,9 @@ public class frmEmpleado extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("../../iconos/icono3.png"));
         setIconImage(icon);
         initComponents();
+        jmProveedores.setVisible(false);
+        jmPersonal.setVisible(false);
+        jmReportes.setVisible(false);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -110,7 +113,7 @@ public class frmEmpleado extends javax.swing.JFrame {
         conection.setToolTipText("Estado de la Conexión");
 
         jMenuBar3.setFont(new java.awt.Font("Segoe UI Semibold", 3, 14)); // NOI18N
-        jMenuBar3.setMargin(new java.awt.Insets(0, 20, 0, 20));
+        jMenuBar3.setMargin(new java.awt.Insets(0, 200, 0, 170));
 
         jmClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/cliente-icono-8749-48.png"))); // NOI18N
         jmClientes.setText("Clientes");

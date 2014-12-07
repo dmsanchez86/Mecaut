@@ -22,6 +22,7 @@ import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
@@ -91,7 +92,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class Controlador {
-    
+
     private jifListaMantenimientosPendientes jifListaMantenimientosPendientes;
     private jifVerFichaAuto jifVerFichaAuto;
     private jifCotizar jifCotizar;
@@ -194,7 +195,7 @@ public class Controlador {
         Login = new frmLoggin();
         form = new frmAdmin();
         frmCliente = new frmCliente();
-        frmEmpleado = new frmEmpleado();        
+        frmEmpleado = new frmEmpleado();
     }
 
     /* Formulario Login */
@@ -233,7 +234,7 @@ public class Controlador {
         /* MENU - CLIENTES */
         // 1. Modulo Clientes
         Timer t = new Timer(300, new load());
-        
+
         form.jmiRegistrarCliente.addActionListener(new ActionListener() {
             int i = 0;
             boolean s = true;
@@ -256,7 +257,7 @@ public class Controlador {
             }
         });
         form.jmiGrupoClientes.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmGrupoClientes();
@@ -275,7 +276,7 @@ public class Controlador {
             }
         });
         form.jmiRegistrarCuenta.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmCuentas();
@@ -295,7 +296,7 @@ public class Controlador {
             }
         });
         form.jmiMantenimientosPendientes.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaMantenimientosPendientes("Administrador");
@@ -314,28 +315,28 @@ public class Controlador {
             }
         });
         form.jmiReservas.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmReservas("Administrador");
             }
         });
         form.jmiPromociones.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmPromocionesCombos("Administrador");
             }
         });
         form.jmiCotizacion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmCotizacion("Administrador");
             }
         });
         form.jmiFichaRecepcion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmFichaRecepcionAuto("Administrador");
@@ -361,7 +362,7 @@ public class Controlador {
             }
         });
         form.jmiDevoluciones.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmDevoluciones();
@@ -394,7 +395,7 @@ public class Controlador {
             }
         });
         form.jmiActualizarRepuesto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarRepuesto("Administrador");
@@ -407,7 +408,7 @@ public class Controlador {
             }
         });
         form.jmiOrdenPedido.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmOrdenDePedido("Administrador");
@@ -415,14 +416,14 @@ public class Controlador {
         });
         // 6. Modulo Ventas
         form.jmiRegistrarFactura.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 frmFactura("Administrador");
             }
         });
         form.jmiListaFacturas.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaFacturas("Administrador");
@@ -430,42 +431,42 @@ public class Controlador {
         });
         // 7. Modulo Reportes
         form.jmiReporteClientes.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("clientes", "Listado de Clientes");
             }
         });
         form.jmiReporteEmpleados.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("empleados", "Listado de Empleados");
             }
         });
         form.jmiReporteInventario.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("inventario", "Inventario");
             }
         });
         form.jmiReporteAutos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("autos", "Listado de Autos");
             }
         });
         form.jmiReporteMantenimientos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("mantenimientos", "Listado de Mantenimientos");
             }
         });
         form.jmiReporteProveedores.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("proveedores", "Listado de Proveedores");
@@ -475,7 +476,7 @@ public class Controlador {
         // 8. Modulo ayuda
         // 9. Modulo salir
         form.jmiConfiguracion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -518,7 +519,7 @@ public class Controlador {
 
         // Acciones
         form.jMenuItem1.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -526,70 +527,70 @@ public class Controlador {
             }
         });
         form.jMenuItem2.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarCliente("Administrador");
             }
         });
         form.jMenuItem4.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarEmpleado("Administrador");
             }
         });
         form.jMenuItem5.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarMantenimientos("Administrador");
             }
         });
         form.jMenuItem12.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarAuto("", "Administrador");
             }
         });
         form.jMenuItem6.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarCliente("", "Administrador");
             }
         });
         form.jMenuItem7.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarEmpleado("Administrador");
             }
         });
         form.jMenuItem8.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarRepuesto("Administrador");
             }
         });
         form.jMenuItem9.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaClientes("Administrador");
             }
         });
         form.jMenuItem10.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaEmpleados("Administrador");
             }
         });
         form.jMenuItem11.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaAutos("Administrador");
@@ -597,7 +598,7 @@ public class Controlador {
         });
         /*Fondos*/
         form.jMenuItem3.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -606,7 +607,7 @@ public class Controlador {
             }
         });
         form.jMenuItem13.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -615,7 +616,7 @@ public class Controlador {
             }
         });
         form.jMenuItem14.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -624,7 +625,7 @@ public class Controlador {
             }
         });
         form.jMenuItem15.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -633,7 +634,7 @@ public class Controlador {
             }
         });
         form.jMenuItem16.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -642,7 +643,7 @@ public class Controlador {
             }
         });
         form.jMenuItem17.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -651,7 +652,7 @@ public class Controlador {
             }
         });
         form.jMenuItem18.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -660,7 +661,7 @@ public class Controlador {
             }
         });
         form.jMenuItem19.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -668,10 +669,10 @@ public class Controlador {
                 validarFondo(d[1]);
             }
         });
-        
+
         validarFondo(id);
         fondoAdministrador(id, "inicio", "");
-        
+
         evtNumeroMantenimientosPendientes();
         String user = Login.jtfUsuario.getText();
         form.setTitle("MECAUT - Administrador - " + user);
@@ -680,7 +681,7 @@ public class Controlador {
         form.user.setToolTipText("Identificación: " + id + " \nUsuario: " + user);
         form.conection.setText(Gestor.estadoConexion());
     }
-    
+
     private void validarFondo(String id) {
         ResultSet datos;
         try {
@@ -693,7 +694,7 @@ public class Controlador {
         } catch (Exception e) {
         }
     }
-    
+
     private void fondoAdministrador(String id, String operacion, String fondo) {
         ResultSet d;
         String name = "";
@@ -708,7 +709,7 @@ public class Controlador {
                 } else {
                     form.jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/" + name)));
                 }
-                
+
             } catch (Exception e) {
             }
         } else {
@@ -717,7 +718,7 @@ public class Controlador {
             }
         }
     }
-    
+
     private void evtReportes(String report, String title) {
         JasperViewer jv;
         Conexion con = new Conexion();
@@ -740,24 +741,24 @@ public class Controlador {
     /* Formulario Cliente */
     private void lanzarFormularioCliente(String id) {
         frmCliente.jmiConfiguracion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String[] d = frmCliente.user.getToolTipText().split(" ");
                 frmConfiguracionCliente(d[1]);
             }
         });
-        
+
         frmCliente.jmiSolicitarMantenimiento.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmSolicitarMantenimiento();
             }
         });
-        
+
         frmCliente.jmiSolicitarReserva.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifSolicitarReserva = new jifSolicitarReserva();
@@ -765,41 +766,41 @@ public class Controlador {
                 jifSolicitarReserva.show();
             }
         });
-        
+
         frmCliente.jmiRegistrarAuto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarAutoCliente();
             }
         });
-        
+
         frmCliente.jmiVerFichaAuto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmVerFichaAuto();
             }
         });
-        
+
         frmCliente.jmiHistorialAuto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmHistorialAuto();
             }
         });
-        
+
         frmCliente.jmiPromocionesCombos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmVerPromociones();
             }
         });
-        
+
         frmCliente.jmiCotizar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifCotizar = new jifCotizar();
@@ -807,9 +808,9 @@ public class Controlador {
                 jifCotizar.show();
             }
         });
-        
+
         frmCliente.jmiCerrarSesion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmCliente.setVisible(false);
@@ -817,7 +818,7 @@ public class Controlador {
                 Login.jtfContraseña.setText(null);
             }
         });
-        
+
         String user = Login.jtfUsuario.getText().toUpperCase();
         frmCliente.user.setText(user.toUpperCase());
         frmCliente.user.setToolTipText("Identificación: " + id + " Usuario: " + user);
@@ -827,234 +828,234 @@ public class Controlador {
 
     /* Formulario Empleado */
     private void lanzarFormularioEmpleado(String id) {
-        
+
         frmEmpleado.jmiRegistrarCliente.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarCliente("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiActualizarCliente.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarCliente("", "Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaCliente.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaClientes("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiGrupoClientes.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmGrupoClientes();
             }
         });
-        
+
         frmEmpleado.jmiRegistrarAuto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarAuto("", "Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaAutos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaAutos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiRegistrarMantenimiento.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarMantenimientos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiActualizarMantenimiento.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarMantenimiento("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaMantenimientos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaMantenimientos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiMantenimientosPendientes.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaMantenimientosPendientes("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiReservas.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmReservas("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiHistMantenimiento.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmHistorialMantenimiento("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiPromociones.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmPromocionesCombos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiCotizacion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmCotizacion("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiFichaRecepcion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmFichaRecepcionAuto("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiRegitrarProveedor.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarProveedor("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiActualizarProveedor.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarProveedor("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaProveedores.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaProveedores("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiOrdenPedido.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmOrdenDePedido("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiRegistrarRepuestos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarRepuestos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiActualizarRepuesto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarRepuesto("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiInventarioDisponible.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaRepuestos("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiRegistrarMecanico.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmRegistrarEmpleado("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiActualizarMecanico.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmActualizarEmpleado("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaEmpleados.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaEmpleados("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiRegistrarFactura.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmFactura("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiListaFacturas.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmListaFacturas("Empleado");
             }
         });
-        
+
         frmEmpleado.jmiConfiguracion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = frmEmpleado.user.getToolTipText().split(" ");
                 frmConfiguracionEmpleado(d[1]);
             }
         });
-        
+
         frmEmpleado.jmiCerrarSesion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 frmEmpleado.hide();
@@ -1062,7 +1063,7 @@ public class Controlador {
                 Login.jtfContraseña.setText(null);
             }
         });
-        
+
         String user = Login.jtfUsuario.getText().toUpperCase();
         frmEmpleado.user.setText(user.toUpperCase());
         frmEmpleado.user.setToolTipText("Identificación: " + id + " Usuario: " + user);
@@ -1070,20 +1071,20 @@ public class Controlador {
         frmEmpleado.setVisible(true);
     }
     /* 1. Modulo Clientes */
-    
+
     private void frmRegistrarCliente(String usuario) {
-        
+
         jifCliente = new jifRegistrarCliente();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifCliente);
         } else {
             frmEmpleado.jDesktopPane1.add(jifCliente);
         }
-        
+
         limpiar();
         limpiarComboBox();
-        
+
         jifCliente.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -1116,30 +1117,30 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCliente.jbtCancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
                 limpiarComboBox();
             }
         });
-        
+
         jifCliente.show();
         locacionfrm(jifCliente);
     }
-    
+
     private void frmActualizarCliente(String id, final String usuario) {
-        
+
         jifActualizarCliente = new jifActualizarCliente();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifActualizarCliente);
         } else {
             frmEmpleado.jDesktopPane1.add(jifActualizarCliente);
         }
-        
+
         if ("".equals(id)) {
             limpiar();
             limpiarComboBox();
@@ -1148,33 +1149,33 @@ public class Controlador {
             limpiarComboBox();
             evtConsultarClienteporId(id);
         }
-        
+
         jifActualizarCliente.show();
         locacionfrm(jifActualizarCliente);
-        
+
         jifActualizarCliente.jtfIdentificacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtConsultarClienteporId("");
             }
         });
-        
+
         jifActualizarCliente.jtfIdentificacion.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtConsultarClienteporId("");
             }
         });
-        
+
         jifActualizarCliente.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1205,7 +1206,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarCliente.jbtEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1230,7 +1231,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifActualizarCliente.jtfIdentificacion);
         ResultSet ids = Gestor.IdsClientes();
         try {
@@ -1238,32 +1239,32 @@ public class Controlador {
                 t.addItem(ids.getString("cli_id"));
             }
         } catch (Exception e) {
-        }        
+        }
     }
-    
+
     private void frmListaClientes(final String usuario) {
-        
+
         jifListaClientes = new jifListaClientes();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaClientes);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaClientes);
         }
-        
+
         evtMostrarClientes();
-        
+
         jifListaClientes.jmiModificar.setText("Modificar");
         jifListaClientes.jmiEliminar.setText("Eliminar");
         jifListaClientes.jmiNuevoCliente.setText("Nuevo Cliente");
         jifListaClientes.jmiRegistrarAuto.setText("Registrar Auto");
         jifListaClientes.jmiReporte.setText("Generar Reporte");
-        
+
         jifListaClientes.jmiModificar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 int filas = jifListaClientes.jtListaClientes.getSelectedRows().length;
                 if (filas >= 2) {
                     JOptionPane.showMessageDialog(null, "Seleccione solo una fila", "MECAUT", JOptionPane.ERROR_MESSAGE);
@@ -1273,21 +1274,21 @@ public class Controlador {
                         JOptionPane.showMessageDialog(null, "Selecciones una fila", "MECAUT", JOptionPane.WARNING_MESSAGE);
                     } else {
                         String identificacion = jifListaClientes.jtListaClientes.getValueAt(fila, 0).toString();
-                        
+
                         if ("Administrador".equals(usuario)) {
                             frmActualizarCliente(identificacion, "Administrador");
                         } else {
                             frmActualizarCliente(identificacion, "Empleado");
                         }
-                        
+
                         jifListaClientes.hide();
                     }
                 }
             }
         });
-        
+
         jifListaClientes.jmiEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int fila = jifListaClientes.jtListaClientes.getSelectedRow();
@@ -1308,18 +1309,18 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifListaClientes.jmiNuevoCliente.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifListaClientes.hide();
                 frmRegistrarCliente("Administrador");
             }
         });
-        
+
         jifListaClientes.jmiRegistrarAuto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int fila = jifListaClientes.jtListaClientes.getSelectedRow();
@@ -1328,7 +1329,7 @@ public class Controlador {
                 } else {
                     jifListaClientes.hide();
                     String identificacion = jifListaClientes.jtListaClientes.getValueAt(fila, 0).toString();
-                    
+
                     if ("Administrador".equals(usuario)) {
                         frmRegistrarAuto(identificacion, "Administrador");
                     } else {
@@ -1337,41 +1338,41 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifListaClientes.jmiReporte.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtReportes("clientes", "Listado de Clientes");
             }
         });
-        
+
         jifListaClientes.jtfDato.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent ke) {
-                
+
             }
-            
+
             @Override
             public void keyReleased(KeyEvent ke) {
                 evtMostrarClientes();
             }
         });
-        
+
         jifListaClientes.jtListaClientes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 jifListaClientes.jPopupMenu1.show(e.getComponent(), e.getX(), e.getY());
             }
         });
-        
+
         jifListaClientes.show();
     }
-    
+
     private void evtMostrarClientes() {
         String dato = jifListaClientes.jtfDato.getText();
         ArrayList<Cliente> clientes = Gestor.verClientePorDato(dato);
@@ -1395,25 +1396,25 @@ public class Controlador {
             modelo.addRow(fila);
         }
         jifListaClientes.jtListaClientes.setModel(modelo);
-        
+
         int[] anchos = {70, 90, 90, 60, 75, 90, 200};
         setColumnWidths(anchos, jifListaClientes.jtListaClientes);
-        
+
         int nRegistros = modelo.getRowCount();
         jifListaClientes.nRegistros.setText("" + nRegistros);
-        
+
     }
-    
+
     private void frmCuentas() {
-        
+
         jifCuentas = new jifCuentas();
         form.jDesktopPane1.add(jifCuentas);
-        
+
         limpiar();
         limpiarComboBox();
-        
+
         jifCuentas.jbtCrearCuenta.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String usuario = jifCuentas.jtfUsuario.getText();
@@ -1431,7 +1432,7 @@ public class Controlador {
                         String tel = jifCuentas.jtfTelefonoc.getText();
                         String dir = jifCuentas.jtfDireccionc.getText();
                         String cor = jifCuentas.jtfCorreoc.getText();
-                        
+
                         Cliente cli = new Cliente(id, nom, apel, sex, tel, dir, cor);
                         Cuenta count = new Cuenta(usuario, contrasena, tipo, id);
                         if (Gestor.agregarCliente(cli) && Gestor.registrarUsuario(count)) {
@@ -1449,7 +1450,7 @@ public class Controlador {
                         String dir = jifCuentas.jtfDireccion1.getText();
                         String cor = jifCuentas.jtfCorreo1.getText();
                         String sal = jifCuentas.jtfSalario.getText();
-                        
+
                         Empleados emp = new Empleados(id, nom, apel, sex, tipEmpl, tel, dir, cor, sal);
                         Cuenta count = new Cuenta(usuario, contrasena, tipo, id);
                         if (Gestor.agregarEmpleado(emp) && Gestor.registrarUsuario(count)) {
@@ -1467,9 +1468,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCuentas.jcbTipoCuenta.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String dato = (jifCuentas.jcbTipoCuenta.getSelectedItem() != null) ? jifCuentas.jcbTipoCuenta.getSelectedItem().toString() : "";
@@ -1494,22 +1495,22 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCuentas.show();
         locacionfrm(jifCuentas);
     }
-    
+
     private void frmGrupoClientes() {
-        
+
         jifGrupoClientes = new jifGrupoClientes();
         form.jDesktopPane1.add(jifGrupoClientes);
-        
+
         limpiar();
         limpiarComboBox();
         evtVerGrupoClientes("Activo");
         int n2 = jifGrupoClientes.jtGrupoClientes.getRowCount();
         jifGrupoClientes.nRegistros.setText("" + n2);
-        
+
         jifGrupoClientes.jcbTipo.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -1517,7 +1518,7 @@ public class Controlador {
                 evtVerGrupoClientes(dato);
             }
         });
-        
+
         jifGrupoClientes.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1536,9 +1537,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifGrupoClientes.jbtCancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
@@ -1546,14 +1547,14 @@ public class Controlador {
                 jifGrupoClientes.jbtModificar.setEnabled(false);
             }
         });
-        
+
         int[] a = {30, 50, 60, 40};
         setColumnWidths(a, jifGrupoClientes.jtGrupoClientes);
-        
+
         jifGrupoClientes.show();
         locacionfrm(jifGrupoClientes);
     }
-    
+
     private void evtVerGrupoClientes(String tipo) {
         ArrayList<GrupoClientes> grupo;
         switch (tipo) {
@@ -1593,52 +1594,52 @@ public class Controlador {
         jifGrupoClientes.nRegistros.setText("" + n);
         jifGrupoClientes.jtGrupoClientes.setModel(modelo);
     }
-    
+
     private void frmRegistrarAuto(String id, final String usuario) {
-        
+
         jifAuto = new jifRegistrarAuto();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifAuto);
         } else {
             frmEmpleado.jDesktopPane1.add(jifAuto);
         }
-        
+
         if ("".equals(id)) {
             limpiar();
             limpiarComboBox();
-            
+
         } else {
             limpiar();
             limpiarComboBox();
             jifAuto.jtfId.setText(id);
             evtDatosAuto(id);
         }
-        
+
         jifAuto.jtfId.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtDatosAuto("");
             }
         });
-        
+
         jifAuto.jtfId.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtDatosAuto("");
             }
         });
-        
+
         jifAuto.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -1670,7 +1671,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifAuto.jtfId);
         ResultSet ids = Gestor.IdsClientes();
         try {
@@ -1682,7 +1683,7 @@ public class Controlador {
         jifAuto.show();
         locacionfrm(jifAuto);
     }
-    
+
     private void evtDatosAuto(String ide) {
         if ("".equals(ide)) {
             String id = jifAuto.jtfId.getText();
@@ -1693,6 +1694,7 @@ public class Controlador {
                 }
             } catch (SQLException e) {
             }
+
             jifAuto.jbtRegistrar.setEnabled(true);
         } else {
             ResultSet r = Gestor.consultarDatosAuto(ide);
@@ -1705,7 +1707,7 @@ public class Controlador {
             jifAuto.jbtRegistrar.setEnabled(true);
         }
     }
-    
+
     private void evtConsultarClienteporId(String ide) {
         try {
             if ("".equals(ide)) {
@@ -1742,17 +1744,17 @@ public class Controlador {
         } catch (HeadlessException | SQLException e) {
         }
     }
-    
+
     private void frmListaAutos(String usuario) {
-        
+
         jifListaAutos = new jifListaAutos();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaAutos);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaAutos);
         }
-        
+
         ArrayList<Auto> autos = Gestor.verAutos();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Placa");
@@ -1774,22 +1776,22 @@ public class Controlador {
             modelo.addRow(fila);
         }
         jifListaAutos.jtListaAutos.setModel(modelo);
-        
+
         int[] ancho = {30, 50, 40, 25, 35, 50, 70};
         setColumnWidths(ancho, jifListaAutos.jtListaAutos);
-        
+
         jifListaAutos.lbRegistros.setText("" + (jifListaAutos.jtListaAutos.getRowCount()));
         jifListaAutos.show();
         locacionfrm(jifListaAutos);
     }
-    
+
     private void frmRegistrarAutoCliente() {
-        
+
         jifRegistroAuto = new jifRegistroAuto();
         frmCliente.jDesktopPane1.add(jifRegistroAuto);
-        
+
         jifRegistroAuto.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] datos = frmCliente.user.getToolTipText().split(" ");
@@ -1808,7 +1810,7 @@ public class Controlador {
                 String marca = jifRegistroAuto.jcbMarca.getSelectedItem().toString();
                 String kilometraje = jifRegistroAuto.jtfKilometraje.getText();
                 String combustible = jifRegistroAuto.jtfCombustible.getText();
-                
+
                 Auto auto = new Auto(placa, ciudad, tipo, modelo, marca, kilometraje, combustible, datos[1], cli_nombre);
                 if (Gestor.agregarAuto(auto)) {
                     JOptionPane.showMessageDialog(null, "Se registro el auto correctamente", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
@@ -1819,35 +1821,35 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifRegistroAuto.jbtRegistrar1.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
                 limpiarComboBox();
             }
         });
-        
+
         jifRegistroAuto.show();
     }
     /* 2. Modulo Servicios */
-    
+
     private void frmRegistrarMantenimientos(String placa, String nombre, String usuario) {
-        
+
         jifMantenimiento = new jifRegistrarMantenimiento();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifMantenimiento);
         } else {
             frmEmpleado.jDesktopPane1.add(jifMantenimiento);
         }
-        
+
         limpiar();
         limpiarFechas();
         limpiarTablas(jifMantenimiento.Detalles);
         limpiarComboBox();
-        
+
         ResultSet tipos = Gestor.cargarTiposMantenimientos();
         jifMantenimiento.jcbTipoMantenimiento1.removeAllItems();
         jifMantenimiento.jcbTipoMantenimiento1.addItem("-----");
@@ -1857,14 +1859,14 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifMantenimiento.jbtAgregar.setEnabled(false);
         jifMantenimiento.jbtRegistrar.setEnabled(true);
-        
+
         c = new GregorianCalendar();
         SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
         jifMantenimiento.jdcFechaInicio.setDate(c.getTime());
-        
+
         jifMantenimiento.jcbIdMecanico1.removeAllItems();
         jifMantenimiento.jcbIdMecanico1.addItem("----");
         jifMantenimiento.jcbcodRepuesto.removeAllItems();
@@ -1883,7 +1885,7 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         final DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Tipo Mantenimiento");
         modelo.addColumn("Descripción");
@@ -1916,16 +1918,16 @@ public class Controlador {
                 modelo.addRow(f);
             }
             jifMantenimiento.Detalles.setModel(modelo);
-            
+
             int[] a = {100, 100, 45, 40, 50, 45, 45, 20, 40, 20, 30};
             setColumnWidths(a, jifMantenimiento.Detalles);
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         evtConsultarDatosAuto(placa);
         jifMantenimiento.jcbIdMecanico1.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String id = jifMantenimiento.jcbIdMecanico1.getSelectedItem() != null ? jifMantenimiento.jcbIdMecanico1.getSelectedItem().toString() : "";
@@ -1938,7 +1940,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.jcbcodRepuesto.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -1966,9 +1968,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.Detalles.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 int i = jifMantenimiento.Detalles.getSelectedRow();
@@ -1989,26 +1991,26 @@ public class Controlador {
                 jifMantenimiento.jFrame1.setVisible(true);
                 jifMantenimiento.jFrame1.setBounds(300, 150, 793, 490);
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
-        
+
         jifMantenimiento.jbtModificarDetalles.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String tipo_mantenimiento = jifMantenimiento.jcbTipoMantenimiento1.getSelectedItem().toString();
@@ -2058,7 +2060,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -2103,6 +2105,11 @@ public class Controlador {
                                     int co = 0;
                                     if (co == 0) {
                                         JOptionPane.showMessageDialog(null, "Se registro el Mantenimiento", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
+                                        String cod = jifMantenimiento.jcbcodRepuesto.getSelectedItem().toString();
+                                        int cant = Integer.parseInt(jifMantenimiento.jscantidadRepuesto.getValue().toString());
+                                        int dis = Integer.parseInt(jifMantenimiento.disp.getText());
+                                        int stock_Final = dis - cant;
+                                        evtActualizarRespuesto( cod, stock_Final);
                                         co++;
                                     }
                                 } else {
@@ -2129,7 +2136,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifMantenimiento.jtfPlaca);
         ResultSet res = Gestor.placasAutos();
         try {
@@ -2141,17 +2148,17 @@ public class Controlador {
         jifMantenimiento.show();
         locacionfrm(jifMantenimiento);
     }
-    
+
     private void frmRegistrarMantenimientos(String usuario) {
-        
+
         jifMantenimiento = new jifRegistrarMantenimiento();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifMantenimiento);
         } else {
             frmEmpleado.jDesktopPane1.add(jifMantenimiento);
         }
-        
+
         ResultSet tipos = Gestor.cargarTiposMantenimientos();
         jifMantenimiento.jcbTipoMantenimiento1.removeAllItems();
         jifMantenimiento.jcbTipoMantenimiento1.addItem("-----");
@@ -2161,7 +2168,7 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         limpiar();
         limpiarFechas();
         limpiarTablas(jifMantenimiento.Detalles);
@@ -2204,25 +2211,25 @@ public class Controlador {
                 evtConsultarDatosAuto(placa);
             }
         });
-        
+
         jifMantenimiento.jtfPlaca.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 String placa = jifMantenimiento.jtfPlaca.getText();
                 evtConsultarDatosAuto(placa);
             }
         });
-        
+
         jifMantenimiento.jcbIdMecanico1.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String id = (jifMantenimiento.jcbIdMecanico1.getSelectedItem() != null) ? jifMantenimiento.jcbIdMecanico1.getSelectedItem().toString() : "";
@@ -2235,7 +2242,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.jbtAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -2256,10 +2263,10 @@ public class Controlador {
                     fila[10] = "";
                     modelo.addRow(fila);
                     jifMantenimiento.Detalles.setModel(modelo);
-                    
+
                     int[] a = {100, 100, 45, 40, 50, 45, 45, 20, 40, 20, 30};
                     setColumnWidths(a, jifMantenimiento.Detalles);
-                    
+
                     jifMantenimiento.jcbTipoMantenimiento1.setSelectedIndex(0);
                     jifMantenimiento.jtfplaca.setText(placa);
                     jifMantenimiento.jtfCliNombre.setText(nombreCliente);
@@ -2276,7 +2283,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.jbtCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -2289,7 +2296,7 @@ public class Controlador {
                 limpiarComboBox();
             }
         });
-        
+
         jifMantenimiento.jcbcodRepuesto.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -2317,7 +2324,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifMantenimiento.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -2362,6 +2369,11 @@ public class Controlador {
                                     int co = 0;
                                     if (co == 0) {
                                         JOptionPane.showMessageDialog(null, "Se registro el Mantenimiento", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
+                                        String cod = jifMantenimiento.jcbcodRepuesto.getSelectedItem().toString();
+                                        int cant = Integer.parseInt(jifMantenimiento.jscantidadRepuesto.getValue().toString());
+                                        int dis = Integer.parseInt(jifMantenimiento.disp.getText());
+                                        int stock_Final = dis - cant;
+                                        evtActualizarRespuesto( cod, stock_Final);
                                         co++;
                                     }
                                 } else {
@@ -2387,7 +2399,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifMantenimiento.jtfPlaca);
         ResultSet res = Gestor.placasAutos();
         try {
@@ -2399,15 +2411,23 @@ public class Controlador {
         jifMantenimiento.show();
         locacionfrm(jifMantenimiento);
     }
+
+    private void evtActualizarRespuesto(String codigo,int stock_final){
+        if (Gestor.actualizarRepuesto(codigo, String.valueOf(stock_final))) {
+            System.out.println(":)");
+        }else
+            System.out.println(":(");
+        
+    }
     
     private void frmSolicitarMantenimiento() {
-        
+
         jifSolicitarMantenimiento = new jifSolicitarMantenimiento();
         frmCliente.jDesktopPane1.add(jifSolicitarMantenimiento);
-        
+
         jifSolicitarMantenimiento.jcbTipoMantenimiento.removeAllItems();
         jifSolicitarMantenimiento.jcbTipoMantenimiento.addItem("-----");
-        
+
         ResultSet tipos = Gestor.cargarTiposMantenimientos();
         try {
             while (tipos.next()) {
@@ -2415,7 +2435,7 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         limpiar();
         limpiarTablas(jifSolicitarMantenimiento.Detalles);
         jifSolicitarMantenimiento.ListaAutos.setEnabled(true);
@@ -2435,7 +2455,7 @@ public class Controlador {
                 fila[3] = datos.getString("aut_marca");
                 modelo.addRow(fila);
             }
-            jifSolicitarMantenimiento.ListaAutos.setModel(modelo);            
+            jifSolicitarMantenimiento.ListaAutos.setModel(modelo);
         } catch (Exception e) {
         }
         final DefaultTableModel modelo = new DefaultTableModel();
@@ -2444,9 +2464,9 @@ public class Controlador {
         modelo.addColumn("Tipo Mantenimiento");
         modelo.addColumn("Fecha");
         modelo.addColumn("Descripción");
-        
+
         jifSolicitarMantenimiento.jbtAgregar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object[] fila = new Object[5];
@@ -2464,10 +2484,10 @@ public class Controlador {
                 } catch (Exception exc) {
                 }
                 jifSolicitarMantenimiento.Detalles.setModel(modelo);
-                
+
                 int[] a = {40, 45, 90, 60, 90};
                 setColumnWidths(a, jifSolicitarMantenimiento.Detalles);
-                
+
                 jifSolicitarMantenimiento.jFrame1.setBounds(450, 260, 280, 305);
                 jifSolicitarMantenimiento.jFrame1.setVisible(true);
                 jifSolicitarMantenimiento.jcbTipoMantenimiento.setSelectedIndex(0);
@@ -2476,9 +2496,9 @@ public class Controlador {
                 jifSolicitarMantenimiento.ListaAutos.setEnabled(false);
             }
         });
-        
+
         jifSolicitarMantenimiento.jbtEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int fs = jifSolicitarMantenimiento.Detalles.getSelectedRow();
@@ -2493,17 +2513,17 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifSolicitarMantenimiento.jbtVolver.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifSolicitarMantenimiento.jFrame1.hide();
             }
         });
-        
+
         jifSolicitarMantenimiento.jbtSumar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jifSolicitarMantenimiento.jcbTipoMantenimiento.getSelectedIndex() == 0) {
@@ -2525,9 +2545,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifSolicitarMantenimiento.jbtSolicitar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (jifSolicitarMantenimiento.Detalles.getRowCount() <= 0) {
@@ -2566,11 +2586,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifSolicitarMantenimiento.show();
         locacionfrm(jifSolicitarMantenimiento);
     }
-    
+
     private void evtConsultarDatosAuto(String dato) {
         if (dato.isEmpty()) {
             jifMantenimiento.jtfIdCliente.setText(null);
@@ -2585,23 +2605,23 @@ public class Controlador {
         } catch (Exception ex) {
         }
     }
-    
+
     private void frmActualizarMantenimiento(String usuario) {
-        
+
         jifActualizarMantenimiento = new jifActualizarMantenimiento();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifActualizarMantenimiento);
         } else {
             frmEmpleado.jDesktopPane1.add(jifActualizarMantenimiento);
         }
-        
+
         limpiar();
         limpiarTablas(jifActualizarMantenimiento.Detalles);
-        
+
         int[] a = {80, 130, 50, 40, 60, 20};
         setColumnWidths(a, jifActualizarMantenimiento.Detalles);
-        
+
         final DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Tipo de Mantenimiento");
         modelo.addColumn("Descripcion del Mantenimiento");
@@ -2609,7 +2629,7 @@ public class Controlador {
         modelo.addColumn("Cod Repuesto");
         modelo.addColumn("Nombre Repuesto");
         modelo.addColumn("Cantidad Repuesto");
-        
+
         jifActualizarMantenimiento.jcbCodigoMantenimiento.removeAllItems();
         jifActualizarMantenimiento.jcbCodigoMantenimiento.addItem("---");
         limpiarComboBox();
@@ -2621,7 +2641,7 @@ public class Controlador {
         } catch (Exception e) {
         }
         jifActualizarMantenimiento.jtfIdEmpleado.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id = jifActualizarMantenimiento.jtfIdEmpleado.getText();
@@ -2635,22 +2655,22 @@ public class Controlador {
             }
         });
         jifActualizarMantenimiento.jtfIdEmpleado.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtConsultarEmpleadoModificarMantenimiento();
             }
         });
         jifActualizarMantenimiento.jcbCodigoMantenimiento.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 limpiarTablas(jifActualizarMantenimiento.Detalles);
@@ -2689,7 +2709,7 @@ public class Controlador {
             }
         });
         jifActualizarMantenimiento.jbtModificar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Se modifico corretamente el mantenimiento", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
@@ -2699,7 +2719,7 @@ public class Controlador {
             }
         });
         jifActualizarMantenimiento.jbtEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cod = jifActualizarMantenimiento.jcbCodigoMantenimiento.getSelectedItem().toString();
@@ -2716,7 +2736,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifActualizarMantenimiento.jtfIdEmpleado);
         ResultSet d = Gestor.idsMecanicos();
         try {
@@ -2725,11 +2745,11 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifActualizarMantenimiento.show();
         locacionfrm(jifActualizarMantenimiento);
     }
-    
+
     private void evtConsultarEmpleadoModificarMantenimiento() {
         String id = jifActualizarMantenimiento.jtfIdEmpleado.getText();
         ResultSet d = Gestor.traerDatosEmpleado(id);
@@ -2740,17 +2760,17 @@ public class Controlador {
         } catch (Exception ex) {
         }
     }
-    
+
     private void frmListaMantenimientos(String usuario) {
-        
+
         jifListaMantenimientos = new jifListaMantenimientos();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaMantenimientos);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaMantenimientos);
-        }
-        
+        }        
+
         ArrayList<Mantenimiento> mantenimientos = Gestor.verMantenimientos();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("N°");
@@ -2759,7 +2779,7 @@ public class Controlador {
         modelo.addColumn("Costo");
         modelo.addColumn("Cédula");
         modelo.addColumn("Descripción");
-        
+
         for (Mantenimiento mantenimiento : mantenimientos) {
             Object[] fila = new Object[6];
             fila[0] = mantenimiento.getCodigo();
@@ -2770,44 +2790,44 @@ public class Controlador {
             fila[5] = mantenimiento.getDescripcion();
             modelo.addRow(fila);
         }
-        
+
         jifListaMantenimientos.jtListaMantenimientos.setModel(modelo);
         jifListaMantenimientos.registros.setText("" + jifListaMantenimientos.jtListaMantenimientos.getRowCount());
-        
+
         int[] a = {20, 45, 45, 55, 55, 130};
         setColumnWidths(a, jifListaMantenimientos.jtListaMantenimientos);
-        
+
         jifListaMantenimientos.show();
         locacionfrm(jifListaMantenimientos);
     }
-    
+
     private void frmListaMantenimientosPendientes(String usuario) {
-        
+
         jifListaMantenimientosPendientes = new jifListaMantenimientosPendientes();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaMantenimientosPendientes);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaMantenimientosPendientes);
         }
-        
+
         evtMantenimientosPendientes("Pendientes");
-        
+
         jifListaMantenimientosPendientes.jcbBusqueda.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String dato = jifListaMantenimientosPendientes.jcbBusqueda.getSelectedItem().toString();
                 evtMantenimientosPendientes(dato);
             }
         });
-        
+
         jifListaMantenimientosPendientes.jmiCambiarEstado.setText("Rechazar Petición");
         jifListaMantenimientosPendientes.jmiModificarDatos.setText("Asignar Peticion");
         jifListaMantenimientosPendientes.jmiEliminar.setText("Eliminar Petición");
-        
+
         jifListaMantenimientosPendientes.jmiCambiarEstado.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -2835,9 +2855,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifListaMantenimientosPendientes.jmiModificarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int i = jifListaMantenimientosPendientes.jTable1.getSelectedRow();
@@ -2857,9 +2877,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifListaMantenimientosPendientes.jmiEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 int op = JOptionPane.showConfirmDialog(null, "Estas seguro de eliminar esta petición", "MECAUT", JOptionPane.YES_NO_OPTION);
@@ -2871,7 +2891,7 @@ public class Controlador {
                         String placa = jifListaMantenimientosPendientes.jTable1.getValueAt(i, 0).toString();
                         String id = jifListaMantenimientosPendientes.jTable1.getValueAt(i, 1).toString();
                         String estado = jifListaMantenimientosPendientes.jTable1.getValueAt(i, 3).toString();
-                        
+
                         if (Gestor.eliminarMantenimientoPendiente(placa, id)) {
                             JOptionPane.showMessageDialog(null, "Se elimino correctamente la petición", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
                             evtMantenimientosPendientes(estado);
@@ -2882,21 +2902,21 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifListaMantenimientosPendientes.jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 jifListaMantenimientosPendientes.jPopupMenu1.show(e.getComponent(), e.getX() - 5, e.getY() - 5);
             }
         });
-        
+
         int[] a = {35, 30, 40, 45, 45};
         setColumnWidths(a, jifListaMantenimientosPendientes.jTable1);
-        
+
         locacionfrm(jifListaMantenimientosPendientes);
         jifListaMantenimientosPendientes.show();
     }
-    
+
     private void evtMantenimientosPendientes(String dato) {
         ResultSet datos;
         DefaultTableModel modelo = new DefaultTableModel();
@@ -2930,15 +2950,15 @@ public class Controlador {
                 modelo.addRow(f);
             }
             jifListaMantenimientosPendientes.jTable1.setModel(modelo);
-            
+
             int[] anchos = {50, 60, 70, 50, 70};
             setColumnWidths(anchos, jifListaMantenimientosPendientes.jTable1);
-            
+
             jifListaMantenimientosPendientes.registros.setText("" + jifListaMantenimientosPendientes.jTable1.getRowCount());
         } catch (Exception e) {
         }
     }
-    
+
     private void evtNumeroMantenimientosPendientes() {
         ResultSet d = Gestor.numeroMantenimientosPendientes();
         try {
@@ -2948,17 +2968,17 @@ public class Controlador {
         } catch (Exception e) {
         }
     }
-    
+
     private void frmHistorialMantenimiento(String usuario) {
-        
+
         jifHistMantenimiento = new jifHistMantenimiento();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifHistMantenimiento);
         } else {
             frmEmpleado.jDesktopPane1.add(jifHistMantenimiento);
         }
-        
+
         limpiar();
         limpiarFechas();
         jifHistMantenimiento.jbtConsultar.setVisible(false);
@@ -2987,52 +3007,52 @@ public class Controlador {
         }
         jifHistMantenimiento.jTable1.setModel(model);
         jifHistMantenimiento.lblRegistros.setText(registros);
-        
+
         jifHistMantenimiento.rbRangoFecha.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtHistorialMantenimientos();
             }
         });
-        
+
         jifHistMantenimiento.jtfIdCliente.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtHistorialMantenimientos();
             }
         });
-        
+
         jifHistMantenimiento.jtfPlaca.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtHistorialMantenimientos();
             }
         });
-        
+
         jifHistMantenimiento.jbtConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtHistorialMantenimientos();
             }
         });
-        
+
         TextAutoCompleter idCliente = new TextAutoCompleter(jifHistMantenimiento.jtfIdCliente);
         TextAutoCompleter placa = new TextAutoCompleter(jifHistMantenimiento.jtfPlaca);
         try {
@@ -3046,11 +3066,11 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifHistMantenimiento.show();
         locacionfrm(jifHistMantenimiento);
     }
-    
+
     private void evtHistorialMantenimientos() {
         String dato;
         ArrayList<HistorialMantenimiento> lista;
@@ -3085,7 +3105,7 @@ public class Controlador {
         int registros = jifHistMantenimiento.jTable1.getRowCount();
         jifHistMantenimiento.lblRegistros.setText("" + registros);
     }
-    
+
     private void codigoMantenimiento() {
         ResultSet r = Gestor.codigoMantenimiento();
         String cod = "";
@@ -3098,17 +3118,17 @@ public class Controlador {
         } catch (SQLException | NumberFormatException e) {
         }
     }
-    
+
     private void frmReservas(String usuario) {
-        
+
         jifReservas = new jifReservas();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifReservas);
         } else {
             frmEmpleado.jDesktopPane1.add(jifReservas);
         }
-        
+
         limpiar();
         codigoReserva();
         limpiarFechas();
@@ -3130,32 +3150,32 @@ public class Controlador {
         } catch (Exception e) {
         }
         limpiarComboBox();
-        
+
         jifReservas.jtfIdentificacion.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtDatosReserva();
             }
         });
-        
+
         jifReservas.jtfIdentificacion.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtDatosReserva();
             }
         });
-        
+
         jifReservas.jcbIdMecanico.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String id = (jifReservas.jcbIdMecanico.getSelectedItem() != null) ? jifReservas.jcbIdMecanico.getSelectedItem().toString() : "";
@@ -3168,7 +3188,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifReservas.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3204,7 +3224,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifReservas.jbtCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3214,11 +3234,11 @@ public class Controlador {
                 jifReservas.jbtRegistrar.setEnabled(false);
             }
         });
-        
+
         jifReservas.show();
         locacionfrm(jifReservas);
     }
-    
+
     private void evtDatosReserva() {
         String id = jifReservas.jtfIdentificacion.getText();
         ResultSet datos = Gestor.datosReserva(id);
@@ -3235,7 +3255,7 @@ public class Controlador {
         } catch (Exception ex) {
         }
     }
-    
+
     private void codigoReserva() {
         ResultSet cod = Gestor.codigoReserva();
         String num = "";
@@ -3248,17 +3268,17 @@ public class Controlador {
         } catch (SQLException | NumberFormatException exc) {
         }
     }
-    
+
     private void frmCotizacion(String usuario) {
-        
+
         jifCotizacion = new jifCotizacion();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifCotizacion);
         } else {
             frmEmpleado.jDesktopPane1.add(jifCotizacion);
         }
-        
+
         limpiar();
         limpiarTablas(jifCotizacion.Datosmantenimientos);
         limpiarFechas();
@@ -3305,7 +3325,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCotizacion.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3325,7 +3345,7 @@ public class Controlador {
                     String codMante = jifCotizacion.jtfCodigo.getText();
                     int t = Integer.parseInt(valorMantenimiento) - Integer.parseInt(valorCotizacion);
                     String totalMantenimiento = String.valueOf(t);
-                    
+
                     if (Gestor.registrarCotizacion(fecha, idCliente, nombreCliente, codMante, valorMantenimiento, totalMantenimiento, valorCotizacion, observaciones)
                             && Gestor.actualizarMantenimiento(codMante, totalMantenimiento)) {
                         JOptionPane.showMessageDialog(null, "Se Registro la cotización correctamente...", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
@@ -3341,7 +3361,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifCotizacion.jbtCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3352,11 +3372,11 @@ public class Controlador {
                 jifCotizacion.jbtRegistrar.setEnabled(false);
             }
         });
-        
+
         jifCotizacion.show();
         locacionfrm(jifCotizacion);
     }
-    
+
     private void codigoCotizacion() {
         ResultSet numero = Gestor.codigosCotizacion();
         String cod = "";
@@ -3370,12 +3390,12 @@ public class Controlador {
             JOptionPane.showMessageDialog(null, "" + e.getMessage());
         }
     }
-    
+
     private void frmVerFichaAuto() {
         
         jifVerFichaAuto = new jifVerFichaAuto();
         frmCliente.jDesktopPane1.add(jifVerFichaAuto);
-        
+
         limpiar();
         limpiarComboBox();
         evtDesactivarPanelesFichaAuto();
@@ -3393,9 +3413,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifVerFichaAuto.jcbPlacas.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String placa = (jifVerFichaAuto.jcbPlacas.getSelectedItem() != null) ? jifVerFichaAuto.jcbPlacas.getSelectedItem().toString() : "";
@@ -3482,18 +3502,18 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifVerFichaAuto.jbtNuevaFicha.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifVerFichaAuto.jbtRegistrar.setEnabled(true);
                 evtActivarPanelesFichaAuto();
             }
         });
-        
+
         jifVerFichaAuto.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = frmCliente.user.getToolTipText().split(" ");
@@ -3548,7 +3568,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifVerFichaAuto.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3605,9 +3625,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifVerFichaAuto.jbtancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
@@ -3619,20 +3639,20 @@ public class Controlador {
                 jifVerFichaAuto.jbtRegistrar.setEnabled(false);
             }
         });
-        
+
         jifVerFichaAuto.setVisible(true);
     }
-    
+
     private void frmFichaRecepcionAuto(String usuario) {
-        
+
         jifFichaAuto = new jifFichaAuto();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifFichaAuto);
         } else {
             frmEmpleado.jDesktopPane1.add(jifFichaAuto);
         }
-        
+
         limpiar();
         limpiarComboBox();
         evtDesactivarPanelesFichaAuto();
@@ -3649,9 +3669,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifFichaAuto.jcbPlaca.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String placa = (jifFichaAuto.jcbPlaca.getSelectedItem() != null) ? jifFichaAuto.jcbPlaca.getSelectedItem().toString() : "";
@@ -3743,18 +3763,18 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifFichaAuto.jbtNuevaFicha.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifFichaAuto.jbtRegistrar.setEnabled(true);
                 evtActivarPanelesFichaAuto();
             }
         });
-        
+
         jifFichaAuto.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 c = new GregorianCalendar();
@@ -3808,7 +3828,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifFichaAuto.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -3864,9 +3884,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifFichaAuto.jbtancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
@@ -3884,11 +3904,11 @@ public class Controlador {
                 jifFichaAuto.jbtRegistrar.setEnabled(false);
             }
         });
-        
+
         jifFichaAuto.show();
         locacionfrm(jifFichaAuto);
     }
-    
+
     private void evtFichaAuto() {
         jifFichaAuto.jsAlto.setValue(0);
         jifFichaAuto.jsAncho.setValue(0);
@@ -3905,7 +3925,7 @@ public class Controlador {
         jifVerFichaAuto.bgLuces.clearSelection();
         jifVerFichaAuto.bgPuertas.clearSelection();
     }
-    
+
     private void evtDesactivarPanelesFichaAuto() {
         jifFichaAuto.jtfCilindraje.setEnabled(false);
         jifFichaAuto.jtfFrenos.setEnabled(false);
@@ -3946,7 +3966,7 @@ public class Controlador {
         jifVerFichaAuto.jcbRegularP.setEnabled(false);
         jifVerFichaAuto.jcbMalaP.setEnabled(false);
     }
-    
+
     private void evtActivarPanelesFichaAuto() {
         jifFichaAuto.jtfCilindraje.setEnabled(true);
         jifFichaAuto.jtfFrenos.setEnabled(true);
@@ -3987,24 +4007,24 @@ public class Controlador {
         jifVerFichaAuto.jcbRegularP.setEnabled(true);
         jifVerFichaAuto.jcbMalaP.setEnabled(true);
     }
-    
+
     private void frmPromocionesCombos(String usuario) {
-        
+
         jifPromociones = new jifPromociones();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifPromociones);
         } else {
             frmEmpleado.jDesktopPane1.add(jifPromociones);
         }
-        
+
         limpiar();
         limpiarComboBox();
         limpiarFechas();
         codigoPromocion();
         jifPromociones.jbtActualizar.setEnabled(false);
         jifPromociones.jbtEliminar.setEnabled(false);
-        
+
         jifPromociones.jTabbedPane1.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent ce) {
@@ -4013,9 +4033,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifPromociones.jbtConsultar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (jifPromociones.jtfCodigoA.getText().isEmpty()) {
@@ -4043,9 +4063,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifPromociones.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String desc = jifPromociones.jtfDescripcionN.getText();
@@ -4075,9 +4095,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifPromociones.jbtCancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 limpiar();
@@ -4085,9 +4105,9 @@ public class Controlador {
                 limpiarFechas();
             }
         });
-        
+
         jifPromociones.jbtActualizar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (jifPromociones.jtfCodigoA.getText().isEmpty()) {
@@ -4121,9 +4141,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifPromociones.jbtEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if (jifPromociones.jtfCodigoA.getText().isEmpty()) {
@@ -4140,11 +4160,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifPromociones.show();
         locacionfrm(jifPromociones);
     }
-    
+
     private void evtListaDePromociones() {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Código");
@@ -4167,7 +4187,7 @@ public class Controlador {
         } catch (Exception e) {
         }
     }
-    
+
     private void codigoPromocion() {
         ResultSet cod = Gestor.codigoPromocion();
         String code = "";
@@ -4180,27 +4200,27 @@ public class Controlador {
         } catch (SQLException | NumberFormatException e) {
         }
     }
-    
+
     private void frmVerPromociones() {
-        
+
         jifVerPromociones = new jifVerPromociones();
         frmCliente.jDesktopPane1.add(jifVerPromociones);
-        
+
         limpiar();
         limpiarComboBox();
         evtListaPromociones("");
-        
+
         jifVerPromociones.jcbTipoPromociones.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent ie) {
                 String dato = jifVerPromociones.jcbTipoPromociones.getSelectedItem().toString();
                 evtListaPromociones(dato);
             }
         });
-        
+
         jifVerPromociones.ListaPromociones.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent me) {
                 int i = jifVerPromociones.ListaPromociones.getSelectedRow();
@@ -4216,27 +4236,29 @@ public class Controlador {
                 jifVerPromociones.lbCodigo.setText("Código " + codigo);
                 jifVerPromociones.lbFecha.setText("Fecha" + fecha);
             }
-            
+
             @Override
             public void mousePressed(MouseEvent me) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent me) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent me) {
             }
-            
+
             @Override
             public void mouseExited(MouseEvent me) {
             }
         });
+
+        word_wrap(jifVerPromociones.jtfDescripcion);
         
         jifVerPromociones.show();
     }
-    
+
     private void evtListaPromociones(String dato) {
         ResultSet datos = Gestor.consultarPromociones(dato);
         DefaultTableModel modelo = new DefaultTableModel();
@@ -4255,12 +4277,12 @@ public class Controlador {
         } catch (Exception e) {
         }
     }
-    
+
     private void frmHistorialAuto() {
-        
+
         jifHistorialAuto = new jifHistorialAuto();
         frmCliente.jDesktopPane1.add(jifHistorialAuto);
-        
+
         limpiarTablas(jifHistorialAuto.jTable1);
         String[] d = frmCliente.user.getToolTipText().split(" ");
         ResultSet datos = Gestor.ConsultarAutosClientes(d[1]);
@@ -4281,21 +4303,21 @@ public class Controlador {
             jifHistorialAuto.ListaAutos.setModel(modelo);
         } catch (Exception ex) {
         }
-        
+
         final DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Tipo");
         model.addColumn("Descripcion");
         model.addColumn("Fecha");
         model.addColumn("Mécanico");
-        
+
         jifHistorialAuto.ListaAutos.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 limpiarTablas(jifHistorialAuto.jTable1);
                 int i = jifHistorialAuto.ListaAutos.getSelectedRow();
                 String placa = jifHistorialAuto.ListaAutos.getValueAt(i, 0).toString();
-                
+
                 ResultSet da = Gestor.traerDetallesMantenimiento(placa);
                 try {
                     while (da.next()) {
@@ -4310,38 +4332,38 @@ public class Controlador {
                 } catch (Exception ex) {
                 }
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
-        
+
         jifHistorialAuto.show();
     }
     /* 3. Modulo Suministros */
-    
+
     private void frmRegistrarProveedor(String usuario) {
-        
+
         jifProveedor = new jifRegistrarProveedor();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifProveedor);
         } else {
             frmEmpleado.jDesktopPane1.add(jifProveedor);
         }
-        
+
         limpiar();
         jifProveedor.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
@@ -4364,29 +4386,29 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifProveedor.jbtRegistrar1.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
             }
         });
-        
+
         jifProveedor.show();
         locacionfrm(jifProveedor);
     }
-    
+
     private void frmActualizarProveedor(String usuario) {
-        
+
         jifActualizarProveedor = new jifActualizarProveedor();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifActualizarProveedor);
         } else {
             frmEmpleado.jDesktopPane1.add(jifActualizarProveedor);
         }
-        
+
         limpiar();
         jifActualizarProveedor.jbtEliminar.setEnabled(false);
         jifActualizarProveedor.jbtModificar.setEnabled(false);
@@ -4397,7 +4419,7 @@ public class Controlador {
             jifActualizarProveedor.jcbNit.addItem(proveedor);
         }
         jifActualizarProveedor.jcbNit.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent ie) {
                 String nit = (jifActualizarProveedor.jcbNit.getSelectedItem() != null) ? jifActualizarProveedor.jcbNit.getSelectedItem().toString() : "";
@@ -4415,7 +4437,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarProveedor.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -4440,7 +4462,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarProveedor.jbtEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -4463,21 +4485,21 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarProveedor.show();
         locacionfrm(jifActualizarProveedor);
     }
-    
+
     private void frmListaProveedores(String usuario) {
-        
+
         jifListaProveedores = new jifListaProveedores();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaProveedores);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaProveedores);
         }
-        
+
         ArrayList<Proveedor> proveedores = Gestor.consultarProveedor();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Nit");
@@ -4497,23 +4519,23 @@ public class Controlador {
         jifListaProveedores.jtListaMecanicos.setModel(modelo);
         int[] a = {20, 40, 40, 40, 120};
         setColumnWidths(a, jifListaProveedores.jtListaMecanicos);
-        
+
         jifListaProveedores.show();
         locacionfrm(jifListaProveedores);
     }
-    
+
     private void frmDevoluciones() {
-        
+
         jifDevoluciones = new jifDevoluciones();
         form.jDesktopPane1.add(jifDevoluciones);
-        
+
         limpiar();
         limpiarComboBox();
         limpiarTablas(jifDevoluciones.jtDetallesOrden);
-        
+
         jifDevoluciones.jcbNumeroOrden.removeAllItems();
         jifDevoluciones.jcbNumeroOrden.addItem("-----");
-        
+
         ResultSet numOrdenes = Gestor.numeroDeOrdenes();
         try {
             while (numOrdenes.next()) {
@@ -4521,16 +4543,16 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         final DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Cod.");
         model.addColumn("Nombre");
         model.addColumn("Marca");
         model.addColumn("Cant");
         model.addColumn("Precio");
-        
+
         jifDevoluciones.jcbNumeroOrden.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 limpiarTablas(jifDevoluciones.jtDetallesOrden);
@@ -4552,10 +4574,10 @@ public class Controlador {
                         model.addRow(f);
                     }
                     jifDevoluciones.jtDetallesOrden.setModel(model);
-                    
+
                     int[] a = {20, 100, 40, 20, 40};
                     setColumnWidths(a, jifDevoluciones.jtDetallesOrden);
-                    
+
                     String[][] d = new String[jifDevoluciones.jtDetallesOrden.getRowCount()][5];
                     for (int i = 0; i < d.length; i++) {
                         for (int j = 0; j < 5; j++) {
@@ -4573,9 +4595,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifDevoluciones.jbtCancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
@@ -4583,69 +4605,69 @@ public class Controlador {
                 limpiarTablas(jifDevoluciones.jtDetallesOrden);
             }
         });
-        
+
         jifDevoluciones.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
             }
         });
-        
+
         jifDevoluciones.jtDetallesOrden.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 jifDevoluciones.jPopupMenu1.show(e.getComponent(), e.getX(), e.getY());
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
             }
         });
-        
+
         jifDevoluciones.jMenuItem1.setText("Devolver todo el pedido");
         jifDevoluciones.jMenuItem2.setText("Devolver solo este producto");
-        
+
         jifDevoluciones.jMenuItem1.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtMostrarDetallesDevolucion("Todo");
             }
         });
         jifDevoluciones.jMenuItem2.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtMostrarDetallesDevolucion("Uno");
             }
         });
-        
+
         jifDevoluciones.show();
         locacionfrm(jifDevoluciones);
     }
-    
+
     private void evtMostrarDetallesDevolucion(final String cant) {
         jifDevoluciones.jFrame1.setVisible(true);
         jifDevoluciones.jFrame1.setSize(390, 224);
         jifDevoluciones.jFrame1.setLocationRelativeTo(null);
         jifDevoluciones.jTextArea1.setText(null);
-        
+
         jifDevoluciones.jButton1.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String descripcion = jifDevoluciones.jTextArea1.getText();
@@ -4655,20 +4677,20 @@ public class Controlador {
                 SimpleDateFormat sd = new SimpleDateFormat("YYYY-MM-DD");
                 String fecha = sd.format(f);
                 String nit = jifDevoluciones.jtfNIT.getText();
-                
+
                 int fila = jifDevoluciones.jtDetallesOrden.getSelectedRow();
                 int numeroRepuestos;
                 if ("Todo".equals(cant)) {
                     numeroRepuestos = jifDevoluciones.jtDetallesOrden.getRowCount();
-                    
+
                     String[][] datos = new String[jifDevoluciones.jtDetallesOrden.getRowCount()][5];
                     for (int i = 0; i < jifDevoluciones.jtDetallesOrden.getRowCount(); i++) {
                         for (int j = 0; j < 5; j++) {
                             datos[i][j] = jifDevoluciones.jtDetallesOrden.getValueAt(i, j).toString();
                         }
                     }
-                    
-                    if (Gestor.registrarDevolucion(fecha, ord_numero, numeroRepuestos, descripcion)) {                        
+
+                    if (Gestor.registrarDevolucion(fecha, ord_numero, numeroRepuestos, descripcion)) {
                         for (int i = 0; i < datos.length; i++) {
                             if (Gestor.registrarDetallesDevolucion(ord_numero, datos[i][0], datos[i][1], datos[i][3], datos[i][4], nit)) {
                                 System.out.println(":)");
@@ -4680,7 +4702,7 @@ public class Controlador {
                             limpiar();
                             limpiarComboBox();
                         }
-                        
+
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo registrar la devolucion de los repuestos", "MECAUT", JOptionPane.ERROR_MESSAGE);
                     }
@@ -4690,8 +4712,8 @@ public class Controlador {
                     String nombre = jifDevoluciones.jtDetallesOrden.getValueAt(fila, 1).toString();
                     String cantidad = jifDevoluciones.jtDetallesOrden.getValueAt(fila, 3).toString();
                     String precio = jifDevoluciones.jtDetallesOrden.getValueAt(fila, 4).toString();
-                    
-                    if (Gestor.registrarDevolucion(fecha, ord_numero, numeroRepuestos, descripcion)) {                        
+
+                    if (Gestor.registrarDevolucion(fecha, ord_numero, numeroRepuestos, descripcion)) {
                         if (Gestor.registrarDetallesDevolucion(ord_numero, codigo, nombre, cantidad, precio, nit)) {
                             JOptionPane.showMessageDialog(null, "Se devolvio correctamente el producto");
                         }
@@ -4699,14 +4721,14 @@ public class Controlador {
                         JOptionPane.showMessageDialog(null, "No se pudo registrar la devolucion de los repuestos", "MECAUT", JOptionPane.ERROR_MESSAGE);
                     }
                     DefaultTableModel model = (DefaultTableModel) jifDevoluciones.jtDetallesOrden.getModel();
-                    
+
                     String[][] d = new String[jifDevoluciones.jtDetallesOrden.getRowCount()][5];
                     for (int i = 0; i < d.length; i++) {
                         for (int j = 0; j < 5; j++) {
                             d[i][j] = jifDevoluciones.jtDetallesOrden.getValueAt(i, j).toString();
                         }
                     }
-                    
+
                     int cant, prec, total = 0;
                     for (int i = 0; i < d.length; i++) {
                         cant = Integer.parseInt(jifDevoluciones.jtDetallesOrden.getValueAt(i, 3).toString());
@@ -4719,28 +4741,28 @@ public class Controlador {
                         JOptionPane.showMessageDialog(null, "Seleccione una columna", "MECAUT", JOptionPane.WARNING_MESSAGE);
                     } else {
                         model.removeRow(fila);
-                    }                    
-                    
+                    }
+
                 }
                 jifDevoluciones.jFrame1.hide();
             }
         });
     }
     /* 4. Modulo Personal */
-    
+
     private void frmRegistrarEmpleado(String usuario) {
-        
+
         jifEmpleado = new jifRegistrarEmpleado();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifEmpleado);
         } else {
             frmEmpleado.jDesktopPane1.add(jifEmpleado);
         }
-        
+
         limpiar();
         limpiarComboBox();
-        
+
         jifEmpleado.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -4779,57 +4801,57 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifEmpleado.jbtCancelar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 limpiar();
                 limpiarComboBox();
             }
         });
-        
+
         jifEmpleado.show();
         locacionfrm(jifEmpleado);
     }
-    
+
     private void frmActualizarEmpleado(String usuario) {
-        
+
         jifActualizarEmpleado = new jifActualizarEmpleado();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifActualizarEmpleado);
         } else {
             frmEmpleado.jDesktopPane1.add(jifActualizarEmpleado);
         }
-        
+
         limpiar();
         limpiarComboBox();
-        
+
         jifActualizarEmpleado.jtfId.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 evtConsultarEmpleado();
             }
         });
-        
+
         jifActualizarEmpleado.jtfId.addKeyListener(new KeyListener() {
-            
+
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtConsultarEmpleado();
             }
         });
-        
+
         jifActualizarEmpleado.jbtEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -4852,7 +4874,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarEmpleado.jbtModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -4881,7 +4903,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifActualizarEmpleado.jtfId);
         ResultSet ids = Gestor.idsEmpleados();
         try {
@@ -4890,11 +4912,11 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifActualizarEmpleado.show();
         locacionfrm(jifActualizarEmpleado);
     }
-    
+
     private void evtConsultarEmpleado() {
         try {
             ResultSet r;
@@ -4917,40 +4939,55 @@ public class Controlador {
             JOptionPane.showMessageDialog(null, "" + e.getMessage(), "MECAUT", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void frmListaEmpleados(String usuario) {
-        
+
         jifListaEmpleados = new jifListaEmpleados();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaEmpleados);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaEmpleados);
         }
-        
+
         evtMostrarEmpleadosporId();
         jifListaEmpleados.jtfDato.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
-            
+
             @Override
             public void keyPressed(KeyEvent e) {
             }
-            
+
             @Override
             public void keyReleased(KeyEvent e) {
                 evtMostrarEmpleadosporId();
             }
         });
+
+//        jifListaEmpleados.jMenuItem1.setText("Modificar");
+//        jifListaEmpleados.jMenuItem2.setText("Eliminar");
+//        jifListaEmpleados.jMenuItem3.setText("Nuevo");
+//        jifListaEmpleados.jMenuItem4.setText("Generar Reporte");
+//        
+//        jifListaEmpleados.jMenuItem1.addActionListener(new ActionListener() {
+//
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//                int i = jifListaEmpleados.jtListaMecanicos.getSelectedRow();
+//                String id = jifListaEmpleados.jtListaMecanicos.getValueAt(i, 0).toString();
+//                frmActualizarEmpleado(id);
+//            }
+//        });
         
         int[] anchos = {65, 75, 75, 50, 70, 60, 70, 50, 140};
         setColumnWidths(anchos, jifListaEmpleados.jtListaMecanicos);
-        
+
         jifListaEmpleados.show();
         locacionfrm(jifListaEmpleados);
     }
-    
+
     private void evtMostrarEmpleadosporId() {
         String dato = jifListaEmpleados.jtfDato.getText();
         ArrayList<Empleados> empleados = Gestor.verEmpleadosPorDato(dato);
@@ -4981,17 +5018,17 @@ public class Controlador {
         jifListaEmpleados.registros.setText("" + jifListaEmpleados.jtListaMecanicos.getRowCount());
     }
     /* 5. Modulo Inventario */
-    
+
     private void frmRegistrarRepuestos(String usuario) {
-        
+
         jifRepuesto = new jifRegistrarRepuesto();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifRepuesto);
         } else {
             frmEmpleado.jDesktopPane1.add(jifRepuesto);
         }
-        
+
         limpiar();
         jifRepuesto.jcbTipo.setSelectedIndex(0);
         ArrayList<Proveedor> proveedores = Gestor.consultarProveedor();
@@ -5000,7 +5037,7 @@ public class Controlador {
         for (Proveedor proveedor : proveedores) {
             jifRepuesto.jcbNitProveedor.addItem(proveedor);
         }
-        
+
         jifRepuesto.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -5026,25 +5063,25 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifRepuesto.show();
         locacionfrm(jifRepuesto);
     }
-    
+
     private void frmActualizarRepuesto(String usuario) {
-        
+
         jifActualizarRepuesto = new jifActualizarRepuesto();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifActualizarRepuesto);
         } else {
             frmEmpleado.jDesktopPane1.add(jifActualizarRepuesto);
         }
-        
+
         limpiar();
         jifActualizarRepuesto.jbtModificar.setEnabled(false);
         jifActualizarRepuesto.jbtEliminar.setEnabled(false);
-        
+
         jifActualizarRepuesto.jbtConsultar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -5070,9 +5107,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarRepuesto.jbtModificar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cod = jifActualizarRepuesto.jtfCodigo.getText();
@@ -5087,9 +5124,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarRepuesto.jbtEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cod = jifActualizarRepuesto.jtfCodigo.getText();
@@ -5104,11 +5141,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifActualizarRepuesto.show();
         locacionfrm(jifActualizarRepuesto);
     }
-    
+
     private void evtActualizarRespuesto() {
         String codigo;
         int cantidad;
@@ -5125,17 +5162,17 @@ public class Controlador {
             }
         }
     }
-    
+
     private void frmListaRepuestos(String usuario) {
-        
+
         jifListaRepuestos = new jifListaRepuestos();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaRepuestos);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaRepuestos);
         }
-        
+
         ArrayList<Repuesto> repuestos = Gestor.verRepuestos();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
@@ -5149,26 +5186,26 @@ public class Controlador {
             modelo.addRow(fila);
         }
         jifListaRepuestos.jtListaRepuestos.setModel(modelo);
-        
+
         int[] a = {20, 200, 30};
         setColumnWidths(a, jifListaRepuestos.jtListaRepuestos);
-        
+
         jifListaRepuestos.registros.setText("" + jifListaRepuestos.jtListaRepuestos.getRowCount());
         jifListaRepuestos.show();
-        
+
         locacionfrm(jifListaRepuestos);
     }
-    
+
     private void frmOrdenDePedido(String usuario) {
-        
+
         jifOrdenDePedido = new jifOrdenDePedido();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifOrdenDePedido);
         } else {
             frmEmpleado.jDesktopPane1.add(jifOrdenDePedido);
         }
-        
+
         limpiar();
         limpiarComboBox();
         limpiarFechas();
@@ -5189,9 +5226,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifOrdenDePedido.jcbNIT.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String nit = (jifOrdenDePedido.jcbNIT.getSelectedItem() != null) ? jifOrdenDePedido.jcbNIT.getSelectedItem().toString() : "";
@@ -5206,9 +5243,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifOrdenDePedido.jbtAgregarRepuesto.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifOrdenDePedido.jFrame1.setVisible(true);
@@ -5229,9 +5266,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifOrdenDePedido.jcbTipoRep.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String nombre = (jifOrdenDePedido.jcbTipoRep.getSelectedItem() != null) ? jifOrdenDePedido.jcbTipoRep.getSelectedItem().toString() : "";
@@ -5246,9 +5283,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifOrdenDePedido.jbtAceptar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String tipoRep = jifOrdenDePedido.jcbTipoRep.getSelectedItem().toString();
@@ -5281,15 +5318,15 @@ public class Controlador {
                 jifOrdenDePedido.jtfTotal.setText("" + total);
             }
         });
-        
+
         jifOrdenDePedido.jButton5.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifOrdenDePedido.jFrame1.hide();
             }
         });
-        
+
         jifOrdenDePedido.jbtRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -5309,7 +5346,7 @@ public class Controlador {
                     String telPro = jifOrdenDePedido.jtfTelefono.getText();
                     String dirPro = jifOrdenDePedido.jtfDireccion.getText();
                     String total = jifOrdenDePedido.jtfTotal.getText();
-                    
+
                     if (Gestor.registrarOrdenPedido(fecha, nitPro, nomPro, telPro, dirPro, total)) {
                         String[][] datos = new String[jifOrdenDePedido.jTable1.getRowCount()][5];
                         for (int k = 0; k < datos.length; k++) {
@@ -5322,7 +5359,7 @@ public class Controlador {
                             }
                             System.out.println("");
                         }
-                        
+
                         for (int l = 0; l < jifOrdenDePedido.jTable1.getRowCount(); l++) {
                             if (Gestor.registrarDetallesOrden(cod, datos[l][0], datos[l][1], datos[l][2], datos[l][3], datos[l][4])) {
                                 System.out.println(":)");
@@ -5337,11 +5374,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifOrdenDePedido.show();
         locacionfrm(jifOrdenDePedido);
     }
-    
+
     private void codigoOrdenPedido() {
         ResultSet cod = Gestor.codigoOrdenPedido();
         String code = "";
@@ -5356,17 +5393,17 @@ public class Controlador {
         }
     }
     /* 6. Modulo Ventas */
-    
+
     private void frmFactura(String usuario) {
-        
+
         jifFactura = new jifFactura();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifFactura);
         } else {
             frmEmpleado.jDesktopPane1.add(jifFactura);
         }
-        
+
         limpiar();
         limpiarFechas();
         codigoFactura();
@@ -5374,9 +5411,9 @@ public class Controlador {
         jifFactura.jcbCantidad.addItem("---");
         limpiarComboBox();
         limpiarTablas(jifFactura.jTable1);
-        
+
         jifFactura.jbtConsultar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -5398,7 +5435,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         TextAutoCompleter t = new TextAutoCompleter(jifFactura.jtfIdCli);
         ResultSet ids = Gestor.IdsClientes();
         try {
@@ -5407,7 +5444,7 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         ArrayList<Repuesto> repuestos = Gestor.verRepuestos();
         jifFactura.jcbCodRep.removeAllItems();
         jifFactura.jcbCodRep.addItem("Seleccione codigo");
@@ -5415,9 +5452,9 @@ public class Controlador {
             jifFactura.jcbCodRep.addItem(repuesto);
         }
         limpiarComboBox();
-        
+
         jifFactura.jcbCodRep.addItemListener(new ItemListener() {
-            
+
             @Override
             public void itemStateChanged(ItemEvent ie) {
                 jifFactura.jcbCantidad.removeAllItems();
@@ -5432,7 +5469,7 @@ public class Controlador {
                     }
                 } catch (Exception exc) {
                 }
-                
+
                 if ("".equals(jifFactura.jtfCantidadRep.getText())) {
                     jifFactura.jcbCantidad.addItem("0");
                 } else {
@@ -5442,7 +5479,7 @@ public class Controlador {
                 }
             }
         });
-        
+
         final DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
         modelo.addColumn("Tipo");
@@ -5451,7 +5488,7 @@ public class Controlador {
         modelo.addColumn("Cantidad");
         modelo.addColumn("Precio");
         jifFactura.jbtAgregar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String codgoRepuesto = jifFactura.jcbCodRep.getSelectedItem().toString();
@@ -5471,11 +5508,11 @@ public class Controlador {
                 jifFactura.jTable1.setModel(modelo);
                 evtCalcularFactura();
             }
-            
+
         });
-        
+
         jifFactura.jbtRegistrar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
@@ -5492,7 +5529,6 @@ public class Controlador {
                         String numero = jifFactura.jtfNumFactura.getText();
                         java.util.Date fecha = jifFactura.jdcFecha.getDate();
                         java.sql.Date fechaa = new java.sql.Date(fecha.getTime());
-                        
                         String nombreCliente = jifFactura.jtfNombreCli.getText();
                         String total = jifFactura.lblTotal.getText();
                         if (numero.isEmpty() || idCliente.isEmpty() || nombreCliente.isEmpty()) {
@@ -5509,35 +5545,36 @@ public class Controlador {
                                 limpiarComboBox();
                                 limpiarFechas();
                             } else {
+                                System.out.println(fac);
                                 JOptionPane.showMessageDialog(null, "¡No se pudieron almacenar los datos", "MECAUT", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                     }
                 } catch (HeadlessException e) {
-                    
+
                 }
             }
         });
-        
+
         jifFactura.jbtEliminar.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent ae) {
                 DefaultTableModel model = (DefaultTableModel) jifFactura.jTable1.getModel();
                 int i = jifFactura.jTable1.getSelectedRow();
-                if (i < 0) {                    
+                if (i < 0) {
                     evtCalcularFactura();
                     JOptionPane.showMessageDialog(null, "Seleccione una columna", "MECAUT", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    model.removeRow(i);                    
+                    model.removeRow(i);
                     evtCalcularFactura();
                 }
             }
         });
-        
+
         jifFactura.show();
     }
-    
+
     private void codigoFactura() {
         ResultSet code;
         code = Gestor.codigoFactura();
@@ -5551,7 +5588,7 @@ public class Controlador {
         } catch (SQLException | NumberFormatException e) {
         }
     }
-    
+
     private void evtRegistrarDetalleFactura() {
         for (int i = 0; i < jifFactura.jTable1.getRowCount(); i++) {
             String numero = jifFactura.jtfNumFactura.getText();
@@ -5565,12 +5602,12 @@ public class Controlador {
             registrarDetalleFactura = Gestor.registrarDetalleFactura(det);
         }
     }
-    
+
     private void evtCalcularFactura() {
         String pre;
         String can;
         double total = 0;
-        
+
         for (int i = 0; i < jifFactura.jTable1.getRowCount(); i++) {
             pre = jifFactura.jTable1.getValueAt(i, 5).toString();
             can = jifFactura.jTable1.getValueAt(i, 4).toString();
@@ -5578,17 +5615,17 @@ public class Controlador {
         }
         jifFactura.lblTotal.setText(Double.toString(total));
     }
-    
+
     private void frmListaFacturas(String usuario) {
-        
+
         jifListaFacturas = new jifListaFacturas();
-        
+
         if ("Administrador".equals(usuario)) {
             form.jDesktopPane1.add(jifListaFacturas);
         } else {
             frmEmpleado.jDesktopPane1.add(jifListaFacturas);
         }
-        
+
         ArrayList<Factura> lista = Gestor.consultarFacturas();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("N°");
@@ -5604,31 +5641,76 @@ public class Controlador {
             fila[3] = fac.getNombreCliente();
             fila[4] = fac.getTotal();
             modelo.addRow(fila);
-        }
+        }                    
         jifListaFacturas.tablaFacturas.setModel(modelo);
+        
+        jifListaFacturas.jtfid.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent ke) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                String id = jifListaFacturas.jtfid.getText();
+                ArrayList<Factura> facturas = Gestor.verFacturaPorDato(id);
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo.addColumn("N°");
+                modelo.addColumn("Fecha");
+                modelo.addColumn("Identificación Cliente");
+                modelo.addColumn("Nombre Cliente");
+                modelo.addColumn("Total Factura");
+
+                for (Factura factura : facturas) {
+                    Object[] fila = new Object[5];
+                    fila[0] = factura.getNumero();
+                    fila[1] = factura.getFecha();
+                    fila[2] = factura.getIdCliente();
+                    fila[3] = factura.getNombreCliente();
+                    fila[4] = factura.getTotal();
+                    modelo.addRow(fila);
+                }
+                jifListaFacturas.tablaFacturas.setModel(modelo);
+                
+                int[] anchos = {25, 70, 70, 80, 110};
+                setColumnWidths(anchos, jifListaFacturas.tablaFacturas);
+                jifListaFacturas.registros.setText("" + jifListaFacturas.tablaFacturas.getRowCount());
+            }
+        });
+        
         jifListaFacturas.registros.setText("" + jifListaFacturas.tablaFacturas.getRowCount());
         jifListaFacturas.show();
-        
+
         int[] anchos = {25, 70, 70, 80, 110};
         setColumnWidths(anchos, jifListaFacturas.tablaFacturas);
-        
+
         locacionfrm(jifListaFacturas);
     }
     
-    class load implements ActionListener {
+    private void evtListaFacturas(){
         
+    }
+
+    class load implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             evtIniciarSesion();
         }
     }
-    
+
     private void evtIniciarSesion() {
         try {
             String usuario = Login.jtfUsuario.getText();
             String contrasena = Login.jtfContraseña.getText();
             String[] r = Gestor.validarUsuario(usuario, contrasena);
-            
+
             if ("Inactiva".equals(r[2])) {
                 int res = JOptionPane.showConfirmDialog(null, "La cuenta a la que esta intentando ingresar esta desactivada...\n\n¿Quieres Activar tu Cuenta de Nuevo?", "MECAUT", JOptionPane.YES_NO_OPTION);
                 if (res == JOptionPane.YES_OPTION) {
@@ -5667,12 +5749,12 @@ public class Controlador {
             JOptionPane.showMessageDialog(null, "¡¡¡ Los Datos Ingresados Son Incorrectos !!!\n\n\tVerifiquelos Nuevamente....", "MECAUT - Inicio de Sesión", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void frmConfiguracionAdministrador(String id) {
-        
+
         jifConfiguracionAdmin = new jifConfiguracionAdmin();
         form.jDesktopPane1.add(jifConfiguracionAdmin);
-        
+
         ResultSet datos;
         datos = Gestor.traerDatosEmpleado(id);
         try {
@@ -5685,9 +5767,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifConfiguracionAdmin.lblDesactivarCuenta.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -5708,28 +5790,28 @@ public class Controlador {
                     }
                 }
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 jifConfiguracionAdmin.lblDesactivarCuenta.setForeground(Color.RED);
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
                 jifConfiguracionAdmin.lblDesactivarCuenta.setForeground(Color.black);
             }
         });
-        
+
         jifConfiguracionAdmin.jbtActualizarContraseña.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = form.user.getToolTipText().split(" ");
@@ -5756,9 +5838,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifConfiguracionAdmin.jbtActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String apellidos = jifConfiguracionAdmin.jtfApellidos.getText();
@@ -5798,36 +5880,36 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifConfiguracionAdmin.jTabbedPane1.setVisible(false);
-        
+
         jifConfiguracionAdmin.jmiCambiarContrasena.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifConfiguracionAdmin.jTabbedPane1.setVisible(true);
                 jifConfiguracionAdmin.jTabbedPane1.setSelectedIndex(0);
             }
         });
-        
+
         jifConfiguracionAdmin.jmiActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifConfiguracionAdmin.jTabbedPane1.setVisible(true);
                 jifConfiguracionAdmin.jTabbedPane1.setSelectedIndex(1);
             }
         });
-        
+
         jifConfiguracionAdmin.show();
         locacionfrm(jifConfiguracionAdmin);
     }
-    
+
     private void frmConfiguracionCliente(final String id) {
-        
+
         jifUpdateContraseñaCli = new jifConfiguracionCliente();
         frmCliente.jDesktopPane1.add(jifUpdateContraseñaCli);
-        
+
         ResultSet datos;
         datos = Gestor.TraerDatosCliente(id);
         try {
@@ -5840,9 +5922,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifUpdateContraseñaCli.lblDesactivarCuenta.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] d = frmCliente.user.getToolTipText().split(" ");
@@ -5863,28 +5945,28 @@ public class Controlador {
                     }
                 }
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 jifUpdateContraseñaCli.lblDesactivarCuenta.setForeground(Color.RED);
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
                 jifUpdateContraseñaCli.lblDesactivarCuenta.setForeground(Color.black);
             }
         });
-        
+
         jifUpdateContraseñaCli.jbtActualizarContraseña.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = frmCliente.user.getToolTipText().split(" ");
@@ -5915,9 +5997,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifUpdateContraseñaCli.jbtActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String apellidos = jifUpdateContraseñaCli.jtfApellidos.getText();
@@ -5957,11 +6039,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifUpdateContraseñaCli.jTabbedPane1.setVisible(false);
-        
+
         jifUpdateContraseñaCli.jmiCambiarContrasena.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifUpdateContraseñaCli.jTabbedPane1.setVisible(true);
@@ -5970,9 +6052,9 @@ public class Controlador {
                 jifUpdateContraseñaCli.jTabbedPane1.setEnabledAt(0, true);
             }
         });
-        
+
         jifUpdateContraseñaCli.jmiActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifUpdateContraseñaCli.jTabbedPane1.setVisible(true);
@@ -5981,15 +6063,15 @@ public class Controlador {
                 jifUpdateContraseñaCli.jTabbedPane1.setEnabledAt(1, true);
             }
         });
-        
+
         jifUpdateContraseñaCli.show();
     }
-    
+
     private void frmConfiguracionEmpleado(String id) {
-        
+
         jifConfiguracionEmpleado = new jifConfiguracionEmpleado();
         frmEmpleado.jDesktopPane1.add(jifConfiguracionEmpleado);
-        
+
         ResultSet datos;
         datos = Gestor.traerDatosEmpleado(id);
         try {
@@ -6002,9 +6084,9 @@ public class Controlador {
             }
         } catch (Exception e) {
         }
-        
+
         jifConfiguracionEmpleado.lblDesactivarCuenta.addMouseListener(new MouseListener() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
                 String[] d = frmEmpleado.user.getToolTipText().split(" ");
@@ -6025,28 +6107,28 @@ public class Controlador {
                     }
                 }
             }
-            
+
             @Override
             public void mousePressed(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-            
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 jifConfiguracionEmpleado.lblDesactivarCuenta.setForeground(Color.RED);
             }
-            
+
             @Override
             public void mouseExited(MouseEvent e) {
                 jifConfiguracionEmpleado.lblDesactivarCuenta.setForeground(Color.black);
             }
         });
-        
+
         jifConfiguracionEmpleado.jbtActualizarContraseña.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[] d = frmEmpleado.user.getToolTipText().split(" ");
@@ -6059,7 +6141,7 @@ public class Controlador {
                 } else if (v[1].equals(d[1])) {
                     JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "MECAUT", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    
+
                     if (v != null) {
                         if (Gestor.cambiarContrasena(v[1], contrasenaVieja, contrasenaNueva)) {
                             JOptionPane.showMessageDialog(null, "Se cambio la contraseña correctamente", "MECAUT", JOptionPane.INFORMATION_MESSAGE);
@@ -6076,9 +6158,9 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifConfiguracionEmpleado.jbtActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 String apellidos = jifConfiguracionEmpleado.jtfApellidos.getText();
@@ -6118,11 +6200,11 @@ public class Controlador {
                 }
             }
         });
-        
+
         jifConfiguracionEmpleado.jTabbedPane1.setVisible(false);
-        
+
         jifConfiguracionEmpleado.jmiCambiarContrasena.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifConfiguracionEmpleado.jTabbedPane1.setVisible(true);
@@ -6131,9 +6213,9 @@ public class Controlador {
                 jifConfiguracionEmpleado.jTabbedPane1.setEnabledAt(0, true);
             }
         });
-        
+
         jifConfiguracionEmpleado.jmiActualizarDatos.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 jifConfiguracionEmpleado.jTabbedPane1.setVisible(true);
@@ -6142,7 +6224,7 @@ public class Controlador {
                 jifConfiguracionEmpleado.jTabbedPane1.setEnabledAt(1, true);
             }
         });
-        
+
         jifConfiguracionEmpleado.show();
     }
 
@@ -6296,11 +6378,11 @@ public class Controlador {
         jifHistMantenimiento.jtfIdCliente.setText("");
         jifHistMantenimiento.jtfPlaca.setText("");
     }
-    
+
     private void locacionfrm(JInternalFrame j) {
         j.setLocation(250, 20);
     }
-    
+
     private void limpiarTablas(JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         int a = tabla.getRowCount() - 1;
@@ -6308,7 +6390,7 @@ public class Controlador {
             modelo.removeRow(i);
         }
     }
-    
+
     private void limpiarComboBox() {
         jifDevoluciones.jcbNumeroOrden.setSelectedIndex(0);
         jifRegistroAuto.jcbCiudad.setSelectedIndex(0);
@@ -6351,7 +6433,7 @@ public class Controlador {
         jifEmpleado.jcbSexo.setSelectedIndex(0);
         jifEmpleado.jcbTipo.setSelectedIndex(0);
     }
-    
+
     private void limpiarFechas() {
         jifPromociones.jdcFechaA.setDate(null);
         jifPromociones.jdcFechaN.setDate(null);
@@ -6363,7 +6445,7 @@ public class Controlador {
         jifCotizacion.jdcFecha.setDate(null);
         jifFactura.jdcFecha.setDate(null);
     }
-    
+
     private void limpiarInicio() {
         jifActualizarCliente.setVisible(false);
         jifActualizarEmpleado.setVisible(false);
@@ -6393,7 +6475,7 @@ public class Controlador {
         jifReservas.setVisible(false);
         jifConfiguracionAdmin.setVisible(false);
     }
-    
+
     private void setColumnWidths(int[] widths, JTable table) {
         int nrCols = table.getModel().getColumnCount();
         if (nrCols == 0 || widths == null) {
@@ -6402,11 +6484,11 @@ public class Controlador {
 
         //current width of the table:
         int totalWidth = table.getWidth();
-        
+
         int totalWidthRequested = 0;
         int nrRequestedWidths = widths.length;
         int defaultWidth = (int) Math.floor((double) totalWidth / (double) nrCols);
-        
+
         for (int col = 0; col < nrCols; col++) {
             int width = 0;
             if (widths.length > col) {
@@ -6420,7 +6502,7 @@ public class Controlador {
         }
         //calculate the scale for the column width
         double factor = (double) totalWidth / (double) totalWidthRequested;
-        
+
         for (int col = 0; col < nrCols; col++) {
             int width = defaultWidth;
             if (widths.length > col) {
@@ -6430,5 +6512,9 @@ public class Controlador {
             table.getColumnModel().getColumn(col).setPreferredWidth(width);
             table.getColumnModel().getColumn(col).setWidth(width);
         }
+    }
+    
+    private void word_wrap(JTextArea j){
+        j.setLineWrap(true);
     }
 }

@@ -670,4 +670,11 @@ public class Gestor{
         respuesta = conexion.eliminarMantenimientoPendiente(placa, id);
         return respuesta;
     }
+    
+    public ArrayList<Factura> verFacturaPorDato(String id){
+        conexion.crearConexion();
+        ArrayList<Factura> lista = conexion.verFacturaPorDato(id);
+        conexion.cerrarConexion();
+        return lista;
+    }
 }

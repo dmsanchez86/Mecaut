@@ -16,6 +16,10 @@ public class jifVerFichaAuto extends javax.swing.JInternalFrame {
      */
     public jifVerFichaAuto() {
         initComponents();
+        jbtModificar.setVisible(false);
+        jbtNuevaFicha.setVisible(false);
+        jbtRegistrar.setVisible(false);
+        jbtancelar.setVisible(false);
     }
 
     /**

@@ -8,7 +8,7 @@
           <Font name="Segoe UI Semibold" size="14" style="3"/>
         </Property>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-          <Insets value="[0, 20, 0, 20]"/>
+          <Insets value="[0, 200, 0, 170]"/>
         </Property>
       </Properties>
       <SubComponents>
