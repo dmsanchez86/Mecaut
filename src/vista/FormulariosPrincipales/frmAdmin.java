@@ -1,6 +1,5 @@
 package vista.FormulariosPrincipales;
 
-import controlador.Controlador;
 import controlador.ControladorLogin;
 import java.awt.*;
 import java.io.IOException;

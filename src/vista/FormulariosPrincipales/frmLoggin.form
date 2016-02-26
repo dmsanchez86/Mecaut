@@ -73,11 +73,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
+<<<<<<< HEAD
                               <Component id="jtfPassword" max="32767" attributes="0"/>
                               <Component id="jtfUser" min="-2" pref="114" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnEnter" min="-2" pref="64" max="-2" attributes="0"/>
+=======
+                              <Component id="jtfContraseña" max="32767" attributes="0"/>
+                              <Component id="jtfUsuario" min="-2" pref="114" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnIngresar" min="-2" pref="64" max="-2" attributes="0"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -86,8 +94,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                               <Component id="lbl_getAccount" min="-2" pref="163" max="-2" attributes="0"/>
                               <Component id="btnExit" min="-2" pref="161" max="-2" attributes="0"/>
+=======
+                              <Component id="jLabel5" min="-2" pref="163" max="-2" attributes="0"/>
+                              <Component id="jbtSalir" min="-2" pref="161" max="-2" attributes="0"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
                           </Group>
                       </Group>
                   </Group>
@@ -103,6 +116,7 @@
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <Component id="jtfUser" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="jtfPassword" min="-2" max="-2" attributes="0"/>
@@ -113,6 +127,18 @@
                   <Component id="lbl_getAccount" min="-2" pref="16" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+=======
+                          <Component id="jtfUsuario" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Component id="jtfContraseña" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" pref="16" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jbtSalir" min="-2" max="-2" attributes="0"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
                   <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -129,7 +155,11 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="jtfUser">
+=======
+        <Component class="javax.swing.JTextField" name="jtfUsuario">
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="3"/>
@@ -137,20 +167,32 @@
             <Property name="text" type="java.lang.String" value="Usuario"/>
             <Property name="toolTipText" type="java.lang.String" value="Ingrese el nombre de Usuario"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+<<<<<<< HEAD
               <ComponentRef name="jtfPassword"/>
+=======
+              <ComponentRef name="jtfContrase&#xf1;a"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
             </Property>
             <Property name="selectionEnd" type="int" value="1"/>
             <Property name="selectionStart" type="int" value="1"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="foco"/>
+<<<<<<< HEAD
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfUserFocusLost"/>
+=======
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfUsuarioFocusLost"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JPasswordField" name="jtfPassword">
+=======
+        <Component class="javax.swing.JPasswordField" name="jtfContrase&#xf1;a">
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="3"/>
@@ -158,20 +200,33 @@
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
             <Property name="toolTipText" type="java.lang.String" value="Ingrese la Contrase&#xf1;a"/>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+<<<<<<< HEAD
               <ComponentRef name="btnEnter"/>
+=======
+              <ComponentRef name="btnIngresar"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
             </Property>
             <Property name="selectionEnd" type="int" value="2"/>
             <Property name="selectionStart" type="int" value="2"/>
           </Properties>
           <Events>
+<<<<<<< HEAD
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfPasswordFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfPasswordFocusLost"/>
+=======
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfContrase&#xf1;aFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfContrase&#xf1;aFocusLost"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JLabel" name="lbl_getAccount">
+=======
+        <Component class="javax.swing.JLabel" name="jLabel5">
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="11" style="1"/>
@@ -189,6 +244,7 @@
               <Color id="Cursor de Mano"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+<<<<<<< HEAD
               <ComponentRef name="btnExit"/>
             </Property>
           </Properties>
@@ -196,12 +252,25 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_getAccountMouseClicked"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_getAccountMouseExited"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_getAccountMouseEntered"/>
+=======
+              <ComponentRef name="jbtSalir"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel5MouseClicked"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel5MouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel5MouseEntered"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="btnExit">
+=======
+        <Component class="javax.swing.JButton" name="jbtSalir">
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="3"/>
@@ -212,14 +281,22 @@
               <Color id="Cursor de Mano"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+<<<<<<< HEAD
               <ComponentRef name="jtfUser"/>
+=======
+              <ComponentRef name="jtfUsuario"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JButton" name="btnEnter">
+=======
+        <Component class="javax.swing.JButton" name="btnIngresar">
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/1412806304_ok-sign-64.png"/>
@@ -235,7 +312,11 @@
               <Color id="Cursor de Mano"/>
             </Property>
             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+<<<<<<< HEAD
               <ComponentRef name="lbl_getAccount"/>
+=======
+              <ComponentRef name="jLabel5"/>
+>>>>>>> 2c2f98d588b857c0f2438f5ea2f1bd2857295c5f
             </Property>
           </Properties>
           <AuxValues>

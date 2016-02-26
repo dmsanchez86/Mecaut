@@ -1508,7 +1508,7 @@ public class Conexion {
         }
     }
     
-    boolean eliminarMantenimientoPendiente(String placa,String id){
+    public boolean eliminarMantenimientoPendiente(String placa,String id){
         try {
             consulta = conexion.prepareStatement("DELETE FROM mantenimientos_pendientes WHERE aut_placa = ? AND cli_id = ?");
             consulta.setString(1,placa);

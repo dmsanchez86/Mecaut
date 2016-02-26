@@ -210,7 +210,7 @@ public class frmLoggin extends javax.swing.JFrame {
             jtfUser.setText("Usuario");
     }//GEN-LAST:event_jtfUserFocusLost
 
-    private void foco(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_foco
+    private void foco(java.awt.event.FocusEvent evt) {                      
         if ("Usuario".equals(jtfUser.getText()))
             jtfUser.setText(null);
     }//GEN-LAST:event_foco

@@ -44,6 +44,7 @@ public class Gestor{
         conexion.cerrarConexion();
         return respuesta;
     }
+
     public String[] validateUser(String usuario, String clave){
         String[] datos;
         conexion.crearConexion();
